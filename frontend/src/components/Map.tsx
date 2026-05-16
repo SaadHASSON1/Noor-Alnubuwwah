@@ -27,8 +27,9 @@ const MapComponent: React.FC<MapComponentProps> = ({ activePeriod, onSimulateBat
       zoom: 3, // Zoom out to see the globe
       pitch: 45,
       bearing: 0,
-      projection: { type: 'globe' } as any
-    });
+      // @ts-ignore: Globe projection might not be in the TS definitions yet
+      projection: { type: 'globe' }
+    } as any);
 
     map.current.on('style.load', () => {
       if(!map.current) return;
