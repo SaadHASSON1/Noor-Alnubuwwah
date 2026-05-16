@@ -23,7 +23,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ activePeriod, onSimulateBat
 
     map.current = new mapboxgl.Map({
       container: mapContainer.current!,
-      style: 'mapbox://styles/mapbox/outdoors-v12', // Terrain-first style (no satellite)
+      style: 'mapbox://styles/mapbox/satellite-v9',
       center: [39.8, 22.5],
       zoom: 3,
       pitch: 45,
@@ -34,26 +34,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ activePeriod, onSimulateBat
     map.current.on('style.load', () => {
       if (!map.current) return;
 
-      // ── Hide ALL modern infrastructure layers ────────────────────────────
-      const modernPatterns = [
-        /^road/, /^bridge/, /^tunnel/, /motorway/, /transit/,
-        /^building/, /^poi/, /^airport/, /^ferry/,
-        /label/, /^place/, /settlement/, /^state/, /^country/,
-        /^admin/, /^natural-line/, /pitch/, /schoolyard/,
-        /^landuse/, /^park$/, /gate/, /^pedestrian/,
-        /^contour/, /index-contour/,
-      ];
-
-      const allLayers = map.current.getStyle().layers ?? [];
-      allLayers.forEach((layer: any) => {
-        const isModern = modernPatterns.some(re => re.test(layer.id));
-        if (isModern) {
-          try { map.current.setLayoutProperty(layer.id, 'visibility', 'none'); }
-          catch (_) {}
-        }
-      });
-
-      // ── 3D terrain (unchanged since Prophet's time ﷺ) ───────────────────
+      // 3D terrain
       map.current.addSource('mapbox-dem', {
         type: 'raster-dem',
         url: 'mapbox://mapbox.mapbox-terrain-dem-v1',
@@ -62,7 +43,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ activePeriod, onSimulateBat
       });
       map.current.setTerrain({ source: 'mapbox-dem', exaggeration: 1.5 });
 
-      // ── Atmosphere: warm desert horizon + dark starry space ─────────────
+      // Atmosphere: warm desert tones + starry space
       map.current.setFog({
         'color': 'rgb(230, 205, 155)',
         'high-color': 'rgb(70, 110, 190)',
@@ -70,12 +51,6 @@ const MapComponent: React.FC<MapComponentProps> = ({ activePeriod, onSimulateBat
         'space-color': 'rgb(0, 0, 8)',
         'star-intensity': 0.95
       });
-
-      // ── Parchment/ancient map CSS filter ────────────────────────────────
-      const canvas = mapContainer.current?.querySelector('canvas') as HTMLCanvasElement | null;
-      if (canvas) {
-        canvas.style.filter = 'sepia(50%) saturate(0.7) brightness(0.90) contrast(1.15) hue-rotate(-5deg)';
-      }
     });
 
     // ── Custom right-click rotate/pitch (slow + correct direction) ────────
