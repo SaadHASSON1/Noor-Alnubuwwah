@@ -23,10 +23,10 @@ const MapComponent: React.FC<MapComponentProps> = ({ activePeriod, onSimulateBat
 
     map.current = new mapboxgl.Map({
       container: mapContainer.current!,
-      style: 'mapbox://styles/mapbox/satellite-v9',
+      style: 'mapbox://styles/mapbox/standard',
       center: [39.8, 22.5],
       zoom: 3,
-      pitch: 45,
+      pitch: 50,
       bearing: 0,
       projection: 'globe' as any
     } as any);
@@ -34,7 +34,18 @@ const MapComponent: React.FC<MapComponentProps> = ({ activePeriod, onSimulateBat
     map.current.on('style.load', () => {
       if (!map.current) return;
 
-      // ── 3D terrain (Hejaz mountains unchanged since 7th century) ─────────
+      // ── Warm sandy desert theme (like Mecca architectural renders) ─────────
+      try {
+        (map.current as any).setConfig({
+          lightPreset: 'day',
+          showPointOfInterestLabels: true,
+          showTransitLabels: false,
+          showRoadLabels: false,
+          showPlaceLabels: true,
+        });
+      } catch (_) {}
+
+      // ── 3D terrain (Hejaz mountains) ──────────────────────────────────────
       map.current.addSource('mapbox-dem', {
         type: 'raster-dem',
         url: 'mapbox://mapbox.mapbox-terrain-dem-v1',
@@ -43,9 +54,21 @@ const MapComponent: React.FC<MapComponentProps> = ({ activePeriod, onSimulateBat
       });
       map.current.setTerrain({ source: 'mapbox-dem', exaggeration: 1.5 });
 
-      // ── Atmosphere: warm desert horizon + starry space ────────────────────
+      // ── Warm sandy colour tint over the whole map canvas ──────────────────
+      if (!map.current.getLayer('warm-tint')) {
+        map.current.addLayer({
+          id: 'warm-tint',
+          type: 'background',
+          paint: {
+            'background-color': 'rgba(245, 210, 160, 0.18)',
+            'background-opacity': 1
+          }
+        }, map.current.getStyle().layers?.[1]?.id);
+      }
+
+      // ── Atmosphere: warm desert tones + starry space ───────────────────────
       map.current.setFog({
-        'color': 'rgb(230, 205, 155)',
+        'color': 'rgb(240, 215, 165)',
         'high-color': 'rgb(70, 110, 190)',
         'horizon-blend': 0.05,
         'space-color': 'rgb(0, 0, 8)',
