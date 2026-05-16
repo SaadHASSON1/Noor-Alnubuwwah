@@ -23,18 +23,18 @@ const MapComponent: React.FC<MapComponentProps> = ({ activePeriod, onSimulateBat
     
     map.current = new mapboxgl.Map({
       container: mapContainer.current!,
-      style: 'mapbox://styles/mapbox/satellite-v9', // Raw satellite with NO borders or modern roads
-      center: [39.8, 22.5], // Default center
-      zoom: 3, // Zoom out to see the globe
+      style: 'mapbox://styles/mapbox/satellite-v9', // Raw satellite - no borders, no roads
+      center: [39.8, 22.5],
+      zoom: 3,
       pitch: 45,
       bearing: 0,
-      projection: 'globe' // Enable true 3D globe
+      projection: 'globe' as any
     } as any);
 
     map.current.on('style.load', () => {
-      if(!map.current) return;
-      
-      // Add 3D terrain using Mapbox
+      if (!map.current) return;
+
+      // 3D terrain - the Arabian Peninsula geography hasn't changed since the Prophet's time
       map.current.addSource('mapbox-dem', {
         'type': 'raster-dem',
         'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
@@ -43,17 +43,68 @@ const MapComponent: React.FC<MapComponentProps> = ({ activePeriod, onSimulateBat
       });
       map.current.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
 
-      // Add dramatic space and atmosphere effect
+      // Dramatic space + atmosphere
       map.current.setFog({
-        'color': 'rgb(186, 210, 235)', // Lower atmosphere
-        'high-color': 'rgb(36, 92, 223)', // Upper atmosphere
-        'horizon-blend': 0.02, // Atmosphere thickness
-        'space-color': 'rgb(0, 0, 5)', // Dark space
-        'star-intensity': 0.8 // Bright stars
+        'color': 'rgb(220, 190, 140)',       // Warm desert-toned lower atmosphere
+        'high-color': 'rgb(80, 120, 200)',    // Blue upper atmosphere
+        'horizon-blend': 0.04,
+        'space-color': 'rgb(0, 0, 5)',
+        'star-intensity': 0.9
       });
+
+      // Apply sepia/warm filter to canvas to give historical look (remove modern color palette)
+      const canvas = mapContainer.current?.querySelector('canvas') as HTMLCanvasElement | null;
+      if (canvas) {
+        canvas.style.filter = 'sepia(35%) saturate(0.8) brightness(0.88) contrast(1.1)';
+      }
     });
 
+    // ── Slow down right-click (pitch/rotate) drag ──────────────────────────
+    const container = mapContainer.current!;
+    let isRightDragging = false;
+    let lastX = 0;
+    let lastY = 0;
+
+    const onMouseDown = (e: MouseEvent) => {
+      if (e.button === 2) {
+        e.preventDefault();
+        isRightDragging = true;
+        lastX = e.clientX;
+        lastY = e.clientY;
+        map.current.dragRotate.disable();
+      }
+    };
+
+    const onMouseMove = (e: MouseEvent) => {
+      if (!isRightDragging || !map.current) return;
+      const SPEED = 0.18; // 0 = no movement, 1 = default speed
+      const dx = (e.clientX - lastX) * SPEED;
+      const dy = (e.clientY - lastY) * SPEED;
+      map.current.setBearing(map.current.getBearing() - dx);
+      map.current.setPitch(Math.max(0, Math.min(85, map.current.getPitch() - dy)));
+      lastX = e.clientX;
+      lastY = e.clientY;
+    };
+
+    const onMouseUp = (e: MouseEvent) => {
+      if (e.button === 2) {
+        isRightDragging = false;
+        map.current?.dragRotate.enable();
+      }
+    };
+
+    const onContextMenu = (e: MouseEvent) => e.preventDefault();
+
+    container.addEventListener('mousedown', onMouseDown);
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
+    container.addEventListener('contextmenu', onContextMenu);
+
     return () => {
+      container.removeEventListener('mousedown', onMouseDown);
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
+      container.removeEventListener('contextmenu', onContextMenu);
       if (map.current) {
         map.current.remove();
         map.current = null;
