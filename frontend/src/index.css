@@ -4,12 +4,12 @@
 
 @layer base {
   body {
-    @apply bg-dark-bg text-white font-arabic;
+    @apply bg-dark-bg text-white font-noto;
   }
 }
 
 .mapboxgl-popup-content {
-  @apply bg-dark-panel text-white font-arabic rounded-lg shadow-lg border border-islamic-gold/20 p-4 !important;
+  @apply bg-dark-panel text-white font-noto rounded-lg shadow-lg border border-islamic-gold/20 p-4 !important;
 }
 
 .mapboxgl-popup-tip {
