@@ -17,7 +17,7 @@ const Search: React.FC<SearchProps> = ({ onSelectLocation, onClose }) => {
 
     setLoading(true);
     try {
-      const res = await fetch(`http://localhost:8000/api/search?query=${encodeURIComponent(query)}`);
+      const res = await fetch(`https://noor-alnubuwwah-production.up.railway.app/api/search?query=${encodeURIComponent(query)}`);
       const data = await res.json();
       setResults(data);
     } catch (err) {

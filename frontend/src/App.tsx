@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
     // Fetch from FastAPI backend
-    fetch('http://localhost:8000/api/periods')
+    fetch('https://noor-alnubuwwah-production.up.railway.app/api/periods')
       .then(res => res.json())
       .then(data => {
         setPeriods(data);
@@ -26,7 +26,7 @@ function App() {
   }, []);
 
   const handleSimulateBattle = (battleId: number) => {
-    fetch(`http://localhost:8000/api/battles/${battleId}`)
+    fetch(`https://noor-alnubuwwah-production.up.railway.app/api/battles/${battleId}`)
       .then(res => res.json())
       .then(data => {
         setActiveBattle(data);
