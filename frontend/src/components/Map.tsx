@@ -19,11 +19,11 @@ const MapComponent: React.FC<MapComponentProps> = ({ activePeriod, onSimulateBat
   mapboxgl.accessToken = MAPBOX_TOKEN;
 
   useEffect(() => {
-    if (map.current) return; // initialize map only once
-    
+    if (map.current) return;
+
     map.current = new mapboxgl.Map({
       container: mapContainer.current!,
-      style: 'mapbox://styles/mapbox/satellite-v9', // Raw satellite - no borders, no roads
+      style: 'mapbox://styles/mapbox/outdoors-v12', // Terrain-first style (no satellite)
       center: [39.8, 22.5],
       zoom: 3,
       pitch: 45,
@@ -34,32 +34,51 @@ const MapComponent: React.FC<MapComponentProps> = ({ activePeriod, onSimulateBat
     map.current.on('style.load', () => {
       if (!map.current) return;
 
-      // 3D terrain - the Arabian Peninsula geography hasn't changed since the Prophet's time
+      // ── Hide ALL modern infrastructure layers ────────────────────────────
+      const modernPatterns = [
+        /^road/, /^bridge/, /^tunnel/, /motorway/, /transit/,
+        /^building/, /^poi/, /^airport/, /^ferry/,
+        /label/, /^place/, /settlement/, /^state/, /^country/,
+        /^admin/, /^natural-line/, /pitch/, /schoolyard/,
+        /^landuse/, /^park$/, /gate/, /^pedestrian/,
+        /^contour/, /index-contour/,
+      ];
+
+      const allLayers = map.current.getStyle().layers ?? [];
+      allLayers.forEach((layer: any) => {
+        const isModern = modernPatterns.some(re => re.test(layer.id));
+        if (isModern) {
+          try { map.current.setLayoutProperty(layer.id, 'visibility', 'none'); }
+          catch (_) {}
+        }
+      });
+
+      // ── 3D terrain (unchanged since Prophet's time ﷺ) ───────────────────
       map.current.addSource('mapbox-dem', {
-        'type': 'raster-dem',
-        'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
-        'tileSize': 512,
-        'maxzoom': 14
+        type: 'raster-dem',
+        url: 'mapbox://mapbox.mapbox-terrain-dem-v1',
+        tileSize: 512,
+        maxzoom: 14
       });
-      map.current.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
+      map.current.setTerrain({ source: 'mapbox-dem', exaggeration: 1.5 });
 
-      // Dramatic space + atmosphere
+      // ── Atmosphere: warm desert horizon + dark starry space ─────────────
       map.current.setFog({
-        'color': 'rgb(220, 190, 140)',       // Warm desert-toned lower atmosphere
-        'high-color': 'rgb(80, 120, 200)',    // Blue upper atmosphere
-        'horizon-blend': 0.04,
-        'space-color': 'rgb(0, 0, 5)',
-        'star-intensity': 0.9
+        'color': 'rgb(230, 205, 155)',
+        'high-color': 'rgb(70, 110, 190)',
+        'horizon-blend': 0.05,
+        'space-color': 'rgb(0, 0, 8)',
+        'star-intensity': 0.95
       });
 
-      // Apply sepia/warm filter to canvas to give historical look (remove modern color palette)
+      // ── Parchment/ancient map CSS filter ────────────────────────────────
       const canvas = mapContainer.current?.querySelector('canvas') as HTMLCanvasElement | null;
       if (canvas) {
-        canvas.style.filter = 'sepia(35%) saturate(0.8) brightness(0.88) contrast(1.1)';
+        canvas.style.filter = 'sepia(50%) saturate(0.7) brightness(0.90) contrast(1.15) hue-rotate(-5deg)';
       }
     });
 
-    // ── Slow down right-click (pitch/rotate) drag ──────────────────────────
+    // ── Custom right-click rotate/pitch (slow + correct direction) ────────
     const container = mapContainer.current!;
     let isRightDragging = false;
     let lastX = 0;
@@ -77,10 +96,12 @@ const MapComponent: React.FC<MapComponentProps> = ({ activePeriod, onSimulateBat
 
     const onMouseMove = (e: MouseEvent) => {
       if (!isRightDragging || !map.current) return;
-      const SPEED = 0.18; // 0 = no movement, 1 = default speed
+      const SPEED = 0.18;
       const dx = (e.clientX - lastX) * SPEED;
       const dy = (e.clientY - lastY) * SPEED;
-      map.current.setBearing(map.current.getBearing() - dx);
+      // +dx  →  drag right = rotate clockwise (correct)
+      // -dy  →  drag up    = increase pitch   (correct)
+      map.current.setBearing(map.current.getBearing() + dx);
       map.current.setPitch(Math.max(0, Math.min(85, map.current.getPitch() - dy)));
       lastX = e.clientX;
       lastY = e.clientY;
@@ -105,10 +126,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ activePeriod, onSimulateBat
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mouseup', onMouseUp);
       container.removeEventListener('contextmenu', onContextMenu);
-      if (map.current) {
-        map.current.remove();
-        map.current = null;
-      }
+      if (map.current) { map.current.remove(); map.current = null; }
     };
   }, []);
 
