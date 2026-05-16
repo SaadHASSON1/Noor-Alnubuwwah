@@ -24,9 +24,10 @@ const MapComponent: React.FC<MapComponentProps> = ({ activePeriod, onSimulateBat
       container: mapContainer.current!,
       style: `https://api.maptiler.com/maps/satellite/style.json?key=${MAPTILER_TOKEN}`,
       center: [39.8, 22.5], // Default center
-      zoom: 5,
+      zoom: 3, // Zoom out to see the globe
       pitch: 45,
       bearing: 0,
+      projection: { type: 'globe' } as any
     });
 
     map.current.on('style.load', () => {
