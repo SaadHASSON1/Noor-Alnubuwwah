@@ -2,14 +2,22 @@ from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from typing import List
+from contextlib import asynccontextmanager
 
 import models
 import schemas
 from database import engine, get_db
+import seed_data
 
 models.Base.metadata.create_all(bind=engine)
 
-app = FastAPI(title="Noor Al-Nubuwwah API", description="API for Prophet Muhammad Interactive Map", version="1.0.0")
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Seed data on startup if empty
+    seed_data.seed()
+    yield
+
+app = FastAPI(title="Noor Al-Nubuwwah API", description="API for Prophet Muhammad Interactive Map", version="1.0.0", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
