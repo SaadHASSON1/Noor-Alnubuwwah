@@ -4,6 +4,7 @@ import Sidebar from './components/Sidebar';
 import BattleSimulationOverlay from './components/BattleSimulationOverlay';
 import Search from './components/Search';
 import { Search as SearchIcon } from 'lucide-react';
+import { Analytics } from '@vercel/analytics/react';
 
 function App() {
   const [periods, setPeriods] = useState<any[]>([]);
@@ -74,6 +75,7 @@ function App() {
           onClose={() => setActiveBattle(null)} 
         />
       )}
+      <Analytics />
     </div>
   );
 }
