@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import maplibregl from 'maplibre-gl';
-import 'maplibre-gl/dist/maplibre-gl.css';
+import mapboxgl from 'mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import { createRoot } from 'react-dom/client';
 import { Info, Swords } from 'lucide-react';
 
@@ -15,50 +15,41 @@ const MapComponent: React.FC<MapComponentProps> = ({ activePeriod, onSimulateBat
   const markersRef = useRef<any[]>([]);
 
   // Note: For production, this should be an environment variable
-  const MAPTILER_TOKEN = import.meta.env.VITE_MAPTILER_TOKEN || 'YOUR_MAPTILER_TOKEN_HERE';
+  const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN || 'YOUR_MAPBOX_TOKEN_HERE';
+  mapboxgl.accessToken = MAPBOX_TOKEN;
 
   useEffect(() => {
     if (map.current) return; // initialize map only once
     
-    map.current = new maplibregl.Map({
+    map.current = new mapboxgl.Map({
       container: mapContainer.current!,
-      style: `https://api.maptiler.com/maps/satellite/style.json?key=${MAPTILER_TOKEN}`,
+      style: 'mapbox://styles/mapbox/satellite-v9', // Raw satellite with NO borders or modern roads
       center: [39.8, 22.5], // Default center
       zoom: 3, // Zoom out to see the globe
       pitch: 45,
       bearing: 0,
-      // @ts-ignore: Globe projection might not be in the TS definitions yet
-      projection: { type: 'globe' }
+      projection: 'globe' // Enable true 3D globe
     } as any);
 
     map.current.on('style.load', () => {
       if(!map.current) return;
       
-      // Add 3D terrain using Maptiler
-      map.current.addSource('maptiler-dem', {
-        type: 'raster-dem',
-        url: `https://api.maptiler.com/tiles/terrain-rgb-v2/tiles.json?key=${MAPTILER_TOKEN}`
+      // Add 3D terrain using Mapbox
+      map.current.addSource('mapbox-dem', {
+        'type': 'raster-dem',
+        'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
+        'tileSize': 512,
+        'maxzoom': 14
       });
-      map.current.setTerrain({ source: 'maptiler-dem', exaggeration: 1.5 });
+      map.current.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
 
-      // Hide modern layers to create historical feel
-      const modernLayers = [
-        'road-primary', 'road-secondary', 'road-minor',
-        'road-street', 'road-motorway', 'road-trunk',
-        'road-label', 'road-number-shield',
-        'building', 'building-outline',
-        'poi-label', 'transit-label',
-        'airport-label', 'motorway-junction',
-        'road-pedestrian', 'road-steps',
-        'ferry', 'ferry-auto',
-        'tunnel-motorway-trunk',
-        'national-park', 'landuse'
-      ];
-      
-      modernLayers.forEach(layer => {
-        if (map.current?.getLayer(layer)) {
-          map.current.setLayoutProperty(layer, 'visibility', 'none');
-        }
+      // Add dramatic space and atmosphere effect
+      map.current.setFog({
+        'color': 'rgb(186, 210, 235)', // Lower atmosphere
+        'high-color': 'rgb(36, 92, 223)', // Upper atmosphere
+        'horizon-blend': 0.02, // Atmosphere thickness
+        'space-color': 'rgb(0, 0, 5)', // Dark space
+        'star-intensity': 0.8 // Bright stars
       });
     });
 
@@ -115,7 +106,6 @@ const MapComponent: React.FC<MapComponentProps> = ({ activePeriod, onSimulateBat
         const popupContent = document.createElement('div');
         popupContent.className = 'w-64 rtl';
         
-        // Since we are creating dynamic HTML for popup, we use react-dom to render into it
         const root = createRoot(popupContent);
         
         const PopupComponent = () => (
@@ -146,10 +136,10 @@ const MapComponent: React.FC<MapComponentProps> = ({ activePeriod, onSimulateBat
 
         root.render(<PopupComponent />);
 
-        const popup = new maplibregl.Popup({ offset: 25, closeButton: true })
+        const popup = new mapboxgl.Popup({ offset: 25, closeButton: true })
           .setDOMContent(popupContent);
 
-        const marker = new maplibregl.Marker({ element: el })
+        const marker = new mapboxgl.Marker({ element: el })
           .setLngLat([loc.longitude, loc.latitude])
           .setPopup(popup)
           .addTo(map.current!);
