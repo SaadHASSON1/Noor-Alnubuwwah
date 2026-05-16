@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import mapboxgl from 'mapbox-gl';
+import maplibregl from 'maplibre-gl';
+import 'maplibre-gl/dist/maplibre-gl.css';
 import { createRoot } from 'react-dom/client';
 import { Info, Swords } from 'lucide-react';
 
@@ -10,49 +11,33 @@ interface MapComponentProps {
 
 const MapComponent: React.FC<MapComponentProps> = ({ activePeriod, onSimulateBattle }) => {
   const mapContainer = useRef<HTMLDivElement>(null);
-  const map = useRef<mapboxgl.Map | null>(null);
-  const markersRef = useRef<mapboxgl.Marker[]>([]);
+  const map = useRef<maplibregl.Map | null>(null);
+  const markersRef = useRef<maplibregl.Marker[]>([]);
 
   // Note: For production, this should be an environment variable
-  const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN || 'YOUR_MAPBOX_TOKEN_HERE';
+  const MAPTILER_TOKEN = import.meta.env.VITE_MAPTILER_TOKEN || 'YOUR_MAPTILER_TOKEN_HERE';
 
   useEffect(() => {
     if (map.current) return; // initialize map only once
-
-    mapboxgl.accessToken = MAPBOX_TOKEN;
     
-    map.current = new mapboxgl.Map({
+    map.current = new maplibregl.Map({
       container: mapContainer.current!,
-      style: 'mapbox://styles/mapbox/outdoors-v12',
+      style: `https://api.maptiler.com/maps/satellite/style.json?key=${MAPTILER_TOKEN}`,
       center: [39.8, 22.5], // Default center
       zoom: 5,
       pitch: 45,
       bearing: 0,
-      projection: 'globe' // Display as a 3D globe initially
     });
 
     map.current.on('style.load', () => {
       if(!map.current) return;
       
-      // Add 3D terrain
-      map.current.addSource('mapbox-dem', {
+      // Add 3D terrain using Maptiler
+      map.current.addSource('maptiler-dem', {
         type: 'raster-dem',
-        url: 'mapbox://mapbox.mapbox-terrain-dem-v1',
-        tileSize: 512,
-        maxzoom: 14
+        url: `https://api.maptiler.com/tiles/terrain-rgb-v2/tiles.json?key=${MAPTILER_TOKEN}`
       });
-      map.current.setTerrain({ source: 'mapbox-dem', exaggeration: 2.5 });
-
-      // Add sky layer
-      map.current.addLayer({
-        id: 'sky',
-        type: 'sky',
-        paint: {
-          'sky-type': 'atmosphere',
-          'sky-atmosphere-sun': [0.0, 0.0],
-          'sky-atmosphere-sun-intensity': 15
-        }
-      });
+      map.current.setTerrain({ source: 'maptiler-dem', exaggeration: 1.5 });
 
       // Hide modern layers to create historical feel
       const modernLayers = [
@@ -159,10 +144,10 @@ const MapComponent: React.FC<MapComponentProps> = ({ activePeriod, onSimulateBat
 
         root.render(<PopupComponent />);
 
-        const popup = new mapboxgl.Popup({ offset: 25, closeButton: true })
+        const popup = new maplibregl.Popup({ offset: 25, closeButton: true })
           .setDOMContent(popupContent);
 
-        const marker = new mapboxgl.Marker({ element: el })
+        const marker = new maplibregl.Marker({ element: el })
           .setLngLat([loc.longitude, loc.latitude])
           .setPopup(popup)
           .addTo(map.current!);
