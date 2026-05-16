@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { X, Swords, Users, Shield, ArrowRight } from 'lucide-react';
+import { X, Swords, Users, Shield } from 'lucide-react';
 
 interface BattleSimulationProps {
   battle: any;

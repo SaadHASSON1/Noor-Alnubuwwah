@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 import { createRoot } from 'react-dom/client';
-import { Info, Swords, Mountain, Home } from 'lucide-react';
+import { Info, Swords } from 'lucide-react';
 
 interface MapComponentProps {
   activePeriod: any;

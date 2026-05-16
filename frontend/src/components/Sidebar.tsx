@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Map, Clock, Info } from 'lucide-react';
+import { Clock, Info } from 'lucide-react';
 
 interface SidebarProps {
   periods: any[];
