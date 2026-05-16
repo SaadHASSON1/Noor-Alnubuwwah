@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-dark-bg text-white font-arabic;
+  }
+}
+
+.mapboxgl-popup-content {
+  @apply bg-dark-panel text-white font-arabic rounded-lg shadow-lg border border-islamic-gold/20 p-4 !important;
+}
+
+.mapboxgl-popup-tip {
+  @apply border-t-dark-panel !important;
+}
+
+.mapboxgl-ctrl-bottom-left, .mapboxgl-ctrl-bottom-right {
+  display: none !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-dark-bg;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-islamic-gold/50 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-islamic-gold;
+}
