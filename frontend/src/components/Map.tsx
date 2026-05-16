@@ -15,7 +15,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ activePeriod, onSimulateBat
   const markersRef = useRef<any[]>([]);
 
   // Note: For production, this should be an environment variable
-  const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN || 'YOUR_MAPBOX_TOKEN_HERE';
+  const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN as string;
   mapboxgl.accessToken = MAPBOX_TOKEN;
 
   useEffect(() => {
