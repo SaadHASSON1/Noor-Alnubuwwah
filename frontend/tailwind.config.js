@@ -14,7 +14,8 @@ export default {
         'dark-panel': '#1e293b'
       },
       fontFamily: {
-        'arabic': ['Amiri', 'Noto Naskh Arabic', 'serif'],
+        'amiri': ['Amiri', 'serif'],
+        'noto': ['"Noto Naskh Arabic"', 'serif'],
         'sans': ['Inter', 'sans-serif']
       }
     },

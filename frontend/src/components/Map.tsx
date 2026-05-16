@@ -118,7 +118,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ activePeriod, onSimulateBat
         
         const PopupComponent = () => (
           <div className="flex flex-col gap-2">
-            <h3 className="text-xl font-bold text-islamic-gold mb-1 border-b border-islamic-gold/20 pb-1">{loc.name_ar}</h3>
+            <h3 className="text-xl font-bold text-islamic-gold mb-1 border-b border-islamic-gold/20 pb-1 font-amiri">{loc.name_ar}</h3>
             <p className="text-sm text-gray-200 leading-relaxed">{loc.description_ar}</p>
             
             {loc.is_approximate && (

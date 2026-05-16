@@ -31,7 +31,7 @@ const BattleSimulationOverlay: React.FC<BattleSimulationProps> = ({ battle, onCl
 
         <div className="p-6 border-b border-islamic-gold/20 bg-gradient-to-r from-islamic-green/40 to-dark-panel flex justify-between items-center">
           <div>
-            <h2 className="text-3xl font-bold text-islamic-gold flex items-center gap-3">
+            <h2 className="text-3xl font-bold text-islamic-gold flex items-center gap-3 font-amiri">
               <Swords className="w-8 h-8" />
               محاكاة المعركة
             </h2>
@@ -84,7 +84,7 @@ const BattleSimulationOverlay: React.FC<BattleSimulationProps> = ({ battle, onCl
               </div>
             </div>
 
-            <h3 className="text-xl font-bold text-islamic-gold mb-4 border-b border-islamic-gold/20 pb-2">التسلسل الزمني</h3>
+            <h3 className="text-xl font-bold text-islamic-gold mb-4 border-b border-islamic-gold/20 pb-2 font-amiri">التسلسل الزمني</h3>
             
             <div className="space-y-4">
               {battle.key_moments.map((moment: any, idx: number) => (

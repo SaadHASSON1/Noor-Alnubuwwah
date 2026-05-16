@@ -12,12 +12,12 @@ const Sidebar: React.FC<SidebarProps> = ({ periods, activePeriod, setActivePerio
   return (
     <div className="w-80 h-full bg-dark-panel border-l border-islamic-gold/20 flex flex-col z-10 shadow-2xl overflow-y-auto">
       <div className="p-6 border-b border-islamic-gold/20 bg-islamic-green/10">
-        <h1 className="text-3xl font-bold text-islamic-gold mb-2 font-arabic tracking-wide">نور النبوة</h1>
+        <h1 className="text-3xl font-bold text-islamic-gold mb-2 font-amiri tracking-wide">نور النبوة</h1>
         <p className="text-sm text-gray-300">خريطة حياة النبي محمد ﷺ التفاعلية</p>
       </div>
 
       <div className="flex-1 p-4 overflow-y-auto">
-        <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+        <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2 font-amiri">
           <Clock className="w-5 h-5 text-islamic-gold" />
           الفترات الزمنية
         </h2>
@@ -39,7 +39,7 @@ const Sidebar: React.FC<SidebarProps> = ({ periods, activePeriod, setActivePerio
                 }`}
               >
                 <div className="flex justify-between items-center mb-2">
-                  <h3 className={`font-bold text-lg ${isActive ? 'text-islamic-gold' : 'text-white'}`}>
+                  <h3 className={`font-bold text-lg font-amiri ${isActive ? 'text-islamic-gold' : 'text-white'}`}>
                     {period.title_ar}
                   </h3>
                   <span className="text-xs text-islamic-gold/70 px-2 py-1 bg-dark-bg rounded-md">

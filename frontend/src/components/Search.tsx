@@ -60,7 +60,7 @@ const Search: React.FC<SearchProps> = ({ onSelectLocation, onClose }) => {
                   <MapPin className="w-4 h-4 text-islamic-gold" />
                 </div>
                 <div>
-                  <h4 className="text-white font-bold">{loc.name_ar}</h4>
+                  <h4 className="text-white font-bold font-amiri">{loc.name_ar}</h4>
                   <p className="text-xs text-gray-400 mt-1 line-clamp-1">{loc.description_ar}</p>
                 </div>
               </li>
