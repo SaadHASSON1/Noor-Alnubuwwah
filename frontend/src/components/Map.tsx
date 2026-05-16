@@ -11,8 +11,8 @@ interface MapComponentProps {
 
 const MapComponent: React.FC<MapComponentProps> = ({ activePeriod, onSimulateBattle }) => {
   const mapContainer = useRef<HTMLDivElement>(null);
-  const map = useRef<maplibregl.Map | null>(null);
-  const markersRef = useRef<maplibregl.Marker[]>([]);
+  const map = useRef<any>(null);
+  const markersRef = useRef<any[]>([]);
 
   // Note: For production, this should be an environment variable
   const MAPTILER_TOKEN = import.meta.env.VITE_MAPTILER_TOKEN || 'YOUR_MAPTILER_TOKEN_HERE';
@@ -79,7 +79,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ activePeriod, onSimulateBat
       bearing: -20,
       duration: 2500,
       essential: true,
-      easing: (t) => t * (2 - t)
+      easing: (t: number) => t * (2 - t)
     });
 
     // Clear previous markers
