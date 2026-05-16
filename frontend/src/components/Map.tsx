@@ -77,7 +77,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ activePeriod, onSimulateBat
       zoom: activePeriod.zoom_level,
       pitch: 65,
       bearing: -20,
-      duration: 2500,
+      duration: 6500,
       essential: true,
       easing: (t: number) => t * (2 - t)
     });
