@@ -43,26 +43,6 @@ const MapComponent: React.FC<MapComponentProps> = ({ activePeriod, onSimulateBat
       });
       map.current.setTerrain({ source: 'mapbox-dem', exaggeration: 1.5 });
 
-      // ── CAWM Historical Map Overlay (Consortium of Ancient World Mappers) ─
-      // Tiles depict the ancient world as it appeared in the 1st–7th century CE
-      map.current.addSource('cawm-ancient', {
-        type: 'raster',
-        tiles: ['https://cawm.lib.uiowa.edu/tiles/{z}/{x}/{y}.png'],
-        tileSize: 256,
-        minzoom: 1,
-        maxzoom: 11,
-        attribution: '© Consortium of Ancient World Mappers (CAWM)'
-      });
-      map.current.addLayer({
-        id: 'cawm-ancient-layer',
-        type: 'raster',
-        source: 'cawm-ancient',
-        paint: {
-          'raster-opacity': 0.72,          // Blend with satellite below
-          'raster-fade-duration': 300
-        }
-      });
-
       // ── Atmosphere: warm desert horizon + starry space ────────────────────
       map.current.setFog({
         'color': 'rgb(230, 205, 155)',
