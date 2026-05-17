@@ -1,5 +1,9 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import {
+  Moon, BookOpen, Swords, Footprints, Scroll,
+  Crown, Mountain, Sunrise, Sparkles,
+} from 'lucide-react';
 import type { SeerahEvent } from '../data/seerah';
 import { EventIllustration } from './EventIllustrations';
 
@@ -29,53 +33,23 @@ const DiamondDivider: React.FC<{ light?: boolean }> = ({ light }) => (
   </div>
 );
 
-/* ── Type icon (SVG inline) ── */
+/* ── Type icon (Lucide) ── */
 const TypeIcon: React.FC<{ type: SeerahEvent['type']; light?: boolean }> = ({ type, light }) => {
   const color = light ? '#5a3e1b' : '#C9A84C';
-  const icons: Record<string, React.ReactNode> = {
-    birth: (
-      <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke={color} strokeWidth="1.5">
-        <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9" />
-        <path d="M12 8v4l3 3" />
-      </svg>
-    ),
-    revelation: (
-      <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke={color} strokeWidth="1.5">
-        <path d="M12 2L2 7l10 5 10-5-10-5z" />
-        <path d="M2 17l10 5 10-5" />
-        <path d="M2 12l10 5 10-5" />
-      </svg>
-    ),
-    battle: (
-      <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke={color} strokeWidth="1.5">
-        <path d="M14.5 17.5 3 6V3h3l11.5 11.5" />
-        <line x1="13" y1="19" x2="19" y2="13" />
-        <line x1="16" y1="16" x2="20" y2="20" />
-        <line x1="19" y1="21" x2="21" y2="19" />
-      </svg>
-    ),
-    victory: (
-      <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke={color} strokeWidth="1.5">
-        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2z" />
-      </svg>
-    ),
-    death: (
-      <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke={color} strokeWidth="1.5">
-        <circle cx="12" cy="12" r="10" />
-        <path d="M8 14s1.5 2 4 2 4-2 4-2" />
-        <line x1="9" y1="9" x2="9.01" y2="9" />
-        <line x1="15" y1="9" x2="15.01" y2="9" />
-      </svg>
-    ),
-    default: (
-      <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke={color} strokeWidth="1.5">
-        <circle cx="12" cy="12" r="10" />
-        <path d="M12 8v4" />
-        <path d="M12 16h.01" />
-      </svg>
-    ),
+  const props = { size: 20, color, strokeWidth: 1.5 };
+
+  const map: Record<string, React.ReactNode> = {
+    birth:      <Moon       {...props} />,
+    revelation: <BookOpen   {...props} />,
+    battle:     <Swords     {...props} />,
+    hijra:      <Footprints {...props} />,
+    treaty:     <Scroll     {...props} />,
+    victory:    <Crown      {...props} />,
+    farewell:   <Mountain   {...props} />,
+    death:      <Sunrise    {...props} />,
   };
-  return <>{icons[type] ?? icons.default}</>;
+
+  return <>{map[type] ?? <Sparkles {...props} />}</>;
 };
 
 /* ══════════════════════════════════════════
