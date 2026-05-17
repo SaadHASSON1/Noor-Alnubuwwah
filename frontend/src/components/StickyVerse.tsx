@@ -57,7 +57,7 @@ const StickyVerse: React.FC<Props> = ({ verse, verseRef, bg = '#06060f' }) => {
         {/* The verse — scale + blur driven by scroll */}
         <motion.div
           style={{ scale, opacity }}
-          className="text-center px-8 max-w-5xl mx-auto"
+          className="text-center pl-5 pr-14 md:px-8 max-w-5xl mx-auto"
         >
           <motion.p
             style={{ filter }}

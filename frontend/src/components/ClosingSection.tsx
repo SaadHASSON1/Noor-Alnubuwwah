@@ -32,7 +32,7 @@ const ClosingSection: React.FC = () => {
         </svg>
       </div>
 
-      <div className="relative z-10 text-center px-8 max-w-3xl" dir="rtl">
+      <div className="relative z-10 text-center pl-5 pr-14 md:px-8 max-w-3xl" dir="rtl">
         {/* Crescent */}
         <motion.div {...anim(0)} className="flex justify-center mb-8">
           <svg viewBox="0 0 80 80" className="w-16 h-16 opacity-60">
@@ -52,7 +52,7 @@ const ClosingSection: React.FC = () => {
           style={{ fontSize: 'clamp(2rem, 7vw, 5rem)', color: '#5a3e1b' }}>
           وَمَا أَرْسَلْنَاكَ
           <br />
-          إِلَّا رَحْمَةً لِّلْعَالَمِينَ
+          إِلَّا رَحْمَةً لِلْعَالَمِينَ
         </motion.h2>
 
         <motion.p {...anim(0.3)} className="font-noto mb-10"
@@ -61,10 +61,10 @@ const ClosingSection: React.FC = () => {
         </motion.p>
 
         {/* Divider */}
-        <motion.div {...anim(0.4)} className="flex items-center justify-center gap-3 mb-10 opacity-30">
-          <div className="w-24 h-px bg-stone-700" />
-          <div className="w-2 h-2 rotate-45 bg-stone-700" />
-          <div className="w-24 h-px bg-stone-700" />
+        <motion.div {...anim(0.4)} className="flex items-center justify-center gap-3 mb-10 opacity-60">
+          <div className="w-28 bg-stone-600" style={{ height: 1.5 }} />
+          <div className="w-2.5 h-2.5 rotate-45 bg-stone-600" />
+          <div className="w-28 bg-stone-600" style={{ height: 1.5 }} />
         </motion.div>
 
         {/* Closing hadith */}
@@ -79,10 +79,10 @@ const ClosingSection: React.FC = () => {
         </motion.p>
 
         {/* Divider */}
-        <motion.div {...anim(0.65)} className="flex items-center justify-center gap-3 mt-12 mb-8 opacity-20">
-          <div className="w-16 h-px bg-stone-600" />
-          <div className="w-1.5 h-1.5 rotate-45 bg-stone-600" />
-          <div className="w-16 h-px bg-stone-600" />
+        <motion.div {...anim(0.65)} className="flex items-center justify-center gap-3 mt-12 mb-8 opacity-45">
+          <div className="w-20 bg-stone-600" style={{ height: 1.5 }} />
+          <div className="w-2 h-2 rotate-45 bg-stone-600" />
+          <div className="w-20 bg-stone-600" style={{ height: 1.5 }} />
         </motion.div>
 
         {/* Footer */}

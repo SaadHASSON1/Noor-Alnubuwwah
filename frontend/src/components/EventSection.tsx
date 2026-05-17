@@ -107,7 +107,7 @@ const EventSection: React.FC<Props> = ({ event }) => {
       </div>
 
       {/* ── Main content ── */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto px-5 md:px-16 py-16 md:py-24" dir="rtl">
+      <div className="relative z-10 w-full max-w-5xl mx-auto pl-5 pr-14 md:px-16 py-16 md:py-24" dir="rtl">
 
         {/* Chapter + type icon */}
         <motion.div {...anim(0.05)} className="flex items-center gap-3 mb-5">
