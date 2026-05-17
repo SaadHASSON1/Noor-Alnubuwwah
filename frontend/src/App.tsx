@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion';
 
-import IslamicParticles from './components/IslamicParticles';
-import Hero            from './components/Hero';
-import StickyVerse     from './components/StickyVerse';
-import EventSection    from './components/EventSection';
-import ScrollNav       from './components/ScrollNav';
-import ClosingSection  from './components/ClosingSection';
+import IslamicParticles  from './components/IslamicParticles';
+import Hero              from './components/Hero';
+import StickyVerse       from './components/StickyVerse';
+import EventSection      from './components/EventSection';
+import ScrollNav         from './components/ScrollNav';
+import ClosingSection    from './components/ClosingSection';
+import ChapterSidebar    from './components/ChapterSidebar';
 
 import { SEERAH_EVENTS } from './data/seerah';
 
@@ -20,6 +21,7 @@ function App() {
     >
       <IslamicParticles />
       <ScrollNav events={SEERAH_EVENTS} />
+      <ChapterSidebar events={SEERAH_EVENTS} />
 
       <Hero />
 

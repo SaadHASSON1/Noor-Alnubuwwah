@@ -35,7 +35,7 @@ const DiamondDivider: React.FC<{ light?: boolean }> = ({ light }) => (
 /* ── Type icon (Lucide) ── */
 const TypeIcon: React.FC<{ type: SeerahEvent['type']; light?: boolean }> = ({ type, light }) => {
   const color = light ? '#5a3e1b' : '#C9A84C';
-  const props = { size: 20, color, strokeWidth: 1.5 };
+  const props = { size: 26, color, strokeWidth: 1.5 };
 
   const map: Record<string, React.ReactNode> = {
     birth:      <Moon       {...props} />,
@@ -113,12 +113,12 @@ const EventSection: React.FC<Props> = ({ event }) => {
         <motion.div {...anim(0.05)} className="flex items-center gap-3 mb-5">
           <TypeIcon type={event.type} light={isLight} />
           <span
-            className="font-noto text-xs tracking-widest uppercase"
+            className="font-kufi text-base tracking-wider"
             style={{ color: chapterColor }}
           >
             {event.chapter}
           </span>
-          <div className="h-px flex-1 max-w-[60px] opacity-30"
+          <div className="h-px flex-1 max-w-[80px] opacity-50"
             style={{ background: chapterColor }} />
         </motion.div>
 

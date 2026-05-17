@@ -15,7 +15,8 @@ export default {
         'dark-panel':    '#0d1b2a',
       },
       fontFamily: {
-        'noto':  ['"Noto Naskh Arabic"', 'serif'],
+        'noto':  ['"Scheherazade New"', 'serif'],
+        'kufi':  ['"Reem Kufi"', 'serif'],
         'amiri': ['Amiri', 'serif'],
         'sans':  ['Inter', 'sans-serif'],
       },
