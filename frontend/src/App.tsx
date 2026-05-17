@@ -1,7 +1,5 @@
-import { useState } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
-import LoadingScreen   from './components/LoadingScreen';
 import IslamicParticles from './components/IslamicParticles';
 import Hero            from './components/Hero';
 import StickyVerse     from './components/StickyVerse';
@@ -12,48 +10,31 @@ import ClosingSection  from './components/ClosingSection';
 import { SEERAH_EVENTS } from './data/seerah';
 
 function App() {
-  const [loading, setLoading] = useState(true);
-
   return (
-    <>
-      {/* ── Loading / intro screen ── */}
-      <AnimatePresence>
-        {loading && (
-          <LoadingScreen key="loading" onComplete={() => setLoading(false)} />
-        )}
-      </AnimatePresence>
+    <motion.main
+      dir="rtl"
+      className="relative"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+    >
+      <IslamicParticles />
+      <ScrollNav events={SEERAH_EVENTS} />
 
-      {/* ── Main scroll page ── */}
-      {!loading && (
-        <main dir="rtl" className="relative">
+      <Hero />
 
-          {/* Golden dust particles — visible on dark sections */}
-          <IslamicParticles />
+      <StickyVerse
+        verse="وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً لِّلْعَالَمِينَ"
+        verseRef="سورة الأنبياء: ١٠٧"
+        bg="#05060f"
+      />
 
-          {/* Side navigation dots */}
-          <ScrollNav events={SEERAH_EVENTS} />
+      {SEERAH_EVENTS.map((event, i) => (
+        <EventSection key={event.id} event={event} index={i} />
+      ))}
 
-          {/* ══ 1. Hero ══ */}
-          <Hero />
-
-          {/* ══ 2. Opening verse — Apple sticky zoom ══ */}
-          <StickyVerse
-            verse="وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً لِّلْعَالَمِينَ"
-            verseRef="سورة الأنبياء: ١٠٧"
-            bg="#05060f"
-          />
-
-          {/* ══ 3. Seerah timeline events ══ */}
-          {SEERAH_EVENTS.map((event, i) => (
-            <EventSection key={event.id} event={event} index={i} />
-          ))}
-
-          {/* ══ 4. Closing section ══ */}
-          <ClosingSection />
-
-        </main>
-      )}
-    </>
+      <ClosingSection />
+    </motion.main>
   );
 }
 
