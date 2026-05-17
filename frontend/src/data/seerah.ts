@@ -22,7 +22,7 @@ export const SEERAH_EVENTS: SeerahEvent[] = [
   {
     id: 1,
     year_m: 571, year_h: -53,
-    year_display_m: '٥٧١ م', year_display_h: '٥٣ ق.هـ',
+    year_display_m: '571 م', year_display_h: '53 ق.هـ',
     chapter: 'الفجر',
     title: 'مولده ﷺ',
     subtitle: 'عام الفيل',
@@ -35,7 +35,7 @@ export const SEERAH_EVENTS: SeerahEvent[] = [
   {
     id: 2,
     year_m: 576, year_h: -47,
-    year_display_m: '٥٧٦ م', year_display_h: '٤٧ ق.هـ',
+    year_display_m: '576 م', year_display_h: '47 ق.هـ',
     chapter: 'الفجر',
     title: 'وفاة أمه',
     subtitle: 'اليتيم الذي رباه الله',
@@ -50,7 +50,7 @@ export const SEERAH_EVENTS: SeerahEvent[] = [
   {
     id: 3,
     year_m: 582, year_h: -41,
-    year_display_m: '٥٨٢ م', year_display_h: '٤١ ق.هـ',
+    year_display_m: '582 م', year_display_h: '41 ق.هـ',
     chapter: 'الفجر',
     title: 'رحلة الشام',
     subtitle: 'الراهب بحيرى يُبشّر',
@@ -63,7 +63,7 @@ export const SEERAH_EVENTS: SeerahEvent[] = [
   {
     id: 4,
     year_m: 595, year_h: -28,
-    year_display_m: '٥٩٥ م', year_display_h: '٢٨ ق.هـ',
+    year_display_m: '595 م', year_display_h: '28 ق.هـ',
     chapter: 'الفجر',
     title: 'الزواج من خديجة',
     subtitle: 'أول من آمنت به',
@@ -78,7 +78,7 @@ export const SEERAH_EVENTS: SeerahEvent[] = [
   {
     id: 5,
     year_m: 610, year_h: -13,
-    year_display_m: '٦١٠ م', year_display_h: '١٣ ق.هـ',
+    year_display_m: '610 م', year_display_h: '13 ق.هـ',
     chapter: 'النور',
     title: 'نزول الوحي',
     subtitle: 'غار حراء — رمضان',
@@ -93,7 +93,7 @@ export const SEERAH_EVENTS: SeerahEvent[] = [
   {
     id: 6,
     year_m: 613, year_h: -10,
-    year_display_m: '٦١٣ م', year_display_h: '١٠ ق.هـ',
+    year_display_m: '613 م', year_display_h: '10 ق.هـ',
     chapter: 'النور',
     title: 'الدعوة الجهرية',
     subtitle: 'صعد الصفا ونادى قريشاً',
@@ -108,7 +108,7 @@ export const SEERAH_EVENTS: SeerahEvent[] = [
   {
     id: 7,
     year_m: 615, year_h: -8,
-    year_display_m: '٦١٥ م', year_display_h: '٨ ق.هـ',
+    year_display_m: '615 م', year_display_h: '8 ق.هـ',
     chapter: 'الابتلاء',
     title: 'الهجرة إلى الحبشة',
     subtitle: 'ملك لا يُظلَم عنده أحد',
@@ -123,7 +123,7 @@ export const SEERAH_EVENTS: SeerahEvent[] = [
   {
     id: 8,
     year_m: 619, year_h: -4,
-    year_display_m: '٦١٩ م', year_display_h: '٤ ق.هـ',
+    year_display_m: '619 م', year_display_h: '4 ق.هـ',
     chapter: 'الابتلاء',
     title: 'عام الحزن',
     subtitle: 'وفاة خديجة وأبي طالب',
@@ -136,7 +136,7 @@ export const SEERAH_EVENTS: SeerahEvent[] = [
   {
     id: 9,
     year_m: 620, year_h: -3,
-    year_display_m: '٦٢٠ م', year_display_h: '٣ ق.هـ',
+    year_display_m: '620 م', year_display_h: '3 ق.هـ',
     chapter: 'الابتلاء',
     title: 'الإسراء والمعراج',
     subtitle: 'رحلة إلى ما وراء السماوات',
@@ -151,7 +151,7 @@ export const SEERAH_EVENTS: SeerahEvent[] = [
   {
     id: 10,
     year_m: 622, year_h: 1,
-    year_display_m: '٦٢٢ م', year_display_h: '١ هـ',
+    year_display_m: '622 م', year_display_h: '1 هـ',
     chapter: 'الهجرة',
     title: 'الهجرة إلى المدينة',
     subtitle: 'بداية التقويم الهجري',
@@ -166,7 +166,7 @@ export const SEERAH_EVENTS: SeerahEvent[] = [
   {
     id: 11,
     year_m: 624, year_h: 2,
-    year_display_m: '٦٢٤ م', year_display_h: '٢ هـ',
+    year_display_m: '624 م', year_display_h: '2 هـ',
     chapter: 'المعارك',
     title: 'غزوة بدر',
     subtitle: 'يوم الفرقان',
@@ -181,7 +181,7 @@ export const SEERAH_EVENTS: SeerahEvent[] = [
   {
     id: 12,
     year_m: 625, year_h: 3,
-    year_display_m: '٦٢٥ م', year_display_h: '٣ هـ',
+    year_display_m: '625 م', year_display_h: '3 هـ',
     chapter: 'المعارك',
     title: 'غزوة أحد',
     subtitle: 'درس في الطاعة',
@@ -194,7 +194,7 @@ export const SEERAH_EVENTS: SeerahEvent[] = [
   {
     id: 13,
     year_m: 627, year_h: 5,
-    year_display_m: '٦٢٧ م', year_display_h: '٥ هـ',
+    year_display_m: '627 م', year_display_h: '5 هـ',
     chapter: 'المعارك',
     title: 'غزوة الخندق',
     subtitle: 'عشرة آلاف لا يُجدون',
@@ -209,7 +209,7 @@ export const SEERAH_EVENTS: SeerahEvent[] = [
   {
     id: 14,
     year_m: 628, year_h: 6,
-    year_display_m: '٦٢٨ م', year_display_h: '٦ هـ',
+    year_display_m: '628 م', year_display_h: '6 هـ',
     chapter: 'الفتح',
     title: 'صلح الحديبية',
     subtitle: 'فتح مبين في ثوب هزيمة',
@@ -224,7 +224,7 @@ export const SEERAH_EVENTS: SeerahEvent[] = [
   {
     id: 15,
     year_m: 630, year_h: 8,
-    year_display_m: '٦٣٠ م', year_display_h: '٨ هـ',
+    year_display_m: '630 م', year_display_h: '8 هـ',
     chapter: 'الفتح',
     title: 'فتح مكة',
     subtitle: 'اليوم يوم المرحمة',
@@ -239,7 +239,7 @@ export const SEERAH_EVENTS: SeerahEvent[] = [
   {
     id: 16,
     year_m: 630, year_h: 8,
-    year_display_m: '٦٣٠ م', year_display_h: '٨ هـ',
+    year_display_m: '630 م', year_display_h: '8 هـ',
     chapter: 'الفتح',
     title: 'رحمته ﷺ',
     subtitle: 'وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً',
@@ -254,7 +254,7 @@ export const SEERAH_EVENTS: SeerahEvent[] = [
   {
     id: 17,
     year_m: 632, year_h: 10,
-    year_display_m: '٦٣٢ م', year_display_h: '١٠ هـ',
+    year_display_m: '632 م', year_display_h: '10 هـ',
     chapter: 'الوداع',
     title: 'حجة الوداع',
     subtitle: 'مئة ألف صحابي في عرفات',
@@ -269,7 +269,7 @@ export const SEERAH_EVENTS: SeerahEvent[] = [
   {
     id: 18,
     year_m: 632, year_h: 11,
-    year_display_m: '٦٣٢ م', year_display_h: '١١ هـ',
+    year_display_m: '632 م', year_display_h: '11 هـ',
     chapter: 'الرحيل',
     title: 'وفاته ﷺ',
     subtitle: 'الثاني عشر من ربيع الأول',

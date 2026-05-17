@@ -5,7 +5,6 @@ import {
   Crown, Mountain, Sunrise, Sparkles,
 } from 'lucide-react';
 import type { SeerahEvent } from '../data/seerah';
-import { EventIllustration } from './EventIllustrations';
 
 interface Props {
   event: SeerahEvent;
@@ -81,17 +80,20 @@ const EventSection: React.FC<Props> = ({ event }) => {
       style={{ background: event.bg }}
       data-event-id={event.id}
     >
-      {/* Thematic SVG illustration as background watermark */}
+      {/* Huge year as background watermark */}
       <motion.div
         className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden"
         initial={{ opacity: 0 }}
-        animate={inView ? { opacity: event.lightText ? 0.12 : 0.08 } : { opacity: 0 }}
-        transition={{ duration: 1.5 }}
+        animate={inView ? { opacity: 0.06 } : { opacity: 0 }}
+        transition={{ duration: 2 }}
         aria-hidden="true"
       >
-        <div style={{ width: '80vmin', height: '80vmin' }}>
-          <EventIllustration type={event.type} light={event.lightText} />
-        </div>
+        <span
+          className="font-noto font-bold"
+          style={{ fontSize: 'clamp(8rem, 28vw, 36rem)', color: '#C9A84C', lineHeight: 1 }}
+        >
+          {event.year_display_m}
+        </span>
       </motion.div>
 
       {/* Left: decorative timeline dot */}
