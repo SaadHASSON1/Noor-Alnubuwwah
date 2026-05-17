@@ -7,17 +7,22 @@ export default {
   theme: {
     extend: {
       colors: {
-        'islamic-gold': '#C9A84C',
+        'islamic-gold':  '#C9A84C',
         'islamic-green': '#1B4332',
-        'desert-sand': '#E8D5A3',
-        'dark-bg': '#0f172a',
-        'dark-panel': '#1e293b'
+        'desert-sand':   '#E8D5A3',
+        'desert-warm':   '#C4A882',
+        'dark-bg':       '#030813',
+        'dark-panel':    '#0d1b2a',
       },
       fontFamily: {
+        'noto':  ['"Noto Naskh Arabic"', 'serif'],
         'amiri': ['Amiri', 'serif'],
-        'noto': ['"Noto Naskh Arabic"', 'serif'],
-        'sans': ['Inter', 'sans-serif']
-      }
+        'sans':  ['Inter', 'sans-serif'],
+      },
+      fontSize: {
+        'display': ['clamp(3.5rem, 10vw, 9rem)', { lineHeight: '1.05' }],
+        'hero':    ['clamp(5rem, 18vw, 16rem)', { lineHeight: '1' }],
+      },
     },
   },
   plugins: [],
