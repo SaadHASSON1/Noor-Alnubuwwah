@@ -36,3 +36,138 @@
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-islamic-gold;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   ISLAMIC ANIMATION SYSTEM
+   ═══════════════════════════════════════════════════════════ */
+
+/* Star twinkling */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50%       { opacity: 1;    transform: scale(1.4); }
+}
+
+/* Golden particles floating upward */
+@keyframes golden-float {
+  0%   { transform: translateY(0)   translateX(0);   opacity: 0;   }
+  10%  { opacity: 0.9; }
+  80%  { opacity: 0.6; }
+  100% { transform: translateY(-110vh) translateX(var(--drift, 30px)); opacity: 0; }
+}
+
+/* Mecca pulsing rings */
+@keyframes mecca-ring {
+  0%   { transform: scale(1);  opacity: 0.8; }
+  100% { transform: scale(3.5); opacity: 0; }
+}
+
+/* Flowing sand line for timeline */
+@keyframes sand-flow {
+  0%   { background-position: 0% 0%; }
+  100% { background-position: 0% 100%; }
+}
+
+/* Dot pulse for timeline */
+@keyframes dot-pulse {
+  0%, 100% { box-shadow: 0 0 0 0   rgba(201,168,76,0.8); }
+  50%       { box-shadow: 0 0 0 8px rgba(201,168,76,0);   }
+}
+
+/* Gold shimmer sweep */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+/* Arabesque rotation */
+@keyframes arabesque-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Flag wave */
+@keyframes flag-wave {
+  0%, 100% { transform: skewX(-3deg) scaleY(1);   }
+  25%       { transform: skewX(2deg)  scaleY(0.97); }
+  75%       { transform: skewX(-2deg) scaleY(1.02); }
+}
+
+/* Spark fly-out */
+@keyframes spark-out {
+  0%   { transform: translate(0, 0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+}
+
+/* Glow pulse */
+@keyframes glow-pulse {
+  0%, 100% { text-shadow: 0 0 20px rgba(201,168,76,0.6), 0 0 40px rgba(201,168,76,0.3); }
+  50%       { text-shadow: 0 0 40px rgba(201,168,76,1),   0 0 80px rgba(201,168,76,0.6), 0 0 120px rgba(201,168,76,0.2); }
+}
+
+/* Route dash march */
+@keyframes route-march {
+  to { stroke-dashoffset: -20; }
+}
+
+/* Utility classes */
+.animate-twinkle        { animation: twinkle var(--dur, 3s) ease-in-out infinite var(--delay, 0s); }
+.animate-golden-float   { animation: golden-float var(--dur, 8s) ease-in-out infinite var(--delay, 0s); }
+.animate-arabesque      { animation: arabesque-spin var(--dur, 45s) linear infinite; }
+.animate-flag           { animation: flag-wave 2s ease-in-out infinite; }
+.animate-glow-pulse     { animation: glow-pulse 2.5s ease-in-out infinite; }
+.animate-dot-pulse      { animation: dot-pulse 2s ease-in-out infinite; }
+.animate-shimmer        {
+  background: linear-gradient(90deg, #C9A84C 0%, #F5E6C0 40%, #C9A84C 60%, #8B6914 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Mecca glow marker */
+.mecca-marker {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.mecca-core {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #FFE082, #C9A84C);
+  box-shadow: 0 0 12px rgba(201,168,76,0.9), 0 0 24px rgba(201,168,76,0.5);
+  z-index: 3;
+  position: relative;
+}
+
+.mecca-ring {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid #C9A84C;
+  animation: mecca-ring 2.5s ease-out infinite;
+}
+
+.mecca-ring:nth-child(3) { animation-delay: 1.25s; }
+.mecca-ring:nth-child(4) { animation-delay: 0s; width: 28px; height: 28px; opacity: 0.5; }
+
+/* Flowing timeline line */
+.timeline-line {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(201,168,76,0.8) 20%,
+    rgba(201,168,76,0.3) 50%,
+    rgba(201,168,76,0.8) 80%,
+    transparent 100%
+  );
+  background-size: 100% 200%;
+  animation: sand-flow 3s linear infinite;
+}
