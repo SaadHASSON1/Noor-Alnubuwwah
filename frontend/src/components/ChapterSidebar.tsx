@@ -64,23 +64,24 @@ const ChapterSidebar: React.FC<Props> = ({ events }) => {
 
   const scrollTo = (id: number) => {
     document.querySelector(`[data-event-id="${id}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setIsOpen(false);
   };
 
   return (
     <>
-      {/* Toggle button — always visible on left side */}
+      {/* Toggle button — always visible on RIGHT side */}
       <motion.button
         onClick={() => setIsOpen(v => !v)}
-        className="fixed top-1/2 left-0 -translate-y-1/2 z-50 flex items-center justify-center"
+        className="fixed top-1/2 right-0 -translate-y-1/2 z-50 flex items-center justify-center"
         style={{
           width: 36,
           height: 72,
           background: 'rgba(3,8,19,0.92)',
           border: '1px solid rgba(201,168,76,0.35)',
-          borderLeft: 'none',
-          borderRadius: '0 12px 12px 0',
+          borderRight: 'none',
+          borderRadius: '12px 0 0 12px',
           color: '#C9A84C',
-          boxShadow: '4px 0 20px rgba(201,168,76,0.1)',
+          boxShadow: '-4px 0 20px rgba(201,168,76,0.1)',
         }}
         whileHover={{ width: 44 }}
         transition={{ duration: 0.2 }}
@@ -98,32 +99,32 @@ const ChapterSidebar: React.FC<Props> = ({ events }) => {
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Backdrop */}
+            {/* Backdrop — all screens */}
             <motion.div
-              className="fixed inset-0 z-40 md:hidden"
-              style={{ background: 'rgba(0,0,0,0.5)' }}
+              className="fixed inset-0 z-40"
+              style={{ background: 'rgba(0,0,0,0.55)' }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
             />
 
-            {/* Panel */}
+            {/* Panel — slides from RIGHT */}
             <motion.div
-              className="fixed top-0 left-0 h-full z-40 flex flex-col overflow-hidden"
+              className="fixed top-0 right-0 h-full z-50 flex flex-col overflow-hidden"
               style={{
-                width: 280,
-                background: 'rgba(5,10,22,0.97)',
-                borderRight: '1px solid rgba(201,168,76,0.2)',
-                boxShadow: '4px 0 40px rgba(0,0,0,0.6)',
+                width: 'min(300px, 85vw)',
+                background: 'rgba(5,10,22,0.98)',
+                borderLeft: '1px solid rgba(201,168,76,0.2)',
+                boxShadow: '-4px 0 40px rgba(0,0,0,0.6)',
               }}
-              initial={{ x: -280 }}
+              initial={{ x: 300 }}
               animate={{ x: 0 }}
-              exit={{ x: -280 }}
+              exit={{ x: 300 }}
               transition={{ type: 'spring', damping: 28, stiffness: 280 }}
             >
               {/* Gold top line */}
-              <div style={{ height: 2, background: 'linear-gradient(to right, #C9A84C, transparent)' }} />
+              <div style={{ height: 2, background: 'linear-gradient(to left, #C9A84C, transparent)' }} />
 
               {/* Header */}
               <div className="px-5 py-4 border-b" style={{ borderColor: 'rgba(201,168,76,0.15)' }}>
