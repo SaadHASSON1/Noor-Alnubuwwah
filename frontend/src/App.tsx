@@ -12,6 +12,7 @@ import CompanionsPage     from './pages/CompanionsPage';
 import MiraclesPage       from './pages/MiraclesPage';
 import QuizPage           from './pages/QuizPage';
 import FarewellSermonPage from './pages/FarewellSermonPage';
+import FamilyTreePage     from './pages/FamilyTreePage';
 import SearchOverlay      from './components/SearchOverlay';
 import ScrollToTop        from './components/ScrollToTop';
 import FeatureNavSidebar  from './components/FeatureNavSidebar';
@@ -154,6 +155,9 @@ function App() {
           } />
           <Route path="/farewell-sermon" element={
             <PageWrapper><FarewellSermonPage /></PageWrapper>
+          } />
+          <Route path="/family-tree" element={
+            <PageWrapper><FamilyTreePage /></PageWrapper>
           } />
           <Route path="*" element={
             <PageWrapper>
