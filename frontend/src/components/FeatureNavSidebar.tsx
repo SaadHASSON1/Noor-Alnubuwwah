@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Home, Clock, Users, Sparkles, HelpCircle, ScrollText, GitBranch, X, Menu } from 'lucide-react';
+import { Home, Clock, Users, Sparkles, HelpCircle, ScrollText, GitBranch, Heart, Crown, X, Menu } from 'lucide-react';
 
 interface NavItem {
   icon: React.ReactNode;
@@ -12,6 +12,8 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { icon: <Home size={16} />,        label: 'الرئيسية',             path: '/' },
   { icon: <Clock size={16} />,       label: 'التسلسل الزمني',       path: '/timeline' },
+  { icon: <Heart size={16} />,       label: 'صفاته ﷺ',              path: '/character' },
+  { icon: <Crown size={16} />,       label: 'أمهات المؤمنين',        path: '/wives' },
   { icon: <Users size={16} />,       label: 'الصحابة الكرام',        path: '/companions' },
   { icon: <Sparkles size={16} />,    label: 'معجزاته ﷺ',            path: '/miracles' },
   { icon: <GitBranch size={16} />,   label: 'شجرة النسب الشريف',     path: '/family-tree' },

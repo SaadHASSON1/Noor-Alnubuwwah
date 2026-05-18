@@ -635,4 +635,231 @@ export const BATTLE_SIMULATIONS: BattleSimulation[] = [
       },
     ],
   },
+
+  // ─── 12. غزوة بواط (id:43) ───
+  {
+    eventId: 43,
+    name: 'غزوة بواط',
+    terrain: 'desert',
+    terrainLabel: 'بواط — جبال جهينة',
+    muslimColor: '#4ade80',
+    enemyColor: '#f87171',
+    phases: [
+      {
+        title: 'مسير الجيش نحو بواط',
+        description: 'خرج النبي ﷺ بمئتي مقاتل من المهاجرين والأنصار متّجهاً نحو جبال جهينة للتعرّض لقافلة قريش التجارية التي يقودها أمية بن خلف في مئة وعشرين راكباً وألفي وخمسمائة بعير.',
+        units: [
+          { id: 'maquda', label: 'جبل بواط', x: 50, y: 25, side: 'terrain', shape: 'diamond' },
+          { id: 'm1', label: 'المسلمون', count: '٢٠٠', x: 50, y: 72, side: 'muslim', shape: 'circle' },
+          { id: 'e1', label: 'قافلة قريش', count: '١٢٠ راكب', x: 50, y: 18, side: 'enemy', shape: 'circle' },
+        ],
+        arrows: [
+          { id: 'a1', x1: 50, y1: 68, x2: 50, y2: 38, color: '#4ade80', label: 'مسير المسلمين' },
+        ],
+      },
+      {
+        title: 'عودة دون لقاء',
+        description: 'أخذت قافلة قريش طريقاً مختلفاً فلم يجد النبي ﷺ أحداً. فعاد بجيشه إلى المدينة دون قتال. وكانت هذه الغزوة رسالةً واضحةً بأن المسلمين يراقبون طرق التجارة.',
+        units: [
+          { id: 'medina', label: 'المدينة المنورة', x: 50, y: 78, side: 'terrain', shape: 'diamond' },
+          { id: 'm1', label: 'المسلمون يعودون', count: '٢٠٠', x: 50, y: 60, side: 'muslim', shape: 'circle' },
+        ],
+        arrows: [
+          { id: 'a1', x1: 50, y1: 55, x2: 50, y2: 73, color: '#4ade80', label: 'العودة إلى المدينة' },
+        ],
+      },
+    ],
+  },
+
+  // ─── 13. غزوة ذات الرقاع (id:44) ───
+  {
+    eventId: 44,
+    name: 'غزوة ذات الرقاع',
+    terrain: 'mountain',
+    terrainLabel: 'نجد — جبال غطفان',
+    muslimColor: '#4ade80',
+    enemyColor: '#f87171',
+    phases: [
+      {
+        title: 'المواجهة في نجد',
+        description: 'خرج النبي ﷺ بسبعمائة مقاتل نحو قبائل غطفان وبني محارب في نجد. تمركز الجيش الإسلامي أمام تجمّعات القبائل التي كانت تستعد للإغارة على المدينة.',
+        units: [
+          { id: 'mt1', label: 'جبال نجد', x: 50, y: 15, side: 'terrain', shape: 'diamond' },
+          { id: 'm1', label: 'المسلمون', count: '٧٠٠', x: 50, y: 65, side: 'muslim', shape: 'circle' },
+          { id: 'e1', label: 'غطفان وبني محارب', count: 'جموع', x: 50, y: 30, side: 'enemy', shape: 'circle' },
+        ],
+        arrows: [
+          { id: 'a1', x1: 50, y1: 60, x2: 50, y2: 42, color: '#4ade80', label: 'تقدّم المسلمين' },
+        ],
+      },
+      {
+        title: 'صلاة الخوف لأول مرة',
+        description: 'حضرت وقت الصلاة والجيشان متقابلان. فصلّى النبي ﷺ صلاة الخوف لأول مرة: تقدمت طائفة وصلّت ركعةً بينما أُخرى تحرس ثم تبادلتا المواقع. وكان هذا تشريعاً عظيماً ينبع من رحمة الله بعباده.',
+        units: [
+          { id: 'mt1', label: 'جبال نجد', x: 50, y: 15, side: 'terrain', shape: 'diamond' },
+          { id: 'm_pray', label: 'طائفة تصلي', count: '٣٥٠', x: 35, y: 62, side: 'muslim', shape: 'star' },
+          { id: 'm_guard', label: 'طائفة تحرس', count: '٣٥٠', x: 65, y: 62, side: 'muslim', shape: 'circle' },
+          { id: 'e1', label: 'العدو — يترقّب', count: 'جموع', x: 50, y: 28, side: 'enemy', shape: 'circle' },
+        ],
+      },
+      {
+        title: 'انسحاب العدو',
+        description: 'حين رأت القبائل جيش المسلمين وثباته تفرّقت إلى رؤوس الجبال دون مواجهة مباشرة. فعاد النبي ﷺ وقد أمّن الحدود وشرّع صلاة الخوف.',
+        units: [
+          { id: 'medina', label: 'المدينة المنورة', x: 50, y: 82, side: 'terrain', shape: 'diamond' },
+          { id: 'm1', label: 'المسلمون — يعودون', count: '٧٠٠', x: 50, y: 62, side: 'muslim', shape: 'circle' },
+          { id: 'e1', label: 'القبائل — تفرّقت', count: 'جموع', x: 22, y: 18, side: 'enemy', shape: 'circle' },
+        ],
+        arrows: [
+          { id: 'a1', x1: 32, y1: 22, x2: 15, y2: 12, color: '#f87171', label: 'تفرّق القبائل' },
+          { id: 'a2', x1: 50, y1: 58, x2: 50, y2: 77, color: '#4ade80', label: 'عودة المسلمين' },
+        ],
+      },
+    ],
+  },
+
+  // ─── 14. غزوة دومة الجندل (id:45) ───
+  {
+    eventId: 45,
+    name: 'غزوة دومة الجندل',
+    terrain: 'plain',
+    terrainLabel: 'دومة الجندل — شمال الجزيرة',
+    muslimColor: '#4ade80',
+    enemyColor: '#f87171',
+    phases: [
+      {
+        title: 'الزحف الشمالي الكبير',
+        description: 'خرج النبي ﷺ بألف مقاتل في مسيرة شاقّة طويلة عبر الصحراء نحو دومة الجندل على حدود الشام. وكان الهدف تأمين الشمال وكسر شوكة القبائل المجتمعة.',
+        units: [
+          { id: 'dom', label: 'دومة الجندل', x: 50, y: 18, side: 'terrain', shape: 'diamond' },
+          { id: 'medina', label: 'المدينة المنورة', x: 50, y: 85, side: 'terrain', shape: 'diamond' },
+          { id: 'm1', label: 'الجيش الإسلامي', count: '١٠٠٠', x: 50, y: 65, side: 'muslim', shape: 'circle' },
+          { id: 'e1', label: 'قبائل الشمال', count: 'جموع', x: 50, y: 22, side: 'enemy', shape: 'circle' },
+        ],
+        arrows: [
+          { id: 'a1', x1: 50, y1: 60, x2: 50, y2: 32, color: '#4ade80', label: 'الزحف الشمالي' },
+        ],
+      },
+      {
+        title: 'انسحاب القبائل قبل المواجهة',
+        description: 'حين وصل خبر الجيش الإسلامي إلى القبائل في الشمال، فرّت إلى البادية دون أن تجرؤ على المواجهة. فأرسى النبي ﷺ هيبة الإسلام في الشمال وعاد مظفّراً.',
+        units: [
+          { id: 'dom', label: 'دومة الجندل', x: 50, y: 25, side: 'terrain', shape: 'diamond' },
+          { id: 'm1', label: 'المسلمون — الشمال مُؤمَّن', count: '١٠٠٠', x: 50, y: 42, side: 'muslim', shape: 'circle' },
+          { id: 'e_flee', label: 'القبائل تفرّ إلى البادية', count: '?', x: 20, y: 15, side: 'enemy', shape: 'circle' },
+        ],
+        arrows: [
+          { id: 'a1', x1: 32, y1: 18, x2: 15, y2: 12, color: '#f87171', label: 'فرار القبائل' },
+        ],
+      },
+    ],
+  },
+
+  // ─── 15. غزوة بني قريظة (id:46) ───
+  {
+    eventId: 46,
+    name: 'غزوة بني قريظة',
+    terrain: 'fortress',
+    terrainLabel: 'المدينة — حصون بني قريظة',
+    muslimColor: '#4ade80',
+    enemyColor: '#f87171',
+    phases: [
+      {
+        title: 'بعد الخندق — أمر جبريل',
+        description: 'لما انصرف الأحزاب جاء جبريل عليه السلام للنبي ﷺ أمراً بعدم وضع السلاح حتى الانتهاء من بني قريظة الذين غدروا أثناء حصار الخندق.',
+        units: [
+          { id: 'medina', label: 'المدينة المنورة', x: 50, y: 30, side: 'terrain', shape: 'diamond' },
+          { id: 'fort', label: 'حصون بني قريظة', x: 50, y: 75, side: 'terrain', shape: 'diamond' },
+          { id: 'm1', label: 'جيش المسلمين', count: '٣٠٠٠', x: 50, y: 45, side: 'muslim', shape: 'circle' },
+        ],
+        arrows: [
+          { id: 'a1', x1: 50, y1: 48, x2: 50, y2: 65, color: '#4ade80', label: 'التوجه لبني قريظة' },
+        ],
+      },
+      {
+        title: 'الحصار — خمسة وعشرون يوماً',
+        description: 'ضرب المسلمون حصاراً خانقاً على حصون بني قريظة خمسةً وعشرين يوماً كاملة. بدأ الحصار يؤثر على معنوياتهم ومؤنتهم حتى نزلوا على حكم النبي ﷺ.',
+        units: [
+          { id: 'fort', label: 'حصون بني قريظة', x: 50, y: 40, side: 'terrain', shape: 'diamond' },
+          { id: 'm1', label: 'المسلمون — يحاصرون', count: '٣٠٠٠', x: 50, y: 65, side: 'muslim', shape: 'circle' },
+          { id: 'e1', label: 'بنو قريظة في الحصن', count: '٩٠٠+', x: 50, y: 35, side: 'enemy', shape: 'circle' },
+        ],
+        arrows: [
+          { id: 'a1', x1: 35, y1: 60, x2: 38, y2: 45, color: '#4ade80', label: 'الحصار' },
+          { id: 'a2', x1: 65, y1: 60, x2: 62, y2: 45, color: '#4ade80', label: '' },
+        ],
+      },
+      {
+        title: 'تحكيم سعد بن معاذ',
+        description: 'طلب بنو قريظة الاحتكام إلى سيد الأوس سعد بن معاذ. فأتى سعد مجروحاً من الخندق. فحكم بقتل المقاتلة وسبي الذراري وتقسيم الأموال. فقال النبي ﷺ: حكمتَ بحكم الله من فوق سبع سماوات.',
+        units: [
+          { id: 'fort', label: 'الحصون', x: 50, y: 35, side: 'terrain', shape: 'diamond' },
+          { id: 'm1', label: 'جيش المسلمين', count: '٣٠٠٠', x: 50, y: 68, side: 'muslim', shape: 'circle' },
+          { id: 'saad', label: 'سعد بن معاذ — الحكم', count: '١', x: 50, y: 52, side: 'muslim', shape: 'star' },
+          { id: 'e1', label: 'بنو قريظة — يستسلمون', count: '٩٠٠+', x: 50, y: 28, side: 'enemy', shape: 'circle' },
+        ],
+      },
+      {
+        title: 'وفاة سعد واهتزاز العرش',
+        description: 'بعد إصداره الحكم مباشرةً انفجر جرح سعد فتوفي رضي الله عنه. فقال النبي ﷺ: اهتزّ عرش الرحمن لوفاة سعد بن معاذ. وكأنه ما بقيت له حاجة في الدنيا بعد أن أدّى ما عليه.',
+        units: [
+          { id: 'm1', label: 'المسلمون — حزن وفرح', count: '٣٠٠٠', x: 50, y: 55, side: 'muslim', shape: 'circle' },
+          { id: 'saad', label: 'سعد — شهيد العرش', count: '١', x: 50, y: 40, side: 'muslim', shape: 'star' },
+          { id: 'e1', label: 'بنو قريظة — استسلموا', count: '٩٠٠+', x: 50, y: 22, side: 'enemy', shape: 'circle' },
+        ],
+      },
+    ],
+  },
+
+  // ─── 16. غزوة الطائف (id:47) ───
+  {
+    eventId: 47,
+    name: 'غزوة الطائف',
+    terrain: 'mountain',
+    terrainLabel: 'الطائف — الجبال المرتفعة',
+    muslimColor: '#4ade80',
+    enemyColor: '#f87171',
+    phases: [
+      {
+        title: 'الحصار — ثقيف في حصنها',
+        description: 'بعد حنين توجّه النبي ﷺ بجيشه نحو الطائف حيث تحصّنت ثقيف وفلول هوازن. وكانوا قد أعدّوا مؤونةً تكفيهم سنةً وحصنوا منازلهم تحصيناً شديداً في الجبال المرتفعة.',
+        units: [
+          { id: 'mt', label: 'جبال الطائف', x: 50, y: 15, side: 'terrain', shape: 'diamond' },
+          { id: 'fort', label: 'حصن ثقيف', x: 50, y: 32, side: 'terrain', shape: 'diamond' },
+          { id: 'm1', label: 'الجيش الإسلامي', count: '١٢٠٠٠', x: 50, y: 68, side: 'muslim', shape: 'circle' },
+          { id: 'e1', label: 'ثقيف في الحصن', count: '?', x: 50, y: 27, side: 'enemy', shape: 'circle' },
+        ],
+        arrows: [
+          { id: 'a1', x1: 50, y1: 63, x2: 50, y2: 42, color: '#4ade80', label: 'الزحف نحو الحصن' },
+        ],
+      },
+      {
+        title: 'المنجنيق والدبابة',
+        description: 'أمر النبي ﷺ باستخدام المنجنيق لرمي الحصن وكانت أول مرة في السيرة. كما قدّم المسلمون الدبابة لاقتحام السور فرمتهم ثقيف بسكك الحديد المحمّاة بالنار.',
+        units: [
+          { id: 'fort', label: 'حصن ثقيف', x: 50, y: 28, side: 'terrain', shape: 'diamond' },
+          { id: 'm1', label: 'المسلمون', count: '١٢٠٠٠', x: 50, y: 72, side: 'muslim', shape: 'circle' },
+          { id: 'catapult', label: 'المنجنيق', count: '١', x: 30, y: 58, side: 'muslim', shape: 'star' },
+          { id: 'dab', label: 'الدبابة', count: '١', x: 50, y: 48, side: 'muslim', shape: 'star' },
+          { id: 'e1', label: 'ثقيف ترمي بالنار', count: '?', x: 50, y: 25, side: 'enemy', shape: 'circle' },
+        ],
+        arrows: [
+          { id: 'a1', x1: 32, y1: 55, x2: 45, y2: 35, color: '#4ade80', label: 'قذائف المنجنيق' },
+          { id: 'a2', x1: 50, y1: 22, x2: 50, y2: 38, color: '#f87171', label: 'نار ثقيف' },
+        ],
+      },
+      {
+        title: 'رفع الحصار والدعاء لثقيف',
+        description: 'بعد ثمانية عشر أو عشرين يوماً رأى النبي ﷺ أن مواصلة الحصار لا طائل منه فرفعه. وحين حزن بعض الصحابة قال ﷺ: "اللهم اهدِ ثقيفاً وائتِ بهم." وجاءوا مسلمين في العام التالي.',
+        units: [
+          { id: 'medina', label: 'المدينة المنورة', x: 50, y: 82, side: 'terrain', shape: 'diamond' },
+          { id: 'm1', label: 'المسلمون يعودون', count: '١٢٠٠٠', x: 50, y: 62, side: 'muslim', shape: 'circle' },
+          { id: 'e1', label: 'ثقيف — لاحقاً أسلموا', count: '?', x: 50, y: 25, side: 'enemy', shape: 'circle' },
+        ],
+        arrows: [
+          { id: 'a1', x1: 50, y1: 58, x2: 50, y2: 78, color: '#4ade80', label: 'العودة' },
+        ],
+      },
+    ],
+  },
 ];

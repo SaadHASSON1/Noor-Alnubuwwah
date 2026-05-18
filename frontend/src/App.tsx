@@ -1,21 +1,41 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { ChevronUp, Search } from 'lucide-react';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 
-import HomePage           from './pages/HomePage';
-import ChapterPage        from './pages/ChapterPage';
-import EventPage          from './pages/EventPage';
-import TimelinePage       from './pages/TimelinePage';
-import MapPage            from './pages/MapPage';
-import CompanionsPage     from './pages/CompanionsPage';
-import MiraclesPage       from './pages/MiraclesPage';
-import QuizPage           from './pages/QuizPage';
-import FarewellSermonPage from './pages/FarewellSermonPage';
-import FamilyTreePage     from './pages/FamilyTreePage';
 import SearchOverlay      from './components/SearchOverlay';
 import ScrollToTop        from './components/ScrollToTop';
 import FeatureNavSidebar  from './components/FeatureNavSidebar';
+
+/* ── Lazy-loaded pages (code splitting) ── */
+const HomePage           = lazy(() => import('./pages/HomePage'));
+const ChapterPage        = lazy(() => import('./pages/ChapterPage'));
+const EventPage          = lazy(() => import('./pages/EventPage'));
+const TimelinePage       = lazy(() => import('./pages/TimelinePage'));
+const MapPage            = lazy(() => import('./pages/MapPage'));
+const CompanionsPage     = lazy(() => import('./pages/CompanionsPage'));
+const MiraclesPage       = lazy(() => import('./pages/MiraclesPage'));
+const QuizPage           = lazy(() => import('./pages/QuizPage'));
+const FarewellSermonPage = lazy(() => import('./pages/FarewellSermonPage'));
+const FamilyTreePage     = lazy(() => import('./pages/FamilyTreePage'));
+const CharacterPage      = lazy(() => import('./pages/CharacterPage'));
+const WivesPage          = lazy(() => import('./pages/WivesPage'));
+
+/* ── Page loading fallback ── */
+const PageLoader: React.FC = () => (
+  <div
+    className="min-h-screen flex items-center justify-center"
+    style={{ background: '#030813' }}
+  >
+    <motion.div
+      animate={{ opacity: [0.3, 1, 0.3] }}
+      transition={{ duration: 1.6, repeat: Infinity }}
+      className="font-noto text-islamic-gold/60 text-lg"
+    >
+      ﷽
+    </motion.div>
+  </div>
+);
 
 /* ── Back-to-top (scroll-linked) ── */
 function BackToTop() {
@@ -125,6 +145,7 @@ function App() {
       <FeatureNavSidebar />
       <SearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
 
+      <Suspense fallback={<PageLoader />}>
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={
@@ -157,6 +178,12 @@ function App() {
           <Route path="/family-tree" element={
             <PageWrapper><FamilyTreePage /></PageWrapper>
           } />
+          <Route path="/character" element={
+            <PageWrapper><CharacterPage /></PageWrapper>
+          } />
+          <Route path="/wives" element={
+            <PageWrapper><WivesPage /></PageWrapper>
+          } />
           <Route path="*" element={
             <PageWrapper>
               <div
@@ -177,6 +204,7 @@ function App() {
           } />
         </Routes>
       </AnimatePresence>
+      </Suspense>
     </div>
   );
 }
