@@ -75,21 +75,21 @@ const EventCard: React.FC<Props> = ({ event, accentColor, index }) => {
         {/* Top row: type badge + year */}
         <div className="flex items-center justify-between">
           <div
-            className="flex items-center gap-2 px-2.5 py-1 rounded-full text-xs font-kufi"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-kufi"
             style={{
-              background: `${accentColor}15`,
+              background: `${accentColor}18`,
               color: accentColor,
-              border: `1px solid ${accentColor}25`,
+              border: `1px solid ${accentColor}30`,
             }}
           >
-            <Icon size={12} strokeWidth={2} />
+            <Icon size={13} strokeWidth={2} />
             <span>{TYPE_LABELS[event.type] ?? 'حدث'}</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="font-noto text-xs opacity-50" style={{ color: accentColor }}>
+            <span className="font-noto text-sm opacity-75" style={{ color: accentColor }}>
               {event.year_display_m}
             </span>
-            <span className="font-noto text-xs opacity-35" style={{ color: accentColor }}>
+            <span className="font-noto text-sm opacity-60" style={{ color: accentColor }}>
               {event.year_display_h}
             </span>
           </div>
@@ -104,14 +104,14 @@ const EventCard: React.FC<Props> = ({ event, accentColor, index }) => {
         </h3>
 
         {/* Subtitle */}
-        <p className={`text-sm ${textMuted}`}>
+        <p className={`text-base leading-relaxed ${textMuted}`}>
           {event.subtitle}
         </p>
 
         {/* Description preview */}
         <p
-          className={`text-sm leading-loose line-clamp-3 ${textMuted}`}
-          style={{ opacity: 0.75 }}
+          className={`text-sm leading-loose line-clamp-4 ${textMuted}`}
+          style={{ opacity: 0.9 }}
         >
           {event.description}
         </p>
@@ -119,12 +119,12 @@ const EventCard: React.FC<Props> = ({ event, accentColor, index }) => {
         {/* Verse snippet */}
         {event.verse && (
           <div
-            className="mt-1 px-4 py-2.5 rounded-lg border-r-2 text-xs font-noto"
+            className="mt-1 px-4 py-3 rounded-lg border-r-2 text-sm font-noto"
             style={{
               borderColor: accentColor,
-              background: `${accentColor}08`,
+              background: `${accentColor}0a`,
               color: accentColor,
-              lineHeight: 2,
+              lineHeight: 2.2,
             }}
           >
             ﴿{event.verse.split(' ').slice(0, 8).join(' ')}…﴾
@@ -134,13 +134,13 @@ const EventCard: React.FC<Props> = ({ event, accentColor, index }) => {
         {/* Read more */}
         <div className="flex justify-end mt-1">
           <motion.span
-            className="flex items-center gap-1.5 text-xs font-kufi opacity-60 group-hover:opacity-100 transition-opacity"
+            className="flex items-center gap-1.5 text-sm font-kufi opacity-70 group-hover:opacity-100 transition-opacity"
             style={{ color: accentColor }}
             initial={{ x: 0 }}
             whileHover={{ x: -4 }}
           >
             اقرأ التفاصيل
-            <ChevronLeft size={13} strokeWidth={2} />
+            <ChevronLeft size={14} strokeWidth={2} />
           </motion.span>
         </div>
       </div>
