@@ -2,12 +2,9 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { ChevronUp } from 'lucide-react';
 
-import ScrollNav   from './components/ScrollNav';
 import HomePage    from './pages/HomePage';
 import ChapterPage from './pages/ChapterPage';
 import EventPage   from './pages/EventPage';
-
-import { SEERAH_EVENTS } from './data/seerah';
 
 /* ── Back-to-top (only on HomePage) ── */
 function BackToTop() {
@@ -54,12 +51,9 @@ import React from 'react';
 
 function App() {
   const location = useLocation();
-  const isHome = location.pathname === '/';
 
   return (
     <div dir="rtl" className="relative">
-      {/* ScrollNav only on homepage */}
-      {isHome && <ScrollNav events={SEERAH_EVENTS} />}
       <BackToTop />
 
       <AnimatePresence mode="wait">
