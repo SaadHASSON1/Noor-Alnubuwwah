@@ -86,7 +86,7 @@ const EventPage: React.FC = () => {
 
   return (
     <div className="min-h-screen relative" dir="rtl" style={{ background: event.bg }}>
-      <IslamicParticles />
+      {!isLight && <IslamicParticles />}
 
       {/* ══ Full-screen hero ══ */}
       <section
@@ -297,7 +297,7 @@ const EventPage: React.FC = () => {
       <section
         className="relative py-20 px-5 md:px-12"
         style={{
-          background: `linear-gradient(to bottom, ${event.bg} 0%, #030813 30%)`,
+          background: isLight ? event.bg : `linear-gradient(to bottom, ${event.bg} 0%, #030813 30%)`,
         }}
       >
         <div className="max-w-4xl mx-auto">
@@ -368,7 +368,7 @@ const EventPage: React.FC = () => {
                       {/* Dot */}
                       <div
                         className="absolute -right-[2.45rem] top-1.5 w-3 h-3 rounded-full border-2 animate-dot-pulse"
-                        style={{ borderColor: accentColor, background: '#030813' }}
+                        style={{ borderColor: accentColor, background: event.bg }}
                       />
                       <h4
                         className="font-kufi text-sm mb-1.5"

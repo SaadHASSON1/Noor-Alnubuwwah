@@ -52,7 +52,7 @@ const ChapterPage: React.FC = () => {
 
   return (
     <div className="min-h-screen relative" dir="rtl" style={{ background: meta.gradientFrom }}>
-      <IslamicParticles />
+      {!isLight && <IslamicParticles />}
 
       {/* ══ Chapter Hero ══ */}
       <section
@@ -213,7 +213,7 @@ const ChapterPage: React.FC = () => {
       <section
         className="relative py-16 px-5 md:px-12"
         style={{
-          background: `linear-gradient(to bottom, ${meta.gradientTo} 0%, #030813 100%)`,
+          background: `linear-gradient(to bottom, ${meta.gradientTo} 0%, ${isLight ? meta.gradientFrom : '#030813'} 100%)`,
         }}
       >
         <div className="max-w-6xl mx-auto">
