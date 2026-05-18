@@ -1,6 +1,6 @@
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { ChevronUp, Search, Clock, Map } from 'lucide-react';
+import { ChevronUp, Search, Clock } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 
 import HomePage      from './pages/HomePage';
@@ -48,7 +48,7 @@ function GlobalNav({ onSearchOpen }: { onSearchOpen: () => void }) {
   const navItems = [
     { icon: Search, label: 'بحث',     action: onSearchOpen,              path: null },
     { icon: Clock,  label: 'التسلسل', action: () => navigate('/timeline'), path: '/timeline' },
-    { icon: Map,    label: 'الخريطة', action: () => navigate('/map'),      path: '/map' },
+    // { icon: Map, label: 'الخريطة', action: () => navigate('/map'), path: '/map' }, // مؤقتاً مخفي
   ];
 
   return (
