@@ -32,7 +32,7 @@ const ClosingSection: React.FC = () => {
         </svg>
       </div>
 
-      <div className="relative z-10 text-center pl-5 pr-14 md:px-8 max-w-3xl" dir="rtl">
+      <div className="relative z-10 text-center px-5 md:px-8 max-w-3xl" dir="rtl">
         {/* Crescent */}
         <motion.div {...anim(0)} className="flex justify-center mb-8">
           <svg viewBox="0 0 80 80" className="w-16 h-16 opacity-60">
