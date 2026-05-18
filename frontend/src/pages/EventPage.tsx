@@ -251,7 +251,7 @@ const EventPage: React.FC = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.5 }}
             className={`max-w-2xl ${textMuted}`}
-            style={{ fontSize: 'clamp(0.95rem, 1.8vw, 1.15rem)', lineHeight: 2.1 }}
+            style={{ fontSize: 'clamp(1rem, 2vw, 1.25rem)', lineHeight: 2.2 }}
           >
             {event.fullDescription ?? event.description}
           </motion.p>
@@ -274,7 +274,7 @@ const EventPage: React.FC = () => {
               >
                 ﴿{event.verse}﴾
               </p>
-              <p className="font-kufi mt-2 opacity-50 text-xs tracking-wider" style={{ color: accentColor }}>
+              <p className="font-kufi mt-3 opacity-80 text-sm tracking-wider" style={{ color: accentColor }}>
                 — {event.verse_ref}
               </p>
             </motion.div>
@@ -349,7 +349,7 @@ const EventPage: React.FC = () => {
                       className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 rotate-45"
                       style={{ background: accentColor }}
                     />
-                    <p className={`text-sm leading-loose ${textMuted}`} style={{ lineHeight: 1.9 }}>
+                    <p className={`text-base leading-loose ${textMuted}`} style={{ lineHeight: 2.1 }}>
                       {h}
                     </p>
                   </motion.div>
@@ -390,7 +390,7 @@ const EventPage: React.FC = () => {
                     >
                       {stat.value}
                     </p>
-                    <p className={`font-kufi text-xs tracking-wide ${textMuted}`}>
+                    <p className={`font-kufi text-sm tracking-wide ${textMuted}`}>
                       {stat.label}
                     </p>
                   </motion.div>
@@ -430,14 +430,14 @@ const EventPage: React.FC = () => {
                         style={{ borderColor: accentColor, background: event.bg }}
                       />
                       <h4
-                        className="font-kufi text-sm mb-1.5"
+                        className="font-kufi text-base mb-2 font-bold"
                         style={{ color: accentColor }}
                       >
                         {phase.phase}
                       </h4>
                       <p
-                        className={`text-sm leading-loose ${textMuted}`}
-                        style={{ lineHeight: 1.9 }}
+                        className={`text-base leading-loose ${textMuted}`}
+                        style={{ lineHeight: 2.1 }}
                       >
                         {phase.detail}
                       </p>
@@ -485,8 +485,8 @@ const EventPage: React.FC = () => {
                         {fig.name[0]}
                       </div>
                       <div>
-                        <p className={`font-noto font-bold text-sm ${textBase}`}>{fig.name}</p>
-                        <p className={`font-kufi text-xs opacity-60 ${textMuted}`}>{fig.role}</p>
+                        <p className={`font-noto font-bold text-base ${textBase}`}>{fig.name}</p>
+                        <p className={`font-kufi text-sm opacity-80 ${textMuted}`}>{fig.role}</p>
                       </div>
                     </motion.div>
                   ))}
@@ -530,14 +530,14 @@ const EventPage: React.FC = () => {
                       </div>
                       <p
                         className={`font-noto leading-loose ${textBase}`}
-                        style={{ fontSize: 'clamp(0.95rem, 1.8vw, 1.1rem)', lineHeight: 2.1 }}
+                        style={{ fontSize: 'clamp(1rem, 2vw, 1.2rem)', lineHeight: 2.2 }}
                       >
                         {hadith.text}
                       </p>
-                      <footer className="mt-3 flex items-center gap-2">
-                        <div className="h-px flex-1 opacity-20" style={{ background: accentColor }} />
+                      <footer className="mt-4 flex items-center gap-2">
+                        <div className="h-px flex-1 opacity-30" style={{ background: accentColor }} />
                         <cite
-                          className="font-kufi text-xs not-italic opacity-60"
+                          className="font-kufi text-sm not-italic opacity-80"
                           style={{ color: accentColor }}
                         >
                           {hadith.source}
@@ -578,11 +578,11 @@ const EventPage: React.FC = () => {
                       >
                         ﴿{v.verse}﴾
                       </p>
-                      <p className="font-kufi text-xs opacity-50" style={{ color: accentColor }}>
+                      <p className="font-kufi text-sm opacity-80 mt-2" style={{ color: accentColor }}>
                         — {v.ref}
                       </p>
                       {v.context && (
-                        <p className={`text-sm mt-2 opacity-70 ${textMuted}`}>
+                        <p className={`text-sm mt-3 leading-loose opacity-90 ${textMuted}`}>
                           {v.context}
                         </p>
                       )}
@@ -625,8 +625,8 @@ const EventPage: React.FC = () => {
               >
                 <ChevronRight size={18} style={{ color: accentColor }} className="flex-shrink-0" />
                 <div>
-                  <p className="font-kufi text-xs opacity-50 mb-1" style={{ color: accentColor }}>التالي</p>
-                  <p className={`font-noto text-sm font-bold ${textBase}`}>{nextEvent.title}</p>
+                  <p className="font-kufi text-sm opacity-70 mb-1" style={{ color: accentColor }}>التالي</p>
+                  <p className={`font-noto text-base font-bold ${textBase}`}>{nextEvent.title}</p>
                 </div>
               </motion.button>
             ) : <div className="flex-1" />}
@@ -642,8 +642,8 @@ const EventPage: React.FC = () => {
                 whileHover={{ x: 4 }}
               >
                 <div>
-                  <p className="font-kufi text-xs opacity-50 mb-1" style={{ color: accentColor }}>السابق</p>
-                  <p className={`font-noto text-sm font-bold ${textBase}`}>{prevEvent.title}</p>
+                  <p className="font-kufi text-sm opacity-70 mb-1" style={{ color: accentColor }}>السابق</p>
+                  <p className={`font-noto text-base font-bold ${textBase}`}>{prevEvent.title}</p>
                 </div>
                 <ChevronLeft size={18} style={{ color: accentColor }} className="flex-shrink-0" />
               </motion.button>

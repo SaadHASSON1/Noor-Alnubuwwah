@@ -65,17 +65,17 @@ const ChapterCard: React.FC<Props> = ({ chapter, eventCount, index }) => {
         {/* Chapter number badge */}
         <div className="flex items-center justify-between mb-4">
           <span
-            className="font-kufi text-xs tracking-widest px-3 py-1 rounded-full"
+            className="font-kufi text-sm tracking-widest px-3 py-1.5 rounded-full"
             style={{
               color: chapter.accentColor,
-              background: `${chapter.accentColor}15`,
-              border: `1px solid ${chapter.accentColor}30`,
+              background: `${chapter.accentColor}18`,
+              border: `1px solid ${chapter.accentColor}35`,
             }}
           >
             {eventCount} أحداث
           </span>
           <span
-            className="font-noto text-xs opacity-50"
+            className="font-noto text-sm opacity-75"
             style={{ color: chapter.accentColor }}
           >
             {chapter.years}
@@ -92,14 +92,14 @@ const ChapterCard: React.FC<Props> = ({ chapter, eventCount, index }) => {
 
         {/* Subtitle */}
         <p
-          className={`font-kufi text-sm mb-4 tracking-wide ${textMuted}`}
-          style={{ color: chapter.accentColor, opacity: 0.8 }}
+          className="font-kufi text-base mb-4 tracking-wide"
+          style={{ color: chapter.accentColor, opacity: 0.95 }}
         >
           {chapter.subtitle}
         </p>
 
         {/* Divider */}
-        <div className="flex items-center gap-2 mb-4 opacity-30">
+        <div className="flex items-center gap-2 mb-4 opacity-40">
           <div className="flex-1 h-px" style={{ background: chapter.accentColor }} />
           <div className="w-1.5 h-1.5 rotate-45" style={{ background: chapter.accentColor }} />
         </div>
@@ -107,7 +107,7 @@ const ChapterCard: React.FC<Props> = ({ chapter, eventCount, index }) => {
         {/* Description */}
         <p
           className={`text-sm leading-relaxed flex-1 ${textMuted}`}
-          style={{ lineHeight: 1.9 }}
+          style={{ lineHeight: 2, opacity: 0.9 }}
         >
           {chapter.description}
         </p>
@@ -120,7 +120,7 @@ const ChapterCard: React.FC<Props> = ({ chapter, eventCount, index }) => {
             initial={{ x: 0 }}
             whileHover={{ x: -4 }}
           >
-            <span className="opacity-70">استعرض الفصل</span>
+            <span className="opacity-85">استعرض الفصل</span>
             <ChevronLeft size={16} strokeWidth={2} />
           </motion.div>
         </div>

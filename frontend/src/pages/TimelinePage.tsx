@@ -157,20 +157,20 @@ const TimelinePage: React.FC = () => {
                           {/* Top row */}
                           <div className="flex items-center justify-between mb-2">
                             <span
-                              className="font-noto text-xs opacity-55"
+                              className="font-noto text-sm opacity-85"
                               style={{ color: meta.accentColor }}
                             >
                               {ev.year_display_m}
                               {ev.year_display_h && (
-                                <span className="opacity-60 mr-2">{ev.year_display_h}</span>
+                                <span className="opacity-75 mr-2">{ev.year_display_h}</span>
                               )}
                             </span>
                             <span
-                              className="font-kufi text-xs px-2.5 py-0.5 rounded-full"
+                              className="font-kufi text-sm px-3 py-0.5 rounded-full"
                               style={{
                                 color: meta.accentColor,
-                                background: `${meta.accentColor}15`,
-                                border: `1px solid ${meta.accentColor}25`,
+                                background: `${meta.accentColor}18`,
+                                border: `1px solid ${meta.accentColor}30`,
                               }}
                             >
                               {ev.chapter}
@@ -178,17 +178,17 @@ const TimelinePage: React.FC = () => {
                           </div>
 
                           <h3
-                            className="font-noto font-bold leading-snug mb-1 group-hover:opacity-90 transition-opacity"
+                            className="font-noto font-bold leading-snug mb-2 group-hover:opacity-90 transition-opacity"
                             style={{
-                              fontSize: 'clamp(1.05rem, 2.2vw, 1.4rem)',
+                              fontSize: 'clamp(1.1rem, 2.2vw, 1.5rem)',
                               color: isLight ? '#2d1e08' : 'white',
                             }}
                           >
                             {ev.title}
                           </h3>
                           <p
-                            className="text-xs leading-relaxed line-clamp-2"
-                            style={{ color: isLight ? '#6b4c1e' : 'rgba(255,255,255,0.5)' }}
+                            className="text-sm leading-relaxed"
+                            style={{ color: isLight ? '#6b4c1e' : 'rgba(255,255,255,0.7)' }}
                           >
                             {ev.subtitle}
                           </p>

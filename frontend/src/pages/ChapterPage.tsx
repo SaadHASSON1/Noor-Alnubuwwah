@@ -200,14 +200,14 @@ const ChapterPage: React.FC = () => {
               <p className="font-noto font-bold text-2xl" style={{ color: meta.accentColor }}>
                 {events.length}
               </p>
-              <p className={`font-kufi text-xs ${textMuted}`}>حدث</p>
+              <p className={`font-kufi text-sm ${textMuted}`}>حدث</p>
             </div>
             <div className="w-px h-10 opacity-20" style={{ background: meta.accentColor }} />
             <div>
               <p className="font-noto font-bold" style={{ fontSize: '1.1rem', color: meta.accentColor }}>
                 {meta.years}
               </p>
-              <p className={`font-kufi text-xs ${textMuted}`}>الفترة الزمنية</p>
+              <p className={`font-kufi text-sm ${textMuted}`}>الفترة الزمنية</p>
             </div>
           </motion.div>
         </div>

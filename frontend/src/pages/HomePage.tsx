@@ -46,7 +46,7 @@ const HomePage: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false }}
             transition={{ duration: 0.6 }}
-            className="font-kufi text-islamic-gold/60 tracking-widest text-sm mb-4"
+            className="font-kufi text-islamic-gold/80 tracking-widest text-sm mb-4"
           >
             سيرة خير البشر
           </motion.p>
@@ -67,8 +67,8 @@ const HomePage: React.FC = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: false }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-white/50 max-w-xl mx-auto"
-            style={{ fontSize: 'clamp(0.9rem, 1.8vw, 1.1rem)', lineHeight: 2 }}
+            className="text-white/70 max-w-xl mx-auto"
+            style={{ fontSize: 'clamp(1rem, 1.8vw, 1.15rem)', lineHeight: 2.1 }}
           >
             رحلة في ثمانية فصول من حياة النبي ﷺ — من مولده المبارك حتى انتقاله إلى الرفيق الأعلى
           </motion.p>
@@ -103,7 +103,7 @@ const HomePage: React.FC = () => {
           >
             ﴿لَّقَدْ كَانَ لَكُمْ فِي رَسُولِ اللَّهِ أُسْوَةٌ حَسَنَةٌ﴾
           </p>
-          <p className="font-kufi text-islamic-gold/40 text-sm tracking-widest">
+          <p className="font-kufi text-islamic-gold/65 text-sm tracking-widest">
             — سورة الأحزاب: ٢١
           </p>
         </motion.div>
