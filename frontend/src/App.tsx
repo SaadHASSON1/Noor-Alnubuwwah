@@ -3,13 +3,18 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { ChevronUp, Search, Clock } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 
-import HomePage      from './pages/HomePage';
-import ChapterPage   from './pages/ChapterPage';
-import EventPage     from './pages/EventPage';
-import TimelinePage  from './pages/TimelinePage';
-import MapPage       from './pages/MapPage';
-import SearchOverlay from './components/SearchOverlay';
-import ScrollToTop   from './components/ScrollToTop';
+import HomePage           from './pages/HomePage';
+import ChapterPage        from './pages/ChapterPage';
+import EventPage          from './pages/EventPage';
+import TimelinePage       from './pages/TimelinePage';
+import MapPage            from './pages/MapPage';
+import CompanionsPage     from './pages/CompanionsPage';
+import MiraclesPage       from './pages/MiraclesPage';
+import QuizPage           from './pages/QuizPage';
+import FarewellSermonPage from './pages/FarewellSermonPage';
+import SearchOverlay      from './components/SearchOverlay';
+import ScrollToTop        from './components/ScrollToTop';
+import FeatureNavSidebar  from './components/FeatureNavSidebar';
 
 /* ── Back-to-top (scroll-linked) ── */
 function BackToTop() {
@@ -118,6 +123,7 @@ function App() {
       <ScrollToTop />
       <BackToTop />
       <GlobalNav onSearchOpen={() => setSearchOpen(true)} />
+      <FeatureNavSidebar />
       <SearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
 
       <AnimatePresence mode="wait">
@@ -136,6 +142,18 @@ function App() {
           } />
           <Route path="/map" element={
             <PageWrapper><MapPage /></PageWrapper>
+          } />
+          <Route path="/companions" element={
+            <PageWrapper><CompanionsPage /></PageWrapper>
+          } />
+          <Route path="/miracles" element={
+            <PageWrapper><MiraclesPage /></PageWrapper>
+          } />
+          <Route path="/quiz" element={
+            <PageWrapper><QuizPage /></PageWrapper>
+          } />
+          <Route path="/farewell-sermon" element={
+            <PageWrapper><FarewellSermonPage /></PageWrapper>
           } />
           <Route path="*" element={
             <PageWrapper>
