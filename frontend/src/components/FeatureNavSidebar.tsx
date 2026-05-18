@@ -38,7 +38,7 @@ const FeatureNavSidebar: React.FC = () => {
         transition={{ delay: 0.6 }}
         onClick={() => setIsOpen(v => !v)}
         aria-label={isOpen ? 'إغلاق القائمة' : 'فتح القائمة'}
-        className="fixed top-5 right-5 z-[100] flex items-center justify-center rounded-full"
+        className="fixed top-5 right-5 z-[60] flex items-center justify-center rounded-full"
         style={{
           width: 40,
           height: 40,
@@ -85,7 +85,7 @@ const FeatureNavSidebar: React.FC = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[98]"
+            className="fixed inset-0 z-[58]"
             style={{ background: 'rgba(0,0,0,0.4)', backdropFilter: 'blur(2px)' }}
             onClick={() => setIsOpen(false)}
           />
@@ -102,7 +102,7 @@ const FeatureNavSidebar: React.FC = () => {
             animate={{ x: '0%', opacity: 1 }}
             exit={{ x: '100%', opacity: 0 }}
             transition={{ type: 'spring', stiffness: 340, damping: 35 }}
-            className="fixed right-0 top-0 h-full z-[99] flex flex-col"
+            className="fixed right-0 top-0 h-full z-[59] flex flex-col"
             style={{
               width: 'min(280px, 90vw)',
               background: 'rgba(3,8,19,0.97)',

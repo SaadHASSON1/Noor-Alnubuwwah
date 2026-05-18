@@ -124,7 +124,7 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}
-          className="mb-6 px-4 py-1.5 rounded-full font-kufi text-xs"
+          className="mb-6 px-5 py-2 rounded-full font-kufi text-sm text-center max-w-xs mx-auto"
           style={{
             background: 'rgba(201,168,76,0.08)',
             border: '1px solid rgba(201,168,76,0.22)',
@@ -155,7 +155,7 @@ const Hero: React.FC = () => {
           initial={{ scaleX: 0, opacity: 0 }}
           animate={{ scaleX: 1, opacity: 1 }}
           transition={{ duration: 1.1, delay: 1.5 }}
-          className="flex items-center gap-3 mb-8 opacity-35"
+          className="flex items-center gap-3 mt-6 mb-8 opacity-35"
         >
           <div className="w-20 h-px bg-gradient-to-r from-transparent to-islamic-gold" />
           <div className="w-2 h-2 rotate-45 bg-islamic-gold" />
@@ -167,7 +167,7 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.8 }}
-          className="flex flex-wrap gap-3 justify-center mb-8"
+          className="grid grid-cols-2 sm:grid-cols-4 gap-3 justify-items-center w-full max-w-lg mx-auto mb-8"
         >
           {STATS.map((stat, i) => (
             <motion.div
@@ -188,8 +188,8 @@ const Hero: React.FC = () => {
                 {stat.value}
               </span>
               <span
-                className="font-kufi text-white/40"
-                style={{ fontSize: '0.68rem', letterSpacing: '0.06em' }}
+                className="font-kufi text-white/55"
+                style={{ fontSize: '0.82rem', letterSpacing: '0.06em' }}
               >
                 {stat.label}
               </span>
@@ -205,14 +205,14 @@ const Hero: React.FC = () => {
           className="mb-8"
         >
           <p
-            className="font-noto text-islamic-gold/55 mb-1"
-            style={{ fontSize: 'clamp(0.95rem, 2.5vw, 1.4rem)', lineHeight: 1.9 }}
+            className="font-noto text-islamic-gold/70 mb-1"
+            style={{ fontSize: 'clamp(1.1rem, 2.8vw, 1.6rem)', lineHeight: 1.9 }}
           >
             ﴿وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً لِّلْعَالَمِينَ﴾
           </p>
           <p
-            className="font-kufi text-islamic-gold/28"
-            style={{ fontSize: '0.68rem', letterSpacing: '0.14em' }}
+            className="font-kufi text-islamic-gold/50"
+            style={{ fontSize: '0.85rem', letterSpacing: '0.14em' }}
           >
             — سورة الأنبياء: ١٠٧
           </p>
@@ -226,7 +226,7 @@ const Hero: React.FC = () => {
           onClick={handleScrollDown}
           whileHover={{ scale: 1.06, boxShadow: '0 0 30px rgba(201,168,76,0.3)' }}
           whileTap={{ scale: 0.96 }}
-          className="font-kufi text-sm px-8 py-3.5 rounded-full transition-all"
+          className="font-kufi text-base px-10 py-4 rounded-full transition-all"
           style={{
             background: 'rgba(201,168,76,0.12)',
             border: '1px solid rgba(201,168,76,0.4)',
@@ -246,8 +246,8 @@ const Hero: React.FC = () => {
         className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
         <p
-          className="font-kufi text-islamic-gold/30"
-          style={{ fontSize: '0.58rem', letterSpacing: '0.2em' }}
+          className="font-kufi text-islamic-gold/45"
+          style={{ fontSize: '0.75rem', letterSpacing: '0.2em' }}
         >
           مرّر للأسفل
         </p>

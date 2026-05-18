@@ -1,6 +1,6 @@
-import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { ChevronUp, Search, Clock } from 'lucide-react';
+import { ChevronUp, Search } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 
 import HomePage           from './pages/HomePage';
@@ -48,12 +48,10 @@ function BackToTop() {
 
 /* ── Global floating nav ── */
 function GlobalNav({ onSearchOpen }: { onSearchOpen: () => void }) {
-  const navigate = useNavigate();
   const location = useLocation();
 
   const navItems = [
-    { icon: Search, label: 'بحث',     action: onSearchOpen,              path: null },
-    { icon: Clock,  label: 'التسلسل', action: () => navigate('/timeline'), path: '/timeline' },
+    { icon: Search, label: 'بحث', action: onSearchOpen, path: null },
     // { icon: Map, label: 'الخريطة', action: () => navigate('/map'), path: '/map' }, // مؤقتاً مخفي
   ];
 
@@ -73,7 +71,7 @@ function GlobalNav({ onSearchOpen }: { onSearchOpen: () => void }) {
             onClick={action}
             whileHover={{ scale: 1.06 }}
             whileTap={{ scale: 0.94 }}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-full font-kufi text-xs"
+            className="flex items-center gap-1.5 px-4 py-2.5 rounded-full font-kufi text-sm"
             style={{
               background: isActive ? 'rgba(201,168,76,0.2)' : 'rgba(3,8,19,0.82)',
               border: `1px solid ${isActive ? 'rgba(201,168,76,0.55)' : 'rgba(201,168,76,0.22)'}`,
@@ -82,8 +80,8 @@ function GlobalNav({ onSearchOpen }: { onSearchOpen: () => void }) {
               boxShadow: '0 2px 12px rgba(0,0,0,0.4)',
             }}
           >
-            <Icon size={12} strokeWidth={1.8} />
-            <span className="hidden sm:inline">{label}</span>
+            <Icon size={16} strokeWidth={1.8} />
+            <span>{label}</span>
           </motion.button>
         );
       })}

@@ -3,12 +3,14 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   ChevronRight, Home, MapPin, Users, BookOpen,
-  BarChart2, Clock, ChevronLeft,
+  BarChart2, Clock, ChevronLeft, Swords,
 } from 'lucide-react';
 import IslamicParticles from '../components/IslamicParticles';
 import ShareButton from '../components/ShareButton';
 import EventMap from '../components/EventMap';
+import BattleSimulator from '../components/BattleSimulator';
 import { SEERAH_EVENTS, CHAPTER_META, SEERAH_EVENTS as ALL } from '../data/seerah';
+import { BATTLE_SIMULATIONS } from '../data/battleSimulations';
 import type { SeerahEvent } from '../data/seerah';
 
 /* ── Section block wrapper ── */
@@ -141,7 +143,7 @@ const EventPage: React.FC = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="absolute top-6 right-6 flex items-center gap-2 text-sm font-kufi"
+          className="absolute top-6 right-16 flex items-center gap-2 text-sm font-kufi"
           style={{ color: accentColor }}
         >
           <button
@@ -447,6 +449,17 @@ const EventPage: React.FC = () => {
               </div>
             </Section>
           )}
+
+          {/* ── Battle Simulation ── */}
+          {(() => {
+            const sim = BATTLE_SIMULATIONS.find(s => s.eventId === event.id);
+            if (!sim) return null;
+            return (
+              <Section icon={<Swords size={16} color={accentColor} strokeWidth={1.5} />} title="محاكاة المعركة" accentColor={accentColor} delay={0.5}>
+                <BattleSimulator sim={sim} accentColor={accentColor} />
+              </Section>
+            );
+          })()}
 
           {/* ── Key figures ── */}
           {event.keyFigures && event.keyFigures.length > 0 && (
