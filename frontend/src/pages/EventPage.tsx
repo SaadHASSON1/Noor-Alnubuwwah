@@ -20,7 +20,7 @@ const Section: React.FC<{
   <motion.div
     initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: '-5%' }}
+    viewport={{ once: false, margin: '-5%' }}
     transition={{ duration: 0.65, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
     className="mb-12"
   >
@@ -222,7 +222,7 @@ const EventPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.25 }}
-            className={`font-noto mb-6 ${textMuted}`}
+            className={`mb-6 ${textMuted}`}
             style={{ fontSize: 'clamp(1rem, 2.2vw, 1.4rem)' }}
           >
             {event.subtitle}
@@ -245,7 +245,7 @@ const EventPage: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className={`font-noto max-w-2xl ${textMuted}`}
+            className={`max-w-2xl ${textMuted}`}
             style={{ fontSize: 'clamp(0.95rem, 1.8vw, 1.15rem)', lineHeight: 2.1 }}
           >
             {event.fullDescription ?? event.description}
@@ -317,7 +317,7 @@ const EventPage: React.FC = () => {
                     key={i}
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     transition={{ duration: 0.5, delay: i * 0.08 }}
                     className="rounded-xl p-5 text-center"
                     style={{
@@ -361,7 +361,7 @@ const EventPage: React.FC = () => {
                       key={i}
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
+                      viewport={{ once: false }}
                       transition={{ duration: 0.5, delay: i * 0.1 }}
                       className="relative"
                     >
@@ -377,7 +377,7 @@ const EventPage: React.FC = () => {
                         {phase.phase}
                       </h4>
                       <p
-                        className={`font-noto text-sm leading-loose ${textMuted}`}
+                        className={`text-sm leading-loose ${textMuted}`}
                         style={{ lineHeight: 1.9 }}
                       >
                         {phase.detail}
@@ -406,7 +406,7 @@ const EventPage: React.FC = () => {
                       key={i}
                       initial={{ opacity: 0, y: 15 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
+                      viewport={{ once: false }}
                       transition={{ duration: 0.45, delay: i * 0.06 }}
                       className="flex items-center gap-4 p-4 rounded-xl"
                       style={{
@@ -467,7 +467,7 @@ const EventPage: React.FC = () => {
                       key={i}
                       initial={{ opacity: 0, x: 20 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
+                      viewport={{ once: false }}
                       transition={{ duration: 0.55, delay: i * 0.1 }}
                       className="relative p-6 rounded-xl border-r-4"
                       style={{
@@ -522,7 +522,7 @@ const EventPage: React.FC = () => {
                       key={i}
                       initial={{ opacity: 0, y: 15 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
+                      viewport={{ once: false }}
                       transition={{ duration: 0.5, delay: i * 0.08 }}
                       className="p-5 rounded-xl border-r-2"
                       style={{ borderColor: accentColor, background: `${accentColor}08` }}
@@ -537,7 +537,7 @@ const EventPage: React.FC = () => {
                         — {v.ref}
                       </p>
                       {v.context && (
-                        <p className={`font-noto text-sm mt-2 opacity-70 ${textMuted}`}>
+                        <p className={`text-sm mt-2 opacity-70 ${textMuted}`}>
                           {v.context}
                         </p>
                       )}
@@ -553,7 +553,7 @@ const EventPage: React.FC = () => {
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               className="text-center py-16"
             >
               <p

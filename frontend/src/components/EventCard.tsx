@@ -48,7 +48,7 @@ const EventCard: React.FC<Props> = ({ event, accentColor, index }) => {
     <motion.article
       initial={{ opacity: 0, x: 30 }}
       whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: '-6%' }}
+      viewport={{ once: false, margin: '-6%' }}
       transition={{ duration: 0.55, delay: index * 0.07, ease: [0.25, 0.46, 0.45, 0.94] }}
       onClick={() => navigate(`/event/${event.id}`)}
       className="group relative cursor-pointer overflow-hidden rounded-xl"
@@ -104,13 +104,13 @@ const EventCard: React.FC<Props> = ({ event, accentColor, index }) => {
         </h3>
 
         {/* Subtitle */}
-        <p className={`font-noto text-sm ${textMuted}`}>
+        <p className={`text-sm ${textMuted}`}>
           {event.subtitle}
         </p>
 
         {/* Description preview */}
         <p
-          className={`font-noto text-sm leading-loose line-clamp-3 ${textMuted}`}
+          className={`text-sm leading-loose line-clamp-3 ${textMuted}`}
           style={{ opacity: 0.75 }}
         >
           {event.description}

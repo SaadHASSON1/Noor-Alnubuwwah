@@ -8,7 +8,8 @@
     overflow-x: hidden;
   }
   body {
-    @apply bg-dark-bg text-white font-noto;
+    @apply bg-dark-bg text-white;
+    font-family: Arial, sans-serif;
     overflow-x: hidden;
   }
 }

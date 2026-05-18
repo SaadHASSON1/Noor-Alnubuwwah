@@ -48,12 +48,14 @@ const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 );
 
 import React from 'react';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   const location = useLocation();
 
   return (
     <div dir="rtl" className="relative">
+      <ScrollToTop />
       <BackToTop />
 
       <AnimatePresence mode="wait">

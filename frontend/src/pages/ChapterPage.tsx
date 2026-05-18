@@ -157,7 +157,7 @@ const ChapterPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="font-noto mb-3"
+            className="mb-3"
             style={{ fontSize: 'clamp(1rem, 2.5vw, 1.5rem)', color: meta.accentColor, opacity: 0.85 }}
           >
             {meta.subtitle}
@@ -179,7 +179,7 @@ const ChapterPage: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className={`font-noto max-w-2xl ${textMuted}`}
+            className={`max-w-2xl ${textMuted}`}
             style={{ fontSize: 'clamp(0.95rem, 1.8vw, 1.15rem)', lineHeight: 2 }}
           >
             {meta.description}
@@ -220,7 +220,7 @@ const ChapterPage: React.FC = () => {
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className="font-kufi text-center mb-10 tracking-widest text-sm"
             style={{ color: meta.accentColor, opacity: 0.6 }}
           >

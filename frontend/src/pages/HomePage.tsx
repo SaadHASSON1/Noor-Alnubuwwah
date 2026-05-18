@@ -44,7 +44,7 @@ const HomePage: React.FC = () => {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.6 }}
             className="font-kufi text-islamic-gold/60 tracking-widest text-sm mb-4"
           >
@@ -54,7 +54,7 @@ const HomePage: React.FC = () => {
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.7, delay: 0.1 }}
             className="font-noto font-bold text-white mb-4"
             style={{ fontSize: 'clamp(2rem, 6vw, 4.5rem)' }}
@@ -65,9 +65,9 @@ const HomePage: React.FC = () => {
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="font-noto text-white/50 max-w-xl mx-auto"
+            className="text-white/50 max-w-xl mx-auto"
             style={{ fontSize: 'clamp(0.9rem, 1.8vw, 1.1rem)', lineHeight: 2 }}
           >
             رحلة في ثمانية فصول من حياة النبي ﷺ — من مولده المبارك حتى انتقاله إلى الرفيق الأعلى
@@ -92,7 +92,7 @@ const HomePage: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.8, delay: 0.4 }}
           className="max-w-3xl mx-auto text-center mt-20"
         >
