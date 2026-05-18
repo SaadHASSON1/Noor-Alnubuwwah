@@ -1,0 +1,151 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import {
+  Moon, BookOpen, Swords, Footprints, Scroll,
+  Crown, Mountain, Sunrise, Sparkles, ChevronLeft,
+} from 'lucide-react';
+import type { SeerahEvent } from '../data/seerah';
+
+interface Props {
+  event: SeerahEvent;
+  accentColor: string;
+  index: number;
+}
+
+const TYPE_ICONS: Record<string, React.ElementType> = {
+  birth:      Moon,
+  revelation: BookOpen,
+  battle:     Swords,
+  hijra:      Footprints,
+  treaty:     Scroll,
+  victory:    Crown,
+  farewell:   Mountain,
+  death:      Sunrise,
+  life:       Sparkles,
+};
+
+const TYPE_LABELS: Record<string, string> = {
+  birth:      'مولد',
+  revelation: 'وحي',
+  battle:     'غزوة',
+  hijra:      'هجرة',
+  treaty:     'معاهدة',
+  victory:    'فتح',
+  farewell:   'وداع',
+  death:      'رحيل',
+  life:       'حياة',
+};
+
+const EventCard: React.FC<Props> = ({ event, accentColor, index }) => {
+  const navigate = useNavigate();
+  const Icon = TYPE_ICONS[event.type] ?? Sparkles;
+  const isLight = !!event.lightText;
+  const textBase  = isLight ? 'text-stone-800'  : 'text-white';
+  const textMuted = isLight ? 'text-stone-600'  : 'text-white/60';
+
+  return (
+    <motion.article
+      initial={{ opacity: 0, x: 30 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: '-6%' }}
+      transition={{ duration: 0.55, delay: index * 0.07, ease: [0.25, 0.46, 0.45, 0.94] }}
+      onClick={() => navigate(`/event/${event.id}`)}
+      className="group relative cursor-pointer overflow-hidden rounded-xl"
+      style={{
+        background: event.bg,
+        border: `1px solid ${accentColor}20`,
+      }}
+      whileHover={{ scale: 1.015, y: -2 }}
+      whileTap={{ scale: 0.98 }}
+    >
+      {/* Hover shimmer */}
+      <motion.div
+        className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"
+        style={{ background: `linear-gradient(120deg, ${accentColor}10 0%, transparent 70%)` }}
+      />
+
+      {/* Left accent bar */}
+      <div
+        className="absolute right-0 top-0 bottom-0 w-0.5 rounded-l"
+        style={{ background: `linear-gradient(to bottom, transparent, ${accentColor}80, transparent)` }}
+      />
+
+      <div className="relative z-10 p-6 flex flex-col gap-3">
+        {/* Top row: type badge + year */}
+        <div className="flex items-center justify-between">
+          <div
+            className="flex items-center gap-2 px-2.5 py-1 rounded-full text-xs font-kufi"
+            style={{
+              background: `${accentColor}15`,
+              color: accentColor,
+              border: `1px solid ${accentColor}25`,
+            }}
+          >
+            <Icon size={12} strokeWidth={2} />
+            <span>{TYPE_LABELS[event.type] ?? 'حدث'}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="font-noto text-xs opacity-50" style={{ color: accentColor }}>
+              {event.year_display_m}
+            </span>
+            <span className="font-noto text-xs opacity-35" style={{ color: accentColor }}>
+              {event.year_display_h}
+            </span>
+          </div>
+        </div>
+
+        {/* Title */}
+        <h3
+          className={`font-noto font-bold leading-snug ${textBase}`}
+          style={{ fontSize: 'clamp(1.3rem, 2.5vw, 1.8rem)' }}
+        >
+          {event.title}
+        </h3>
+
+        {/* Subtitle */}
+        <p className={`font-noto text-sm ${textMuted}`}>
+          {event.subtitle}
+        </p>
+
+        {/* Description preview */}
+        <p
+          className={`font-noto text-sm leading-loose line-clamp-3 ${textMuted}`}
+          style={{ opacity: 0.75 }}
+        >
+          {event.description}
+        </p>
+
+        {/* Verse snippet */}
+        {event.verse && (
+          <div
+            className="mt-1 px-4 py-2.5 rounded-lg border-r-2 text-xs font-noto"
+            style={{
+              borderColor: accentColor,
+              background: `${accentColor}08`,
+              color: accentColor,
+              lineHeight: 2,
+            }}
+          >
+            ﴿{event.verse.split(' ').slice(0, 8).join(' ')}…﴾
+          </div>
+        )}
+
+        {/* Read more */}
+        <div className="flex justify-end mt-1">
+          <motion.span
+            className="flex items-center gap-1.5 text-xs font-kufi opacity-60 group-hover:opacity-100 transition-opacity"
+            style={{ color: accentColor }}
+            initial={{ x: 0 }}
+            whileHover={{ x: -4 }}
+          >
+            اقرأ التفاصيل
+            <ChevronLeft size={13} strokeWidth={2} />
+          </motion.span>
+        </div>
+      </div>
+    </motion.article>
+  );
+};
+
+export default EventCard;

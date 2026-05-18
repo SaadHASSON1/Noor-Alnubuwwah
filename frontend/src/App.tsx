@@ -1,17 +1,15 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { ChevronUp } from 'lucide-react';
 
-import IslamicParticles  from './components/IslamicParticles';
-import Hero              from './components/Hero';
-import StickyVerse       from './components/StickyVerse';
-import EventSection      from './components/EventSection';
-import ScrollNav         from './components/ScrollNav';
-import ClosingSection    from './components/ClosingSection';
-import ChapterSidebar    from './components/ChapterSidebar';
+import ScrollNav   from './components/ScrollNav';
+import HomePage    from './pages/HomePage';
+import ChapterPage from './pages/ChapterPage';
+import EventPage   from './pages/EventPage';
 
 import { SEERAH_EVENTS } from './data/seerah';
 
-/* ── Back-to-top button ── */
+/* ── Back-to-top (only on HomePage) ── */
 function BackToTop() {
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.08, 0.12], [0, 0, 1]);
@@ -40,34 +38,63 @@ function BackToTop() {
   );
 }
 
+/* ── Page transition wrapper ── */
+const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 0.35, ease: 'easeInOut' }}
+  >
+    {children}
+  </motion.div>
+);
+
+import React from 'react';
+
 function App() {
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+
   return (
-    <motion.main
-      dir="rtl"
-      className="relative"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-    >
-      <IslamicParticles />
-      <ScrollNav events={SEERAH_EVENTS} />
-      <ChapterSidebar events={SEERAH_EVENTS} />
+    <div dir="rtl" className="relative">
+      {/* ScrollNav only on homepage */}
+      {isHome && <ScrollNav events={SEERAH_EVENTS} />}
       <BackToTop />
 
-      <Hero />
-
-      <StickyVerse
-        verse="وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً لِلْعَالَمِينَ"
-        verseRef="سورة الأنبياء: ١٠٧"
-        bg="#05060f"
-      />
-
-      {SEERAH_EVENTS.map((event, i) => (
-        <EventSection key={event.id} event={event} index={i} />
-      ))}
-
-      <ClosingSection />
-    </motion.main>
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={
+            <PageWrapper><HomePage /></PageWrapper>
+          } />
+          <Route path="/chapter/:chapterName" element={
+            <PageWrapper><ChapterPage /></PageWrapper>
+          } />
+          <Route path="/event/:eventId" element={
+            <PageWrapper><EventPage /></PageWrapper>
+          } />
+          {/* Fallback */}
+          <Route path="*" element={
+            <PageWrapper>
+              <div
+                className="min-h-screen flex items-center justify-center"
+                style={{ background: '#030813' }}
+              >
+                <div className="text-center" dir="rtl">
+                  <p className="font-noto text-white/50 text-xl mb-4">الصفحة غير موجودة</p>
+                  <a
+                    href="/"
+                    className="font-kufi text-islamic-gold text-sm border border-islamic-gold/30 px-6 py-2 rounded-full hover:bg-islamic-gold/10 transition-colors"
+                  >
+                    العودة للرئيسية
+                  </a>
+                </div>
+              </div>
+            </PageWrapper>
+          } />
+        </Routes>
+      </AnimatePresence>
+    </div>
   );
 }
 
