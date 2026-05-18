@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import IslamicParticles from '../components/IslamicParticles';
 import ShareButton from '../components/ShareButton';
+import EventMap from '../components/EventMap';
 import { SEERAH_EVENTS, CHAPTER_META, SEERAH_EVENTS as ALL } from '../data/seerah';
 import type { SeerahEvent } from '../data/seerah';
 
@@ -357,6 +358,9 @@ const EventPage: React.FC = () => {
             </motion.div>
           )}
 
+          {/* ── Embedded map ── */}
+          <EventMap eventId={event.id} accentColor={accentColor} isLight={isLight} />
+
           {/* ── Stats ── */}
           {event.stats && event.stats.length > 0 && (
             <Section
@@ -484,20 +488,6 @@ const EventPage: React.FC = () => {
                         <p className={`font-noto font-bold text-sm ${textBase}`}>{fig.name}</p>
                         <p className={`font-kufi text-xs opacity-60 ${textMuted}`}>{fig.role}</p>
                       </div>
-                      {fig.side && (
-                        <div
-                          className="mr-auto px-2 py-0.5 rounded-full text-xs font-kufi"
-                          style={{
-                            background: fig.side === 'muslim' ? 'rgba(34,197,94,0.12)' :
-                                        fig.side === 'enemy'  ? 'rgba(239,68,68,0.12)' : `${accentColor}12`,
-                            color: fig.side === 'muslim' ? '#4ade80' :
-                                   fig.side === 'enemy'  ? '#f87171' : accentColor,
-                            border: `1px solid ${fig.side === 'muslim' ? '#4ade8030' : fig.side === 'enemy' ? '#f8717130' : accentColor + '30'}`,
-                          }}
-                        >
-                          {fig.side === 'muslim' ? 'مسلم' : fig.side === 'enemy' ? 'معارض' : 'محايد'}
-                        </div>
-                      )}
                     </motion.div>
                   ))}
                 </div>
