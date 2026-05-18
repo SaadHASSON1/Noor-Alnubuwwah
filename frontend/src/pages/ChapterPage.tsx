@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronRight, Home } from 'lucide-react';
 import EventCard from '../components/EventCard';
+import ShareButton from '../components/ShareButton';
 import IslamicParticles from '../components/IslamicParticles';
 import { CHAPTER_META, SEERAH_EVENTS } from '../data/seerah';
 
@@ -118,6 +119,9 @@ const ChapterPage: React.FC = () => {
 
         {/* Main hero content */}
         <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-16 pb-16 pt-32">
+          <div className="flex justify-start mb-4">
+            <ShareButton title={name} accentColor={meta.accentColor} />
+          </div>
 
           {/* Chapter label */}
           <motion.div

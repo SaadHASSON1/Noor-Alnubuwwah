@@ -6,6 +6,7 @@ import {
   BarChart2, Clock, ChevronLeft,
 } from 'lucide-react';
 import IslamicParticles from '../components/IslamicParticles';
+import ShareButton from '../components/ShareButton';
 import { SEERAH_EVENTS, CHAPTER_META, SEERAH_EVENTS as ALL } from '../data/seerah';
 import type { SeerahEvent } from '../data/seerah';
 
@@ -162,6 +163,9 @@ const EventPage: React.FC = () => {
 
         {/* Hero content */}
         <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-16 pb-20 pt-32">
+          <div className="flex justify-start mb-4">
+            <ShareButton title={event.title} accentColor={accentColor} />
+          </div>
 
           {/* Chapter + type badge */}
           <motion.div
