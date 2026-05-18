@@ -306,6 +306,57 @@ const EventPage: React.FC = () => {
       >
         <div className="max-w-4xl mx-auto">
 
+          {/* ── Highlights ── */}
+          {event.highlights && event.highlights.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, margin: '-5%' }}
+              transition={{ duration: 0.6 }}
+              className="mb-12"
+            >
+              <div className="flex items-center gap-3 mb-5">
+                <div
+                  className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 font-noto text-base"
+                  style={{ background: `${accentColor}18`, border: `1px solid ${accentColor}35`, color: accentColor }}
+                >
+                  ✦
+                </div>
+                <h3
+                  className="font-noto font-bold"
+                  style={{ fontSize: 'clamp(1.2rem, 2.5vw, 1.6rem)', color: accentColor }}
+                >
+                  أبرز اللحظات
+                </h3>
+                <div className="flex-1 h-px opacity-20" style={{ background: accentColor }} />
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {event.highlights.map((h, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: 16 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: false }}
+                    transition={{ duration: 0.45, delay: i * 0.07 }}
+                    className="flex items-start gap-3 p-4 rounded-xl"
+                    style={{
+                      background: `${accentColor}08`,
+                      border: `1px solid ${accentColor}18`,
+                    }}
+                  >
+                    <div
+                      className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 rotate-45"
+                      style={{ background: accentColor }}
+                    />
+                    <p className={`text-sm leading-loose ${textMuted}`} style={{ lineHeight: 1.9 }}>
+                      {h}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+
           {/* ── Stats ── */}
           {event.stats && event.stats.length > 0 && (
             <Section
