@@ -120,12 +120,12 @@ const Hero: React.FC = () => {
             transition={{ duration: 1.1, delay: 0.6 }}
             className="font-noto font-bold leading-none text-center"
             style={{
-              fontSize: 'clamp(4rem, 16vw, 14rem)',
+              fontSize: 'clamp(3rem, 12vw, 11rem)',
               color: '#C9A84C',
               textShadow: '0 0 50px rgba(201,168,76,0.7), 0 0 100px rgba(201,168,76,0.3)',
             }}
           >
-            محمد
+            نور النبوة
           </motion.h1>
 
           {/* Subtitle */}
@@ -136,7 +136,7 @@ const Hero: React.FC = () => {
             className="font-noto text-white/70"
             style={{ fontSize: 'clamp(1.1rem, 3vw, 2rem)' }}
           >
-            رسول الله ﷺ
+            سيرة النبي محمد ﷺ
           </motion.p>
 
           {/* Year range */}
