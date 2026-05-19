@@ -1,7 +1,7 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Home, ChevronLeft, BookOpen, Moon, Droplets, ArrowUpCircle, TreePine, Eye, Flame, Utensils } from 'lucide-react';
+import { Home, ChevronLeft, BookOpen, Moon, Droplets, ArrowUpCircle, TreePine, Eye, Flame, Utensils, Wind, Heart, Star, Zap, Cloud, Fish, Volume2, Shield, Search as SearchIcon, Sun, Bird, Waves } from 'lucide-react';
 
 interface Miracle {
   icon: React.ReactNode;
@@ -77,10 +77,143 @@ const MIRACLES: Miracle[] = [
     reference: 'صحيح البخاري — كتاب المناقب: "فأكل منه ثلاثون وثلاثمائة حتى شبعوا"',
     color: '#A8D8B0',
   },
+  {
+    icon: <Volume2 size={28} />,
+    title: 'حنين الجذع',
+    subtitle: 'جذع النخلة يبكي فراقه ﷺ',
+    description: 'كان النبي ﷺ يخطب متكئاً على جذع نخلة. فلما صنع له المنبر تحوّل إليه، فحنّ الجذع حنين الناقة حتى سمعه أهل المسجد وهو يبكي. فنزل النبي ﷺ ومسح عليه حتى سكت.',
+    reference: 'صحيح البخاري — كتاب المناقب: "فحنّ الجذع حنين الصبي"',
+    color: '#D4A870',
+  },
+  {
+    icon: <Star size={28} />,
+    title: 'شهادة الذئب بنبوّته',
+    subtitle: 'الذئب يتكلم فيشهد للنبي ﷺ',
+    description: 'بينما راعٍ يسوق غنمه إذ اعترضه ذئب وأخذ شاةً، فاسترجعها الراعي، فقال الذئب: "من لها يوم السبع يوم لا راعي لها غيري؟" ثم قال: "إن محمداً بيثرب نبيٌّ." فأسلم الراعي.',
+    reference: 'صحيح مسلم — كتاب الفتن، حديث أبي سعيد الخدري',
+    color: '#9CA3AF',
+  },
+  {
+    icon: <Fish size={28} />,
+    title: 'تكثير طعام جابر',
+    subtitle: 'طعام قليل يكفي ألفاً',
+    description: 'في غزوة الخندق جاء جابر بن عبدالله بشاة وصاع من شعير. فأمر النبي ﷺ بطحن الشعير وطبخ اللحم. ثم دعا الناس ودخلوا عشرةً عشرة يأكلون حتى أكل ألف رجل وبقي طعام.',
+    reference: 'صحيح البخاري — كتاب المناقب: "ثم بارك فيه فأكل منه ألف رجل"',
+    color: '#60A5FA',
+  },
+  {
+    icon: <Cloud size={28} />,
+    title: 'السحابة تُظلّله',
+    subtitle: 'الغمامة ترافقه في طريق الشام',
+    description: 'شهد الراهب بحيرى حين رأى القافلة التي فيها الصبي محمد ﷺ قبل النبوة أن غمامةً كانت تظلّله وتتحرك معه. وكان هذا أحد الأدلة التي جعلت بحيرى يُقرّ له بالنبوة القادمة.',
+    reference: 'السيرة النبوية لابن هشام، ودلائل النبوة للبيهقي',
+    color: '#BAE6FD',
+  },
+  {
+    icon: <Droplets size={28} />,
+    title: 'نبع بئر الحديبية',
+    subtitle: 'أمر بسهمه فنبع الماء',
+    description: 'في الحديبية نضب ماء البئر فأعطى النبي ﷺ سهمه لأحد الصحابة فغرزه في البئر، ففارت بالماء حتى رويَ الناس جميعاً وملأوا أسقيتهم وكانوا ألفاً وأربعمائة.',
+    reference: 'صحيح البخاري — كتاب المناقب: "فجاشت البئر بالرواء"',
+    color: '#67E8F9',
+  },
+  {
+    icon: <Shield size={28} />,
+    title: 'الذراع المسمومة تُحذّره',
+    subtitle: 'في خيبر — اللحم يكلّمه',
+    description: 'أهدت امرأة يهودية للنبي ﷺ شاةً مسمومة بعد خيبر. فلما مدّ يده ليأكل من الذراع أخبره الله أن فيها سماً. فسأل المرأة فاعترفت. وقال: "ما كان الله ليُسلّطك عليّ."',
+    reference: 'صحيح البخاري — كتاب المغازي: "أن الذراع قالت إنها مسمومة"',
+    color: '#6EE7B7',
+  },
+  {
+    icon: <Eye size={28} />,
+    title: 'وصف المسجد الأقصى',
+    subtitle: 'يصفه من ذاكرته بدقة مذهلة',
+    description: 'حين كذّبه المشركون في حادثة الإسراء طلبوا أن يصف لهم المسجد الأقصى وهو لم يكن رآه قط بعينيه. فجلاه الله أمامه فوصفه بدقة كاملة حتى شهد من رآه أنه وصفه تماماً.',
+    reference: 'صحيح البخاري — كتاب المناقب: "فجلاه الله له فجعل يصفه وينظر إليه"',
+    color: '#FDE68A',
+  },
+  {
+    icon: <TreePine size={28} />,
+    title: 'الشجرة تأتيه حين دعاها',
+    subtitle: 'شاهد من الأرض',
+    description: 'قال رجل للنبي ﷺ: ائتني بآية. فقال: "تلك الشجرة — ادعها." فدعاها فجاءت تخطّ الأرض حتى وقفت بين يديه. ثم قال لها: "ارجعي" فرجعت. فأسلم الرجل.',
+    reference: 'دلائل النبوة للبيهقي، والسيرة الحلبية بإسناد حسن',
+    color: '#86EFAC',
+  },
+  {
+    icon: <Sun size={28} />,
+    title: 'استسقاؤه فيُمطر',
+    subtitle: 'يرفع يديه فيجيب الله فوراً',
+    description: 'صعد النبي ﷺ المنبر واشتكى الناس القحط. فرفع يديه يدعو فأقبلت السحاب من كل جهة حتى أمطرت ثمانية أيام متوالية لم يُقطر فيها. ثم صعد وطلب رفعها فانقشعت فوراً.',
+    reference: 'صحيح البخاري — كتاب الاستسقاء',
+    color: '#93C5FD',
+  },
+  {
+    icon: <Zap size={28} />,
+    title: 'إخبار بفتح القسطنطينية',
+    subtitle: 'تحقق بعد ٨٠٠ سنة',
+    description: 'قال ﷺ: "لتُفتحنّ القسطنطينية فلنِعمَ الأمير أميرها ولنِعمَ الجيش ذلك الجيش." فتحها السلطان محمد الفاتح عام 1453م بعد ٨٢٠ سنة من النبوة. ووصفه العلماء بأنه نِعمَ الأمير.',
+    reference: 'مسند أحمد — صحّحه الألباني وشعيب الأرنؤوط',
+    color: '#C4B5FD',
+  },
+  {
+    icon: <Heart size={28} />,
+    title: 'علمه بما في القلوب',
+    subtitle: 'يكشف أسرار المنافقين',
+    description: 'عرّفه الله بأسماء المنافقين وفضحهم برواية حذيفة بن اليمان. قال حذيفة: "أسرّ إليّ رسول الله ﷺ أسماء اثني عشر منافقاً." وكان النبي ﷺ يعرف المنافق من ملامحه.',
+    reference: 'صحيح مسلم — كتاب صفات المنافقين',
+    color: '#F9A8D4',
+  },
+  {
+    icon: <Bird size={28} />,
+    title: 'شهادة العنكبوت والحمامة',
+    subtitle: 'الغار في يوم الهجرة',
+    description: 'حين اختبأ النبي ﷺ وأبو بكر في غار ثور أنسجت العنكبوت خيوطها على فم الغار وباضت حمامتان. فلما جاء المشركون قالوا: ما دخل هنا أحد. فكان هذا من أعظم حفظ الله لنبيّه.',
+    reference: 'السيرة النبوية لابن هشام، ودلائل النبوة للبيهقي',
+    color: '#D1FAE5',
+  },
+  {
+    icon: <Wind size={28} />,
+    title: 'إخبار بغزو فارس والروم',
+    subtitle: 'تحقق في زمن الخليفة عمر',
+    description: 'قال ﷺ: "إذا هلك كسرى فلا كسرى بعده، وإذا هلك قيصر فلا قيصر بعده." وقال: "ستفتحون فارس والروم." ففُتحتا في زمن عمر وعثمان بعد وفاته بأعوام قليلة.',
+    reference: 'صحيح البخاري ومسلم — كتاب الفتن',
+    color: '#FEF08A',
+  },
+  {
+    icon: <Waves size={28} />,
+    title: 'الحجر يسلّم عليه',
+    subtitle: 'قبل النبوة — شاهد الجماد',
+    description: 'قال ﷺ: "إني لأعرف حجراً بمكة كان يسلّم عليّ قبل أن أُبعث إنّي لأعرفه الآن." وكان ﷺ يقول: "إن هذا الحجر الأسود يأتي يوم القيامة وله عينان يُبصر بهما."',
+    reference: 'صحيح مسلم — كتاب الفضائل',
+    color: '#E2E8F0',
+  },
+  {
+    icon: <Flame size={28} />,
+    title: 'إخبار بمقتل عمر وعثمان',
+    subtitle: 'غيب تحقق',
+    description: 'أخبر النبي ﷺ عمر بن الخطاب بأنه سيُقتل، وأخبر عثمان بأنه سيلبس قميصاً لا يخلعه. وتحقق كلاهما بعد وفاة النبي ﷺ — عمر طعنه أبو لؤلؤة، وعثمان قُتل وهو يقرأ القرآن.',
+    reference: 'الترمذي وابن ماجه — السلسلة الصحيحة للألباني',
+    color: '#FCA5A5',
+  },
+  {
+    icon: <Moon size={28} />,
+    title: 'رؤياه تتحقق دائماً',
+    subtitle: 'رؤيا الأنبياء حق',
+    description: 'كانت رؤياه ﷺ تتحقق بأدق تفاصيلها: رأى في المنام دخول مكة فتحقق في صلح الحديبية ثم الفتح. ورأى فتوحاً تحققت. ورأى وجه أبي بكر في الخلافة. كل رؤيا جاءت كما رأى.',
+    reference: '﴿لَقَدْ صَدَقَ اللَّهُ رَسُولَهُ الرُّؤْيَا بِالْحَقِّ﴾ — الفتح: ٢٧',
+    color: '#A78BFA',
+  },
 ];
 
 const MiraclesPage: React.FC = () => {
   const navigate = useNavigate();
+  const [search, setSearch] = useState('');
+
+  const filtered = MIRACLES.filter(m =>
+    !search.trim() || m.title.includes(search) || m.subtitle.includes(search) || m.description.includes(search)
+  );
 
   return (
     <div
@@ -147,8 +280,26 @@ const MiraclesPage: React.FC = () => {
           className="font-noto text-white/55 max-w-xl mx-auto"
           style={{ fontSize: 'clamp(0.9rem, 2vw, 1.1rem)', lineHeight: 1.9 }}
         >
-          آيات الله البيّنة التي أيّد بها نبيّه ﷺ برهاناً على صدق نبوّته ورسالته للعالمين
+          {MIRACLES.length} معجزة من آيات الله البيّنة دليلاً على صدق نبوّته ﷺ
         </motion.p>
+
+        {/* Search */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="relative max-w-xs mx-auto mt-6"
+        >
+          <SearchIcon size={13} className="absolute right-3 top-1/2 -translate-y-1/2 text-islamic-gold/40" />
+          <input
+            type="text"
+            placeholder="ابحث عن معجزة..."
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            className="w-full font-kufi text-sm text-white/75 pr-8 pl-3 py-2 rounded-full outline-none"
+            style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(201,168,76,0.2)' }}
+          />
+        </motion.div>
 
         <motion.div
           initial={{ scaleX: 0 }}
@@ -164,8 +315,16 @@ const MiraclesPage: React.FC = () => {
 
       {/* Miracles Grid */}
       <div className="relative z-10 max-w-6xl mx-auto px-6 pb-20">
+        <AnimatePresence>
+          {search && (
+            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              className="font-kufi text-xs text-white/30 text-center mb-4">
+              {filtered.length} نتيجة
+            </motion.p>
+          )}
+        </AnimatePresence>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {MIRACLES.map((miracle, index) => (
+          {filtered.map((miracle, index) => (
             <motion.div
               key={miracle.title}
               initial={{ opacity: 0, y: 50 }}
