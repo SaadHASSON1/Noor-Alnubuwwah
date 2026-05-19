@@ -8,7 +8,6 @@ const STATS = [
   { value: '27',  label: 'غزوة' },
   { value: '25+', label: 'اسماً له ﷺ' },
   { value: '23',  label: 'كاتب وحي' },
-  { value: '18+', label: 'قسماً بالله' },
 ];
 
 /* ── Star particles — deterministic positions ── */
@@ -164,12 +163,12 @@ const Hero: React.FC = () => {
           <div className="w-20 h-px bg-gradient-to-l from-transparent to-islamic-gold" />
         </motion.div>
 
-        {/* Stats row — 3 cols on mobile, 6 on sm+ */}
+        {/* Stats row — 3+2 on mobile, 5 unified bar on sm+ */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.8 }}
-          className="stats-bar grid grid-cols-3 sm:grid-cols-6 gap-1.5 sm:gap-0 w-full max-w-3xl mx-auto mb-8"
+          className="stats-bar grid grid-cols-3 sm:grid-cols-5 gap-1.5 sm:gap-0 w-full max-w-3xl mx-auto mb-8"
         >
           {STATS.map((stat, i) => (
             <motion.div
