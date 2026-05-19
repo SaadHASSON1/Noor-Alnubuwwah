@@ -112,3 +112,55 @@
   background-size: 100% 200%;
   animation: sand-flow 3s linear infinite;
 }
+
+/* ── Hero stats bar — mobile: individual pills, desktop: unified bar ── */
+.stats-item {
+  background: rgba(201,168,76,0.07);
+  border: 1px solid rgba(201,168,76,0.22);
+  border-radius: 0.85rem;
+}
+@media (min-width: 640px) {
+  .stats-bar {
+    background: rgba(201,168,76,0.05);
+    border: 1px solid rgba(201,168,76,0.18);
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+  .stats-item {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+  }
+  .stats-item:not(:last-child) {
+    border-right: 1px solid rgba(201,168,76,0.18);
+  }
+}
+
+/* ── Sidebar nav items — CSS hover (faster than Framer Motion whileHover) ── */
+.sidebar-nav-item {
+  transition: background 0.13s ease, color 0.13s ease, border-color 0.13s ease;
+}
+.sidebar-nav-item:not(.active):hover {
+  background: rgba(201,168,76,0.09) !important;
+  color: #C9A84C !important;
+}
+.sidebar-nav-item:not(.active):hover .nav-icon {
+  color: #C9A84C !important;
+}
+
+/* ── Responsive: ensure no horizontal overflow on any screen ── */
+* { box-sizing: border-box; }
+img, svg, video { max-width: 100%; }
+
+/* ── Touch: larger tap targets on mobile ── */
+@media (max-width: 640px) {
+  .sidebar-nav-item { padding-top: 0.85rem; padding-bottom: 0.85rem; }
+}
+
+/* ── Large screens (TV ≥ 1920px): increase base font scale ── */
+@media (min-width: 1920px) {
+  html { font-size: 18px; }
+}
+@media (min-width: 2560px) {
+  html { font-size: 20px; }
+}
