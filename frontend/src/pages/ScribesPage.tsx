@@ -267,7 +267,7 @@ const ScribesPage: React.FC = () => {
           className="font-noto text-white/55 max-w-lg mx-auto mb-4"
           style={{ fontSize: 'clamp(0.9rem, 2vw, 1.05rem)', lineHeight: 2 }}
         >
-          ﴿كَلَّا وَالْقَلَمِ وَمَا يَسْطُرُونَ﴾
+          ﴿ن ۚ وَالْقَلَمِ وَمَا يَسْطُرُونَ﴾ — القلم: ١
         </motion.p>
 
         {/* Chief scribe note */}
