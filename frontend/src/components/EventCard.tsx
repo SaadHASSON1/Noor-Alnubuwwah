@@ -5,6 +5,7 @@ import {
   Moon, BookOpen, Swords, Footprints, Scroll,
   Crown, Mountain, Sunrise, Sparkles, ChevronLeft,
 } from 'lucide-react';
+import BookmarkButton from './BookmarkButton';
 import type { SeerahEvent } from '../data/seerah';
 
 interface Props {
@@ -132,8 +133,9 @@ const EventCard: React.FC<Props> = ({ event, accentColor, index, chapterBg }) =>
           </div>
         )}
 
-        {/* Read more */}
-        <div className="flex justify-end mt-1">
+        {/* Bottom row: bookmark + read more */}
+        <div className="flex items-center justify-between mt-1">
+          <BookmarkButton eventId={event.id} accentColor={accentColor} size="sm" />
           <motion.span
             className="flex items-center gap-1.5 text-sm font-kufi opacity-70 group-hover:opacity-100 transition-opacity"
             style={{ color: accentColor }}

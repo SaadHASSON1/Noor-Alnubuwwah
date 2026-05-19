@@ -3,15 +3,17 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   ChevronRight, Home, MapPin, Users, BookOpen,
-  BarChart2, Clock, ChevronLeft, Swords,
+  BarChart2, Clock, ChevronLeft, Swords, BookText, Sun,
 } from 'lucide-react';
 import IslamicParticles from '../components/IslamicParticles';
 import ShareButton from '../components/ShareButton';
+import BookmarkButton from '../components/BookmarkButton';
 import EventMap from '../components/EventMap';
 import BattleSimulator from '../components/BattleSimulator';
 import SectionNavigator, { NavSection } from '../components/SectionNavigator';
 import { SEERAH_EVENTS, CHAPTER_META, SEERAH_EVENTS as ALL } from '../data/seerah';
 import { BATTLE_SIMULATIONS } from '../data/battleSimulations';
+import { useReadingMode } from '../context/ReadingModeContext';
 import type { SeerahEvent } from '../data/seerah';
 
 /* ── Section block wrapper ── */
@@ -63,6 +65,7 @@ const EventPage: React.FC = () => {
   const { eventId } = useParams<{ eventId: string }>();
   const navigate = useNavigate();
   const id = Number(eventId);
+  const { isReading, toggle: toggleReading } = useReadingMode();
 
   const event: SeerahEvent | undefined = ALL.find(e => e.id === id);
 
@@ -105,15 +108,23 @@ const EventPage: React.FC = () => {
   const prevEvent = allIdx > 0 ? SEERAH_EVENTS[allIdx - 1] : null;
   const nextEvent = allIdx < SEERAH_EVENTS.length - 1 ? SEERAH_EVENTS[allIdx + 1] : null;
 
+  const readBg    = '#faf6ee';
+  const readText  = '#2a1a00';
+  const readMuted = '#6b4c20';
+
   return (
-    <div className="min-h-screen relative" dir="rtl" style={{ background: event.bg }}>
-      {!isLight && <IslamicParticles />}
+    <div
+      className="min-h-screen relative"
+      dir="rtl"
+      style={{ background: isReading ? readBg : event.bg, transition: 'background 0.4s ease' }}
+    >
+      {!isLight && !isReading && <IslamicParticles />}
       <SectionNavigator sections={navSections} accentColor={accentColor} />
 
       {/* ══ Full-screen hero ══ */}
       <section
         className="relative min-h-screen flex flex-col justify-end overflow-hidden"
-        style={{ background: event.bg }}
+        style={{ background: isReading ? readBg : event.bg, transition: 'background 0.4s ease' }}
       >
         {/* Stars */}
         {!isLight && (
@@ -184,13 +195,35 @@ const EventPage: React.FC = () => {
 
         {/* Hero content */}
         <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-16 pb-20 pt-32">
-          <div className="flex justify-start mb-4">
+          {/* Action buttons row */}
+          <div className="flex items-center gap-2 mb-4 flex-wrap">
             <ShareButton
               title={event.title}
               accentColor={accentColor}
               quote={event.highlight}
               description={event.description}
             />
+            <BookmarkButton eventId={event.id} accentColor={accentColor} />
+            {/* Reading Mode toggle */}
+            <motion.button
+              onClick={toggleReading}
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.93 }}
+              className="flex items-center gap-1.5 font-kufi rounded-full transition-colors duration-200"
+              style={{
+                padding: '0.5rem 0.85rem',
+                fontSize: '0.82rem',
+                background: isReading ? 'rgba(255,245,220,0.15)' : 'rgba(255,255,255,0.05)',
+                border: `1px solid ${isReading ? 'rgba(255,245,220,0.4)' : 'rgba(255,255,255,0.12)'}`,
+                color: isReading ? '#f5e8c8' : 'rgba(255,255,255,0.55)',
+              }}
+              title={isReading ? 'إيقاف وضع القراءة' : 'وضع القراءة'}
+            >
+              {isReading
+                ? <><Sun size={15} strokeWidth={1.8} /><span>عادي</span></>
+                : <><BookText size={15} strokeWidth={1.8} /><span>قراءة</span></>
+              }
+            </motion.button>
           </div>
 
           {/* Chapter + type badge */}
@@ -241,8 +274,12 @@ const EventPage: React.FC = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15 }}
-            className={`font-noto font-bold leading-tight mb-3 ${textBase}`}
-            style={{ fontSize: 'clamp(3rem, 10vw, 8rem)' }}
+            className="font-noto font-bold leading-tight mb-3"
+            style={{
+              fontSize: isReading ? 'clamp(2.2rem, 7vw, 5rem)' : 'clamp(3rem, 10vw, 8rem)',
+              color: isReading ? readText : (isLight ? '#2d1e08' : 'white'),
+              transition: 'font-size 0.3s ease, color 0.3s ease',
+            }}
           >
             {event.title}
           </motion.h1>
@@ -252,8 +289,12 @@ const EventPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.25 }}
-            className={`mb-6 ${textMuted}`}
-            style={{ fontSize: 'clamp(1rem, 2.2vw, 1.4rem)' }}
+            style={{
+              fontSize: 'clamp(1rem, 2.2vw, 1.4rem)',
+              color: isReading ? readMuted : undefined,
+              marginBottom: '1.5rem',
+            }}
+            className={isReading ? '' : textMuted}
           >
             {event.subtitle}
           </motion.p>
@@ -263,20 +304,27 @@ const EventPage: React.FC = () => {
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ duration: 1, delay: 0.4 }}
-            className="flex items-center gap-3 mb-8 opacity-30 origin-right"
+            className="flex items-center gap-3 mb-8 origin-right"
+            style={{ opacity: isReading ? 0.4 : 0.3 }}
           >
             <div className="h-px w-32" style={{ background: accentColor }} />
             <div className="w-2 h-2 rotate-45" style={{ background: accentColor }} />
             <div className="h-px flex-1 max-w-xs" style={{ background: `linear-gradient(to left, transparent, ${accentColor}60)` }} />
           </motion.div>
 
-          {/* Description */}
+          {/* Description / Full Story */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className={`max-w-2xl ${textMuted}`}
-            style={{ fontSize: 'clamp(1rem, 2vw, 1.25rem)', lineHeight: 2.2 }}
+            style={{
+              fontSize: isReading ? 'clamp(1.1rem, 2vw, 1.35rem)' : 'clamp(1rem, 2vw, 1.25rem)',
+              lineHeight: isReading ? 2.6 : 2.2,
+              color: isReading ? readText : undefined,
+              maxWidth: '42rem',
+              whiteSpace: 'pre-line',
+            }}
+            className={isReading ? '' : `max-w-2xl ${textMuted}`}
           >
             {event.fullDescription ?? event.description}
           </motion.p>

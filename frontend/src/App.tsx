@@ -6,6 +6,8 @@ import React, { useState, useEffect, Suspense, lazy } from 'react';
 import SearchOverlay      from './components/SearchOverlay';
 import ScrollToTop        from './components/ScrollToTop';
 import FeatureNavSidebar  from './components/FeatureNavSidebar';
+import { BookmarksProvider } from './context/BookmarksContext';
+import { ReadingModeProvider } from './context/ReadingModeContext';
 
 /* ── Lazy-loaded pages (code splitting) ── */
 const HomePage           = lazy(() => import('./pages/HomePage'));
@@ -29,6 +31,7 @@ const SarayaPage         = lazy(() => import('./pages/SarayaPage'));
 const LettersPage        = lazy(() => import('./pages/LettersPage'));
 const HijraPage          = lazy(() => import('./pages/HijraPage'));
 const DailyLifePage      = lazy(() => import('./pages/DailyLifePage'));
+const BookmarksPage      = lazy(() => import('./pages/BookmarksPage'));
 
 /* ── Page loading fallback ── */
 const PageLoader: React.FC = () => (
@@ -147,6 +150,8 @@ function App() {
   }, []);
 
   return (
+    <BookmarksProvider>
+    <ReadingModeProvider>
     <div dir="rtl" className="relative">
       <ScrollToTop />
       <BackToTop />
@@ -220,6 +225,9 @@ function App() {
           <Route path="/daily-life" element={
             <PageWrapper><DailyLifePage /></PageWrapper>
           } />
+          <Route path="/bookmarks" element={
+            <PageWrapper><BookmarksPage /></PageWrapper>
+          } />
           <Route path="*" element={
             <PageWrapper>
               <div
@@ -242,6 +250,8 @@ function App() {
       </AnimatePresence>
       </Suspense>
     </div>
+    </ReadingModeProvider>
+    </BookmarksProvider>
   );
 }
 
