@@ -11,6 +11,7 @@ interface Props {
   event: SeerahEvent;
   accentColor: string;
   index: number;
+  chapterBg?: string;   /* override ev.bg with chapter-consistent background */
 }
 
 const TYPE_ICONS: Record<string, React.ElementType> = {
@@ -37,7 +38,7 @@ const TYPE_LABELS: Record<string, string> = {
   life:       'حياة',
 };
 
-const EventCard: React.FC<Props> = ({ event, accentColor, index }) => {
+const EventCard: React.FC<Props> = ({ event, accentColor, index, chapterBg }) => {
   const navigate = useNavigate();
   const Icon = TYPE_ICONS[event.type] ?? Sparkles;
   const isLight = !!event.lightText;
@@ -53,8 +54,8 @@ const EventCard: React.FC<Props> = ({ event, accentColor, index }) => {
       onClick={() => navigate(`/event/${event.id}`)}
       className="group relative cursor-pointer overflow-hidden rounded-xl"
       style={{
-        background: event.bg,
-        border: `1px solid ${accentColor}20`,
+        background: chapterBg ?? event.bg,
+        border: `1px solid ${accentColor}25`,
       }}
       whileHover={{ scale: 1.015, y: -2 }}
       whileTap={{ scale: 0.98 }}
