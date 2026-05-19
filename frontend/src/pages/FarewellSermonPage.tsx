@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Home, ChevronLeft, Users, MapPin, Calendar } from 'lucide-react';
+import ShareButton from '../components/ShareButton';
 
 interface SermonSection {
   title: string;
@@ -44,6 +45,10 @@ const FarewellSermonPage: React.FC = () => {
       className="min-h-screen"
       style={{ background: '#030813' }}
     >
+      {/* زر المشاركة */}
+      <div className="fixed top-4 left-4 z-[60]">
+        <ShareButton title="خطبة الوداع" accentColor="#C9A84C" />
+      </div>
       {/* Stars background */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         {Array.from({ length: 60 }, (_, i) => (
@@ -278,7 +283,7 @@ const FarewellSermonPage: React.FC = () => {
           </p>
           <p
             className="font-kufi text-islamic-gold/40"
-            style={{ fontSize: '0.75rem', letterSpacing: '0.1em' }}
+            style={{ fontSize: '0.9rem', letterSpacing: '0.1em' }}
           >
             — سورة المائدة: ٣  — نزلت في يوم عرفة سنة العاشرة من الهجرة
           </p>
@@ -290,7 +295,7 @@ const FarewellSermonPage: React.FC = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 2 }}
           className="text-center font-kufi text-white/25"
-          style={{ fontSize: '0.7rem', letterSpacing: '0.05em' }}
+          style={{ fontSize: '0.88rem', letterSpacing: '0.05em' }}
         >
           المصدر: صحيح البخاري — صحيح مسلم — مسند أحمد — السيرة النبوية لابن هشام
         </motion.p>

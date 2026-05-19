@@ -247,7 +247,7 @@ const Hero: React.FC = () => {
       >
         <p
           className="font-kufi text-islamic-gold/45"
-          style={{ fontSize: '0.75rem', letterSpacing: '0.2em' }}
+          style={{ fontSize: '0.9rem', letterSpacing: '0.2em' }}
         >
           مرّر للأسفل
         </p>

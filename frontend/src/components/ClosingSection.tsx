@@ -87,7 +87,7 @@ const ClosingSection: React.FC = () => {
 
         {/* Footer */}
         <motion.p {...anim(0.72)} className="font-noto opacity-40"
-          style={{ fontSize: '0.7rem', color: '#5a3e1b', letterSpacing: '0.1em' }}>
+          style={{ fontSize: '0.88rem', color: '#5a3e1b', letterSpacing: '0.1em' }}>
           نور النبوة — خريطة حياة النبي محمد ﷺ
         </motion.p>
       </div>

@@ -4,12 +4,17 @@ import { useNavigate } from 'react-router-dom';
 import { Home, ChevronRight } from 'lucide-react';
 import IslamicParticles from '../components/IslamicParticles';
 import { SEERAH_EVENTS, CHAPTER_META, CHAPTERS } from '../data/seerah';
+import ShareButton from '../components/ShareButton';
 
 const TimelinePage: React.FC = () => {
   const navigate = useNavigate();
 
   return (
     <div className="min-h-screen relative" dir="rtl" style={{ background: '#030813' }}>
+      {/* زر المشاركة */}
+      <div className="fixed top-4 left-4 z-[60]">
+        <ShareButton title="التسلسل الزمني للسيرة" accentColor="#C9A84C" />
+      </div>
       <IslamicParticles />
 
       {/* Breadcrumb */}

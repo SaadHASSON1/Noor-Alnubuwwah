@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Home, ChevronLeft, PenLine, Star, Search as SearchIcon } from 'lucide-react';
+import ShareButton from '../components/ShareButton';
 
 interface Scribe {
   name: string;
@@ -188,6 +189,10 @@ const ScribesPage: React.FC = () => {
 
   return (
     <div dir="rtl" className="min-h-screen" style={{ background: '#030813' }}>
+      {/* زر المشاركة */}
+      <div className="fixed top-4 left-4 z-[60]">
+        <ShareButton title="كتّاب الوحي" accentColor="#C9A84C" />
+      </div>
       {/* Stars */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         {Array.from({ length: 65 }, (_, i) => (
@@ -397,7 +402,7 @@ const ScribesPage: React.FC = () => {
                         </span>
                       )}
                     </div>
-                    <p className="font-kufi text-white/45 mt-0.5" style={{ fontSize: '0.68rem' }}>
+                    <p className="font-kufi text-white/45 mt-0.5" style={{ fontSize: '0.86rem' }}>
                       {scribe.role}
                     </p>
                   </div>

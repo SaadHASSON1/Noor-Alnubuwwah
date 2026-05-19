@@ -4,6 +4,7 @@ import Hero from '../components/Hero';
 import ChapterCard from '../components/ChapterCard';
 import IslamicParticles from '../components/IslamicParticles';
 import { CHAPTERS, CHAPTER_META, SEERAH_EVENTS } from '../data/seerah';
+import ShareButton from '../components/ShareButton';
 
 /* ── Diamond divider ── */
 const GoldDivider: React.FC = () => (
@@ -29,6 +30,10 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="relative" dir="rtl">
+      {/* زر المشاركة */}
+      <div className="fixed top-4 left-4 z-[60]">
+        <ShareButton title="نور النبوة" accentColor="#C9A84C" />
+      </div>
       <IslamicParticles />
 
       {/* ── Hero (existing full-screen entry) ── */}

@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Home, ChevronLeft, Search as SearchIcon, CheckCircle, ArrowLeft } from 'lucide-react';
+import ShareButton from '../components/ShareButton';
 
 interface Prophecy {
   title: string;
@@ -148,6 +149,10 @@ const PropheciesPage: React.FC = () => {
 
   return (
     <div dir="rtl" className="min-h-screen" style={{ background: '#030813' }}>
+      {/* زر المشاركة */}
+      <div className="fixed top-4 left-4 z-[60]">
+        <ShareButton title="نبوءات تحققت" accentColor="#C9A84C" />
+      </div>
       {/* Stars */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         {Array.from({ length: 60 }, (_, i) => (

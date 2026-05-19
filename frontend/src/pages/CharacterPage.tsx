@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Home, ChevronLeft, ChevronDown } from 'lucide-react';
 import SectionNavigator from '../components/SectionNavigator';
+import ShareButton from '../components/ShareButton';
 
 const CHAR_SECTIONS = [
   { id: 'chr-appearance', label: 'المظهر الكريم' },
@@ -230,6 +231,10 @@ const CharacterPage: React.FC = () => {
 
   return (
     <div dir="rtl" className="min-h-screen" style={{ background: '#030813' }}>
+      {/* زر المشاركة */}
+      <div className="fixed top-4 left-4 z-[60]">
+        <ShareButton title="شمائل النبي ﷺ" accentColor="#C9A84C" />
+      </div>
       <SectionNavigator sections={CHAR_SECTIONS} accentColor="#C9A84C" />
       {/* Stars */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
@@ -384,7 +389,7 @@ const CharacterPage: React.FC = () => {
                   >
                     "{item.hadith}"
                   </p>
-                  <p className="font-kufi mt-1" style={{ color: 'rgba(255,255,255,0.70)', fontSize: '0.7rem' }}>
+                  <p className="font-kufi mt-1" style={{ color: 'rgba(255,255,255,0.70)', fontSize: '0.88rem' }}>
                     {item.source}
                   </p>
                 </div>
@@ -464,7 +469,7 @@ const CharacterPage: React.FC = () => {
                         >
                           "{trait.hadith}"
                         </p>
-                        <p className="font-kufi mt-1" style={{ color: 'rgba(255,255,255,0.68)', fontSize: '0.68rem' }}>
+                        <p className="font-kufi mt-1" style={{ color: 'rgba(255,255,255,0.68)', fontSize: '0.86rem' }}>
                           {trait.source}
                         </p>
                       </div>
@@ -578,7 +583,7 @@ const CharacterPage: React.FC = () => {
                           "{habit.hadith}"
                         </p>
                         {habit.source && (
-                          <p className="font-kufi mt-1" style={{ color: 'rgba(255,255,255,0.68)', fontSize: '0.7rem' }}>
+                          <p className="font-kufi mt-1" style={{ color: 'rgba(255,255,255,0.68)', fontSize: '0.88rem' }}>
                             {habit.source}
                           </p>
                         )}

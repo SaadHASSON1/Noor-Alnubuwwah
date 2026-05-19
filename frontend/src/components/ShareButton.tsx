@@ -209,7 +209,7 @@ const ShareButton: React.FC<Props> = ({ title, accentColor, quote, description }
                       <span className="font-bold" style={{ fontSize: '0.73rem' }}>
                         {done ? 'تم النسخ!' : act.label}
                       </span>
-                      <span className="opacity-40" style={{ fontSize: '0.65rem' }}>{act.sub}</span>
+                      <span className="opacity-40" style={{ fontSize: '0.85rem' }}>{act.sub}</span>
                     </span>
                   </motion.button>
                 );
@@ -221,7 +221,7 @@ const ShareButton: React.FC<Props> = ({ title, accentColor, quote, description }
               className="px-4 py-2.5"
               style={{ borderTop: `1px solid ${accentColor}10` }}
             >
-              <p className="font-noto text-center opacity-20" style={{ fontSize: '0.6rem', color: accentColor }}>
+              <p className="font-noto text-center opacity-20" style={{ fontSize: '0.82rem', color: accentColor }}>
                 نور النبوة — سيرة المصطفى ﷺ
               </p>
             </div>

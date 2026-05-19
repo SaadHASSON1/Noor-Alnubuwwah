@@ -2,6 +2,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Home, ChevronLeft, Search, X } from 'lucide-react';
+import ShareButton from '../components/ShareButton';
 
 interface Companion {
   name: string;
@@ -539,6 +540,10 @@ const CompanionsPage: React.FC = () => {
 
   return (
     <div dir="rtl" className="min-h-screen" style={{ background: '#030813' }}>
+      {/* زر المشاركة */}
+      <div className="fixed top-4 left-4 z-[60]">
+        <ShareButton title="الصحابة الكرام" accentColor="#C9A84C" />
+      </div>
 
       {/* Stars */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
@@ -725,14 +730,14 @@ const CompanionsPage: React.FC = () => {
                     <h3 className="font-noto font-bold mb-0.5" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', color: '#C9A84C' }}>
                       {companion.name}
                     </h3>
-                    <p className="font-kufi mb-3" style={{ fontSize: '0.72rem', color: `${color}90`, lineHeight: 1.5 }}>
+                    <p className="font-kufi mb-3" style={{ fontSize: '0.88rem', color: `${color}90`, lineHeight: 1.5 }}>
                       {companion.nickname}
                     </p>
 
                     {/* Achievement */}
                     <div className="flex items-center gap-1.5 mb-3">
                       <div className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: color }} />
-                      <p className="font-kufi" style={{ fontSize: '0.75rem', color: `${color}bb` }}>
+                      <p className="font-kufi" style={{ fontSize: '0.9rem', color: `${color}bb` }}>
                         {companion.achievement}
                       </p>
                     </div>
@@ -753,7 +758,7 @@ const CompanionsPage: React.FC = () => {
                     </p>
 
                     {/* Tap hint */}
-                    <p className="font-kufi mt-3 text-center" style={{ fontSize: '0.65rem', color: `${color}50` }}>
+                    <p className="font-kufi mt-3 text-center" style={{ fontSize: '0.85rem', color: `${color}50` }}>
                       اضغط لعرض الكامل ›
                     </p>
                   </div>

@@ -2,6 +2,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Home, ChevronLeft, BookOpen, Moon, Droplets, ArrowUpCircle, TreePine, Eye, Flame, Utensils, Wind, Heart, Star, Zap, Cloud, Fish, Volume2, Shield, Search as SearchIcon, Sun, Bird, Waves, X } from 'lucide-react';
+import ShareButton from '../components/ShareButton';
 
 interface Miracle {
   icon: React.ReactNode;
@@ -260,7 +261,7 @@ const MiracleModal: React.FC<{ miracle: Miracle; onClose: () => void }> = ({ mir
         <h2 className="font-noto font-bold mb-1" style={{ fontSize: 'clamp(1.4rem, 4vw, 1.9rem)', color: miracle.color }}>
           {miracle.title}
         </h2>
-        <p className="font-kufi mb-5" style={{ fontSize: '0.78rem', color: `${miracle.color}80`, letterSpacing: '0.04em' }}>
+        <p className="font-kufi mb-5" style={{ fontSize: '0.92rem', color: `${miracle.color}80`, letterSpacing: '0.04em' }}>
           {miracle.subtitle}
         </p>
 
@@ -299,6 +300,10 @@ const MiraclesPage: React.FC = () => {
       className="min-h-screen"
       style={{ background: '#030813' }}
     >
+      {/* زر المشاركة */}
+      <div className="fixed top-4 left-4 z-[60]">
+        <ShareButton title="معجزات النبي ﷺ" accentColor="#C9A84C" />
+      </div>
       {/* Stars */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         {Array.from({ length: 70 }, (_, i) => (
@@ -453,7 +458,7 @@ const MiraclesPage: React.FC = () => {
                 <p
                   className="font-kufi mb-3 opacity-60"
                   style={{
-                    fontSize: '0.7rem',
+                    fontSize: '0.88rem',
                     color: miracle.color,
                     letterSpacing: '0.04em',
                   }}
@@ -483,7 +488,7 @@ const MiraclesPage: React.FC = () => {
                 </div>
 
                 {/* Tap hint */}
-                <p className="font-kufi text-center" style={{ fontSize: '0.62rem', color: `${miracle.color}45` }}>
+                <p className="font-kufi text-center" style={{ fontSize: '0.84rem', color: `${miracle.color}45` }}>
                   اضغط للتفاصيل ›
                 </p>
               </div>

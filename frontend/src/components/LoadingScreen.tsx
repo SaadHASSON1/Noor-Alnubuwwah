@@ -270,7 +270,7 @@ const LoadingScreen: React.FC<Props> = ({ onComplete }) => {
           <div className="absolute inset-y-0 left-0 rounded-full transition-all duration-150"
             style={{ width: `${progress}%`, background: 'linear-gradient(90deg, rgba(201,168,76,0.3), #C9A84C, #FFE082)', boxShadow: '0 0 8px rgba(201,168,76,0.7)' }} />
         </div>
-        <p className="font-noto text-islamic-gold/35" style={{ fontSize: '0.7rem' }}>
+        <p className="font-noto text-islamic-gold/35" style={{ fontSize: '0.88rem' }}>
           {progress < 100 ? 'جاري التحميل...' : 'بسم الله الرحمن الرحيم'}
         </p>
       </div>
