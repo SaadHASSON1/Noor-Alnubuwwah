@@ -259,7 +259,7 @@ const LoadingScreen: React.FC<Props> = ({ onComplete }) => {
         </p>
         {verseText.length === VERSE.length && (
           <motion.p className="text-xs text-desert-sand/40 mt-1 font-noto" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            ﴿ سورة الأنبياء: ١٠٧ ﴾
+            ﴿ سورة الأنبياء: 107 ﴾
           </motion.p>
         )}
       </motion.div>

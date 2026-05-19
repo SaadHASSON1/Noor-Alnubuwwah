@@ -57,7 +57,7 @@ const ClosingSection: React.FC = () => {
 
         <motion.p {...anim(0.3)} className="font-noto mb-10"
           style={{ fontSize: 'clamp(0.8rem, 1.5vw, 0.95rem)', color: '#8B6914', opacity: 0.7 }}>
-          ﴿ سورة الأنبياء: ١٠٧ ﴾
+          ﴿ سورة الأنبياء: 107 ﴾
         </motion.p>
 
         {/* Divider */}

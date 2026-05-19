@@ -3,12 +3,12 @@ import { motion } from 'framer-motion';
 
 /* ── Stat card data ── */
 const STATS = [
-  { value: '٦٣ عاماً',  label: 'عمره ﷺ' },
-  { value: '٢٣ عاماً',  label: 'مدة النبوة' },
-  { value: '٢٧ غزوة',   label: 'غزواته ﷺ' },
-  { value: '٢٥+ اسماً', label: 'من أسمائه ﷺ' },
-  { value: '٢٣ كاتباً', label: 'كتّاب الوحي' },
-  { value: '١٨+ قسماً', label: 'أقسام الموقع' },
+  { value: '63 عاماً',  label: 'عمره ﷺ' },
+  { value: '23 عاماً',  label: 'مدة النبوة' },
+  { value: '27 غزوة',   label: 'غزواته ﷺ' },
+  { value: '25+ اسماً', label: 'من أسمائه ﷺ' },
+  { value: '23 كاتباً', label: 'كتّاب الوحي' },
+  { value: '18+ قسماً', label: 'أقسام الموقع' },
 ];
 
 /* ── Star particles — deterministic positions ── */
@@ -134,7 +134,7 @@ const Hero: React.FC = () => {
             letterSpacing: '0.1em',
           }}
         >
-          سيرة النبي محمد ﷺ  •  ٥٧١ م — ٦٣٢ م
+          سيرة النبي محمد ﷺ  •  571 م — 632 م
         </motion.div>
 
         {/* Main title */}
@@ -216,7 +216,7 @@ const Hero: React.FC = () => {
             className="font-kufi text-islamic-gold/50"
             style={{ fontSize: '0.85rem', letterSpacing: '0.14em' }}
           >
-            — سورة الأنبياء: ١٠٧
+            — سورة الأنبياء: 107
           </p>
         </motion.div>
 

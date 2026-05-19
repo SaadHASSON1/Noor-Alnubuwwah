@@ -61,7 +61,7 @@ export const MAP_LOCATIONS: MapLocation[] = [
     subtitle: 'غزوة بدر الكبرى',
     x: 148, y: 270,
     type: 'battle',
-    year: '٢ هـ',
+    year: '2 هـ',
     description: 'أولى المعارك الفاصلة بين الإسلام والشرك، انتصر فيها 313 مسلماً على جيش قريش البالغ ألف مقاتل.',
   },
   {
@@ -70,7 +70,7 @@ export const MAP_LOCATIONS: MapLocation[] = [
     subtitle: 'غزوة أحد',
     x: 175, y: 236,
     type: 'battle',
-    year: '٣ هـ',
+    year: '3 هـ',
     description: 'الجبل الذي أحبه النبي ﷺ، وشهد استشهاد سيد الشهداء حمزة بن عبد المطلب وسبعين من الصحابة.',
   },
   {
@@ -79,7 +79,7 @@ export const MAP_LOCATIONS: MapLocation[] = [
     subtitle: 'فتح خيبر',
     x: 168, y: 210,
     type: 'battle',
-    year: '٧ هـ',
+    year: '7 هـ',
     description: 'قلاع اليهود في شمال الحجاز، فتحها النبي ﷺ وعلى رأسه علي بن أبي طالب ففتح الله على يديه.',
   },
   {
@@ -88,7 +88,7 @@ export const MAP_LOCATIONS: MapLocation[] = [
     subtitle: 'غزوة تبوك',
     x: 106, y: 152,
     type: 'battle',
-    year: '٩ هـ',
+    year: '9 هـ',
     description: 'آخر غزوات النبي ﷺ الكبرى، قادها بنفسه شمالاً نحو الروم في أصعب الأوقات — غزوة العسرة.',
   },
   {
@@ -105,7 +105,7 @@ export const MAP_LOCATIONS: MapLocation[] = [
     subtitle: 'صلح الحديبية',
     x: 176, y: 314,
     type: 'city',
-    year: '٦ هـ',
+    year: '6 هـ',
     description: 'البئر القريبة من مكة حيث عُقد الصلح الذي وصفه القرآن بالفتح المبين وفتح الطريق لدخول مكة.',
   },
 ];

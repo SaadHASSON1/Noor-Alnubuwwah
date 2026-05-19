@@ -608,7 +608,7 @@ const CompanionsPage: React.FC = () => {
           className="font-noto text-islamic-gold/55 mt-3"
           style={{ fontSize: 'clamp(0.9rem, 2vw, 1.1rem)' }}
         >
-          ﴿رَّضِيَ اللَّهُ عَنْهُمْ وَرَضُوا عَنْهُ﴾ — التوبة: ١٠٠
+          ﴿رَّضِيَ اللَّهُ عَنْهُمْ وَرَضُوا عَنْهُ﴾ — التوبة: 100
         </motion.p>
 
         <motion.div

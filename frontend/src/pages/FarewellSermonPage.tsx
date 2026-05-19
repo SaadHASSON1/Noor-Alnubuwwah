@@ -106,7 +106,7 @@ const FarewellSermonPage: React.FC = () => {
             color: '#C9A84C',
           }}
         >
-          ١٠ ذو الحجة — ١٠ هـ
+          10 ذو الحجة — 10 هـ
         </motion.div>
 
         <motion.h1
@@ -141,7 +141,7 @@ const FarewellSermonPage: React.FC = () => {
           className="flex flex-wrap gap-4 justify-center mb-8"
         >
           {[
-            { icon: <Calendar size={14} />, label: 'التاريخ', value: '٩ ذو الحجة ١٠ هـ / ٦٣٢ م' },
+            { icon: <Calendar size={14} />, label: 'التاريخ', value: '9 ذو الحجة 10 هـ / 632 م' },
             { icon: <MapPin size={14} />, label: 'المكان', value: 'جبل عرفات — حجة الوداع' },
             { icon: <Users size={14} />, label: 'الحضور', value: 'نحو مئة ألف صحابي' },
           ].map((item) => (
@@ -285,7 +285,7 @@ const FarewellSermonPage: React.FC = () => {
             className="font-kufi text-islamic-gold/40"
             style={{ fontSize: '0.9rem', letterSpacing: '0.1em' }}
           >
-            — سورة المائدة: ٣  — نزلت في يوم عرفة سنة العاشرة من الهجرة
+            — سورة المائدة: 3  — نزلت في يوم عرفة سنة العاشرة من الهجرة
           </p>
         </motion.div>
 

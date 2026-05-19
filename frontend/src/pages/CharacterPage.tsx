@@ -300,7 +300,7 @@ const CharacterPage: React.FC = () => {
           ﴿وَإِنَّكَ لَعَلَىٰ خُلُقٍ عَظِيمٍ﴾
         </p>
         <p className="font-kufi text-sm" style={{ color: 'rgba(201,168,76,0.6)' }}>
-          القلم: ٤
+          القلم: 4
         </p>
         <div
           className="w-16 h-px mt-6"

@@ -233,7 +233,7 @@ const TimelinePage: React.FC = () => {
           >
             ﴿إِنَّكَ مَيِّتٌ وَإِنَّهُم مَّيِّتُونَ﴾
           </p>
-          <p className="font-kufi text-islamic-gold/25 text-xs tracking-widest">— سورة الزمر: ٣٠</p>
+          <p className="font-kufi text-islamic-gold/25 text-xs tracking-widest">— سورة الزمر: 30</p>
         </motion.div>
       </div>
     </div>

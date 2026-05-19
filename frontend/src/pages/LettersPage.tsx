@@ -336,7 +336,7 @@ const LettersPage: React.FC = () => {
           className="font-noto text-islamic-gold/55 mt-2"
           style={{ fontSize: 'clamp(0.9rem, 2vw, 1.1rem)' }}
         >
-          ﴿وَمَا أَرْسَلْنَاكَ إِلَّا كَافَّةً لِّلنَّاسِ بَشِيراً وَنَذِيراً﴾ — سبأ: ٢٨
+          ﴿وَمَا أَرْسَلْنَاكَ إِلَّا كَافَّةً لِّلنَّاسِ بَشِيراً وَنَذِيراً﴾ — سبأ: 28
         </motion.p>
 
         <motion.p

@@ -110,7 +110,7 @@ const LIFE_SECTIONS: LifeSection[] = [
     facts: [
       'يصلي قيام الليل حتى تتورم قدماه',
       '"أفلا أكون عبداً شكوراً؟" — قالها حين سُئل عن طول صلاته',
-      'يصوم الاثنين والخميس وأيام البيض (١٣ و١٤ و١٥ من كل شهر)',
+      'يصوم الاثنين والخميس وأيام البيض (13 و14 و15 من كل شهر)',
       'كان يكثر الاستغفار مئة مرة في اليوم والليلة',
       'دعاء الصباح والمساء لا يتركهما في حضر ولا سفر',
     ],
@@ -229,7 +229,7 @@ const DailyLifePage: React.FC = () => {
             className="font-kufi text-xs mb-8"
             style={{ color: 'rgba(201,168,76,0.55)' }}
           >
-            — سورة الأحزاب: ٢١
+            — سورة الأحزاب: 21
           </p>
 
           <div
@@ -455,10 +455,10 @@ const DailyLifePage: React.FC = () => {
           className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3"
         >
           {[
-            { value: '٦٣', unit: 'عاماً', label: 'عمره ﷺ' },
-            { value: '١٠٠', unit: 'مرة', label: 'استغفاره يومياً' },
-            { value: '٢٣', unit: 'سنة', label: 'مدة الرسالة' },
-            { value: '١١', unit: 'زوجة', label: 'في حياته ﷺ' },
+            { value: '63', unit: 'عاماً', label: 'عمره ﷺ' },
+            { value: '100', unit: 'مرة', label: 'استغفاره يومياً' },
+            { value: '23', unit: 'سنة', label: 'مدة الرسالة' },
+            { value: '11', unit: 'زوجة', label: 'في حياته ﷺ' },
           ].map((stat) => (
             <div
               key={stat.label}

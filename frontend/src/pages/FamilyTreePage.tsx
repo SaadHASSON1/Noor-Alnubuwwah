@@ -63,7 +63,7 @@ const UNCLES: Person[] = [
   { name: 'أبو لهب عبد العزى',        relation: 'العم العدو',    info: 'أشد أعداء النبي ﷺ من أهله، نزلت فيه سورة المسد', color: '#E8A8A8' },
 ];
 const WIVES: Person[] = [
-  { name: 'خديجة بنت خويلد',           relation: 'الزوجة الأولى',  info: 'أول المؤمنين، عاشا معاً ٢٥ عاماً، أم أكثر أولاده', color: '#FFD700' },
+  { name: 'خديجة بنت خويلد',           relation: 'الزوجة الأولى',  info: 'أول المؤمنين، عاشا معاً 25 عاماً، أم أكثر أولاده', color: '#FFD700' },
   { name: 'سودة بنت زمعة',             relation: 'الزوجة الثانية', info: 'تزوجها بعد وفاة خديجة في مكة', color: '#C9A84C' },
   { name: 'عائشة بنت أبي بكر',         relation: 'أم المؤمنين',    info: 'حبيبته وأعلم نساء الأمة، روت آلاف الأحاديث', color: '#FFD700' },
   { name: 'حفصة بنت عمر',              relation: 'أم المؤمنين',    info: 'بنت عمر بن الخطاب، حافظة القرآن', color: '#C9A84C' },
@@ -317,7 +317,7 @@ const FamilyTreePage: React.FC = () => {
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.3 }}
             className="font-noto text-white/60 max-w-lg mx-auto"
             style={{ fontSize: 'clamp(0.9rem, 2vw, 1.1rem)', lineHeight: 2 }}>
-            من عدنان إلى محمد ﷺ — ٢٢ جيلاً من أشرف النسب
+            من عدنان إلى محمد ﷺ — 22 جيلاً من أشرف النسب
           </motion.p>
         </div>
       </section>
@@ -330,7 +330,7 @@ const FamilyTreePage: React.FC = () => {
           <SectionTitle
             icon={<Crown size={20} />}
             title="النسب الشريف"
-            subtitle="من عدنان إلى محمد ﷺ — ٢٢ جيلاً"
+            subtitle="من عدنان إلى محمد ﷺ — 22 جيلاً"
           />
 
           {/* بطاقة توضيحية */}
@@ -343,7 +343,7 @@ const FamilyTreePage: React.FC = () => {
           >
             {[
               { label: 'عدنان', sub: 'الجد الأعلى', color: 'rgba(255,255,255,0.95)' },
-              { label: '←', sub: '٢٢ جيلاً', color: '#C9A84C', arrow: true },
+              { label: '←', sub: '22 جيلاً', color: '#C9A84C', arrow: true },
               { label: 'محمد ﷺ', sub: 'خاتم الأنبياء', color: '#C9A84C' },
             ].map((item, i) => (
               <div key={i} className="text-center">
@@ -422,7 +422,7 @@ const FamilyTreePage: React.FC = () => {
           <p className="font-noto text-islamic-gold/75 mb-2" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.5rem)', lineHeight: 2 }}>
             ﴿مُّحَمَّدٌ رَّسُولُ اللَّهِ ۚ وَالَّذِينَ مَعَهُ أَشِدَّاءُ عَلَى الْكُفَّارِ رُحَمَاءُ بَيْنَهُمْ﴾
           </p>
-          <p className="font-kufi text-islamic-gold/45 text-sm tracking-widest">— سورة الفتح: ٢٩</p>
+          <p className="font-kufi text-islamic-gold/45 text-sm tracking-widest">— سورة الفتح: 29</p>
         </motion.div>
       </div>
     </div>
