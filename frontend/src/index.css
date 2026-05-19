@@ -131,10 +131,10 @@
   border-radius: 0.85rem;
   width: 100%;
 }
-/* 5 items → last 2 pills on mobile: span the "lonely" slots centred */
+/* 5 items → last 2 pills symmetrically centred in row 2 on mobile */
 @media (max-width: 639px) {
-  .stats-item:nth-child(4) { grid-column: 1 / 2; }
-  .stats-item:nth-child(5) { grid-column: 3 / 4; }
+  .stat-4th { grid-column: 1 / 2; grid-row: 2; }
+  .stat-5th { grid-column: 3 / 4; grid-row: 2; }
 }
 @media (min-width: 640px) {
   .stats-bar {

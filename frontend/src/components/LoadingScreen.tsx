@@ -265,7 +265,7 @@ const LoadingScreen: React.FC<Props> = ({ onComplete }) => {
       </motion.div>
 
       {/* Progress bar */}
-      <div className="absolute bottom-8 w-72 flex flex-col items-center gap-3 px-4">
+      <div className="absolute bottom-8 w-full max-w-sm flex flex-col items-center gap-4 px-6">
         <div className="w-full h-px bg-islamic-gold/12 relative overflow-hidden rounded-full">
           <div className="absolute inset-y-0 left-0 rounded-full transition-all duration-150"
             style={{ width: `${progress}%`, background: 'linear-gradient(90deg, rgba(201,168,76,0.3), #C9A84C, #FFE082)', boxShadow: '0 0 8px rgba(201,168,76,0.7)' }} />
@@ -277,16 +277,16 @@ const LoadingScreen: React.FC<Props> = ({ onComplete }) => {
           </p>
         ) : (
           <motion.p
-            className="font-noto text-center"
-            initial={{ opacity: 0, scale: 0.88, y: 6 }}
+            className="font-noto text-center w-full"
+            initial={{ opacity: 0, scale: 0.8, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             style={{
-              fontSize: 'clamp(1.5rem, 5vw, 2.4rem)',
+              fontSize: 'clamp(2.2rem, 8vw, 5rem)',
               color: '#C9A84C',
-              textShadow: '0 0 30px rgba(201,168,76,0.8), 0 0 60px rgba(201,168,76,0.3)',
-              letterSpacing: '0.05em',
-              lineHeight: 1.5,
+              textShadow: '0 0 40px rgba(201,168,76,1), 0 0 80px rgba(201,168,76,0.6), 0 0 140px rgba(201,168,76,0.25)',
+              letterSpacing: '0.04em',
+              lineHeight: 1.4,
             }}
           >
             بسم الله الرحمن الرحيم
