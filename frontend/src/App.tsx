@@ -1,13 +1,34 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { ChevronUp, Search } from 'lucide-react';
+import { ChevronUp, Search, Bookmark, BookmarkCheck } from 'lucide-react';
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 
 import SearchOverlay      from './components/SearchOverlay';
 import ScrollToTop        from './components/ScrollToTop';
 import FeatureNavSidebar  from './components/FeatureNavSidebar';
-import { BookmarksProvider } from './context/BookmarksContext';
+import { BookmarksProvider, useBookmarks } from './context/BookmarksContext';
 import { ReadingModeProvider } from './context/ReadingModeContext';
+
+/* ── صفحات قابلة للحفظ ── */
+const BOOKMARKABLE_PAGES: Record<string, string> = {
+  '/timeline':        'التسلسل الزمني',
+  '/character':       'صفاته ﷺ',
+  '/daily-life':      'حياته اليومية ﷺ',
+  '/hijra':           'رحلة الهجرة',
+  '/battles':         'غزواته ﷺ',
+  '/saraya':          'السرايا العسكرية',
+  '/letters':         'رسائله للملوك',
+  '/wives':           'أمهات المؤمنين',
+  '/companions':      'الصحابة الكرام',
+  '/miracles':        'معجزاته ﷺ',
+  '/family-tree':     'شجرة النسب الشريف',
+  '/quiz':            'الاختبار التفاعلي',
+  '/farewell-sermon': 'خطبة الوداع الكاملة',
+  '/prophecies':      'نبوءاته ﷺ',
+  '/names':           'أسماؤه ﷺ',
+  '/scribes':         'كتّاب الوحي',
+  '/sources':         'المصادر والمراجع',
+};
 
 /* ── Lazy-loaded pages (code splitting) ── */
 const HomePage           = lazy(() => import('./pages/HomePage'));
@@ -81,11 +102,10 @@ function BackToTop() {
 /* ── Global floating nav ── */
 function GlobalNav({ onSearchOpen }: { onSearchOpen: () => void }) {
   const location = useLocation();
+  const { isPageBookmarked, togglePage } = useBookmarks();
 
-  const navItems = [
-    { icon: Search, label: 'بحث', action: onSearchOpen, path: null },
-    // { icon: Map, label: 'الخريطة', action: () => navigate('/map'), path: '/map' }, // مؤقتاً مخفي
-  ];
+  const pageLabel = BOOKMARKABLE_PAGES[location.pathname];
+  const saved     = pageLabel ? isPageBookmarked(location.pathname) : false;
 
   return (
     <motion.div
@@ -95,28 +115,61 @@ function GlobalNav({ onSearchOpen }: { onSearchOpen: () => void }) {
       className="fixed top-5 left-5 z-[100] flex items-center gap-1.5"
       dir="rtl"
     >
-      {navItems.map(({ icon: Icon, label, action, path }) => {
-        const isActive = path && location.pathname === path;
-        return (
+      {/* Search */}
+      <motion.button
+        onClick={onSearchOpen}
+        whileHover={{ scale: 1.06 }}
+        whileTap={{ scale: 0.94 }}
+        className="flex items-center gap-1.5 px-4 py-2.5 rounded-full font-kufi text-sm"
+        style={{
+          background: 'rgba(3,8,19,0.82)',
+          border: '1px solid rgba(201,168,76,0.22)',
+          color: '#C9A84C',
+          backdropFilter: 'blur(8px)',
+          boxShadow: '0 2px 12px rgba(0,0,0,0.4)',
+        }}
+      >
+        <Search size={16} strokeWidth={1.8} />
+        <span>بحث</span>
+      </motion.button>
+
+      {/* Page bookmark button — يظهر فقط على الصفحات القابلة للحفظ */}
+      <AnimatePresence>
+        {pageLabel && (
           <motion.button
-            key={label}
-            onClick={action}
+            key="page-bookmark"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => togglePage(location.pathname, pageLabel)}
             whileHover={{ scale: 1.06 }}
             whileTap={{ scale: 0.94 }}
+            aria-label={saved ? 'إزالة من المحفوظات' : 'حفظ الصفحة'}
             className="flex items-center gap-1.5 px-4 py-2.5 rounded-full font-kufi text-sm"
             style={{
-              background: isActive ? 'rgba(201,168,76,0.2)' : 'rgba(3,8,19,0.82)',
-              border: `1px solid ${isActive ? 'rgba(201,168,76,0.55)' : 'rgba(201,168,76,0.22)'}`,
+              background: saved ? 'rgba(201,168,76,0.18)' : 'rgba(3,8,19,0.82)',
+              border: `1px solid ${saved ? 'rgba(201,168,76,0.5)' : 'rgba(201,168,76,0.22)'}`,
               color: '#C9A84C',
               backdropFilter: 'blur(8px)',
               boxShadow: '0 2px 12px rgba(0,0,0,0.4)',
             }}
           >
-            <Icon size={16} strokeWidth={1.8} />
-            <span>{label}</span>
+            <AnimatePresence mode="wait">
+              {saved ? (
+                <motion.span key="saved" initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }} transition={{ duration: 0.15 }}>
+                  <BookmarkCheck size={16} strokeWidth={1.8} />
+                </motion.span>
+              ) : (
+                <motion.span key="unsaved" initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }} transition={{ duration: 0.15 }}>
+                  <Bookmark size={16} strokeWidth={1.8} />
+                </motion.span>
+              )}
+            </AnimatePresence>
+            <span>{saved ? 'محفوظة' : 'حفظ'}</span>
           </motion.button>
-        );
-      })}
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }

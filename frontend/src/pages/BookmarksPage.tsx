@@ -1,14 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Home, ChevronRight, Bookmark, BookmarkX } from 'lucide-react';
+import { Home, ChevronRight, Bookmark, BookmarkCheck, BookmarkX, FileText } from 'lucide-react';
 import { useBookmarks } from '../context/BookmarksContext';
 import { SEERAH_EVENTS, CHAPTER_META } from '../data/seerah';
 import EventCard from '../components/EventCard';
 
 const BookmarksPage: React.FC = () => {
   const navigate = useNavigate();
-  const { bookmarks, clear, count } = useBookmarks();
+  const { bookmarks, clear, count, pageBookmarks, clearPages, pageCount, totalCount } = useBookmarks();
 
   const savedEvents = SEERAH_EVENTS.filter(e => bookmarks.has(e.id));
 
@@ -69,13 +69,15 @@ const BookmarksPage: React.FC = () => {
           className="font-kufi text-sm mt-2"
           style={{ color: '#8e9095' }}
         >
-          {count > 0 ? `${count} حدث محفوظ` : 'لا توجد أحداث محفوظة بعد'}
+          {totalCount > 0
+            ? `${count > 0 ? `${count} حدث` : ''}${count > 0 && pageCount > 0 ? ' · ' : ''}${pageCount > 0 ? `${pageCount} صفحة` : ''} محفوظ`
+            : 'لا توجد محفوظات بعد'}
         </motion.p>
       </div>
 
       {/* Content */}
       <div className="max-w-5xl mx-auto px-5 md:px-10 pb-28">
-        {count === 0 ? (
+        {totalCount === 0 ? (
           /* Empty state */
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -109,7 +111,7 @@ const BookmarksPage: React.FC = () => {
           </motion.div>
         ) : (
           <>
-            {/* Clear button */}
+            {/* Clear all button */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -117,7 +119,7 @@ const BookmarksPage: React.FC = () => {
               className="flex justify-end mb-6"
             >
               <button
-                onClick={() => { if (confirm('هل تريد مسح جميع المحفوظات؟')) clear(); }}
+                onClick={() => { if (confirm('هل تريد مسح جميع المحفوظات؟')) { clear(); clearPages(); } }}
                 className="flex items-center gap-2 font-kufi text-sm px-4 py-2 rounded-full transition-all"
                 style={{
                   background: 'rgba(255,80,80,0.07)',
@@ -129,6 +131,69 @@ const BookmarksPage: React.FC = () => {
                 مسح الكل
               </button>
             </motion.div>
+
+            {/* ── الصفحات المحفوظة ── */}
+            {pageCount > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.45 }}
+                className="mb-12"
+              >
+                <div className="flex items-center gap-3 mb-5">
+                  <FileText size={16} style={{ color: '#C9A84C' }} />
+                  <h2 className="font-noto font-bold" style={{ fontSize: 'clamp(1.2rem, 3vw, 1.6rem)', color: '#C9A84C' }}>
+                    الصفحات المحفوظة
+                  </h2>
+                  <div className="flex-1 h-px opacity-15" style={{ background: '#C9A84C' }} />
+                  <span className="font-kufi text-xs" style={{ color: '#C9A84C', opacity: 0.6 }}>
+                    {pageCount} صفحة
+                  </span>
+                </div>
+
+                <div className="flex flex-wrap gap-3">
+                  {[...pageBookmarks.entries()].map(([path, label], i) => (
+                    <motion.button
+                      key={path}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.05 * i, duration: 0.2 }}
+                      onClick={() => navigate(path)}
+                      whileHover={{ scale: 1.04 }}
+                      whileTap={{ scale: 0.96 }}
+                      className="flex items-center gap-2 font-kufi text-sm px-5 py-3 rounded-xl"
+                      style={{
+                        background: 'rgba(201,168,76,0.07)',
+                        border: '1px solid rgba(201,168,76,0.25)',
+                        color: '#C9A84C',
+                      }}
+                    >
+                      <BookmarkCheck size={14} strokeWidth={1.8} />
+                      {label}
+                    </motion.button>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+
+            {/* ── أحداث السيرة المحفوظة ── */}
+            {count > 0 && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="flex items-center gap-3 mb-5"
+              >
+                <Bookmark size={16} style={{ color: '#C9A84C' }} />
+                <h2 className="font-noto font-bold" style={{ fontSize: 'clamp(1.2rem, 3vw, 1.6rem)', color: '#C9A84C' }}>
+                  أحداث السيرة المحفوظة
+                </h2>
+                <div className="flex-1 h-px opacity-15" style={{ background: '#C9A84C' }} />
+                <span className="font-kufi text-xs" style={{ color: '#C9A84C', opacity: 0.6 }}>
+                  {count} حدث
+                </span>
+              </motion.div>
+            )}
 
             {/* Events grid — grouped by chapter */}
             {Object.entries(
