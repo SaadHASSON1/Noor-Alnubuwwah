@@ -88,13 +88,32 @@ const TimelinePage: React.FC = () => {
         />
 
         {/* Chapters */}
-        {CHAPTERS.map((chapterName) => {
+        {CHAPTERS.map((chapterName, chIdx) => {
           const meta = CHAPTER_META[chapterName];
+          const nextMeta = CHAPTER_META[CHAPTERS[chIdx + 1]];
           const events = SEERAH_EVENTS.filter(e => e.chapter === chapterName);
           if (!meta || events.length === 0) return null;
 
           return (
-            <div key={chapterName} className="mb-2">
+            <div key={chapterName} className="mb-0 relative">
+              {/* Chapter-section gradient tint */}
+              <div
+                className="absolute inset-0 pointer-events-none rounded-2xl"
+                style={{
+                  background: `linear-gradient(to bottom, ${meta.gradientFrom}cc 0%, ${meta.gradientFrom}44 60%, transparent 100%)`,
+                  zIndex: 0,
+                }}
+              />
+              {/* Transition gradient to next chapter */}
+              {nextMeta && (
+                <div
+                  className="absolute bottom-0 left-0 right-0 h-20 pointer-events-none"
+                  style={{
+                    background: `linear-gradient(to bottom, transparent, ${nextMeta.gradientFrom}55)`,
+                    zIndex: 0,
+                  }}
+                />
+              )}
 
               {/* Chapter label */}
               <motion.div
@@ -102,7 +121,8 @@ const TimelinePage: React.FC = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: false, margin: '-10%' }}
                 transition={{ duration: 0.55 }}
-                className="flex items-center gap-3 mb-5 pr-14"
+                className="relative z-10 flex items-center gap-3 mb-5 mt-8 pr-14 pt-4"
+                style={{ borderTop: `1px solid ${meta.accentColor}20` }}
               >
                 <button
                   onClick={() => navigate(`/chapter/${encodeURIComponent(chapterName)}`)}
@@ -120,7 +140,7 @@ const TimelinePage: React.FC = () => {
               </motion.div>
 
               {/* Events */}
-              <div className="space-y-4 mb-10 pr-14">
+              <div className="relative z-10 space-y-4 mb-10 pr-14">
                 {events.map((ev, i) => {
                   const isLight = !!ev.lightText;
                   return (
@@ -152,8 +172,9 @@ const TimelinePage: React.FC = () => {
                         onClick={() => navigate(`/event/${ev.id}`)}
                         className="w-full text-right rounded-xl overflow-hidden group"
                         style={{
-                          background: ev.bg,
-                          border: `1px solid ${meta.accentColor}1a`,
+                          background: `linear-gradient(135deg, ${meta.gradientFrom} 0%, ${meta.gradientTo} 100%)`,
+                          border: `1px solid ${meta.accentColor}28`,
+                          boxShadow: `0 2px 16px rgba(0,0,0,0.35), 0 0 20px ${meta.accentColor}06`,
                         }}
                         whileHover={{ scale: 1.012, y: -2 }}
                         whileTap={{ scale: 0.99 }}

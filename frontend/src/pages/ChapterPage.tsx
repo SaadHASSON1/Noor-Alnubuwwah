@@ -237,6 +237,7 @@ const ChapterPage: React.FC = () => {
                 key={ev.id}
                 event={ev}
                 accentColor={meta.accentColor}
+                chapterBg={meta.gradientFrom}
                 index={i}
               />
             ))}
