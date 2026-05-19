@@ -319,7 +319,7 @@ const CharacterPage: React.FC = () => {
         >
           صفاته ﷺ
         </motion.h1>
-        <p className="font-noto mt-3 text-center" style={{ color: 'rgba(255,255,255,0.82)', fontSize: '1rem' }}>
+        <p className="font-noto mt-3 text-center" style={{ color: '#d2d3d5', fontSize: '1rem' }}>
           الشمائل المحمدية — صورة المصطفى ﷺ في أوصاف الصحابة والكتب
         </p>
       </motion.div>
@@ -344,7 +344,7 @@ const CharacterPage: React.FC = () => {
             >
               مظهره الكريم ﷺ
             </h2>
-            <p className="font-noto mt-2 text-sm" style={{ color: 'rgba(255,255,255,0.95)' }}>
+            <p className="font-noto mt-2 text-sm" style={{ color: '#f2f3f3' }}>
               كما وصفه الصحابة الذين رأوه وعاشوا معه
             </p>
           </motion.div>
@@ -372,7 +372,7 @@ const CharacterPage: React.FC = () => {
                 </h3>
                 <p
                   className="font-noto mb-3"
-                  style={{ color: 'rgba(255,255,255,0.95)', fontSize: '0.9rem', lineHeight: 1.8 }}
+                  style={{ color: '#f2f3f3', fontSize: '0.9rem', lineHeight: 1.8 }}
                 >
                   {item.description}
                 </p>
@@ -389,7 +389,7 @@ const CharacterPage: React.FC = () => {
                   >
                     "{item.hadith}"
                   </p>
-                  <p className="font-kufi mt-1" style={{ color: 'rgba(255,255,255,0.95)', fontSize: '0.88rem' }}>
+                  <p className="font-kufi mt-1" style={{ color: '#f2f3f3', fontSize: '0.88rem' }}>
                     {item.source}
                   </p>
                 </div>
@@ -413,7 +413,7 @@ const CharacterPage: React.FC = () => {
             >
               أخلاقه العظيمة ﷺ
             </h2>
-            <p className="font-noto mt-2 text-sm" style={{ color: 'rgba(255,255,255,0.95)' }}>
+            <p className="font-noto mt-2 text-sm" style={{ color: '#f2f3f3' }}>
               كان خُلقه القرآن
             </p>
           </motion.div>
@@ -444,7 +444,7 @@ const CharacterPage: React.FC = () => {
                 </div>
                 <p
                   className="font-noto"
-                  style={{ color: 'rgba(255,255,255,0.88)', fontSize: '0.85rem', lineHeight: 1.8 }}
+                  style={{ color: '#e1e1e3', fontSize: '0.85rem', lineHeight: 1.8 }}
                 >
                   {trait.description}
                 </p>
@@ -469,7 +469,7 @@ const CharacterPage: React.FC = () => {
                         >
                           "{trait.hadith}"
                         </p>
-                        <p className="font-kufi mt-1" style={{ color: 'rgba(255,255,255,0.95)', fontSize: '0.86rem' }}>
+                        <p className="font-kufi mt-1" style={{ color: '#f2f3f3', fontSize: '0.86rem' }}>
                           {trait.source}
                         </p>
                       </div>
@@ -504,7 +504,7 @@ const CharacterPage: React.FC = () => {
             >
               عاداته اليومية ﷺ
             </h2>
-            <p className="font-noto mt-2 text-sm" style={{ color: 'rgba(255,255,255,0.95)' }}>
+            <p className="font-noto mt-2 text-sm" style={{ color: '#f2f3f3' }}>
               كيف كان يعيش في يومه المبارك
             </p>
           </motion.div>
@@ -564,7 +564,7 @@ const CharacterPage: React.FC = () => {
                     </div>
                     <p
                       className="font-noto mb-3"
-                      style={{ color: 'rgba(255,255,255,0.88)', fontSize: '0.9rem', lineHeight: 1.8 }}
+                      style={{ color: '#e1e1e3', fontSize: '0.9rem', lineHeight: 1.8 }}
                     >
                       {habit.description}
                     </p>
@@ -583,7 +583,7 @@ const CharacterPage: React.FC = () => {
                           "{habit.hadith}"
                         </p>
                         {habit.source && (
-                          <p className="font-kufi mt-1" style={{ color: 'rgba(255,255,255,0.95)', fontSize: '0.88rem' }}>
+                          <p className="font-kufi mt-1" style={{ color: '#f2f3f3', fontSize: '0.88rem' }}>
                             {habit.source}
                           </p>
                         )}
@@ -611,7 +611,7 @@ const CharacterPage: React.FC = () => {
             >
               كيف وصفه الصحابة
             </h2>
-            <p className="font-noto mt-2 text-sm" style={{ color: 'rgba(255,255,255,0.95)' }}>
+            <p className="font-noto mt-2 text-sm" style={{ color: '#f2f3f3' }}>
               شهادات من عاشوا في كنفه ورأوا نوره عن كثب
             </p>
           </motion.div>
@@ -639,7 +639,7 @@ const CharacterPage: React.FC = () => {
                 </div>
                 <p
                   className="font-noto mb-4"
-                  style={{ color: 'rgba(255,255,255,0.96)', fontSize: '0.95rem', lineHeight: 2 }}
+                  style={{ color: '#f5f5f6', fontSize: '0.95rem', lineHeight: 2 }}
                 >
                   {testimony.quote}
                 </p>
@@ -647,10 +647,10 @@ const CharacterPage: React.FC = () => {
                   <p className="font-kufi font-bold text-sm" style={{ color: '#C9A84C' }}>
                     {testimony.name}
                   </p>
-                  <p className="font-noto text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.95)' }}>
+                  <p className="font-noto text-xs mt-0.5" style={{ color: '#f2f3f3' }}>
                     {testimony.role}
                   </p>
-                  <p className="font-kufi text-xs mt-1" style={{ color: 'rgba(255,255,255,0.92)' }}>
+                  <p className="font-kufi text-xs mt-1" style={{ color: '#ebebec' }}>
                     {testimony.source}
                   </p>
                 </div>
@@ -672,7 +672,7 @@ const CharacterPage: React.FC = () => {
           />
           <p
             className="font-noto"
-            style={{ color: 'rgba(255,255,255,0.95)', fontSize: '0.9rem', lineHeight: 1.8 }}
+            style={{ color: '#f2f3f3', fontSize: '0.9rem', lineHeight: 1.8 }}
           >
             اللهم صلّ وسلّم على سيدنا محمد وعلى آله وصحبه أجمعين
           </p>

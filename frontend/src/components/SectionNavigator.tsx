@@ -107,7 +107,7 @@ const SectionNavigator: React.FC<Props> = ({ sections, accentColor }) => {
                   className="font-kufi whitespace-nowrap transition-colors group-hover:opacity-70"
                   style={{
                     fontSize: '0.84rem',
-                    color: isActive ? accentColor : 'rgba(255,255,255,0.75)',
+                    color: isActive ? accentColor : '#c0c1c4',
                     fontWeight: isActive ? 700 : 400,
                     letterSpacing: isActive ? '0.02em' : 0,
                   }}

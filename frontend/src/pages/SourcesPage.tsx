@@ -507,7 +507,7 @@ const SourcesPage: React.FC = () => {
                   style={{
                     background: isActive ? `${color}18` : 'rgba(255,255,255,0.05)',
                     border: `1px solid ${isActive ? color + '40' : 'rgba(255,255,255,0.12)'}`,
-                    color: isActive ? color : 'rgba(255,255,255,0.72)',
+                    color: isActive ? color : '#b8babd',
                   }}
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.96 }}

@@ -186,7 +186,7 @@ const ShareButton: React.FC<Props> = ({ title, accentColor, quote, description }
                     transition={{ delay: i * 0.04 }}
                     onClick={act.action}
                     className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-right font-kufi text-xs transition-colors group"
-                    style={{ color: done ? '#34D399' : 'rgba(255,255,255,0.65)' }}
+                    style={{ color: done ? '#34D399' : '#a7a9ac' }}
                     whileHover={{
                       background: `${accentColor}10`,
                       color: done ? '#34D399' : accentColor,

@@ -348,7 +348,7 @@ const MapPage: React.FC = () => {
                 ) : (
                   <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ background: item.color }} />
                 )}
-                <span style={{ color: 'rgba(255,255,255,0.87)' }}>{item.label}</span>
+                <span style={{ color: '#dedfe0' }}>{item.label}</span>
               </div>
             ))}
           </div>
@@ -444,7 +444,7 @@ const MapPage: React.FC = () => {
                 <div className="h-px w-full mb-4 opacity-15" style={{ background: typeColor[selected.type] }} />
 
                 {/* Description */}
-                <p className="text-sm leading-loose" style={{ color: 'rgba(255,255,255,0.87)', lineHeight: 2 }}>
+                <p className="text-sm leading-loose" style={{ color: '#dedfe0', lineHeight: 2 }}>
                   {selected.description}
                 </p>
 

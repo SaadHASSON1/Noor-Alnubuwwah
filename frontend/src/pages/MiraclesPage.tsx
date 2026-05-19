@@ -241,7 +241,7 @@ const MiracleModal: React.FC<{ miracle: Miracle; onClose: () => void }> = ({ mir
       <button
         onClick={onClose}
         className="absolute top-4 left-4 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-colors"
-        style={{ background: 'rgba(255,255,255,0.07)', color: 'rgba(255,255,255,0.82)' }}
+        style={{ background: 'rgba(255,255,255,0.07)', color: '#d2d3d5' }}
         onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.14)')}
         onMouseLeave={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.07)')}
       >
@@ -266,7 +266,7 @@ const MiracleModal: React.FC<{ miracle: Miracle; onClose: () => void }> = ({ mir
         </p>
 
         {/* Description */}
-        <p className="font-noto mb-5" style={{ fontSize: '0.93rem', lineHeight: 2, color: 'rgba(255,255,255,0.82)' }}>
+        <p className="font-noto mb-5" style={{ fontSize: '0.93rem', lineHeight: 2, color: '#d2d3d5' }}>
           {miracle.description}
         </p>
 
@@ -275,7 +275,7 @@ const MiracleModal: React.FC<{ miracle: Miracle; onClose: () => void }> = ({ mir
           className="rounded-2xl p-4"
           style={{ background: `${miracle.color}08`, border: `1px solid ${miracle.color}20` }}
         >
-          <p className="font-kufi text-xs mb-1" style={{ color: 'rgba(255,255,255,0.95)' }}>المصدر</p>
+          <p className="font-kufi text-xs mb-1" style={{ color: '#f2f3f3' }}>المصدر</p>
           <p className="font-noto" style={{ fontSize: '0.85rem', color: `${miracle.color}`, lineHeight: 1.8 }}>
             {miracle.reference}
           </p>

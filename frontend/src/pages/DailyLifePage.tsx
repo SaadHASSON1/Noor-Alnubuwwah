@@ -259,7 +259,7 @@ const DailyLifePage: React.FC = () => {
           className="font-noto max-w-md mx-auto"
           style={{
             fontSize: 'clamp(0.9rem, 2vw, 1.05rem)',
-            color: 'rgba(255,255,255,0.93)',
+            color: '#edeeee',
             lineHeight: 1.9,
           }}
         >
@@ -333,7 +333,7 @@ const DailyLifePage: React.FC = () => {
                         className="font-noto"
                         style={{
                           fontSize: 'clamp(0.75rem, 1.5vw, 0.85rem)',
-                          color: 'rgba(255,255,255,0.92)',
+                          color: '#ebebec',
                           marginTop: '1px',
                         }}
                       >
@@ -345,7 +345,7 @@ const DailyLifePage: React.FC = () => {
                   <motion.div
                     animate={{ rotate: isActive ? 180 : 0 }}
                     transition={{ duration: 0.28 }}
-                    style={{ color: isActive ? section.color : 'rgba(255,255,255,0.3)' }}
+                    style={{ color: isActive ? section.color : '#4f525a' }}
                   >
                     <ChevronDown size={18} />
                   </motion.div>
@@ -391,7 +391,7 @@ const DailyLifePage: React.FC = () => {
                               className="font-noto"
                               style={{
                                 fontSize: 'clamp(0.85rem, 1.8vw, 0.95rem)',
-                                color: 'rgba(255,255,255,0.96)',
+                                color: '#f5f5f6',
                                 lineHeight: 1.9,
                               }}
                             >
@@ -486,7 +486,7 @@ const DailyLifePage: React.FC = () => {
               </p>
               <p
                 className="font-kufi mt-1"
-                style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.92)' }}
+                style={{ fontSize: '0.75rem', color: '#ebebec' }}
               >
                 {stat.label}
               </p>
@@ -504,13 +504,13 @@ const DailyLifePage: React.FC = () => {
         >
           <p
             className="font-noto mb-6"
-            style={{ color: 'rgba(255,255,255,0.28)', fontSize: '0.88rem', lineHeight: 1.8 }}
+            style={{ color: '#4a4d55', fontSize: '0.88rem', lineHeight: 1.8 }}
           >
             المصادر: صحيح البخاري — صحيح مسلم — الشمائل المحمدية للترمذي — مسند أحمد
           </p>
           <p
             className="font-noto mb-6"
-            style={{ color: 'rgba(255,255,255,0.92)', fontSize: '0.9rem', lineHeight: 1.8 }}
+            style={{ color: '#ebebec', fontSize: '0.9rem', lineHeight: 1.8 }}
           >
             اللهم صلّ وسلّم على سيدنا محمد وعلى آله وصحبه أجمعين
           </p>
