@@ -181,7 +181,7 @@ const HomePage: React.FC = () => {
             className="mt-6 mb-8"
           >
             <a
-              href="mailto:saadhassun37@gmail.com"
+              href="mailto:contact@x13labs.com"
               className="inline-flex items-center gap-2.5 font-kufi rounded-full sidebar-nav-item"
               style={{
                 fontSize: 'clamp(0.78rem, 1.8vw, 0.92rem)',
@@ -193,7 +193,7 @@ const HomePage: React.FC = () => {
               }}
             >
               <Mail size={14} />
-              <span>saadhassun37@gmail.com</span>
+              <span>contact@x13labs.com</span>
               <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.75rem' }}>— للشكاوى والاقتراحات والتحسينات</span>
             </a>
           </motion.div>
