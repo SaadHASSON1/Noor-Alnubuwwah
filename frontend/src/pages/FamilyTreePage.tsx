@@ -213,7 +213,7 @@ const LineageGrid: React.FC = () => {
             <span
               className="absolute top-1.5 left-1.5 font-kufi"
               style={{
-                fontSize: '0.48rem',
+                fontSize: '0.68rem',
                 color: `rgba(201,168,76,${(0.22 + progress * 0.48).toFixed(3)})`,
                 lineHeight: 1,
               }}
@@ -234,8 +234,8 @@ const LineageGrid: React.FC = () => {
               className="font-noto font-bold text-center leading-snug"
               style={{
                 fontSize: isLast
-                  ? 'clamp(0.62rem, 1.4vw, 0.82rem)'
-                  : 'clamp(0.55rem, 1.1vw, 0.72rem)',
+                  ? 'clamp(0.9rem, 2vw, 1.15rem)'
+                  : 'clamp(0.82rem, 1.7vw, 1rem)',
                 color: isLast
                   ? '#C9A84C'
                   : `rgba(255,255,255,${(0.36 + progress * 0.64).toFixed(3)})`,
