@@ -272,17 +272,9 @@ const HijraPage: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Timeline */}
+      {/* Timeline — RTL: circle column on right, card on left */}
       <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 pb-24">
-        {/* Vertical line */}
-        <div
-          className="absolute right-[calc(50%-1px)] top-0 bottom-0 w-0.5 hidden sm:block"
-          style={{
-            background: 'linear-gradient(180deg, rgba(201,168,76,0.5) 0%, rgba(201,168,76,0.1) 100%)',
-          }}
-        />
-
-        <div className="space-y-10">
+        <div>
           {HIJRA_STAGES.map((stage, index) => (
             <motion.div
               key={stage.number}
@@ -291,16 +283,17 @@ const HijraPage: React.FC = () => {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, margin: '-60px' }}
-              className="relative"
+              className="flex items-stretch gap-4"
             >
-              {/* Step number bubble (centered on line for sm+) */}
-              <div className="flex sm:justify-center mb-4 sm:mb-0">
+              {/* RIGHT column (first child in RTL flex = rightmost) */}
+              <div className="flex flex-col items-center shrink-0" style={{ width: '3rem' }}>
+                {/* Circle */}
                 <motion.div
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.12 + 0.2, type: 'spring', stiffness: 200 }}
-                  className="relative z-10 sm:absolute sm:right-1/2 sm:translate-x-1/2 sm:top-7 w-12 h-12 rounded-full flex items-center justify-center font-kufi font-bold text-lg shadow-lg"
+                  transition={{ delay: index * 0.12 + 0.2, type: 'spring', stiffness: 220 }}
+                  className="w-12 h-12 rounded-full flex items-center justify-center font-kufi font-bold text-lg shrink-0"
                   style={{
                     background: '#030813',
                     border: `2px solid ${stage.glowColor}`,
@@ -310,117 +303,96 @@ const HijraPage: React.FC = () => {
                 >
                   {stage.number}
                 </motion.div>
-              </div>
-
-              {/* Card */}
-              <div
-                className="rounded-2xl overflow-hidden sm:mr-0"
-                style={{
-                  background: stage.color,
-                  border: `1px solid ${stage.glowColor}33`,
-                  boxShadow: `0 4px 30px ${stage.glowColor}11`,
-                }}
-              >
-                {/* Card header */}
-                <div
-                  className="px-6 pt-5 pb-4"
-                  style={{
-                    background: `linear-gradient(135deg, ${stage.glowColor}18, transparent)`,
-                    borderBottom: `1px solid ${stage.glowColor}22`,
-                  }}
-                >
-                  <div className="flex items-start gap-3">
-                    <span className="text-2xl mt-0.5 shrink-0">{stage.icon}</span>
-                    <div>
-                      <p
-                        className="font-kufi text-xs mb-1"
-                        style={{ color: `${stage.glowColor}99` }}
-                      >
-                        المرحلة {stage.number}
-                      </p>
-                      <h3
-                        className="font-kufi font-bold"
-                        style={{
-                          fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
-                          color: stage.glowColor,
-                        }}
-                      >
-                        {stage.title}
-                      </h3>
-                      <p
-                        className="font-noto mt-0.5"
-                        style={{
-                          fontSize: 'clamp(0.82rem, 1.8vw, 0.95rem)',
-                          color: 'rgba(255,255,255,0.93)',
-                        }}
-                      >
-                        {stage.subtitle}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Points list */}
-                <div className="px-6 pt-4 pb-5 space-y-3">
-                  {stage.points.map((point, pi) => (
-                    <div key={pi} className="flex gap-3 items-start">
-                      <div
-                        className="mt-2 w-1.5 h-1.5 rounded-full shrink-0"
-                        style={{ background: stage.glowColor, opacity: 0.7 }}
-                      />
-                      <p
-                        className="font-noto"
-                        style={{
-                          fontSize: 'clamp(0.88rem, 2vw, 1rem)',
-                          color: 'rgba(255,255,255,0.96)',
-                          lineHeight: 1.9,
-                        }}
-                      >
-                        {point}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Verse */}
-                {stage.verse && (
+                {/* Connector line */}
+                {index < HIJRA_STAGES.length - 1 && (
                   <div
-                    className="mx-5 mb-5 rounded-xl p-4"
+                    className="w-0.5 flex-1 mt-1"
                     style={{
-                      background: 'rgba(0,0,0,0.25)',
-                      borderRight: `3px solid ${stage.glowColor}66`,
+                      background: `linear-gradient(180deg, ${stage.glowColor}60, ${HIJRA_STAGES[index + 1].glowColor}25)`,
+                      minHeight: '1.5rem',
                     }}
-                  >
-                    <p
-                      className="font-noto mb-2"
-                      style={{
-                        fontSize: 'clamp(0.9rem, 2.2vw, 1.1rem)',
-                        color: stage.glowColor,
-                        textShadow: `0 0 16px ${stage.glowColor}44`,
-                        lineHeight: 2,
-                      }}
-                    >
-                      {stage.verse}
-                    </p>
-                    <p
-                      className="font-kufi text-xs"
-                      style={{ color: `${stage.glowColor}77` }}
-                    >
-                      — سورة {stage.verseRef}
-                    </p>
-                  </div>
+                  />
                 )}
               </div>
 
-              {/* Connector arrow between stages */}
-              {index < HIJRA_STAGES.length - 1 && (
-                <div className="flex justify-center mt-4 sm:hidden">
+              {/* LEFT column (second child in RTL flex = to the left of circle) */}
+              <div className="flex-1 pb-8 min-w-0">
+                <div
+                  className="rounded-2xl overflow-hidden"
+                  style={{
+                    background: stage.color,
+                    border: `1px solid ${stage.glowColor}33`,
+                    boxShadow: `0 4px 30px ${stage.glowColor}11`,
+                  }}
+                >
+                  {/* Card header */}
                   <div
-                    className="w-px h-6"
-                    style={{ background: `linear-gradient(180deg, ${stage.glowColor}66, transparent)` }}
-                  />
+                    className="px-5 pt-5 pb-4"
+                    style={{
+                      background: `linear-gradient(135deg, ${stage.glowColor}18, transparent)`,
+                      borderBottom: `1px solid ${stage.glowColor}22`,
+                    }}
+                  >
+                    {/* Header: text on right, icon on left (RTL flex) */}
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0 flex-1">
+                        <p className="font-kufi text-xs mb-1" style={{ color: `${stage.glowColor}99` }}>
+                          المرحلة {stage.number}
+                        </p>
+                        <h3
+                          className="font-kufi font-bold"
+                          style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', color: stage.glowColor }}
+                        >
+                          {stage.title}
+                        </h3>
+                        <p
+                          className="font-noto mt-0.5"
+                          style={{ fontSize: 'clamp(0.82rem, 1.8vw, 0.95rem)', color: 'rgba(255,255,255,0.93)' }}
+                        >
+                          {stage.subtitle}
+                        </p>
+                      </div>
+                      <span className="text-2xl shrink-0 mt-0.5">{stage.icon}</span>
+                    </div>
+                  </div>
+
+                  {/* Points list */}
+                  <div className="px-5 pt-4 pb-5 space-y-3">
+                    {stage.points.map((point, pi) => (
+                      <div key={pi} className="flex gap-3 items-start">
+                        <div
+                          className="mt-2 w-1.5 h-1.5 rounded-full shrink-0"
+                          style={{ background: stage.glowColor, opacity: 0.7 }}
+                        />
+                        <p
+                          className="font-noto"
+                          style={{ fontSize: 'clamp(0.88rem, 2vw, 1rem)', color: 'rgba(255,255,255,0.96)', lineHeight: 1.9 }}
+                        >
+                          {point}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Verse */}
+                  {stage.verse && (
+                    <div
+                      className="mx-5 mb-5 rounded-xl p-4"
+                      style={{ background: 'rgba(0,0,0,0.25)', borderRight: `3px solid ${stage.glowColor}66` }}
+                    >
+                      <p
+                        className="font-noto mb-2"
+                        style={{ fontSize: 'clamp(0.9rem, 2.2vw, 1.1rem)', color: stage.glowColor, textShadow: `0 0 16px ${stage.glowColor}44`, lineHeight: 2 }}
+                      >
+                        {stage.verse}
+                      </p>
+                      <p className="font-kufi text-xs" style={{ color: `${stage.glowColor}77` }}>
+                        — سورة {stage.verseRef}
+                      </p>
+                    </div>
+                  )}
                 </div>
-              )}
+              </div>
             </motion.div>
           ))}
         </div>
