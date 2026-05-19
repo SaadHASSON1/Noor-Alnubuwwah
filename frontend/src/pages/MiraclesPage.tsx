@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Home, ChevronLeft, BookOpen, Moon, Droplets, ArrowUpCircle, TreePine, Eye, Flame, Utensils, Wind, Heart, Star, Zap, Cloud, Fish, Volume2, Shield, Search as SearchIcon, Sun, Bird, Waves, X } from 'lucide-react';
@@ -240,7 +240,7 @@ const MiracleModal: React.FC<{ miracle: Miracle; onClose: () => void }> = ({ mir
       <button
         onClick={onClose}
         className="absolute top-4 left-4 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-colors"
-        style={{ background: 'rgba(255,255,255,0.07)', color: 'rgba(255,255,255,0.5)' }}
+        style={{ background: 'rgba(255,255,255,0.07)', color: 'rgba(255,255,255,0.82)' }}
         onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.14)')}
         onMouseLeave={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.07)')}
       >
@@ -274,7 +274,7 @@ const MiracleModal: React.FC<{ miracle: Miracle; onClose: () => void }> = ({ mir
           className="rounded-2xl p-4"
           style={{ background: `${miracle.color}08`, border: `1px solid ${miracle.color}20` }}
         >
-          <p className="font-kufi text-xs mb-1" style={{ color: 'rgba(255,255,255,0.35)' }}>المصدر</p>
+          <p className="font-kufi text-xs mb-1" style={{ color: 'rgba(255,255,255,0.70)' }}>المصدر</p>
           <p className="font-noto" style={{ fontSize: '0.85rem', color: `${miracle.color}bb`, lineHeight: 1.8 }}>
             {miracle.reference}
           </p>

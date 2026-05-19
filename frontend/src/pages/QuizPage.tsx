@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+﻿import React, { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Home, ChevronLeft, CheckCircle, XCircle, Award, RotateCcw, Shuffle } from 'lucide-react';
@@ -535,7 +535,7 @@ const QuizPage: React.FC = () => {
                         border: '1px solid rgba(201,168,76,0.15)',
                       }}
                     >
-                      <p className="font-kufi text-xs mb-1" style={{ color: 'rgba(255,255,255,0.4)' }}>
+                      <p className="font-kufi text-xs mb-1" style={{ color: 'rgba(255,255,255,0.75)' }}>
                         تقييمك
                       </p>
                       <p className="font-noto text-sm" style={{ color: 'rgba(255,255,255,0.7)', lineHeight: 1.8 }}>
@@ -570,7 +570,7 @@ const QuizPage: React.FC = () => {
                         style={{
                           background: 'rgba(255,255,255,0.04)',
                           border: '1px solid rgba(255,255,255,0.1)',
-                          color: 'rgba(255,255,255,0.5)',
+                          color: 'rgba(255,255,255,0.82)',
                         }}
                       >
                         <RotateCcw size={14} />
@@ -582,7 +582,7 @@ const QuizPage: React.FC = () => {
                         style={{
                           background: 'rgba(255,255,255,0.03)',
                           border: '1px solid rgba(255,255,255,0.08)',
-                          color: 'rgba(255,255,255,0.4)',
+                          color: 'rgba(255,255,255,0.75)',
                         }}
                       >
                         <Home size={14} />

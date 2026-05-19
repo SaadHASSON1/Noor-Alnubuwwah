@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Search as SearchIcon, MapPin, X } from 'lucide-react';
 
 interface SearchProps {
