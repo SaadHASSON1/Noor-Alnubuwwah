@@ -181,22 +181,21 @@ const FeatureNavSidebar: React.FC = () => {
                 return (
                   <motion.button
                     key={item.path}
-                    initial={{ opacity: 0, x: 20 }}
+                    initial={{ opacity: 0, x: 16 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.04 * index }}
+                    transition={{ delay: 0.025 * index, duration: 0.22 }}
                     onClick={() => handleNav(item.path)}
                     onMouseEnter={() => handlePreload(item.path)}
                     onFocus={() => handlePreload(item.path)}
-                    className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-right transition-colors"
+                    className={`sidebar-nav-item${isActive ? ' active' : ''} w-full flex items-center gap-3 px-4 py-3 rounded-xl text-right`}
                     style={{
                       background: isActive ? 'rgba(201,168,76,0.12)' : 'transparent',
                       border: `1px solid ${isActive ? 'rgba(201,168,76,0.3)' : 'transparent'}`,
                       color: isActive ? '#C9A84C' : 'rgba(255,255,255,0.92)',
                     }}
-                    whileHover={{ background: 'rgba(201,168,76,0.08)', color: '#C9A84C' }}
                     whileTap={{ scale: 0.97 }}
                   >
-                    <span style={{ color: isActive ? '#C9A84C' : 'rgba(201,168,76,0.4)' }}>
+                    <span className="nav-icon" style={{ color: isActive ? '#C9A84C' : 'rgba(201,168,76,0.45)' }}>
                       {item.icon}
                     </span>
                     <span className="font-noto text-sm">{item.label}</span>
