@@ -261,7 +261,7 @@ const MiracleModal: React.FC<{ miracle: Miracle; onClose: () => void }> = ({ mir
         <h2 className="font-noto font-bold mb-1" style={{ fontSize: 'clamp(1.4rem, 4vw, 1.9rem)', color: miracle.color }}>
           {miracle.title}
         </h2>
-        <p className="font-kufi mb-5" style={{ fontSize: '0.92rem', color: `${miracle.color}80`, letterSpacing: '0.04em' }}>
+        <p className="font-kufi mb-5" style={{ fontSize: '0.92rem', color: `${miracle.color}`, letterSpacing: '0.04em' }}>
           {miracle.subtitle}
         </p>
 
@@ -276,7 +276,7 @@ const MiracleModal: React.FC<{ miracle: Miracle; onClose: () => void }> = ({ mir
           style={{ background: `${miracle.color}08`, border: `1px solid ${miracle.color}20` }}
         >
           <p className="font-kufi text-xs mb-1" style={{ color: 'rgba(255,255,255,0.95)' }}>المصدر</p>
-          <p className="font-noto" style={{ fontSize: '0.85rem', color: `${miracle.color}bb`, lineHeight: 1.8 }}>
+          <p className="font-noto" style={{ fontSize: '0.85rem', color: `${miracle.color}`, lineHeight: 1.8 }}>
             {miracle.reference}
           </p>
         </div>
@@ -480,7 +480,7 @@ const MiraclesPage: React.FC = () => {
                   style={{
                     background: `${miracle.color}08`,
                     border: `1px solid ${miracle.color}18`,
-                    color: `${miracle.color}80`,
+                    color: `${miracle.color}`,
                     lineHeight: 1.7,
                   }}
                 >
@@ -488,7 +488,7 @@ const MiraclesPage: React.FC = () => {
                 </div>
 
                 {/* Tap hint */}
-                <p className="font-kufi text-center" style={{ fontSize: '0.84rem', color: `${miracle.color}45` }}>
+                <p className="font-kufi text-center" style={{ fontSize: '0.84rem', color: `${miracle.color}` }}>
                   اضغط للتفاصيل ›
                 </p>
               </div>

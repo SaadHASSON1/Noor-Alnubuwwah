@@ -360,7 +360,7 @@ const MapPage: React.FC = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 1 }}
               className="absolute top-4 left-1/2 -translate-x-1/2 font-kufi text-xs px-3 py-1.5 rounded-full z-20"
-              style={{ background: 'rgba(3,8,19,0.75)', color: 'rgba(201,168,76,0.65)', border: '1px solid rgba(201,168,76,0.2)' }}
+              style={{ background: 'rgba(3,8,19,0.75)', color: '#C9A84C', border: '1px solid rgba(201,168,76,0.2)' }}
             >
               اضغط على أي موقع لمعرفة تفاصيله
             </motion.div>

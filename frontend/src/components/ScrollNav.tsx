@@ -55,7 +55,7 @@ const ScrollNav: React.FC<Props> = ({ events }) => {
                   transition={{ duration: 0.15 }}
                   dir="rtl"
                 >
-                  <span style={{ color: 'rgba(201,168,76,0.5)', marginLeft: 4 }}>{ev.year_display_m}</span>
+                  <span style={{ color: '#C9A84C', marginLeft: 4 }}>{ev.year_display_m}</span>
                   {' '}{ev.title}
                 </motion.div>
               )}

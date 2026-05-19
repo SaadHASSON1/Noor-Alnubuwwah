@@ -171,7 +171,7 @@ const FeatureNavSidebar: React.FC = () => {
               {/* ── الأقسام ── */}
               <p
                 className="font-kufi px-3 pb-1.5 pt-0.5"
-                style={{ fontSize: '0.72rem', color: 'rgba(201,168,76,0.55)', letterSpacing: '0.12em' }}
+                style={{ fontSize: '0.72rem', color: '#C9A84C', letterSpacing: '0.12em' }}
               >
                 الأقسام
               </p>

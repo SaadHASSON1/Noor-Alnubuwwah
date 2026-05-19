@@ -325,12 +325,12 @@ const WivesPage: React.FC = () => {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           className="flex items-center gap-2 font-kufi text-xs"
-          style={{ color: 'rgba(201,168,76,0.5)' }}
+          style={{ color: '#C9A84C' }}
         >
           <button
             onClick={() => navigate('/')}
             className="flex items-center gap-1 transition-colors"
-            style={{ color: 'rgba(201,168,76,0.6)' }}
+            style={{ color: '#C9A84C' }}
             onMouseEnter={e => (e.currentTarget.style.color = '#C9A84C')}
             onMouseLeave={e => (e.currentTarget.style.color = 'rgba(201,168,76,0.6)')}
           >
@@ -338,7 +338,7 @@ const WivesPage: React.FC = () => {
             <span>الرئيسية</span>
           </button>
           <ChevronLeft size={10} className="rotate-180" />
-          <span style={{ color: 'rgba(201,168,76,0.9)' }}>أمهات المؤمنين</span>
+          <span style={{ color: '#C9A84C' }}>أمهات المؤمنين</span>
         </motion.nav>
       </div>
 
@@ -367,7 +367,7 @@ const WivesPage: React.FC = () => {
         >
           ﴿النَّبِيُّ أَوْلَىٰ بِالْمُؤْمِنِينَ مِنْ أَنفُسِهِمْ ۖ وَأَزْوَاجُهُ أُمَّهَاتُهُمْ﴾
         </p>
-        <p className="font-kufi text-sm" style={{ color: 'rgba(201,168,76,0.6)' }}>
+        <p className="font-kufi text-sm" style={{ color: '#C9A84C' }}>
           الأحزاب: 6
         </p>
         <div
@@ -394,7 +394,7 @@ const WivesPage: React.FC = () => {
           style={{
             background: 'rgba(201,168,76,0.08)',
             border: '1px solid rgba(201,168,76,0.2)',
-            color: 'rgba(201,168,76,0.7)',
+            color: '#C9A84C',
           }}
         >
           11 أم كريمة — اضغط على أي بطاقة لعرض قصتها كاملة
@@ -489,7 +489,7 @@ const WivesPage: React.FC = () => {
             style={{
               background: 'rgba(201,168,76,0.08)',
               border: '1px solid rgba(201,168,76,0.25)',
-              color: 'rgba(201,168,76,0.7)',
+              color: '#C9A84C',
             }}
           >
             <Home size={13} />

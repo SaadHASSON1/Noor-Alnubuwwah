@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Home, ChevronLeft, MapPin, Calendar, Route } from 'lucide-react';
+import { Home, ChevronLeft, Calendar, Route } from 'lucide-react';
 import ShareButton from '../components/ShareButton';
 
 interface HijraStage {
@@ -21,7 +21,7 @@ const HIJRA_STAGES: HijraStage[] = [
     number: '1',
     title: 'الإذن الإلهي بالهجرة',
     subtitle: 'ليلة المؤامرة الكبرى',
-    color: 'rgba(201,168,76,0.15)',
+    color: '#C9A84C',
     glowColor: '#C9A84C',
     verse: '﴿وَإِذْ يَمْكُرُ بِكَ الَّذِينَ كَفَرُوا لِيُثْبِتُوكَ أَوْ يَقْتُلُوكَ أَوْ يُخْرِجُوكَ﴾',
     verseRef: 'الأنفال: 30',
@@ -36,7 +36,7 @@ const HIJRA_STAGES: HijraStage[] = [
     number: '2',
     title: 'الخروج من مكة المكرمة',
     subtitle: 'وداع أحب البقاع',
-    color: 'rgba(147,112,219,0.12)',
+    color: 'rgb(147,112,219)',
     glowColor: '#9370DB',
     verse: '﴿وَجَعَلْنَا مِن بَيْنِ أَيْدِيهِمْ سَدًّا﴾',
     verseRef: 'يس: 9',
@@ -52,7 +52,7 @@ const HIJRA_STAGES: HijraStage[] = [
     number: '3',
     title: 'الاختباء في غار ثور',
     subtitle: 'ثلاثة أيام في رحاب الله',
-    color: 'rgba(64,196,128,0.10)',
+    color: 'rgb(64,196,128)',
     glowColor: '#40C480',
     verse: '﴿لَا تَحْزَنْ إِنَّ اللَّهَ مَعَنَا﴾',
     verseRef: 'التوبة: 40',
@@ -70,7 +70,7 @@ const HIJRA_STAGES: HijraStage[] = [
     number: '4',
     title: 'مسيرة 450 كيلومتراً شمالاً',
     subtitle: 'رحلة الإيمان الكبرى',
-    color: 'rgba(255,165,0,0.10)',
+    color: 'rgb(255,165,0)',
     glowColor: '#FFA500',
     icon: '🐪',
     points: [
@@ -84,7 +84,7 @@ const HIJRA_STAGES: HijraStage[] = [
     number: '5',
     title: 'قباء — أول مسجد في الإسلام',
     subtitle: 'أُسِّسَ على التقوى',
-    color: 'rgba(0,191,255,0.10)',
+    color: 'rgb(0,191,255)',
     glowColor: '#00BFFF',
     verse: '﴿لَمَسْجِدٌ أُسِّسَ عَلَى التَّقْوَىٰ مِنْ أَوَّلِ يَوْمٍ أَحَقُّ أَن تَقُومَ فِيهِ﴾',
     verseRef: 'التوبة: 108',
@@ -99,7 +99,7 @@ const HIJRA_STAGES: HijraStage[] = [
     number: '6',
     title: 'الوصول إلى المدينة المنورة',
     subtitle: 'بداية عهد النور',
-    color: 'rgba(201,168,76,0.15)',
+    color: '#C9A84C',
     glowColor: '#C9A84C',
     icon: '☀️',
     points: [
@@ -162,18 +162,18 @@ const HijraPage: React.FC = () => {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           className="flex items-center gap-2 font-kufi text-xs"
-          style={{ color: 'rgba(201,168,76,0.5)' }}
+          style={{ color: '#C9A84C' }}
         >
           <button
             onClick={() => navigate('/')}
             className="flex items-center gap-1 transition-colors hover:text-islamic-gold"
-            style={{ color: 'rgba(201,168,76,0.65)' }}
+            style={{ color: '#C9A84C' }}
           >
             <Home size={12} />
             <span>الرئيسية</span>
           </button>
           <ChevronLeft size={10} className="rotate-180" />
-          <span style={{ color: 'rgba(201,168,76,0.9)' }}>رحلة الهجرة</span>
+          <span style={{ color: '#C9A84C' }}>رحلة الهجرة</span>
         </motion.nav>
       </div>
 
@@ -220,14 +220,14 @@ const HijraPage: React.FC = () => {
             className="font-noto mb-2"
             style={{
               fontSize: 'clamp(1rem, 2.5vw, 1.35rem)',
-              color: 'rgba(201,168,76,0.85)',
+              color: '#C9A84C',
               textShadow: '0 0 20px rgba(201,168,76,0.25)',
               lineHeight: 2.1,
             }}
           >
             ﴿إِلَّا تَنصُرُوهُ فَقَدْ نَصَرَهُ اللَّهُ إِذْ أَخْرَجَهُ الَّذِينَ كَفَرُوا ثَانِيَ اثْنَيْنِ﴾
           </p>
-          <p className="font-kufi text-xs" style={{ color: 'rgba(201,168,76,0.5)' }}>
+          <p className="font-kufi text-xs" style={{ color: '#C9A84C' }}>
             — سورة التوبة: 40
           </p>
         </motion.div>
@@ -242,7 +242,6 @@ const HijraPage: React.FC = () => {
           {[
             { icon: <Route size={14} />, label: 'المسافة الإجمالية', value: '450 كيلومتراً' },
             { icon: <Calendar size={14} />, label: 'مدة الرحلة', value: 'نحو أسبوعين' },
-            { icon: <MapPin size={14} />, label: 'الوجهة', value: 'المدينة المنورة' },
           ].map((item) => (
             <div
               key={item.label}
@@ -336,7 +335,7 @@ const HijraPage: React.FC = () => {
                     {/* Header: text on right, icon on left (RTL flex) */}
                     <div className="flex items-start justify-between gap-3">
                       <div className="min-w-0 flex-1">
-                        <p className="font-kufi text-xs mb-1" style={{ color: `${stage.glowColor}99` }}>
+                        <p className="font-kufi text-xs mb-1" style={{ color: `${stage.glowColor}` }}>
                           المرحلة {stage.number}
                         </p>
                         <h3
@@ -386,7 +385,7 @@ const HijraPage: React.FC = () => {
                       >
                         {stage.verse}
                       </p>
-                      <p className="font-kufi text-xs" style={{ color: `${stage.glowColor}77` }}>
+                      <p className="font-kufi text-xs" style={{ color: `${stage.glowColor}` }}>
                         — سورة {stage.verseRef}
                       </p>
                     </div>
@@ -425,7 +424,7 @@ const HijraPage: React.FC = () => {
           </p>
           <p
             className="font-kufi text-xs"
-            style={{ color: 'rgba(201,168,76,0.45)' }}
+            style={{ color: '#C9A84C' }}
           >
             — نشيد أهل المدينة في استقبال النبي ﷺ
           </p>
@@ -463,7 +462,7 @@ const HijraPage: React.FC = () => {
                 {stat.value}
                 <span
                   className="text-base mr-1"
-                  style={{ color: 'rgba(201,168,76,0.6)' }}
+                  style={{ color: '#C9A84C' }}
                 >
                   {stat.unit}
                 </span>
@@ -498,7 +497,7 @@ const HijraPage: React.FC = () => {
             style={{
               background: 'rgba(201,168,76,0.08)',
               border: '1px solid rgba(201,168,76,0.25)',
-              color: 'rgba(201,168,76,0.7)',
+              color: '#C9A84C',
             }}
           >
             <Home size={13} />

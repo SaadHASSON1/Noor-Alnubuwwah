@@ -411,7 +411,7 @@ const NamesPage: React.FC = () => {
                       style={{
                         background: `${group.color}0A`,
                         border: `1px solid ${group.color}18`,
-                        color: `${group.color}70`,
+                        color: `${group.color}`,
                         fontSize: '0.82rem',
                       }}
                     >

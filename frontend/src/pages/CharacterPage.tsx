@@ -259,18 +259,18 @@ const CharacterPage: React.FC = () => {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           className="flex items-center gap-2 font-kufi text-xs"
-          style={{ color: 'rgba(201,168,76,0.5)' }}
+          style={{ color: '#C9A84C' }}
         >
           <button
             onClick={() => navigate('/')}
             className="flex items-center gap-1 transition-colors hover:text-islamic-gold"
-            style={{ color: 'rgba(201,168,76,0.6)' }}
+            style={{ color: '#C9A84C' }}
           >
             <Home size={12} />
             <span>الرئيسية</span>
           </button>
           <ChevronLeft size={10} className="rotate-180" />
-          <span style={{ color: 'rgba(201,168,76,0.9)' }}>صفاته ﷺ</span>
+          <span style={{ color: '#C9A84C' }}>صفاته ﷺ</span>
         </motion.nav>
       </div>
 
@@ -299,7 +299,7 @@ const CharacterPage: React.FC = () => {
         >
           ﴿وَإِنَّكَ لَعَلَىٰ خُلُقٍ عَظِيمٍ﴾
         </p>
-        <p className="font-kufi text-sm" style={{ color: 'rgba(201,168,76,0.6)' }}>
+        <p className="font-kufi text-sm" style={{ color: '#C9A84C' }}>
           القلم: 4
         </p>
         <div
@@ -385,7 +385,7 @@ const CharacterPage: React.FC = () => {
                 >
                   <p
                     className="font-noto italic"
-                    style={{ color: 'rgba(201,168,76,0.9)', fontSize: '0.85rem', lineHeight: 1.8 }}
+                    style={{ color: '#C9A84C', fontSize: '0.85rem', lineHeight: 1.8 }}
                   >
                     "{item.hadith}"
                   </p>
@@ -465,7 +465,7 @@ const CharacterPage: React.FC = () => {
                       >
                         <p
                           className="font-noto italic"
-                          style={{ color: 'rgba(201,168,76,0.85)', fontSize: '0.82rem', lineHeight: 1.8 }}
+                          style={{ color: '#C9A84C', fontSize: '0.82rem', lineHeight: 1.8 }}
                         >
                           "{trait.hadith}"
                         </p>
@@ -481,7 +481,7 @@ const CharacterPage: React.FC = () => {
                     animate={{ rotate: expandedTrait === i ? 180 : 0 }}
                     transition={{ duration: 0.25 }}
                   >
-                    <ChevronDown size={14} style={{ color: 'rgba(201,168,76,0.4)' }} />
+                    <ChevronDown size={14} style={{ color: '#C9A84C' }} />
                   </motion.div>
                 </div>
               </motion.div>
@@ -553,7 +553,7 @@ const CharacterPage: React.FC = () => {
                         className="font-kufi text-xs px-2 py-1 rounded-full"
                         style={{
                           background: 'rgba(201,168,76,0.12)',
-                          color: 'rgba(201,168,76,0.8)',
+                          color: '#C9A84C',
                         }}
                       >
                         {habit.time}
@@ -578,7 +578,7 @@ const CharacterPage: React.FC = () => {
                       >
                         <p
                           className="font-noto italic"
-                          style={{ color: 'rgba(201,168,76,0.85)', fontSize: '0.85rem', lineHeight: 1.8 }}
+                          style={{ color: '#C9A84C', fontSize: '0.85rem', lineHeight: 1.8 }}
                         >
                           "{habit.hadith}"
                         </p>
@@ -633,7 +633,7 @@ const CharacterPage: React.FC = () => {
               >
                 <div
                   className="text-3xl mb-4 text-right"
-                  style={{ color: 'rgba(201,168,76,0.25)', fontFamily: 'serif' }}
+                  style={{ color: '#C9A84C', fontFamily: 'serif' }}
                 >
                   ❝
                 </div>
@@ -682,7 +682,7 @@ const CharacterPage: React.FC = () => {
             style={{
               background: 'rgba(201,168,76,0.08)',
               border: '1px solid rgba(201,168,76,0.25)',
-              color: 'rgba(201,168,76,0.7)',
+              color: '#C9A84C',
             }}
           >
             <Home size={13} />

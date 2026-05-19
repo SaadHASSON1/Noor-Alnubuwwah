@@ -261,7 +261,7 @@ const SearchOverlay: React.FC<Props> = ({ isOpen, onClose }) => {
                           <div className="flex items-center gap-2 mt-0.5">
                             <span
                               className="font-kufi truncate"
-                              style={{ fontSize: '0.78rem', color: `${accent}aa` }}
+                              style={{ fontSize: '0.78rem', color: `${accent}` }}
                             >
                               {ev.chapter}
                             </span>

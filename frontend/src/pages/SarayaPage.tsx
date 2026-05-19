@@ -347,7 +347,7 @@ const SariyaCard: React.FC<{ sariya: Sariya; index: number }> = ({ sariya, index
           <motion.span
             animate={{ rotate: expanded ? 180 : 0 }}
             transition={{ duration: 0.2 }}
-            style={{ color: 'rgba(201,168,76,0.45)', flexShrink: 0, marginTop: 4 }}
+            style={{ color: '#C9A84C', flexShrink: 0, marginTop: 4 }}
           >
             <ChevronDown size={16} />
           </motion.span>
@@ -373,7 +373,7 @@ const SariyaCard: React.FC<{ sariya: Sariya; index: number }> = ({ sariya, index
         </div>
 
         {/* Significance */}
-        <p className="font-kufi mb-4" style={{ fontSize: '0.82rem', color: 'rgba(201,168,76,0.7)', lineHeight: 1.65 }}>
+        <p className="font-kufi mb-4" style={{ fontSize: '0.82rem', color: '#C9A84C', lineHeight: 1.65 }}>
           {sariya.significance}
         </p>
 
@@ -430,8 +430,8 @@ const SariyaCard: React.FC<{ sariya: Sariya; index: number }> = ({ sariya, index
                     className="rounded-xl px-4 py-3"
                     style={{ background: 'rgba(201,168,76,0.07)', border: '1px solid rgba(201,168,76,0.2)' }}
                   >
-                    <p className="font-kufi text-xs mb-1.5" style={{ color: 'rgba(201,168,76,0.6)' }}>الآية الكريمة</p>
-                    <p className="font-noto italic" style={{ fontSize: '0.88rem', color: 'rgba(201,168,76,0.9)', lineHeight: 1.95 }}>
+                    <p className="font-kufi text-xs mb-1.5" style={{ color: '#C9A84C' }}>الآية الكريمة</p>
+                    <p className="font-noto italic" style={{ fontSize: '0.88rem', color: '#C9A84C', lineHeight: 1.95 }}>
                       {sariya.verse}
                     </p>
                   </div>

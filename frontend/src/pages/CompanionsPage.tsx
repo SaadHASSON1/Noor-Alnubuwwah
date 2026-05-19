@@ -483,7 +483,7 @@ const CompanionModal: React.FC<{ companion: Companion; onClose: () => void }> = 
           <h2 className="font-noto font-bold mb-1" style={{ fontSize: 'clamp(1.5rem, 4vw, 2rem)', color: '#C9A84C' }}>
             {companion.name}
           </h2>
-          <p className="font-kufi mb-5" style={{ fontSize: '0.8rem', color: `${color}90` }}>
+          <p className="font-kufi mb-5" style={{ fontSize: '0.8rem', color: `${color}` }}>
             {companion.nickname}
           </p>
 
@@ -493,7 +493,7 @@ const CompanionModal: React.FC<{ companion: Companion; onClose: () => void }> = 
             style={{ background: `${color}0e`, border: `1px solid ${color}20` }}
           >
             <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: color }} />
-            <p className="font-kufi" style={{ fontSize: '0.82rem', color: `${color}cc` }}>
+            <p className="font-kufi" style={{ fontSize: '0.82rem', color: `${color}` }}>
               {companion.achievement}
             </p>
           </div>
@@ -512,7 +512,7 @@ const CompanionModal: React.FC<{ companion: Companion; onClose: () => void }> = 
               className="rounded-2xl p-4"
               style={{ background: `${color}08`, border: `1px solid ${color}20` }}
             >
-              <p className="font-noto italic" style={{ fontSize: '0.88rem', color: `${color}dd`, lineHeight: 1.95 }}>
+              <p className="font-noto italic" style={{ fontSize: '0.88rem', color: `${color}`, lineHeight: 1.95 }}>
                 {companion.hadith}
               </p>
             </div>
@@ -730,14 +730,14 @@ const CompanionsPage: React.FC = () => {
                     <h3 className="font-noto font-bold mb-0.5" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', color: '#C9A84C' }}>
                       {companion.name}
                     </h3>
-                    <p className="font-kufi mb-3" style={{ fontSize: '0.88rem', color: `${color}90`, lineHeight: 1.5 }}>
+                    <p className="font-kufi mb-3" style={{ fontSize: '0.88rem', color: `${color}`, lineHeight: 1.5 }}>
                       {companion.nickname}
                     </p>
 
                     {/* Achievement */}
                     <div className="flex items-center gap-1.5 mb-3">
                       <div className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: color }} />
-                      <p className="font-kufi" style={{ fontSize: '0.9rem', color: `${color}bb` }}>
+                      <p className="font-kufi" style={{ fontSize: '0.9rem', color: `${color}` }}>
                         {companion.achievement}
                       </p>
                     </div>
@@ -758,7 +758,7 @@ const CompanionsPage: React.FC = () => {
                     </p>
 
                     {/* Tap hint */}
-                    <p className="font-kufi mt-3 text-center" style={{ fontSize: '0.85rem', color: `${color}50` }}>
+                    <p className="font-kufi mt-3 text-center" style={{ fontSize: '0.85rem', color: `${color}` }}>
                       اضغط لعرض الكامل ›
                     </p>
                   </div>

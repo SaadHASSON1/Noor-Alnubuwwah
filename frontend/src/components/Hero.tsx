@@ -130,7 +130,7 @@ const Hero: React.FC = () => {
           style={{
             background: 'rgba(201,168,76,0.08)',
             border: '1px solid rgba(201,168,76,0.22)',
-            color: 'rgba(201,168,76,0.7)',
+            color: '#C9A84C',
             letterSpacing: '0.1em',
           }}
         >

@@ -244,7 +244,7 @@ const SourceModal: React.FC<{ source: Source; onClose: () => void }> = ({ source
             </div>
             <div className="flex-1">
               <h2 className="font-noto font-bold text-white text-xl leading-snug mb-1">{source.title}</h2>
-              <p className="font-kufi text-sm" style={{ color: `${color}cc` }}>{source.author}</p>
+              <p className="font-kufi text-sm" style={{ color: `${color}` }}>{source.author}</p>
             </div>
           </div>
 
@@ -333,7 +333,7 @@ const SourceCard: React.FC<{ source: Source; index: number }> = ({ source, index
             <h3 className="font-noto font-bold text-white" style={{ fontSize: '1rem', lineHeight: 1.5 }}>
               {source.title}
             </h3>
-            <p className="font-kufi text-sm mt-0.5 font-medium" style={{ color: `${color}dd` }}>
+            <p className="font-kufi text-sm mt-0.5 font-medium" style={{ color: `${color}` }}>
               {source.author}
             </p>
           </div>
@@ -374,7 +374,7 @@ const SourceCard: React.FC<{ source: Source; index: number }> = ({ source, index
         </p>
 
         {/* تلميح الضغط */}
-        <p className="font-kufi text-xs mt-auto" style={{ color: `${color}80` }}>
+        <p className="font-kufi text-xs mt-auto" style={{ color: `${color}` }}>
           اضغط لعرض التفاصيل ›
         </p>
       </motion.div>
@@ -577,7 +577,7 @@ const SourcesPage: React.FC = () => {
                       قائمة التشغيل
                     </span>
                   </div>
-                  <p className="font-kufi text-sm font-medium" style={{ color: 'rgba(248,113,113,0.9)' }}>
+                  <p className="font-kufi text-sm font-medium" style={{ color: '#F87171' }}>
                     الشيخ أحمد السيد — قائمة يوتيوب
                   </p>
                   <p className="font-noto text-white text-sm mt-2 leading-relaxed" style={{ opacity: 0.82 }}>

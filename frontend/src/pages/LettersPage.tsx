@@ -165,7 +165,7 @@ const LetterCard: React.FC<{ letter: Letter; index: number }> = ({ letter, index
             <h3 className="font-noto font-bold" style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.35rem)', color: '#C9A84C' }}>
               كتاب إلى {letter.recipient}
             </h3>
-            <p className="font-kufi mt-0.5" style={{ fontSize: '0.8rem', color: 'rgba(201,168,76,0.55)' }}>
+            <p className="font-kufi mt-0.5" style={{ fontSize: '0.8rem', color: '#C9A84C' }}>
               {letter.title} — {letter.kingdom}
             </p>
           </div>
@@ -184,7 +184,7 @@ const LetterCard: React.FC<{ letter: Letter; index: number }> = ({ letter, index
         >
           <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: '#C9A84C' }} />
           <span className="font-kufi text-xs text-white/40">حامل الرسالة: </span>
-          <span className="font-kufi text-xs" style={{ color: 'rgba(201,168,76,0.75)' }}>{letter.messenger}</span>
+          <span className="font-kufi text-xs" style={{ color: '#C9A84C' }}>{letter.messenger}</span>
         </div>
 
         {/* Summary */}
@@ -196,7 +196,7 @@ const LetterCard: React.FC<{ letter: Letter; index: number }> = ({ letter, index
         <button
           onClick={() => setExpanded(v => !v)}
           className="w-full flex items-center justify-center gap-1.5 pt-2 font-kufi text-xs transition-colors"
-          style={{ color: 'rgba(201,168,76,0.5)', borderTop: '1px solid rgba(201,168,76,0.1)' }}
+          style={{ color: '#C9A84C', borderTop: '1px solid rgba(201,168,76,0.1)' }}
         >
           {expanded ? <><ChevronUp size={13} /> إخفاء التفاصيل</> : <><ChevronDown size={13} /> عرض نص الرسالة والنتيجة</>}
         </button>
@@ -217,8 +217,8 @@ const LetterCard: React.FC<{ letter: Letter; index: number }> = ({ letter, index
                   className="rounded-2xl p-4"
                   style={{ background: 'rgba(201,168,76,0.06)', border: '1px solid rgba(201,168,76,0.18)' }}
                 >
-                  <p className="font-kufi text-xs mb-2" style={{ color: 'rgba(201,168,76,0.55)' }}>مقتطف من نص الرسالة</p>
-                  <p className="font-noto" style={{ fontSize: '0.88rem', color: 'rgba(201,168,76,0.88)', lineHeight: 2, fontStyle: 'italic' }}>
+                  <p className="font-kufi text-xs mb-2" style={{ color: '#C9A84C' }}>مقتطف من نص الرسالة</p>
+                  <p className="font-noto" style={{ fontSize: '0.88rem', color: '#C9A84C', lineHeight: 2, fontStyle: 'italic' }}>
                     {letter.excerpt}
                   </p>
                 </div>

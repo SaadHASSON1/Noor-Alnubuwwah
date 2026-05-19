@@ -413,7 +413,7 @@ const EventPage: React.FC = () => {
                     {/* Label above — bigger and prominent */}
                     <p
                       className="font-kufi tracking-wider mb-2"
-                      style={{ fontSize: '0.82rem', color: `${accentColor}cc`, letterSpacing: '0.05em' }}
+                      style={{ fontSize: '0.82rem', color: `${accentColor}`, letterSpacing: '0.05em' }}
                     >
                       {stat.label}
                     </p>

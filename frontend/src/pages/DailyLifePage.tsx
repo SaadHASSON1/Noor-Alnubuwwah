@@ -185,18 +185,18 @@ const DailyLifePage: React.FC = () => {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           className="flex items-center gap-2 font-kufi text-xs"
-          style={{ color: 'rgba(201,168,76,0.5)' }}
+          style={{ color: '#C9A84C' }}
         >
           <button
             onClick={() => navigate('/')}
             className="flex items-center gap-1 transition-colors hover:text-islamic-gold"
-            style={{ color: 'rgba(201,168,76,0.65)' }}
+            style={{ color: '#C9A84C' }}
           >
             <Home size={12} />
             <span>الرئيسية</span>
           </button>
           <ChevronLeft size={10} className="rotate-180" />
-          <span style={{ color: 'rgba(201,168,76,0.9)' }}>الحياة اليومية</span>
+          <span style={{ color: '#C9A84C' }}>الحياة اليومية</span>
         </motion.nav>
       </div>
 
@@ -227,7 +227,7 @@ const DailyLifePage: React.FC = () => {
           </p>
           <p
             className="font-kufi text-xs mb-8"
-            style={{ color: 'rgba(201,168,76,0.55)' }}
+            style={{ color: '#C9A84C' }}
           >
             — سورة الأحزاب: 21
           </p>
@@ -275,7 +275,7 @@ const DailyLifePage: React.FC = () => {
           style={{
             background: 'rgba(201,168,76,0.07)',
             border: '1px solid rgba(201,168,76,0.2)',
-            color: 'rgba(201,168,76,0.7)',
+            color: '#C9A84C',
           }}
         >
           {LIFE_SECTIONS.length} أقسام — اضغط على أي قسم لعرض التفاصيل
@@ -423,7 +423,7 @@ const DailyLifePage: React.FC = () => {
         >
           <div
             className="text-4xl mb-4"
-            style={{ color: 'rgba(201,168,76,0.2)', fontFamily: 'serif' }}
+            style={{ color: '#C9A84C', fontFamily: 'serif' }}
           >
             ❝
           </div>
@@ -440,7 +440,7 @@ const DailyLifePage: React.FC = () => {
           </p>
           <p
             className="font-kufi"
-            style={{ fontSize: '0.9rem', color: 'rgba(201,168,76,0.5)' }}
+            style={{ fontSize: '0.9rem', color: '#C9A84C' }}
           >
             — السيدة عائشة رضي الله عنها — صحيح مسلم
           </p>
@@ -479,7 +479,7 @@ const DailyLifePage: React.FC = () => {
                 {stat.value}
                 <span
                   className="text-sm mr-0.5"
-                  style={{ color: 'rgba(201,168,76,0.6)' }}
+                  style={{ color: '#C9A84C' }}
                 >
                   {stat.unit}
                 </span>
@@ -520,7 +520,7 @@ const DailyLifePage: React.FC = () => {
             style={{
               background: 'rgba(201,168,76,0.08)',
               border: '1px solid rgba(201,168,76,0.25)',
-              color: 'rgba(201,168,76,0.7)',
+              color: '#C9A84C',
             }}
           >
             <Home size={13} />
