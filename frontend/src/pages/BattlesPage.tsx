@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Home, ChevronLeft, Search, X, ChevronDown, ChevronUp } from 'lucide-react';
+import { Home, ChevronLeft, Search, X, ChevronDown } from 'lucide-react';
 import ShareButton from '../components/ShareButton';
 
 interface Battle {
@@ -133,6 +133,98 @@ const BATTLES: Battle[] = [
     details: 'خرج النبي ﷺ في قيظ الصيف وشُح الزاد نحو تبوك لمواجهة الروم. تخلّف المنافقون بأعذار واهية. انسحب الروم دون قتال حين سمعوا بالجيش الإسلامي الضخم. عاد النبي ﷺ وقد ثبتت هيبة الإسلام في الشمال. وكانت هذه آخر غزوات النبي ﷺ.',
     hadith: '"لا يدخل الجنة إلا نفس مسلمة" — قالها ﷺ وهو يتجهّز للغزوة',
   },
+  /* ── الغزوات المتبقية ── */
+  {
+    id: 9,
+    name: 'غزوة الأبواء (ودان)',
+    year: '1 هـ / 623م',
+    muslimForce: '70',
+    enemyForce: 'قافلة قريش',
+    enemyName: 'قريش',
+    result: 'بدون قتال',
+    location: 'الأبواء، قرب الجحفة',
+    significance: 'أول غزوة يخرج فيها النبي ﷺ بنفسه',
+    details: 'خرج النبي ﷺ في سبعين رجلاً من المهاجرين يعترض قافلة لقريش في منطقة الأبواء (ودان). صالح في طريقه بني ضمرة وعقد معهم ميثاقاً على عدم الاعتداء والنصرة عند الحاجة. لم يلتقِ بالقافلة وعاد دون قتال. وكانت هذه أول مرة يخرج فيها النبي ﷺ بنفسه قائداً.',
+  },
+  {
+    id: 10,
+    name: 'غزوة بني النضير',
+    year: '4 هـ / 625م',
+    muslimForce: '~1000',
+    enemyForce: 'حصون بني النضير',
+    enemyName: 'بنو النضير',
+    result: 'نصر',
+    location: 'ضواحي المدينة المنورة',
+    significance: 'إجلاء بني النضير وتفريق مؤامرتهم على النبي ﷺ',
+    details: 'بعد التحالف مع يهود بني النضير، دبّروا مؤامرة لإلقاء حجر على النبي ﷺ من سطح دار. أطلعه جبريل عليه السلام على المؤامرة فانسحب. أرسل النبي ﷺ إليهم يأمرهم بالجلاء. تحصّنوا في بيوتهم، وبعد حصار خمسة عشر يوماً طلبوا الجلاء فأُجلوا إلى خيبر والشام. نزلت في شأنهم سورة الحشر.',
+    hadith: '﴿هُوَ الَّذِي أَخْرَجَ الَّذِينَ كَفَرُوا مِنْ أَهْلِ الْكِتَابِ﴾ — الحشر: ٢',
+  },
+  {
+    id: 11,
+    name: 'غزوة ذات الرقاع',
+    year: '4 هـ / 626م',
+    muslimForce: '400 - 700',
+    enemyForce: 'بنو محارب وبنو ثعلبة',
+    enemyName: 'بنو محارب وثعلبة',
+    result: 'بدون قتال',
+    location: 'نجد، شمال شرق المدينة',
+    significance: 'أول تشريع لصلاة الخوف في الإسلام',
+    details: 'بلغ النبي ﷺ أن قبائل من أنمار وثعلبة ومحارب تجمّعت في نجد. خرج بأربعمائة (وقيل سبعمائة) لتفريق تجمّعهم. لم يحدث قتال كبير لكن الموقف استدعى اليقظة الدائمة. شرّع الله في هذه الغزوة صلاة الخوف حيث يصلي الجيش على أشكال خاصة دون ترك موقعه. سُمّيت بذات الرقاع لأن أقدامهم تشقّقت فلفّوها بالخرق.',
+    hadith: '﴿وَإِذَا كُنتَ فِيهِمْ فَأَقَمْتَ لَهُمُ الصَّلَاةَ﴾ — النساء: ١٠٢',
+  },
+  {
+    id: 12,
+    name: 'غزوة بني قريظة',
+    year: '5 هـ / 627م',
+    muslimForce: '3000',
+    enemyForce: 'حصون بني قريظة',
+    enemyName: 'بنو قريظة',
+    result: 'نصر',
+    location: 'ضواحي المدينة المنورة',
+    significance: 'عقاب الخيانة العظمى — نقض العهد في غزوة الخندق',
+    details: 'خان بنو قريظة العهد مع المسلمين أثناء غزوة الخندق وفتحوا بابهم للأحزاب. لما انسحبت الأحزاب نزل جبريل على النبي ﷺ يأمره بالمسير إليهم فوراً. حاصرهم المسلمون خمساً وعشرين ليلة. طلب بنو قريظة الاحتكام إلى سعد بن معاذ حليفهم القديم، فحكم بأن يُقتل مقاتلتهم وتُسبى ذراريهم وتُوزَّع أموالهم.',
+    casualties: 'تنفيذ حكم سعد بن معاذ في المقاتلين',
+  },
+  {
+    id: 13,
+    name: 'غزوة بني المصطلق (المريسيع)',
+    year: '6 هـ / 628م',
+    muslimForce: '~700',
+    enemyForce: 'بنو المصطلق',
+    enemyName: 'بنو المصطلق',
+    result: 'نصر',
+    location: 'المريسيع، قرب قديد',
+    significance: 'أحداثها كثيرة: نزول آيات الإفك وتشريع التيمم وزواجه ﷺ من جويرية',
+    details: 'بلغ النبي ﷺ أن بني المصطلق يجمعون لقتاله، فبادر وخرج إليهم. انتهت المعركة بسرعة بنصر المسلمين. غير أن الطريق عُرفت بأحداث خطيرة: تشاجر رجل من المهاجرين مع رجل من الأنصار فصرخ كل منهما "يا للمهاجرين! يا للأنصار!" وكادت الفتنة تشتعل لولا النبي ﷺ. وفيها تخلّفت عائشة رضي الله عنها وتحدّث المنافقون فنزلت آيات الإفك، وتشريع التيمم حين ضاع عقدها.',
+    hadith: '﴿إِنَّ الَّذِينَ جَاءُوا بِالْإِفْكِ عُصْبَةٌ مِّنكُمْ﴾ — النور: ١١',
+  },
+  {
+    id: 14,
+    name: 'صلح الحديبية',
+    year: '6 هـ / 628م',
+    muslimForce: '1400 (أصحاب الشجرة)',
+    enemyForce: 'مكة المكرمة',
+    enemyName: 'قريش',
+    result: 'بدون قتال',
+    location: 'الحديبية، قرب مكة',
+    significance: '﴿فَتْحٌ مُّبِينٌ﴾ — الفتح الأعظم رغم ظاهره',
+    details: 'خرج النبي ﷺ في أربع عشرة مائة من أصحابه معتمرين لا محاربين. صدّتهم قريش. جرت مفاوضات طويلة أسفرت عن معاهدة هدنة عشر سنوات. بايع الصحابة النبيَّ ﷺ تحت الشجرة بيعة الرضوان على عدم الفرار. بدت بنود الصلح في ظاهرها لصالح قريش فحزن بعض الصحابة، لكن النبي ﷺ أخبرهم بعظيم الفتح فيها. نزلت سورة الفتح بعدها مباشرة.',
+    hadith: '"إني رسول الله ولست أعصيه وهو ناصري"',
+    casualties: 'بيعة الرضوان تحت الشجرة — رضي الله عنهم',
+  },
+  {
+    id: 15,
+    name: 'غزوة الطائف',
+    year: '8 هـ / 630م',
+    muslimForce: '12,000',
+    enemyForce: 'ثقيف داخل الحصن',
+    enemyName: 'بنو ثقيف',
+    result: 'بدون قتال',
+    location: 'الطائف، جنوب شرق مكة',
+    significance: 'حصار فاشل للحصن — رفع الحصار ودعاء النبي ﷺ لثقيف بالهداية',
+    details: 'بعد موقعة حنين لجأت بقايا هوازن وثقيف إلى حصن الطائف المنيع. حاصره المسلمون مدة تزيد على الشهر وأطلقوا المجانيق لكن الحصن صمد. قال بعضهم للنبي ﷺ: "ادعُ عليهم!" فقال ﷺ: "اللهم اهدِ ثقيفاً وائتِ بهم." رفع الحصار وانسحب المسلمون، فجاء أهل الطائف بعد أشهر مسلمين.',
+    hadith: '"اللهم اهدِ ثقيفاً وائتِ بهم" — دعاء النبي ﷺ لأعدائه بالهداية',
+  },
 ];
 
 const BattleCard: React.FC<{ battle: Battle; index: number }> = ({ battle, index }) => {
@@ -145,12 +237,16 @@ const BattleCard: React.FC<{ battle: Battle; index: number }> = ({ battle, index
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: Math.min(index * 0.06, 0.4) }}
-      className="relative rounded-2xl overflow-hidden"
+      onClick={() => setExpanded(v => !v)}
+      className="relative rounded-2xl overflow-hidden cursor-pointer"
       style={{
-        background: 'rgba(255,255,255,0.03)',
-        border: '1px solid rgba(201,168,76,0.14)',
+        background: expanded ? 'rgba(201,168,76,0.05)' : 'rgba(255,255,255,0.03)',
+        border: `1px solid ${expanded ? 'rgba(201,168,76,0.28)' : 'rgba(201,168,76,0.14)'}`,
         boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
+        transition: 'background 0.25s, border-color 0.25s',
       }}
+      whileHover={{ scale: 1.01 }}
+      whileTap={{ scale: 0.99 }}
     >
       {/* Top accent line */}
       <div className="h-0.5 w-full" style={{ background: 'linear-gradient(90deg, transparent, #C9A84C80, transparent)' }} />
@@ -172,7 +268,13 @@ const BattleCard: React.FC<{ battle: Battle; index: number }> = ({ battle, index
               {battle.name}
             </h3>
           </div>
-          <span className="font-kufi text-xs text-white/25 flex-shrink-0 mt-1">#{index + 1}</span>
+          <motion.span
+            animate={{ rotate: expanded ? 180 : 0 }}
+            transition={{ duration: 0.2 }}
+            style={{ color: 'rgba(201,168,76,0.45)', flexShrink: 0, marginTop: 4 }}
+          >
+            <ChevronDown size={16} />
+          </motion.span>
         </div>
 
         {/* Significance */}
@@ -204,15 +306,6 @@ const BattleCard: React.FC<{ battle: Battle; index: number }> = ({ battle, index
           <div className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: '#C9A84C' }} />
           <span className="font-kufi text-xs text-white/40">{battle.location}</span>
         </div>
-
-        {/* Expand button */}
-        <button
-          onClick={() => setExpanded(v => !v)}
-          className="w-full flex items-center justify-center gap-1.5 pt-2 font-kufi text-xs transition-colors"
-          style={{ color: 'rgba(201,168,76,0.5)', borderTop: '1px solid rgba(201,168,76,0.1)' }}
-        >
-          {expanded ? <><ChevronUp size={13} /> إخفاء التفاصيل</> : <><ChevronDown size={13} /> عرض التفاصيل</>}
-        </button>
 
         {/* Expanded content */}
         <AnimatePresence>
@@ -380,7 +473,7 @@ const BattlesPage: React.FC = () => {
         >
           {[
             { label: 'عدد الغزوات الكلي', value: '27' },
-            { label: 'حضرها ﷺ بنفسه (الكبرى)', value: '9' },
+            { label: 'حضرها ﷺ بنفسه (الكبرى)', value: '27' },
             { label: 'المعروضة هنا', value: String(BATTLES.length) },
           ].map(stat => (
             <div
@@ -454,7 +547,7 @@ const BattlesPage: React.FC = () => {
       {/* Count */}
       <div className="relative z-10 text-center mb-6">
         <span className="font-kufi text-xs text-white/30">
-          يُعرض {filtered.length} غزوة — اضغط "عرض التفاصيل" لكل غزوة
+          يُعرض {filtered.length} غزوة — انقر على البطاقة لعرض التفاصيل
         </span>
       </div>
 

@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Home, ChevronLeft, Search, X, ChevronDown, ChevronUp } from 'lucide-react';
+import { Home, ChevronLeft, Search, X, ChevronDown } from 'lucide-react';
 import ShareButton from '../components/ShareButton';
 
 interface Sariya {
@@ -233,6 +233,74 @@ const SARAYA: Sariya[] = [
     details: 'أمّر النبي ﷺ أسامة بن زيد — وهو في التاسعة عشرة من عمره — على جيش لغزو أرض البلقاء في الشام انتقاماً لمقتل أبيه زيد في مؤتة. طعن بعض الصحابة في إمارته لصغر سنه، فخطب النبي ﷺ ودافع عنه. أُخّرت السرية بسبب مرض النبي ﷺ حتى توفي. أمر أبو بكر الصديق بإنفاذها تنفيذاً لوصية النبي ﷺ، فانطلقت وعادت منتصرة.',
     note: 'أتمّها أبو بكر الصديق تنفيذاً لوصية النبي ﷺ — انتصار وعودة سالمة',
   },
+  /* ── السرايا الإضافية ── */
+  {
+    id: 19,
+    name: 'سرية طلحة بن عبيد الله',
+    commander: 'طلحة بن عبيد الله',
+    yearH: '1 هـ',
+    yearM: '623م',
+    result: 'بدون قتال',
+    significance: 'من أوائل السرايا — تحسس أخبار قريش نحو العراق',
+    details: 'أرسل النبي ﷺ طلحة بن عبيد الله ونفراً من الصحابة للتجسس على أخبار قريش في الطريق الشمالي نحو العراق. عادوا بمعلومات قيّمة دون اشتباك مسلح.',
+  },
+  {
+    id: 20,
+    name: 'سرية خالد بن الوليد إلى بني جذيمة',
+    commander: 'خالد بن الوليد',
+    yearH: '8 هـ',
+    yearM: '630م',
+    troops: '350 مقاتلاً',
+    result: 'مهمة خاصة',
+    significance: 'حادثة خلافية — تجاوز القائد حدود المهمة',
+    details: 'بعث النبي ﷺ خالد بن الوليد داعياً لا مقاتلاً بعد فتح مكة. استسلمت بنو جذيمة لكنهم لم يجيدوا التعبير عن إسلامهم فقالوا "صبأنا" بدل "أسلمنا." أساء خالد تأويلها وأمر بقتل بعضهم. بلغ الخبر النبيَّ ﷺ فرفع يديه وقال: "اللهم إني أبرأ إليك مما صنع خالد!" وأرسل علياً لدية القتلى وتعويض الأذى.',
+    note: 'النبي ﷺ تبرّأ من التجاوز وأرسل علياً لإصلاح الخطأ',
+    verse: '﴿وَلَا تَقُولُوا لِمَنْ أَلْقَىٰ إِلَيْكُمُ السَّلَامَ لَسْتَ مُؤْمِنًا﴾ — النساء: ٩٤',
+  },
+  {
+    id: 21,
+    name: 'سرية علي بن أبي طالب إلى اليمن',
+    commander: 'علي بن أبي طالب',
+    yearH: '10 هـ',
+    yearM: '631م',
+    result: 'انتصار',
+    significance: 'إسلام قبيلة همدان كلها في يوم واحد',
+    details: 'أرسل النبي ﷺ علياً إلى اليمن للدعوة وجمع الزكاة. قرأ كتاب النبي ﷺ على قبيلة همدان فأسلمت بأكملها في يوم واحد. كتب علي إلى النبي ﷺ يخبره بذلك فسجد شكراً لله وقال: "السلام على همدان." ثم عادت بقية قبائل اليمن تتسابق إلى الإسلام.',
+    note: 'إسلام همدان جميعاً في يوم واحد — فرح النبي ﷺ وسجد شكراً',
+  },
+  {
+    id: 22,
+    name: 'سرية جرير بن عبد الله البجلي إلى ذي الخلصة',
+    commander: 'جرير بن عبد الله البجلي',
+    yearH: '10 هـ',
+    yearM: '631م',
+    troops: '150 فارساً',
+    result: 'انتصار',
+    significance: 'هدم كعبة اليمامة وتطهير الجزيرة من آخر الأصنام الكبرى',
+    details: 'كان ذو الخلصة صنماً عظيماً تعبده خثعم وبجيلة وسُمّي "كعبة اليمامة" أو "الكعبة الشامية" لعظمته. أرسل النبي ﷺ جرير بن عبد الله البجلي بمئة وخمسين فارساً فأحرق هذا الصنم وهدم مكانه. قال جرير مازحاً: "والله ما زلت منذ أسلمت حتى هدّ الله هذا الصنم ثلاثاً وثلاثين ضربة بالسيف."',
+  },
+  {
+    id: 23,
+    name: 'سرية أبي موسى الأشعري إلى اليمن',
+    commander: 'أبو موسى الأشعري',
+    yearH: '9 هـ',
+    yearM: '630م',
+    result: 'مهمة خاصة',
+    significance: 'تعليم الإسلام وجمع الزكاة وإرساء الحكم الإسلامي في اليمن',
+    details: 'عيّن النبي ﷺ أبا موسى الأشعري والياً ومعلماً لمنطقة زبيد وعدن في اليمن. اشتُهر بحسن معاملته للناس وتعليمهم الصلاة والقرآن. مكث سنوات ينشر الإسلام ويجمع الصدقات ويفض النزاعات حتى استقرت البلاد.',
+    note: 'أرسل النبي ﷺ معاذ بن جبل إلى صنعاء وأبا موسى إلى زبيد — إسلام اليمن',
+  },
+  {
+    id: 24,
+    name: 'سرية قطبة بن عامر الأنصاري',
+    commander: 'قطبة بن عامر الأنصاري',
+    yearH: '9 هـ',
+    yearM: '630م',
+    troops: '20 رجلاً',
+    result: 'انتصار',
+    significance: 'مداهمة بني خثعم في تبالة وردع غاراتهم على المسلمين',
+    details: 'كانت بنو خثعم تغير على المسلمين وتؤوي الفارين. أرسل النبي ﷺ قطبة بن عامر في عشرين رجلاً ليلاً إلى تبالة. أغار على الحي وغنم الإبل والغنم وأسر عدداً منهم. بعضهم قُتل وبعضهم هرب. عاد بالغنائم والأسرى إلى المدينة.',
+  },
 ];
 
 const SariyaCard: React.FC<{ sariya: Sariya; index: number }> = ({ sariya, index }) => {
@@ -245,12 +313,16 @@ const SariyaCard: React.FC<{ sariya: Sariya; index: number }> = ({ sariya, index
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: Math.min(index * 0.06, 0.4) }}
-      className="relative rounded-2xl overflow-hidden"
+      onClick={() => setExpanded(v => !v)}
+      className="relative rounded-2xl overflow-hidden cursor-pointer"
       style={{
-        background: 'rgba(255,255,255,0.03)',
-        border: '1px solid rgba(201,168,76,0.14)',
+        background: expanded ? 'rgba(201,168,76,0.05)' : 'rgba(255,255,255,0.03)',
+        border: `1px solid ${expanded ? 'rgba(201,168,76,0.28)' : 'rgba(201,168,76,0.14)'}`,
         boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
+        transition: 'background 0.25s, border-color 0.25s',
       }}
+      whileHover={{ scale: 1.01 }}
+      whileTap={{ scale: 0.99 }}
     >
       {/* Top accent line */}
       <div className="h-0.5 w-full" style={{ background: 'linear-gradient(90deg, transparent, #C9A84C80, transparent)' }} />
@@ -272,7 +344,13 @@ const SariyaCard: React.FC<{ sariya: Sariya; index: number }> = ({ sariya, index
               {sariya.name}
             </h3>
           </div>
-          <span className="font-kufi text-xs text-white/25 flex-shrink-0 mt-1">#{index + 1}</span>
+          <motion.span
+            animate={{ rotate: expanded ? 180 : 0 }}
+            transition={{ duration: 0.2 }}
+            style={{ color: 'rgba(201,168,76,0.45)', flexShrink: 0, marginTop: 4 }}
+          >
+            <ChevronDown size={16} />
+          </motion.span>
         </div>
 
         {/* Commander & Troops */}
@@ -298,15 +376,6 @@ const SariyaCard: React.FC<{ sariya: Sariya; index: number }> = ({ sariya, index
         <p className="font-kufi mb-4" style={{ fontSize: '0.82rem', color: 'rgba(201,168,76,0.7)', lineHeight: 1.65 }}>
           {sariya.significance}
         </p>
-
-        {/* Expand button */}
-        <button
-          onClick={() => setExpanded(v => !v)}
-          className="w-full flex items-center justify-center gap-1.5 pt-2 font-kufi text-xs transition-colors"
-          style={{ color: 'rgba(201,168,76,0.5)', borderTop: '1px solid rgba(201,168,76,0.1)' }}
-        >
-          {expanded ? <><ChevronUp size={13} /> إخفاء التفاصيل</> : <><ChevronDown size={13} /> عرض التفاصيل</>}
-        </button>
 
         {/* Expanded content */}
         <AnimatePresence>
@@ -548,7 +617,7 @@ const SarayaPage: React.FC = () => {
       {/* Count */}
       <div className="relative z-10 text-center mb-6">
         <span className="font-kufi text-xs text-white/30">
-          يُعرض {filtered.length} سرية — اضغط "عرض التفاصيل" لكل سرية
+          يُعرض {filtered.length} سرية — انقر على البطاقة لعرض التفاصيل
         </span>
       </div>
 
