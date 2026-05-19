@@ -1,7 +1,7 @@
 ﻿import React, { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Home, Clock, Users, Sparkles, HelpCircle, ScrollText, GitBranch, Heart, Crown, X, Menu, Star, BookOpen, PenTool, Library, Sword, Mail, Navigation, Coffee, BookMarked } from 'lucide-react';
+import { Home, Clock, Users, Sparkles, HelpCircle, ScrollText, GitBranch, Heart, Crown, X, Menu, Star, BookOpen, PenTool, Library, Sword, Shield, Mail, Navigation, Coffee, BookMarked } from 'lucide-react';
 import { CHAPTERS, CHAPTER_META } from '../data/seerah';
 
 /* ── خريطة preload للصفحات ── */
@@ -19,6 +19,7 @@ const PRELOAD_MAP: Record<string, () => Promise<unknown>> = {
   '/scribes':         () => import('../pages/ScribesPage'),
   '/sources':         () => import('../pages/SourcesPage'),
   '/battles':         () => import('../pages/BattlesPage'),
+  '/saraya':          () => import('../pages/SarayaPage'),
   '/letters':         () => import('../pages/LettersPage'),
   '/hijra':           () => import('../pages/HijraPage'),
   '/daily-life':      () => import('../pages/DailyLifePage'),
@@ -37,6 +38,7 @@ const NAV_ITEMS: NavItem[] = [
   { icon: <Coffee size={16} />,      label: 'حياته اليومية ﷺ',      path: '/daily-life' },
   { icon: <Navigation size={16} />,  label: 'رحلة الهجرة',           path: '/hijra' },
   { icon: <Sword size={16} />,       label: 'غزواته ﷺ',             path: '/battles' },
+  { icon: <Shield size={16} />,      label: 'السرايا العسكرية',      path: '/saraya' },
   { icon: <Mail size={16} />,        label: 'رسائله للملوك',         path: '/letters' },
   { icon: <Crown size={16} />,       label: 'أمهات المؤمنين',        path: '/wives' },
   { icon: <Users size={16} />,       label: 'الصحابة الكرام',        path: '/companions' },
