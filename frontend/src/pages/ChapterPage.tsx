@@ -1,4 +1,4 @@
-﻿import React from 'react';
+﻿import React, { useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronRight, Home } from 'lucide-react';
@@ -51,6 +51,15 @@ const ChapterPage: React.FC = () => {
   const textBase  = isLight ? 'text-stone-800'  : 'text-white';
   const textMuted = isLight ? 'text-stone-600'  : 'text-white/60';
 
+  // Deterministic star positions — useMemo prevents new random values on each render
+  const stars = useMemo(() => Array.from({ length: 36 }, (_, i) => ({
+    left:  `${((i * 137.508) % 100).toFixed(2)}%`,
+    top:   `${((i * 97.314) % 60).toFixed(2)}%`,
+    size:  +(0.5 + (i % 5) * 0.26).toFixed(2),
+    dur:   `${2 + (i % 4) * 0.8}s`,
+    delay: `${(i % 7) * 0.55}s`,
+  })), []);
+
   return (
     <div className="min-h-screen relative" dir="rtl" style={{ background: meta.gradientFrom }}>
       {!isLight && <IslamicParticles />}
@@ -78,20 +87,20 @@ const ChapterPage: React.FC = () => {
           }}
         />
 
-        {/* Stars */}
+        {/* Stars — deterministic positions via useMemo */}
         {!isLight && (
           <div className="absolute inset-0 pointer-events-none">
-            {Array.from({ length: 50 }, (_, i) => (
+            {stars.map((s, i) => (
               <div
                 key={i}
                 className="absolute rounded-full bg-white animate-twinkle"
                 style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 60}%`,
-                  width: Math.random() * 1.5 + 0.5,
-                  height: Math.random() * 1.5 + 0.5,
-                  '--dur': `${(Math.random() * 3 + 2).toFixed(1)}s`,
-                  '--delay': `${(Math.random() * 5).toFixed(1)}s`,
+                  left: s.left,
+                  top: s.top,
+                  width: s.size,
+                  height: s.size,
+                  '--dur': s.dur,
+                  '--delay': s.delay,
                 } as React.CSSProperties}
               />
             ))}
@@ -224,7 +233,7 @@ const ChapterPage: React.FC = () => {
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             className="font-kufi text-center mb-10 tracking-widest text-sm"
             style={{ color: meta.accentColor, opacity: 0.9 }}
           >

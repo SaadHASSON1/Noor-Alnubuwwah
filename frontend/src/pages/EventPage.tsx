@@ -27,7 +27,7 @@ const Section: React.FC<{
     id={id}
     initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: false, margin: '-5%' }}
+    viewport={{ once: true, margin: '-5%' }}
     transition={{ duration: 0.65, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
     className="mb-12"
   >
@@ -338,7 +338,7 @@ const EventPage: React.FC = () => {
               id="ev-highlights"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, margin: '-5%' }}
+              viewport={{ once: true, margin: '-5%' }}
               transition={{ duration: 0.6 }}
               className="mb-12"
             >
@@ -363,7 +363,7 @@ const EventPage: React.FC = () => {
                     key={i}
                     initial={{ opacity: 0, x: 16 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                     transition={{ duration: 0.45, delay: i * 0.07 }}
                     className="flex items-start gap-3 p-4 rounded-xl"
                     style={{
@@ -402,7 +402,7 @@ const EventPage: React.FC = () => {
                     key={i}
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: i * 0.08 }}
                     className="rounded-xl p-5 text-center"
                     style={{
@@ -451,7 +451,7 @@ const EventPage: React.FC = () => {
                       key={i}
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: false }}
+                      viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: i * 0.1 }}
                       className="relative"
                     >
@@ -507,7 +507,7 @@ const EventPage: React.FC = () => {
                       key={i}
                       initial={{ opacity: 0, y: 15 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: false }}
+                      viewport={{ once: true }}
                       transition={{ duration: 0.45, delay: i * 0.06 }}
                       className="flex items-center gap-4 p-4 rounded-xl"
                       style={{
@@ -554,7 +554,7 @@ const EventPage: React.FC = () => {
                       key={i}
                       initial={{ opacity: 0, x: 20 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: false }}
+                      viewport={{ once: true }}
                       transition={{ duration: 0.55, delay: i * 0.1 }}
                       className="relative p-6 rounded-xl border-r-4"
                       style={{
@@ -609,7 +609,7 @@ const EventPage: React.FC = () => {
                       key={i}
                       initial={{ opacity: 0, y: 15 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: false }}
+                      viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: i * 0.08 }}
                       className="p-5 rounded-xl border-r-2"
                       style={{ borderColor: accentColor, background: `${accentColor}08` }}
@@ -640,7 +640,7 @@ const EventPage: React.FC = () => {
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               className="text-center py-16"
             >
               <p

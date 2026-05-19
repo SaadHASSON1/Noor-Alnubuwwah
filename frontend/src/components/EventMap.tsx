@@ -251,7 +251,7 @@ const EventMap: React.FC<EventMapProps> = ({ eventId, accentColor, isLight }) =>
     <motion.div
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, margin: '-5%' }}
+      viewport={{ once: true, margin: '-5%' }}
       transition={{ duration: 0.7 }}
       className="mb-12 rounded-2xl overflow-hidden"
       style={{

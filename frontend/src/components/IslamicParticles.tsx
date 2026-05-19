@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const COLORS = ['#C9A84C', '#E8D5A3', '#F5E6C0', '#B8952A', '#FFE082'];
 
@@ -14,92 +14,102 @@ interface Particle {
 
 const IslamicParticles: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const mouseRef  = useRef({ x: -9999, y: -9999 });
   const rafRef    = useRef<number>(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
 
+    // Lower resolution on mobile/low-DPI for better performance
+    const dpr = Math.min(window.devicePixelRatio ?? 1, 1.5);
+
     const resize = () => {
-      canvas.width  = window.innerWidth;
-      canvas.height = window.innerHeight;
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      canvas.width  = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+      canvas.style.width  = w + 'px';
+      canvas.style.height = h + 'px';
+      ctx.scale(dpr, dpr);
     };
     resize();
-    window.addEventListener('resize', resize);
+    window.addEventListener('resize', resize, { passive: true });
 
-    const onMove = (e: MouseEvent) => { mouseRef.current = { x: e.clientX, y: e.clientY }; };
-    window.addEventListener('mousemove', onMove);
+    // Throttle mouse updates — only store position, no computation here
+    let mx = -9999, my = -9999;
+    const onMove = (e: MouseEvent) => { mx = e.clientX; my = e.clientY; };
+    window.addEventListener('mousemove', onMove, { passive: true });
+
+    // Fewer particles on mobile
+    const isMobile = window.innerWidth < 768;
+    const COUNT = isMobile ? 20 : 32;
 
     const mkParticle = (): Particle => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.25,
-      vy: -(Math.random() * 0.35 + 0.08),
-      baseVy: -(Math.random() * 0.35 + 0.08),
-      size: Math.random() * 2.4 + 0.5,
-      opacity: Math.random() * 0.5 + 0.1,
-      opacityDir: (Math.random() - 0.5) * 0.004,
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      vx: (Math.random() - 0.5) * 0.22,
+      vy: -(Math.random() * 0.32 + 0.07),
+      baseVy: -(Math.random() * 0.32 + 0.07),
+      size: Math.random() * 2.2 + 0.5,
+      opacity: Math.random() * 0.45 + 0.08,
+      opacityDir: (Math.random() - 0.5) * 0.003,
       color: COLORS[Math.floor(Math.random() * COLORS.length)],
     });
 
-    const particles: Particle[] = Array.from({ length: 55 }, mkParticle);
+    const particles: Particle[] = Array.from({ length: COUNT }, mkParticle);
 
     const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const { x: mx, y: my } = mouseRef.current;
+      // Pause when tab is hidden
+      if (document.hidden) {
+        rafRef.current = requestAnimationFrame(draw);
+        return;
+      }
+
+      const W = window.innerWidth;
+      const H = window.innerHeight;
+      ctx.clearRect(0, 0, W, H);
 
       for (const p of particles) {
-        /* mouse repulsion */
-        const dx = p.x - mx, dy = p.y - my;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 130 && dist > 0) {
-          const force = ((130 - dist) / 130) * 0.06;
-          p.vx += (dx / dist) * force;
-          p.vy += (dy / dist) * force;
+        // Mouse repulsion — only on desktop
+        if (!isMobile) {
+          const dx = p.x - mx, dy = p.y - my;
+          const dist2 = dx * dx + dy * dy;
+          if (dist2 < 16900 && dist2 > 0) { // 130^2
+            const dist = Math.sqrt(dist2);
+            const force = ((130 - dist) / 130) * 0.055;
+            p.vx += (dx / dist) * force;
+            p.vy += (dy / dist) * force;
+          }
         }
 
-        /* gentle drift back to base speed */
+        // Gentle drift back to base speed
         p.vx *= 0.98;
         p.vy = p.vy * 0.98 + p.baseVy * 0.02;
 
         p.x += p.vx;
         p.y += p.vy;
 
-        /* opacity flicker */
+        // Opacity flicker
         p.opacity += p.opacityDir;
-        if (p.opacity > 0.75 || p.opacity < 0.05) p.opacityDir *= -1;
+        if (p.opacity > 0.7 || p.opacity < 0.04) p.opacityDir *= -1;
 
-        /* wrap */
-        if (p.x < 0)             p.x = canvas.width;
-        if (p.x > canvas.width)  p.x = 0;
-        if (p.y < -10)           p.y = canvas.height + 10;
-        if (p.y > canvas.height + 10) p.y = -10;
+        // Wrap
+        if (p.x < 0)      p.x = W;
+        if (p.x > W)      p.x = 0;
+        if (p.y < -10)    p.y = H + 10;
+        if (p.y > H + 10) p.y = -10;
 
-        /* draw core */
-        ctx.globalAlpha = p.opacity * 0.55;
+        // Draw core only — no per-frame gradient (expensive)
+        ctx.globalAlpha = p.opacity * 0.6;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = p.color;
         ctx.fill();
-
-        /* draw glow halo */
-        if (p.size > 1.2) {
-          const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 3);
-          g.addColorStop(0, p.color);
-          g.addColorStop(1, 'transparent');
-          ctx.globalAlpha = p.opacity * 0.18;
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size * 3, 0, Math.PI * 2);
-          ctx.fillStyle = g;
-          ctx.fill();
-        }
-
-        ctx.globalAlpha = 1;
       }
 
+      ctx.globalAlpha = 1;
       rafRef.current = requestAnimationFrame(draw);
     };
 
@@ -115,7 +125,7 @@ const IslamicParticles: React.FC = () => {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-[1]"
-      style={{ opacity: 0.55 }}
+      style={{ opacity: 0.6, willChange: 'transform' }}
     />
   );
 };
