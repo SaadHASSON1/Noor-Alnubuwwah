@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -9,19 +9,22 @@ import IslamicParticles from '../components/IslamicParticles';
 import ShareButton from '../components/ShareButton';
 import EventMap from '../components/EventMap';
 import BattleSimulator from '../components/BattleSimulator';
+import SectionNavigator, { NavSection } from '../components/SectionNavigator';
 import { SEERAH_EVENTS, CHAPTER_META, SEERAH_EVENTS as ALL } from '../data/seerah';
 import { BATTLE_SIMULATIONS } from '../data/battleSimulations';
 import type { SeerahEvent } from '../data/seerah';
 
 /* ── Section block wrapper ── */
 const Section: React.FC<{
+  id?: string;
   icon: React.ReactNode;
   title: string;
   accentColor: string;
   children: React.ReactNode;
   delay?: number;
-}> = ({ icon, title, accentColor, children, delay = 0 }) => (
+}> = ({ id, icon, title, accentColor, children, delay = 0 }) => (
   <motion.div
+    id={id}
     initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: false, margin: '-5%' }}
@@ -83,6 +86,20 @@ const EventPage: React.FC = () => {
   const textBase  = isLight ? 'text-stone-800'  : 'text-white';
   const textMuted = isLight ? 'text-stone-600'  : 'text-white/65';
 
+  /* Section navigator entries — only include sections that exist for this event */
+  const navSections = useMemo<NavSection[]>(() => {
+    const secs: NavSection[] = [];
+    if (event.highlights?.length)    secs.push({ id: 'ev-highlights', label: 'أبرز اللحظات' });
+    if (event.stats?.length)         secs.push({ id: 'ev-stats',      label: 'إحصائيات وأرقام' });
+    if (event.battleTimeline?.length) secs.push({ id: 'ev-timeline',  label: 'مراحل المعركة' });
+    if (BATTLE_SIMULATIONS.some(s => s.eventId === event.id))
+                                     secs.push({ id: 'ev-simulation', label: 'محاكاة المعركة' });
+    if (event.keyFigures?.length)    secs.push({ id: 'ev-figures',    label: 'شخصيات بارزة' });
+    if (event.hadiths?.length)       secs.push({ id: 'ev-hadiths',    label: 'أحاديث شريفة' });
+    if (event.relatedVerses?.length) secs.push({ id: 'ev-verses',     label: 'آيات قرآنية' });
+    return secs;
+  }, [event]);
+
   /* Prev / Next event */
   const allIdx = SEERAH_EVENTS.findIndex(e => e.id === id);
   const prevEvent = allIdx > 0 ? SEERAH_EVENTS[allIdx - 1] : null;
@@ -91,6 +108,7 @@ const EventPage: React.FC = () => {
   return (
     <div className="min-h-screen relative" dir="rtl" style={{ background: event.bg }}>
       {!isLight && <IslamicParticles />}
+      <SectionNavigator sections={navSections} accentColor={accentColor} />
 
       {/* ══ Full-screen hero ══ */}
       <section
@@ -317,6 +335,7 @@ const EventPage: React.FC = () => {
           {/* ── Highlights ── */}
           {event.highlights && event.highlights.length > 0 && (
             <motion.div
+              id="ev-highlights"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, margin: '-5%' }}
@@ -371,10 +390,10 @@ const EventPage: React.FC = () => {
           {/* ── Stats ── */}
           {event.stats && event.stats.length > 0 && (
             <Section
+              id="ev-stats"
               icon={<BarChart2 size={16} color={accentColor} strokeWidth={1.5} />}
               title="إحصائيات وأرقام"
               accentColor={accentColor}
-             
               delay={0}
             >
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
@@ -391,14 +410,19 @@ const EventPage: React.FC = () => {
                       border: `1px solid ${accentColor}20`,
                     }}
                   >
+                    {/* Label above — bigger and prominent */}
                     <p
-                      className="font-noto font-bold mb-1"
-                      style={{ fontSize: 'clamp(1.6rem, 4vw, 2.5rem)', color: accentColor }}
+                      className="font-kufi tracking-wider mb-2"
+                      style={{ fontSize: '0.82rem', color: `${accentColor}cc`, letterSpacing: '0.05em' }}
+                    >
+                      {stat.label}
+                    </p>
+                    {/* Value below — slightly smaller */}
+                    <p
+                      className="font-noto font-bold"
+                      style={{ fontSize: 'clamp(1.1rem, 2.8vw, 1.9rem)', color: accentColor }}
                     >
                       {stat.value}
-                    </p>
-                    <p className={`font-kufi text-sm tracking-wide ${textMuted}`}>
-                      {stat.label}
                     </p>
                   </motion.div>
                 ))}
@@ -409,10 +433,10 @@ const EventPage: React.FC = () => {
           {/* ── Battle timeline ── */}
           {event.battleTimeline && event.battleTimeline.length > 0 && (
             <Section
+              id="ev-timeline"
               icon={<Clock size={16} color={accentColor} strokeWidth={1.5} />}
               title="مراحل المعركة"
               accentColor={accentColor}
-             
               delay={0.05}
             >
               <div className="relative">
@@ -460,7 +484,7 @@ const EventPage: React.FC = () => {
             const sim = BATTLE_SIMULATIONS.find(s => s.eventId === event.id);
             if (!sim) return null;
             return (
-              <Section icon={<Swords size={16} color={accentColor} strokeWidth={1.5} />} title="محاكاة المعركة" accentColor={accentColor} delay={0.5}>
+              <Section id="ev-simulation" icon={<Swords size={16} color={accentColor} strokeWidth={1.5} />} title="محاكاة المعركة" accentColor={accentColor} delay={0.5}>
                 <BattleSimulator sim={sim} accentColor={accentColor} />
               </Section>
             );
@@ -471,10 +495,10 @@ const EventPage: React.FC = () => {
             <>
               <Divider color={accentColor} />
               <Section
+                id="ev-figures"
                 icon={<Users size={16} color={accentColor} strokeWidth={1.5} />}
                 title="شخصيات بارزة"
                 accentColor={accentColor}
-               
                 delay={0.1}
               >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -518,10 +542,10 @@ const EventPage: React.FC = () => {
             <>
               <Divider color={accentColor} />
               <Section
+                id="ev-hadiths"
                 icon={<BookOpen size={16} color={accentColor} strokeWidth={1.5} />}
                 title="أحاديث شريفة"
                 accentColor={accentColor}
-               
                 delay={0.1}
               >
                 <div className="space-y-5">
@@ -573,10 +597,10 @@ const EventPage: React.FC = () => {
             <>
               <Divider color={accentColor} />
               <Section
+                id="ev-verses"
                 icon={<BookOpen size={16} color={accentColor} strokeWidth={1.5} />}
                 title="آيات قرآنية كريمة"
                 accentColor={accentColor}
-               
                 delay={0.1}
               >
                 <div className="space-y-4">
