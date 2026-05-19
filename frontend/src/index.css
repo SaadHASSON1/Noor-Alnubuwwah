@@ -120,11 +120,21 @@
   );
 }
 
-/* ── Hero stats bar — mobile: individual pills, desktop: unified bar ── */
+/* ── Hero stats bar — mobile: individual pills (3+2), desktop: unified bar (5) ── */
+.stats-bar {
+  /* Centre the last row of 2 pills on mobile */
+  justify-items: center;
+}
 .stats-item {
   background: rgba(201,168,76,0.07);
   border: 1px solid rgba(201,168,76,0.22);
   border-radius: 0.85rem;
+  width: 100%;
+}
+/* 5 items → last 2 pills on mobile: span the "lonely" slots centred */
+@media (max-width: 639px) {
+  .stats-item:nth-child(4) { grid-column: 1 / 2; }
+  .stats-item:nth-child(5) { grid-column: 3 / 4; }
 }
 @media (min-width: 640px) {
   .stats-bar {
@@ -132,11 +142,13 @@
     border: 1px solid rgba(201,168,76,0.18);
     border-radius: 1rem;
     overflow: hidden;
+    justify-items: stretch;
   }
   .stats-item {
     background: transparent;
     border: none;
     border-radius: 0;
+    width: auto;
   }
   .stats-item:not(:last-child) {
     border-right: 1px solid rgba(201,168,76,0.18);
