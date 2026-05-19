@@ -167,7 +167,12 @@ const EventPage: React.FC = () => {
         {/* Hero content */}
         <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-16 pb-20 pt-32">
           <div className="flex justify-start mb-4">
-            <ShareButton title={event.title} accentColor={accentColor} />
+            <ShareButton
+              title={event.title}
+              accentColor={accentColor}
+              quote={event.highlight}
+              description={event.description}
+            />
           </div>
 
           {/* Chapter + type badge */}

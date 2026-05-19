@@ -23,6 +23,7 @@ const WivesPage          = lazy(() => import('./pages/WivesPage'));
 const PropheciesPage     = lazy(() => import('./pages/PropheciesPage'));
 const NamesPage          = lazy(() => import('./pages/NamesPage'));
 const ScribesPage        = lazy(() => import('./pages/ScribesPage'));
+const SourcesPage        = lazy(() => import('./pages/SourcesPage'));
 
 /* ── Page loading fallback ── */
 const PageLoader: React.FC = () => (
@@ -195,6 +196,9 @@ function App() {
           } />
           <Route path="/scribes" element={
             <PageWrapper><ScribesPage /></PageWrapper>
+          } />
+          <Route path="/sources" element={
+            <PageWrapper><SourcesPage /></PageWrapper>
           } />
           <Route path="*" element={
             <PageWrapper>
