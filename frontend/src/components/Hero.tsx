@@ -3,12 +3,12 @@ import { motion } from 'framer-motion';
 
 /* ── Stat card data ── */
 const STATS = [
-  { value: '63 عاماً',  label: 'عمره ﷺ' },
-  { value: '23 عاماً',  label: 'مدة النبوة' },
-  { value: '27 غزوة',   label: 'غزواته ﷺ' },
-  { value: '25+ اسماً', label: 'من أسمائه ﷺ' },
-  { value: '23 كاتباً', label: 'كتّاب الوحي' },
-  { value: '18+ قسماً', label: 'أقسام الموقع' },
+  { value: '63',   label: 'عاماً — عمره ﷺ' },
+  { value: '23',   label: 'عاماً — النبوة' },
+  { value: '27',   label: 'غزوة ﷺ' },
+  { value: '+25',  label: 'اسماً ﷺ' },
+  { value: '23',   label: 'كاتب وحي' },
+  { value: '+18',  label: 'قسماً' },
 ];
 
 /* ── Star particles — deterministic positions ── */
@@ -169,7 +169,7 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.8 }}
-          className="grid grid-cols-3 sm:grid-cols-6 gap-3 justify-items-center w-full max-w-2xl mx-auto mb-8"
+          className="grid grid-cols-3 sm:grid-cols-6 gap-2 justify-items-center w-full max-w-2xl mx-auto mb-8"
         >
           {STATS.map((stat, i) => (
             <motion.div
