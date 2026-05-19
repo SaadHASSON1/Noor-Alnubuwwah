@@ -208,7 +208,7 @@ const WivesPage: React.FC = () => {
       </div>
 
       {/* Breadcrumb */}
-      <div className="absolute top-6 right-16 z-20">
+      <div className="absolute top-6 right-20 z-20 max-w-[calc(100vw-6rem)]">
         <motion.nav
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}

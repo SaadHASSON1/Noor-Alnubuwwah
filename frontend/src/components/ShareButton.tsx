@@ -149,7 +149,8 @@ const ShareButton: React.FC<Props> = ({ title, accentColor, quote, description }
             transition={{ duration: 0.18, ease: 'easeOut' }}
             className="absolute top-full mt-2.5 right-0 z-50 rounded-2xl overflow-hidden"
             style={{
-              minWidth: 230,
+              minWidth: 'min(230px, calc(100vw - 2rem))',
+              maxWidth: 'calc(100vw - 2rem)',
               background: 'rgba(5,11,26,0.98)',
               border: `1px solid ${accentColor}20`,
               backdropFilter: 'blur(20px)',

@@ -166,7 +166,7 @@ const PropheciesPage: React.FC = () => {
       </div>
 
       {/* Breadcrumb */}
-      <div className="relative z-10 px-6 pt-20 pb-4" style={{ paddingRight: '4rem' }}>
+      <div className="relative z-10 px-6 pt-20 pb-4" style={{ paddingRight: '5rem' }}>
         <motion.nav
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}

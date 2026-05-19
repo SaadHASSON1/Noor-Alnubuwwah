@@ -143,7 +143,7 @@ const EventPage: React.FC = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="absolute top-6 right-16 flex items-center gap-2 text-sm font-kufi"
+          className="absolute top-6 right-20 flex items-center gap-2 text-sm font-kufi max-w-[calc(100vw-6rem)] overflow-hidden"
           style={{ color: accentColor }}
         >
           <button

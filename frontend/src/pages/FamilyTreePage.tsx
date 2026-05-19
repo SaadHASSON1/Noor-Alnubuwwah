@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import {
   Home, ChevronRight, X, Users, Heart,
   Baby, Crown, ChevronLeft, ChevronRight as ChevronRightIcon,
-  ArrowLeft,
 } from 'lucide-react';
 
 /* ══════════════════════════════════════════════
@@ -183,20 +182,23 @@ const HorizontalLineage: React.FC = () => {
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
 
-  /* تمرير للنهاية (محمد ﷺ) عند التحميل */
+  /* ── في RTL: scrollLeft=0 يُظهر اليمين (عدنان)، scrollLeft=max يُظهر اليسار (محمد ﷺ) ── */
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
+    /* تمرير لمحمد ﷺ (اليسار) عند التحميل */
     setTimeout(() => {
-      el.scrollTo({ left: el.scrollWidth, behavior: 'smooth' });
-    }, 800);
+      el.scrollTo({ left: el.scrollWidth - el.clientWidth, behavior: 'smooth' });
+    }, 900);
   }, []);
 
   const updateScroll = useCallback(() => {
     const el = scrollRef.current;
     if (!el) return;
-    setCanScrollLeft(el.scrollLeft > 10);
-    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
+    const max = el.scrollWidth - el.clientWidth;
+    const pos = el.scrollLeft; /* RTL normalized: 0=right(عدنان), max=left(محمد ﷺ) */
+    setCanScrollLeft(pos < max - 10);   /* يمكن التمرير نحو محمد ﷺ */
+    setCanScrollRight(pos > 10);        /* يمكن التمرير نحو عدنان */
   }, []);
 
   useEffect(() => {
@@ -207,66 +209,72 @@ const HorizontalLineage: React.FC = () => {
     return () => el.removeEventListener('scroll', updateScroll);
   }, [updateScroll]);
 
-  const scroll = (dir: 'left' | 'right') => {
-    scrollRef.current?.scrollBy({ left: dir === 'left' ? -300 : 300, behavior: 'smooth' });
+  /* في RTL: left+300 = تمرير نحو محمد ﷺ (اليسار)، left-300 = نحو عدنان (اليمين) */
+  const scroll = (dir: 'toward-prophet' | 'toward-adnan') => {
+    scrollRef.current?.scrollBy({
+      left: dir === 'toward-prophet' ? 300 : -300,
+      behavior: 'smooth',
+    });
   };
 
   return (
     <div className="relative">
       {/* ── أزرار التمرير ── */}
       <AnimatePresence>
+        {/* زر يسار → نحو محمد ﷺ */}
         {canScrollLeft && (
           <motion.button
             key="scroll-left"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => scroll('left')}
+            onClick={() => scroll('toward-prophet')}
             className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full flex items-center justify-center"
             style={{ background: 'rgba(3,8,19,0.9)', border: '1px solid rgba(201,168,76,0.3)', color: '#C9A84C' }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
+            title="نحو محمد ﷺ"
           >
             <ChevronLeft size={18} />
           </motion.button>
         )}
+        {/* زر يمين → نحو عدنان */}
         {canScrollRight && (
           <motion.button
             key="scroll-right"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => scroll('right')}
+            onClick={() => scroll('toward-adnan')}
             className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full flex items-center justify-center"
             style={{ background: 'rgba(3,8,19,0.9)', border: '1px solid rgba(201,168,76,0.3)', color: '#C9A84C' }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
+            title="نحو عدنان"
           >
             <ChevronRightIcon size={18} />
           </motion.button>
         )}
       </AnimatePresence>
 
-      {/* ── ظلال التلاشي على الجانبين ── */}
-      <div
-        className="absolute left-0 top-0 bottom-0 w-16 z-10 pointer-events-none"
-        style={{ background: 'linear-gradient(to right, #030813, transparent)' }}
-      />
-      <div
-        className="absolute right-0 top-0 bottom-0 w-16 z-10 pointer-events-none"
-        style={{ background: 'linear-gradient(to left, #030813, transparent)' }}
-      />
+      {/* ── ظلال التلاشي ── */}
+      <div className="absolute left-0 top-0 bottom-0 w-16 z-10 pointer-events-none"
+        style={{ background: 'linear-gradient(to right, #030813, transparent)' }} />
+      <div className="absolute right-0 top-0 bottom-0 w-16 z-10 pointer-events-none"
+        style={{ background: 'linear-gradient(to left, #030813, transparent)' }} />
 
-      {/* ── المسار الأفقي ── */}
+      {/* ── المسار الأفقي — dir="rtl": عدنان على اليمين، محمد ﷺ على اليسار ── */}
       <div
         ref={scrollRef}
         className="overflow-x-auto pb-4 px-10"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-        dir="ltr"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', direction: 'rtl' }}
       >
-        <div className="flex items-center gap-0 py-8" style={{ width: 'max-content' }}>
+        <div
+          className="flex items-center gap-0 py-8"
+          style={{ width: 'max-content', direction: 'rtl' }}
+        >
           {LINEAGE_ORDERED.map((item, i) => {
-            const isLast = i === LINEAGE_ORDERED.length - 1;
+            const isLast = i === LINEAGE_ORDERED.length - 1; /* محمد ﷺ */
             const isActive = activeIdx === i;
 
             return (
@@ -276,49 +284,47 @@ const HorizontalLineage: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.03 }}
+                  transition={{ duration: 0.4, delay: (LINEAGE_ORDERED.length - 1 - i) * 0.03 }}
                   className="relative flex flex-col items-center gap-2 cursor-pointer group"
-                  style={{ minWidth: isLast ? 120 : 90 }}
+                  style={{ minWidth: isLast ? 100 : 80 }}
                   onClick={() => setActiveIdx(isActive ? null : i)}
                 >
                   {/* رقم الجيل */}
                   <span
-                    className="font-kufi text-xs opacity-30 group-hover:opacity-60 transition-opacity"
-                    style={{ color: '#C9A84C', fontSize: '0.6rem' }}
+                    className="font-kufi opacity-30 group-hover:opacity-60 transition-opacity"
+                    style={{ color: '#C9A84C', fontSize: '0.55rem' }}
                   >
                     {item.gen}
                   </span>
 
                   {/* الدائرة */}
                   <motion.div
-                    className="relative flex items-center justify-center rounded-full font-noto font-bold text-center transition-all"
+                    className="relative flex items-center justify-center rounded-full font-noto font-bold text-center"
                     style={{
-                      width:  isLast ? 88 : 64,
-                      height: isLast ? 88 : 64,
+                      width:  isLast ? 84 : 62,
+                      height: isLast ? 84 : 62,
                       background: isLast
                         ? 'linear-gradient(135deg, rgba(201,168,76,0.3), rgba(201,168,76,0.1))'
-                        : isActive
-                          ? 'rgba(201,168,76,0.15)'
-                          : 'rgba(201,168,76,0.06)',
+                        : isActive ? 'rgba(201,168,76,0.15)' : 'rgba(201,168,76,0.06)',
                       border: `${isLast ? 2 : 1}px solid ${
                         isLast ? 'rgba(201,168,76,0.7)' : isActive ? 'rgba(201,168,76,0.4)' : 'rgba(201,168,76,0.2)'
                       }`,
-                      color: isLast ? '#C9A84C' : 'rgba(255,255,255,0.7)',
-                      fontSize: isLast ? '0.75rem' : '0.68rem',
+                      color: isLast ? '#C9A84C' : 'rgba(255,255,255,0.72)',
+                      fontSize: isLast ? '0.72rem' : '0.65rem',
                       boxShadow: isLast ? '0 0 30px rgba(201,168,76,0.25), 0 0 60px rgba(201,168,76,0.1)' : 'none',
                       lineHeight: 1.3,
+                      padding: '4px',
                     }}
                     whileHover={{ scale: isLast ? 1.05 : 1.08 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     {item.name}
-                    {/* نقطة الإشارة للنبي ﷺ */}
                     {isLast && (
-                      <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-islamic-gold animate-pulse" />
+                      <span className="absolute -top-1 -left-1 w-3 h-3 rounded-full bg-islamic-gold animate-pulse" />
                     )}
                   </motion.div>
 
-                  {/* تلميح عند التحديد */}
+                  {/* تلميح عند الضغط */}
                   <AnimatePresence>
                     {isActive && !isLast && (
                       <motion.div
@@ -327,14 +333,10 @@ const HorizontalLineage: React.FC = () => {
                         exit={{ opacity: 0, y: -5, scale: 0.9 }}
                         transition={{ duration: 0.15 }}
                         className="absolute top-full mt-2 z-30 rounded-xl px-3 py-2 whitespace-nowrap"
-                        style={{
-                          background: 'rgba(5,11,26,0.97)',
-                          border: '1px solid rgba(201,168,76,0.25)',
-                          backdropFilter: 'blur(12px)',
-                        }}
+                        style={{ background: 'rgba(5,11,26,0.97)', border: '1px solid rgba(201,168,76,0.25)', backdropFilter: 'blur(12px)' }}
                       >
                         <p className="font-noto text-white text-xs font-bold">{item.name}</p>
-                        <p className="font-kufi text-xs mt-0.5" style={{ color: 'rgba(201,168,76,0.7)', fontSize: '0.6rem' }}>
+                        <p className="font-kufi mt-0.5" style={{ color: 'rgba(201,168,76,0.7)', fontSize: '0.58rem' }}>
                           الجيل {item.gen} من عدنان
                         </p>
                       </motion.div>
@@ -342,12 +344,14 @@ const HorizontalLineage: React.FC = () => {
                   </AnimatePresence>
                 </motion.div>
 
-                {/* ── السهم الفاصل ── */}
+                {/* ── السهم يشير لليسار ← (RTL: الأحدث على اليسار) ── */}
                 {!isLast && (
-                  <div className="flex items-center" style={{ width: 36, flexShrink: 0 }}>
-                    <svg width="36" height="16" viewBox="0 0 36 16" fill="none" className="opacity-40">
-                      <line x1="0" y1="8" x2="28" y2="8" stroke="#C9A84C" strokeWidth="1" />
-                      <polyline points="22,4 28,8 22,12" stroke="#C9A84C" strokeWidth="1" fill="none" />
+                  <div className="flex items-center flex-shrink-0" style={{ width: 32, direction: 'ltr' }}>
+                    <svg width="32" height="16" viewBox="0 0 32 16" fill="none" className="opacity-35">
+                      {/* خط أفقي */}
+                      <line x1="32" y1="8" x2="4" y2="8" stroke="#C9A84C" strokeWidth="1" />
+                      {/* رأس السهم يشير لليسار ← */}
+                      <polyline points="10,4 4,8 10,12" stroke="#C9A84C" strokeWidth="1" fill="none" />
                     </svg>
                   </div>
                 )}
@@ -361,7 +365,7 @@ const HorizontalLineage: React.FC = () => {
       <div className="mt-2 mx-10 h-0.5 rounded-full overflow-hidden" style={{ background: 'rgba(201,168,76,0.08)' }}>
         <motion.div
           className="h-full rounded-full"
-          style={{ background: 'linear-gradient(90deg, rgba(201,168,76,0.2), rgba(201,168,76,0.6))' }}
+          style={{ background: 'linear-gradient(90deg, rgba(201,168,76,0.6), rgba(201,168,76,0.2))' }}
           initial={{ width: '0%' }}
           whileInView={{ width: '100%' }}
           viewport={{ once: true }}
@@ -369,17 +373,19 @@ const HorizontalLineage: React.FC = () => {
         />
       </div>
 
-      {/* ── تلميح التمرير ── */}
+      {/* ── تلميح ── */}
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
-        className="text-center font-kufi text-white/20 text-xs mt-4 flex items-center justify-center gap-1"
+        className="text-center font-kufi text-white/20 text-xs mt-4 flex items-center justify-center gap-2"
         dir="rtl"
       >
-        <ArrowLeft size={11} />
-        اسحب لاستعراض النسب الشريف
-        <ArrowLeft size={11} className="rotate-180" />
+        <ChevronRightIcon size={12} className="opacity-50" />
+        اسحب يميناً لرؤية الأجداد
+        <span className="opacity-30">•</span>
+        اسحب يساراً نحو محمد ﷺ
+        <ChevronLeft size={12} className="opacity-50" />
       </motion.p>
     </div>
   );
@@ -424,7 +430,7 @@ const FamilyTreePage: React.FC = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="absolute top-6 right-16 flex items-center gap-2 text-sm font-kufi"
+          className="absolute top-6 right-20 flex items-center gap-2 text-sm font-kufi max-w-[calc(100vw-6rem)]"
           style={{ color: '#C9A84C' }}
         >
           <button onClick={() => navigate('/')} className="flex items-center gap-1.5 opacity-60 hover:opacity-100 transition-opacity">
