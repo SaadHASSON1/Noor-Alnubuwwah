@@ -226,7 +226,7 @@ const ChapterPage: React.FC = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: false }}
             className="font-kufi text-center mb-10 tracking-widest text-sm"
-            style={{ color: meta.accentColor, opacity: 0.6 }}
+            style={{ color: meta.accentColor, opacity: 0.9 }}
           >
             أحداث الفصل
           </motion.p>

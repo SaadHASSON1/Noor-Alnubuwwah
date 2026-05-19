@@ -486,10 +486,10 @@ const SourcesPage: React.FC = () => {
         className="text-center py-8 px-6"
         style={{ borderTop: '1px solid rgba(201,168,76,0.08)', borderBottom: '1px solid rgba(201,168,76,0.08)' }}
       >
-        <p className="font-noto text-white text-sm leading-loose" style={{ opacity: 0.75 }}>
+        <p className="font-noto text-white text-sm leading-loose" style={{ opacity: 0.95 }}>
           ﴿ لَقَدْ كَانَ لَكُمْ فِي رَسُولِ اللَّهِ أُسْوَةٌ حَسَنَةٌ ﴾
         </p>
-        <p className="font-kufi text-white text-xs mt-1" style={{ opacity: 0.55 }}>سورة الأحزاب — الآية 21</p>
+        <p className="font-kufi text-white text-xs mt-1" style={{ opacity: 0.85 }}>سورة الأحزاب — الآية 21</p>
       </motion.div>
 
       {/* ── فلاتر الفئات ── */}
@@ -646,10 +646,10 @@ const SourcesPage: React.FC = () => {
         className="text-center py-8 px-6"
         style={{ borderTop: '1px solid rgba(201,168,76,0.08)' }}
       >
-        <p className="font-noto text-white text-xs leading-loose" style={{ opacity: 0.6 }}>
+        <p className="font-noto text-white text-xs leading-loose" style={{ opacity: 0.88 }}>
           جميع المصادر من تراث العلماء الأجلاء — رحمهم الله وجزاهم خير الجزاء
         </p>
-        <p className="font-kufi text-white text-xs mt-1" style={{ opacity: 0.4 }}>نور النبوة — ﷺ</p>
+        <p className="font-kufi text-white text-xs mt-1" style={{ opacity: 0.75 }}>نور النبوة — ﷺ</p>
       </div>
     </div>
   );

@@ -83,6 +83,10 @@
 .text-xs { font-size: 0.83rem !important; line-height: 1.5 !important; }
 .text-sm { font-size: 0.95rem !important; line-height: 1.6 !important; }
 
+/* ── Global bold Arabic fonts ── */
+.font-noto { font-weight: 700 !important; }
+.font-kufi  { font-weight: 700 !important; }
+
 /* ── Text readability overrides — lift faint white text so it's legible ── */
 .text-white\/60 { color: rgb(255 255 255 / 0.85) !important; }
 .text-white\/55 { color: rgb(255 255 255 / 0.82) !important; }
