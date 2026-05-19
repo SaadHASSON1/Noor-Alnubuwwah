@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Home, ChevronLeft, X } from 'lucide-react';
@@ -224,7 +224,7 @@ const WifeModal: React.FC<{ wife: Wife; onClose: () => void }> = ({ wife, onClos
         <button
           onClick={onClose}
           className="absolute top-4 left-4 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-colors"
-          style={{ background: 'rgba(255,255,255,0.07)', color: 'rgba(255,255,255,0.5)' }}
+          style={{ background: 'rgba(255,255,255,0.07)', color: 'rgba(255,255,255,0.82)' }}
           onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.14)')}
           onMouseLeave={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.07)')}
         >
@@ -247,7 +247,7 @@ const WifeModal: React.FC<{ wife: Wife; onClose: () => void }> = ({ wife, onClos
           <p className="font-noto mb-2" style={{ fontSize: '0.82rem', color: accent }}>
             {wife.nickname}
           </p>
-          <p className="font-kufi text-xs mb-5" style={{ color: 'rgba(255,255,255,0.35)' }}>
+          <p className="font-kufi text-xs mb-5" style={{ color: 'rgba(255,255,255,0.70)' }}>
             {wife.marriageYear}
           </p>
 
@@ -269,7 +269,7 @@ const WifeModal: React.FC<{ wife: Wife; onClose: () => void }> = ({ wife, onClos
             className="rounded-xl p-3 mb-4"
             style={{ background: 'rgba(0,0,0,0.25)', borderRight: `2px solid ${accent}` }}
           >
-            <p className="font-kufi text-xs mb-1" style={{ color: 'rgba(255,255,255,0.4)' }}>أبرز إسهامها</p>
+            <p className="font-kufi text-xs mb-1" style={{ color: 'rgba(255,255,255,0.75)' }}>أبرز إسهامها</p>
             <p className="font-noto" style={{ color: 'rgba(255,255,255,0.82)', fontSize: '0.87rem', lineHeight: 1.75 }}>
               {wife.achievement}
             </p>
@@ -283,7 +283,7 @@ const WifeModal: React.FC<{ wife: Wife; onClose: () => void }> = ({ wife, onClos
             <p className="font-noto italic mb-2" style={{ color: accent, fontSize: '0.9rem', lineHeight: 1.9 }}>
               "{wife.quote}"
             </p>
-            <p className="font-kufi text-xs" style={{ color: 'rgba(255,255,255,0.3)' }}>{wife.quoteSource}</p>
+            <p className="font-kufi text-xs" style={{ color: 'rgba(255,255,255,0.68)' }}>{wife.quoteSource}</p>
           </div>
         </div>
       </motion.div>
@@ -381,7 +381,7 @@ const WivesPage: React.FC = () => {
         >
           أمهات المؤمنين
         </motion.h1>
-        <p className="font-noto mt-3 text-center" style={{ color: 'rgba(255,255,255,0.5)', fontSize: '1rem' }}>
+        <p className="font-noto mt-3 text-center" style={{ color: 'rgba(255,255,255,0.82)', fontSize: '1rem' }}>
           زوجات النبي ﷺ — نساء علّمن الأمة وبنين الإسلام في أول بيوته
         </p>
         <div
@@ -441,14 +441,14 @@ const WivesPage: React.FC = () => {
                   {wife.nickname}
                 </p>
 
-                <p className="font-noto mb-3" style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.85rem', lineHeight: 1.7 }}>
+                <p className="font-noto mb-3" style={{ color: 'rgba(255,255,255,0.87)', fontSize: '0.85rem', lineHeight: 1.7 }}>
                   {wife.shortDescription}
                 </p>
 
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-1.5">
                     <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: wife.accentColor }} />
-                    <p className="font-kufi text-xs" style={{ color: 'rgba(255,255,255,0.35)' }}>
+                    <p className="font-kufi text-xs" style={{ color: 'rgba(255,255,255,0.70)' }}>
                       {wife.marriageYear}
                     </p>
                   </div>
@@ -474,7 +474,7 @@ const WivesPage: React.FC = () => {
           />
           <p
             className="font-noto"
-            style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.9rem', lineHeight: 1.8 }}
+            style={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.9rem', lineHeight: 1.8 }}
           >
             رضي الله عن أمهات المؤمنين جميعاً — فضلُهنّ على الأمة لا يُحصى ولا يُقدَّر
           </p>

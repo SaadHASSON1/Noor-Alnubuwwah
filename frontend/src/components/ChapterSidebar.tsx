@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, PanelRight } from 'lucide-react';
 import type { SeerahEvent } from '../data/seerah';
@@ -129,7 +129,7 @@ const ChapterSidebar: React.FC<Props> = ({ events }) => {
               {/* Header */}
               <div className="px-5 py-4 border-b" style={{ borderColor: 'rgba(201,168,76,0.15)' }}>
                 <h2 className="font-amiri text-xl" style={{ color: '#C9A84C' }}>نور النبوة</h2>
-                <p className="font-noto text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.4)' }}>
+                <p className="font-noto text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.75)' }}>
                   السيرة النبوية المشرفة
                 </p>
               </div>
@@ -163,7 +163,7 @@ const ChapterSidebar: React.FC<Props> = ({ events }) => {
                         <svg
                           viewBox="0 0 10 10" width={10} height={10}
                           style={{
-                            color: 'rgba(255,255,255,0.3)',
+                            color: 'rgba(255,255,255,0.68)',
                             transform: isExpanded ? 'rotate(90deg)' : 'rotate(0deg)',
                             transition: 'transform 0.2s',
                             flexShrink: 0,

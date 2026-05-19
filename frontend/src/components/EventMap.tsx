@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MAP_LOCATIONS, PENINSULA_PATH, SINAI_PATH, HIJRA_ROUTE, BATTLE_ROUTES } from '../data/mapData';
 

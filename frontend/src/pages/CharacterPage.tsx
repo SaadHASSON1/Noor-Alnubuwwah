@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Home, ChevronLeft, ChevronDown } from 'lucide-react';
@@ -314,7 +314,7 @@ const CharacterPage: React.FC = () => {
         >
           صفاته ﷺ
         </motion.h1>
-        <p className="font-noto mt-3 text-center" style={{ color: 'rgba(255,255,255,0.5)', fontSize: '1rem' }}>
+        <p className="font-noto mt-3 text-center" style={{ color: 'rgba(255,255,255,0.82)', fontSize: '1rem' }}>
           الشمائل المحمدية — صورة المصطفى ﷺ في أوصاف الصحابة والكتب
         </p>
       </motion.div>
@@ -339,7 +339,7 @@ const CharacterPage: React.FC = () => {
             >
               مظهره الكريم ﷺ
             </h2>
-            <p className="font-noto mt-2 text-sm" style={{ color: 'rgba(255,255,255,0.4)' }}>
+            <p className="font-noto mt-2 text-sm" style={{ color: 'rgba(255,255,255,0.75)' }}>
               كما وصفه الصحابة الذين رأوه وعاشوا معه
             </p>
           </motion.div>
@@ -384,7 +384,7 @@ const CharacterPage: React.FC = () => {
                   >
                     "{item.hadith}"
                   </p>
-                  <p className="font-kufi mt-1" style={{ color: 'rgba(255,255,255,0.35)', fontSize: '0.7rem' }}>
+                  <p className="font-kufi mt-1" style={{ color: 'rgba(255,255,255,0.70)', fontSize: '0.7rem' }}>
                     {item.source}
                   </p>
                 </div>
@@ -408,7 +408,7 @@ const CharacterPage: React.FC = () => {
             >
               أخلاقه العظيمة ﷺ
             </h2>
-            <p className="font-noto mt-2 text-sm" style={{ color: 'rgba(255,255,255,0.4)' }}>
+            <p className="font-noto mt-2 text-sm" style={{ color: 'rgba(255,255,255,0.75)' }}>
               كان خُلقه القرآن
             </p>
           </motion.div>
@@ -439,7 +439,7 @@ const CharacterPage: React.FC = () => {
                 </div>
                 <p
                   className="font-noto"
-                  style={{ color: 'rgba(255,255,255,0.65)', fontSize: '0.85rem', lineHeight: 1.8 }}
+                  style={{ color: 'rgba(255,255,255,0.88)', fontSize: '0.85rem', lineHeight: 1.8 }}
                 >
                   {trait.description}
                 </p>
@@ -464,7 +464,7 @@ const CharacterPage: React.FC = () => {
                         >
                           "{trait.hadith}"
                         </p>
-                        <p className="font-kufi mt-1" style={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.68rem' }}>
+                        <p className="font-kufi mt-1" style={{ color: 'rgba(255,255,255,0.68)', fontSize: '0.68rem' }}>
                           {trait.source}
                         </p>
                       </div>
@@ -499,7 +499,7 @@ const CharacterPage: React.FC = () => {
             >
               عاداته اليومية ﷺ
             </h2>
-            <p className="font-noto mt-2 text-sm" style={{ color: 'rgba(255,255,255,0.4)' }}>
+            <p className="font-noto mt-2 text-sm" style={{ color: 'rgba(255,255,255,0.75)' }}>
               كيف كان يعيش في يومه المبارك
             </p>
           </motion.div>
@@ -559,7 +559,7 @@ const CharacterPage: React.FC = () => {
                     </div>
                     <p
                       className="font-noto mb-3"
-                      style={{ color: 'rgba(255,255,255,0.65)', fontSize: '0.9rem', lineHeight: 1.8 }}
+                      style={{ color: 'rgba(255,255,255,0.88)', fontSize: '0.9rem', lineHeight: 1.8 }}
                     >
                       {habit.description}
                     </p>
@@ -578,7 +578,7 @@ const CharacterPage: React.FC = () => {
                           "{habit.hadith}"
                         </p>
                         {habit.source && (
-                          <p className="font-kufi mt-1" style={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.7rem' }}>
+                          <p className="font-kufi mt-1" style={{ color: 'rgba(255,255,255,0.68)', fontSize: '0.7rem' }}>
                             {habit.source}
                           </p>
                         )}
@@ -606,7 +606,7 @@ const CharacterPage: React.FC = () => {
             >
               كيف وصفه الصحابة
             </h2>
-            <p className="font-noto mt-2 text-sm" style={{ color: 'rgba(255,255,255,0.4)' }}>
+            <p className="font-noto mt-2 text-sm" style={{ color: 'rgba(255,255,255,0.75)' }}>
               شهادات من عاشوا في كنفه ورأوا نوره عن كثب
             </p>
           </motion.div>
@@ -642,7 +642,7 @@ const CharacterPage: React.FC = () => {
                   <p className="font-kufi font-bold text-sm" style={{ color: '#C9A84C' }}>
                     {testimony.name}
                   </p>
-                  <p className="font-noto text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.35)' }}>
+                  <p className="font-noto text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.70)' }}>
                     {testimony.role}
                   </p>
                   <p className="font-kufi text-xs mt-1" style={{ color: 'rgba(255,255,255,0.25)' }}>
@@ -667,7 +667,7 @@ const CharacterPage: React.FC = () => {
           />
           <p
             className="font-noto"
-            style={{ color: 'rgba(255,255,255,0.35)', fontSize: '0.9rem', lineHeight: 1.8 }}
+            style={{ color: 'rgba(255,255,255,0.70)', fontSize: '0.9rem', lineHeight: 1.8 }}
           >
             اللهم صلّ وسلّم على سيدنا محمد وعلى آله وصحبه أجمعين
           </p>

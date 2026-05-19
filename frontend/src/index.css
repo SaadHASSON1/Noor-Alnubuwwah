@@ -79,6 +79,17 @@
 .mecca-ring:nth-child(3) { animation-delay: 1.25s; }
 .mecca-ring:nth-child(4) { animation-delay: 0s; width: 28px; height: 28px; opacity: 0.5; }
 
+/* ── Text readability overrides — lift faint white text so it's legible ── */
+.text-white\/60 { color: rgb(255 255 255 / 0.85) !important; }
+.text-white\/55 { color: rgb(255 255 255 / 0.82) !important; }
+.text-white\/50 { color: rgb(255 255 255 / 0.80) !important; }
+.text-white\/45 { color: rgb(255 255 255 / 0.75) !important; }
+.text-white\/40 { color: rgb(255 255 255 / 0.70) !important; }
+.text-white\/35 { color: rgb(255 255 255 / 0.65) !important; }
+.text-white\/30 { color: rgb(255 255 255 / 0.60) !important; }
+.text-white\/25 { color: rgb(255 255 255 / 0.55) !important; }
+.text-white\/20 { color: rgb(255 255 255 / 0.50) !important; }
+
 /* Flowing timeline line */
 .timeline-line {
   background: linear-gradient(to bottom, transparent 0%, rgba(201,168,76,0.8) 20%, rgba(201,168,76,0.3) 50%, rgba(201,168,76,0.8) 80%, transparent 100%);

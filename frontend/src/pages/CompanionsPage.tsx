@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+﻿import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Home, ChevronLeft, Search, X } from 'lucide-react';
@@ -462,7 +462,7 @@ const CompanionModal: React.FC<{ companion: Companion; onClose: () => void }> = 
         <button
           onClick={onClose}
           className="absolute top-4 left-4 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-colors"
-          style={{ background: 'rgba(255,255,255,0.07)', color: 'rgba(255,255,255,0.5)' }}
+          style={{ background: 'rgba(255,255,255,0.07)', color: 'rgba(255,255,255,0.82)' }}
           onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.14)')}
           onMouseLeave={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.07)')}
         >

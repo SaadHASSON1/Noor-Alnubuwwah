@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { BookOpen, Youtube, ExternalLink, BookMarked, Scroll, Library, Star } from 'lucide-react';
+﻿import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { BookOpen, Youtube, ExternalLink, BookMarked, Scroll, Library, Star, X } from 'lucide-react';
 import IslamicParticles from '../components/IslamicParticles';
 
 /* ══════════════════════════════════════════
@@ -154,18 +154,8 @@ const SOURCES: Source[] = [
     description:
       'سلسلة متكاملة تتناول السيرة النبوية الشريفة بأسلوب علمي منهجي محبّب، تضمّ دروساً مفصّلة عن حياة النبي ﷺ من المولد حتى الوفاة مع التحليل والاستنباط.',
     badge: 'قائمة التشغيل',
-    note: 'قناة الشيخ أحمد السيد على يوتيوب',
-    link: 'https://www.youtube.com/@Ahmed_Alsayed',
-  },
-  {
-    id: 17,
-    type: 'video',
-    title: 'الطريق إلى الله — دروس في السيرة',
-    author: 'الشيخ أحمد السيد',
-    description:
-      'دروس تفصيلية تتناول جوانب النبوة والمعجزات والشمائل النبوية بمنهج علمي دقيق يجمع بين الرواية والدراية.',
-    note: 'متاح على قناة الشيخ على يوتيوب',
-    link: 'https://www.youtube.com/@Ahmed_Alsayed',
+    note: 'قائمة التشغيل على يوتيوب',
+    link: 'https://www.youtube.com/playlist?list=PLZmiPrHYOIsQKAjv6rhq5clGlihS1Xlgu',
   },
 ];
 
@@ -195,92 +185,203 @@ const TYPE_LABELS: Record<string, string> = {
 };
 
 /* ══════════════════════════════════════════
+   مكوّن المودال
+══════════════════════════════════════════ */
+const SourceModal: React.FC<{ source: Source; onClose: () => void }> = ({ source, onClose }) => {
+  const color = TYPE_COLORS[source.type];
+  return (
+    <motion.div
+      key="source-overlay"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+      className="fixed inset-0 z-[200] flex items-center justify-center p-4"
+      style={{ background: 'rgba(3,8,19,0.92)', backdropFilter: 'blur(12px)' }}
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.88, y: 24 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.92, y: 16 }}
+        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        className="relative w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-3xl"
+        style={{
+          background: 'rgba(8,14,30,0.98)',
+          border: `1px solid ${color}35`,
+          boxShadow: `0 0 60px rgba(0,0,0,0.6), 0 0 40px ${color}12`,
+        }}
+        onClick={e => e.stopPropagation()}
+        dir="rtl"
+      >
+        {/* شريط لوني علوي */}
+        <div
+          className="h-1 rounded-t-3xl"
+          style={{ background: `linear-gradient(90deg, transparent, ${color}, transparent)` }}
+        />
+
+        <div className="p-6">
+          {/* زر إغلاق */}
+          <button
+            onClick={onClose}
+            className="absolute top-4 left-4 w-8 h-8 rounded-full flex items-center justify-center transition-colors"
+            style={{ background: `${color}15`, color }}
+          >
+            <X size={16} />
+          </button>
+
+          {/* رأس */}
+          <div className="flex items-start gap-4 mb-5">
+            <div
+              className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 mt-0.5"
+              style={{ background: `${color}15`, border: `1px solid ${color}30`, color }}
+            >
+              {source.type === 'book'   && <BookOpen size={20} />}
+              {source.type === 'hadith' && <Scroll size={20} />}
+              {source.type === 'tafsir' && <BookMarked size={20} />}
+              {source.type === 'video'  && <Youtube size={20} />}
+            </div>
+            <div className="flex-1">
+              <h2 className="font-noto font-bold text-white text-xl leading-snug mb-1">{source.title}</h2>
+              <p className="font-kufi text-sm" style={{ color: `${color}cc` }}>{source.author}</p>
+            </div>
+          </div>
+
+          {/* الشارات */}
+          <div className="flex items-center gap-2 flex-wrap mb-5">
+            <span
+              className="font-kufi text-xs px-3 py-1 rounded-full"
+              style={{ background: `${color}15`, color, border: `1px solid ${color}25` }}
+            >
+              {TYPE_LABELS[source.type]}
+            </span>
+            {source.badge && (
+              <span
+                className="font-kufi text-xs px-3 py-1 rounded-full flex items-center gap-1"
+                style={{ background: 'rgba(201,168,76,0.1)', color: '#C9A84C', border: '1px solid rgba(201,168,76,0.25)' }}
+              >
+                <Star size={10} />
+                {source.badge}
+              </span>
+            )}
+          </div>
+
+          {/* فاصل */}
+          <div className="h-px mb-5" style={{ background: `${color}20` }} />
+
+          {/* الوصف */}
+          <p
+            className="font-noto leading-loose text-white"
+            style={{ fontSize: '0.95rem', lineHeight: 2 }}
+          >
+            {source.description}
+          </p>
+
+          {/* رابط */}
+          {source.link && (
+            <a
+              href={source.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 font-kufi text-sm px-4 py-2.5 rounded-xl mt-5 transition-colors"
+              style={{ color, background: `${color}12`, border: `1px solid ${color}30` }}
+              onClick={e => e.stopPropagation()}
+            >
+              {source.type === 'video' ? <Youtube size={15} /> : <ExternalLink size={15} />}
+              {source.note ?? 'زيارة المصدر'}
+            </a>
+          )}
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+/* ══════════════════════════════════════════
    مكوّن البطاقة
 ══════════════════════════════════════════ */
 const SourceCard: React.FC<{ source: Source; index: number }> = ({ source, index }) => {
+  const [open, setOpen] = useState(false);
   const color = TYPE_COLORS[source.type];
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-5%' }}
-      transition={{ duration: 0.5, delay: (index % 6) * 0.07, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="relative rounded-2xl p-5 flex flex-col gap-3 group"
-      style={{
-        background: 'rgba(255,255,255,0.025)',
-        border: `1px solid ${color}18`,
-        transition: 'border-color 0.3s, background 0.3s',
-      }}
-      whileHover={{ background: `rgba(255,255,255,0.04)`, borderColor: `${color}35` }}
-    >
-      {/* شريط اللون العلوي */}
-      <div
-        className="absolute top-0 right-0 left-0 h-0.5 rounded-t-2xl"
-        style={{ background: `linear-gradient(90deg, transparent, ${color}60, transparent)` }}
-      />
-
-      {/* رأس البطاقة */}
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex-1">
-          <h3 className="font-noto font-bold text-white" style={{ fontSize: '1rem', lineHeight: 1.5 }}>
-            {source.title}
-          </h3>
-          <p className="font-kufi text-xs mt-0.5" style={{ color: `${color}aa` }}>
-            {source.author}
-          </p>
-        </div>
-
-        {/* أيقونة النوع */}
+    <>
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-5%' }}
+        transition={{ duration: 0.5, delay: (index % 6) * 0.07, ease: [0.25, 0.46, 0.45, 0.94] }}
+        className="relative rounded-2xl p-5 flex flex-col gap-3 group cursor-pointer"
+        style={{
+          background: 'rgba(255,255,255,0.03)',
+          border: `1px solid ${color}20`,
+        }}
+        whileHover={{ background: `rgba(255,255,255,0.055)`, scale: 1.015, y: -3 }}
+        whileTap={{ scale: 0.98 }}
+        onClick={() => setOpen(true)}
+      >
+        {/* شريط اللون العلوي */}
         <div
-          className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
-          style={{ background: `${color}12`, border: `1px solid ${color}20`, color }}
-        >
-          {source.type === 'book'   && <BookOpen size={16} />}
-          {source.type === 'hadith' && <Scroll size={16} />}
-          {source.type === 'tafsir' && <BookMarked size={16} />}
-          {source.type === 'video'  && <Youtube size={16} />}
-        </div>
-      </div>
+          className="absolute top-0 right-0 left-0 h-0.5 rounded-t-2xl"
+          style={{ background: `linear-gradient(90deg, transparent, ${color}60, transparent)` }}
+        />
 
-      {/* شارات */}
-      <div className="flex items-center gap-2 flex-wrap">
-        <span
-          className="font-kufi text-xs px-2.5 py-0.5 rounded-full"
-          style={{ background: `${color}12`, color, border: `1px solid ${color}20` }}
-        >
-          {TYPE_LABELS[source.type]}
-        </span>
-        {source.badge && (
-          <span className="font-kufi text-xs px-2.5 py-0.5 rounded-full flex items-center gap-1"
-            style={{ background: 'rgba(201,168,76,0.08)', color: '#C9A84C', border: '1px solid rgba(201,168,76,0.2)' }}
+        {/* رأس البطاقة */}
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex-1">
+            <h3 className="font-noto font-bold text-white" style={{ fontSize: '1rem', lineHeight: 1.5 }}>
+              {source.title}
+            </h3>
+            <p className="font-kufi text-sm mt-0.5 font-medium" style={{ color: `${color}dd` }}>
+              {source.author}
+            </p>
+          </div>
+
+          {/* أيقونة النوع */}
+          <div
+            className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+            style={{ background: `${color}15`, border: `1px solid ${color}25`, color }}
           >
-            <Star size={10} />
-            {source.badge}
+            {source.type === 'book'   && <BookOpen size={16} />}
+            {source.type === 'hadith' && <Scroll size={16} />}
+            {source.type === 'tafsir' && <BookMarked size={16} />}
+            {source.type === 'video'  && <Youtube size={16} />}
+          </div>
+        </div>
+
+        {/* شارات */}
+        <div className="flex items-center gap-2 flex-wrap">
+          <span
+            className="font-kufi text-xs px-2.5 py-0.5 rounded-full"
+            style={{ background: `${color}15`, color, border: `1px solid ${color}25` }}
+          >
+            {TYPE_LABELS[source.type]}
           </span>
-        )}
-      </div>
+          {source.badge && (
+            <span className="font-kufi text-xs px-2.5 py-0.5 rounded-full flex items-center gap-1"
+              style={{ background: 'rgba(201,168,76,0.1)', color: '#C9A84C', border: '1px solid rgba(201,168,76,0.22)' }}
+            >
+              <Star size={10} />
+              {source.badge}
+            </span>
+          )}
+        </div>
 
-      {/* الوصف */}
-      <p className="font-noto text-white/55 leading-relaxed" style={{ fontSize: '0.82rem' }}>
-        {source.description}
-      </p>
+        {/* الوصف */}
+        <p className="font-noto text-white leading-relaxed" style={{ fontSize: '0.85rem', opacity: 0.82 }}>
+          {source.description}
+        </p>
 
-      {/* رابط */}
-      {source.link && (
-        <a
-          href={source.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 font-kufi text-xs w-fit px-3 py-1.5 rounded-full mt-1 transition-colors"
-          style={{ color, background: `${color}10`, border: `1px solid ${color}25` }}
-          onClick={e => e.stopPropagation()}
-        >
-          {source.type === 'video' ? <Youtube size={13} /> : <ExternalLink size={13} />}
-          {source.note ?? 'زيارة المصدر'}
-        </a>
-      )}
-    </motion.div>
+        {/* تلميح الضغط */}
+        <p className="font-kufi text-xs mt-auto" style={{ color: `${color}80` }}>
+          اضغط لعرض التفاصيل ›
+        </p>
+      </motion.div>
+
+      <AnimatePresence>
+        {open && <SourceModal source={source} onClose={() => setOpen(false)} />}
+      </AnimatePresence>
+    </>
   );
 };
 
@@ -305,12 +406,12 @@ const SourcesPage: React.FC = () => {
             key={i}
             className="absolute rounded-full bg-white animate-twinkle"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              width: Math.random() * 1.4 + 0.3,
-              height: Math.random() * 1.4 + 0.3,
-              '--dur': `${(Math.random() * 3 + 2).toFixed(1)}s`,
-              '--delay': `${(Math.random() * 5).toFixed(1)}s`,
+              left: `${((i * 137.508) % 100).toFixed(2)}%`,
+              top:  `${((i * 97.315) % 100).toFixed(2)}%`,
+              width:  0.3 + (i % 4) * 0.35,
+              height: 0.3 + (i % 4) * 0.35,
+              '--dur':   `${2 + (i % 5) * 0.7}s`,
+              '--delay': `${(i % 7) * 0.4}s`,
             } as React.CSSProperties}
           />
         ))}
@@ -318,7 +419,6 @@ const SourcesPage: React.FC = () => {
 
       {/* ── Hero ── */}
       <section className="relative pt-28 pb-16 text-center px-6 overflow-hidden">
-        {/* توهّج خلفي */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{ background: 'radial-gradient(ellipse at 50% 30%, rgba(201,168,76,0.08) 0%, transparent 65%)' }}
@@ -348,7 +448,7 @@ const SourcesPage: React.FC = () => {
             المصادر والمراجع
           </h1>
 
-          <p className="font-noto text-white/50 max-w-xl mx-auto leading-relaxed" style={{ fontSize: '1rem' }}>
+          <p className="font-noto text-white max-w-xl mx-auto leading-relaxed" style={{ fontSize: '1rem', opacity: 0.82 }}>
             المصادر العلمية المعتمدة في بناء محتوى موقع نور النبوة، من كتب السيرة والحديث والتفسير،
             إضافةً إلى المصادر المرئية المتخصّصة.
           </p>
@@ -356,7 +456,7 @@ const SourcesPage: React.FC = () => {
           {/* إحصاء */}
           <div className="flex items-center justify-center gap-6 mt-8">
             {[
-              { label: 'كتاب سيرة', count: SOURCES.filter(s => s.type === 'book').length, color: '#C9A84C' },
+              { label: 'كتاب سيرة', count: SOURCES.filter(s => s.type === 'book').length,   color: '#C9A84C' },
               { label: 'كتاب حديث', count: SOURCES.filter(s => s.type === 'hadith').length, color: '#60A5FA' },
               { label: 'تفسير',     count: SOURCES.filter(s => s.type === 'tafsir').length, color: '#A78BFA' },
               { label: 'مرئي',      count: SOURCES.filter(s => s.type === 'video').length,  color: '#F87171' },
@@ -365,7 +465,7 @@ const SourcesPage: React.FC = () => {
                 <div className="font-noto font-bold text-2xl" style={{ color: stat.color }}>
                   {stat.count}
                 </div>
-                <div className="font-kufi text-white/30 text-xs mt-0.5">{stat.label}</div>
+                <div className="font-kufi text-white text-xs mt-0.5" style={{ opacity: 0.7 }}>{stat.label}</div>
               </div>
             ))}
           </div>
@@ -381,10 +481,10 @@ const SourcesPage: React.FC = () => {
         className="text-center py-8 px-6"
         style={{ borderTop: '1px solid rgba(201,168,76,0.08)', borderBottom: '1px solid rgba(201,168,76,0.08)' }}
       >
-        <p className="font-noto text-white/30 text-sm leading-loose">
+        <p className="font-noto text-white text-sm leading-loose" style={{ opacity: 0.75 }}>
           ﴿ لَقَدْ كَانَ لَكُمْ فِي رَسُولِ اللَّهِ أُسْوَةٌ حَسَنَةٌ ﴾
         </p>
-        <p className="font-kufi text-white/20 text-xs mt-1">سورة الأحزاب — الآية 21</p>
+        <p className="font-kufi text-white text-xs mt-1" style={{ opacity: 0.55 }}>سورة الأحزاب — الآية 21</p>
       </motion.div>
 
       {/* ── فلاتر الفئات ── */}
@@ -393,17 +493,16 @@ const SourcesPage: React.FC = () => {
           <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar justify-center flex-wrap">
             {CATEGORIES.map(cat => {
               const isActive = activeCategory === cat.key;
-              const color = cat.key === 'all' ? '#C9A84C'
-                : TYPE_COLORS[cat.key] ?? '#C9A84C';
+              const color = cat.key === 'all' ? '#C9A84C' : TYPE_COLORS[cat.key] ?? '#C9A84C';
               return (
                 <motion.button
                   key={cat.key}
                   onClick={() => setActiveCategory(cat.key)}
                   className="flex items-center gap-2 px-4 py-2 rounded-full font-kufi text-xs whitespace-nowrap transition-colors flex-shrink-0"
                   style={{
-                    background: isActive ? `${color}18` : 'rgba(255,255,255,0.04)',
-                    border: `1px solid ${isActive ? color + '40' : 'rgba(255,255,255,0.08)'}`,
-                    color: isActive ? color : 'rgba(255,255,255,0.45)',
+                    background: isActive ? `${color}18` : 'rgba(255,255,255,0.05)',
+                    border: `1px solid ${isActive ? color + '40' : 'rgba(255,255,255,0.12)'}`,
+                    color: isActive ? color : 'rgba(255,255,255,0.72)',
                   }}
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.96 }}
@@ -419,7 +518,7 @@ const SourcesPage: React.FC = () => {
 
       {/* ── شبكة البطاقات ── */}
       <section className="relative z-10 max-w-5xl mx-auto px-6 py-10 pb-24">
-        {/* مجموعة قائمة التشغيل — مميّزة */}
+        {/* بطاقة الشيخ المميّزة */}
         {(activeCategory === 'all' || activeCategory === 'video') && (
           <div className="mb-10">
             <div className="flex items-center gap-3 mb-5">
@@ -429,13 +528,13 @@ const SourcesPage: React.FC = () => {
               >
                 <Youtube size={16} />
               </div>
-              <h2 className="font-noto font-bold text-white/80" style={{ fontSize: '1.1rem' }}>
+              <h2 className="font-noto font-bold text-white" style={{ fontSize: '1.1rem' }}>
                 قائمة تشغيل الشيخ أحمد السيد
               </h2>
-              <div className="flex-1 h-px opacity-10 bg-white" />
+              <div className="flex-1 h-px bg-white opacity-10" />
             </div>
 
-            {/* بطاقة مميّزة للشيخ */}
+            {/* البطاقة المميّزة */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -444,13 +543,12 @@ const SourcesPage: React.FC = () => {
               className="relative rounded-2xl p-6 mb-4 overflow-hidden"
               style={{
                 background: 'linear-gradient(135deg, rgba(248,113,113,0.08) 0%, rgba(3,8,19,0.9) 60%)',
-                border: '1px solid rgba(248,113,113,0.2)',
+                border: '1px solid rgba(248,113,113,0.22)',
               }}
             >
-              {/* زخرفة خلفية */}
               <div
                 className="absolute top-0 right-0 w-48 h-48 rounded-full pointer-events-none"
-                style={{ background: 'radial-gradient(circle, rgba(248,113,113,0.08) 0%, transparent 70%)', transform: 'translate(30%, -30%)' }}
+                style={{ background: 'radial-gradient(circle, rgba(248,113,113,0.07) 0%, transparent 70%)', transform: 'translate(30%, -30%)' }}
               />
 
               <div className="relative z-10 flex flex-col md:flex-row md:items-center gap-5">
@@ -468,44 +566,37 @@ const SourcesPage: React.FC = () => {
                     </h3>
                     <span
                       className="font-kufi text-xs px-2.5 py-0.5 rounded-full flex items-center gap-1"
-                      style={{ background: 'rgba(248,113,113,0.12)', color: '#F87171', border: '1px solid rgba(248,113,113,0.2)' }}
+                      style={{ background: 'rgba(248,113,113,0.12)', color: '#F87171', border: '1px solid rgba(248,113,113,0.22)' }}
                     >
                       <Star size={10} />
                       قائمة التشغيل
                     </span>
                   </div>
-                  <p className="font-kufi text-sm" style={{ color: 'rgba(248,113,113,0.8)' }}>
-                    الشيخ أحمد السيد — قناة يوتيوب
+                  <p className="font-kufi text-sm font-medium" style={{ color: 'rgba(248,113,113,0.9)' }}>
+                    الشيخ أحمد السيد — قائمة يوتيوب
                   </p>
-                  <p className="font-noto text-white/50 text-sm mt-2 leading-relaxed">
+                  <p className="font-noto text-white text-sm mt-2 leading-relaxed" style={{ opacity: 0.82 }}>
                     سلسلة علمية متكاملة تتناول السيرة النبوية الشريفة بعمق ومنهجية، تغطّي حياة النبي ﷺ
                     من المولد الشريف حتى الوفاة مع دروس الاستنباط والتحليل.
                   </p>
                 </div>
 
                 <a
-                  href="https://www.youtube.com/@Ahmed_Alsayed"
+                  href="https://www.youtube.com/playlist?list=PLZmiPrHYOIsQKAjv6rhq5clGlihS1Xlgu"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-kufi text-sm whitespace-nowrap transition-all self-start md:self-auto"
                   style={{
-                    background: 'rgba(248,113,113,0.12)',
-                    border: '1px solid rgba(248,113,113,0.3)',
+                    background: 'rgba(248,113,113,0.14)',
+                    border: '1px solid rgba(248,113,113,0.32)',
                     color: '#F87171',
                   }}
                 >
                   <Youtube size={15} />
-                  زيارة القناة
+                  فتح قائمة التشغيل
                 </a>
               </div>
             </motion.div>
-
-            {/* باقي مصادر الفيديو */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {SOURCES.filter(s => s.type === 'video').slice(1).map((source, i) => (
-                <SourceCard key={source.id} source={source} index={i} />
-              ))}
-            </div>
           </div>
         )}
 
@@ -528,11 +619,11 @@ const SourcesPage: React.FC = () => {
                 >
                   <Icon size={16} />
                 </div>
-                <h2 className="font-noto font-bold text-white/80" style={{ fontSize: '1.1rem' }}>
+                <h2 className="font-noto font-bold text-white" style={{ fontSize: '1.1rem' }}>
                   {label}
                 </h2>
-                <div className="flex-1 h-px opacity-10 bg-white" />
-                <span className="font-kufi text-xs opacity-30">{items.length} مصدر</span>
+                <div className="flex-1 h-px bg-white opacity-10" />
+                <span className="font-kufi text-xs text-white opacity-50">{items.length} مصدر</span>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -550,10 +641,10 @@ const SourcesPage: React.FC = () => {
         className="text-center py-8 px-6"
         style={{ borderTop: '1px solid rgba(201,168,76,0.08)' }}
       >
-        <p className="font-noto text-white/20 text-xs leading-loose">
+        <p className="font-noto text-white text-xs leading-loose" style={{ opacity: 0.6 }}>
           جميع المصادر من تراث العلماء الأجلاء — رحمهم الله وجزاهم خير الجزاء
         </p>
-        <p className="font-kufi text-white/10 text-xs mt-1">نور النبوة — ﷺ</p>
+        <p className="font-kufi text-white text-xs mt-1" style={{ opacity: 0.4 }}>نور النبوة — ﷺ</p>
       </div>
     </div>
   );
