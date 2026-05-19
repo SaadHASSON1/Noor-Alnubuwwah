@@ -16,7 +16,7 @@ const TimelinePage: React.FC = () => {
       <motion.nav
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
-        className="fixed top-6 right-6 z-50 flex items-center gap-2 text-sm font-kufi"
+        className="fixed top-6 right-20 z-50 flex items-center gap-2 text-sm font-kufi max-w-[calc(100vw-6rem)]"
         style={{ color: '#C9A84C' }}
       >
         <button
