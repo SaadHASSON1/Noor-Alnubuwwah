@@ -2,6 +2,14 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Home, ChevronLeft, ChevronDown } from 'lucide-react';
+import SectionNavigator from '../components/SectionNavigator';
+
+const CHAR_SECTIONS = [
+  { id: 'chr-appearance', label: 'المظهر الكريم' },
+  { id: 'chr-traits',     label: 'أخلاقه العظيمة' },
+  { id: 'chr-habits',     label: 'عاداته اليومية' },
+  { id: 'chr-testimony',  label: 'شهادات الصحابة' },
+];
 
 interface AppearanceCard {
   trait: string;
@@ -222,6 +230,7 @@ const CharacterPage: React.FC = () => {
 
   return (
     <div dir="rtl" className="min-h-screen" style={{ background: '#030813' }}>
+      <SectionNavigator sections={CHAR_SECTIONS} accentColor="#C9A84C" />
       {/* Stars */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         {Array.from({ length: 60 }, (_, i) => (
@@ -313,7 +322,7 @@ const CharacterPage: React.FC = () => {
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 pb-24 space-y-24">
 
         {/* Section 1: المظهر الكريم */}
-        <section>
+        <section id="chr-appearance">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -385,7 +394,7 @@ const CharacterPage: React.FC = () => {
         </section>
 
         {/* Section 2: أخلاقه العظيمة */}
-        <section>
+        <section id="chr-traits">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -476,7 +485,7 @@ const CharacterPage: React.FC = () => {
         </section>
 
         {/* Section 3: عاداته اليومية */}
-        <section>
+        <section id="chr-habits">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -583,7 +592,7 @@ const CharacterPage: React.FC = () => {
         </section>
 
         {/* Section 4: كيف وصفه الصحابة */}
-        <section>
+        <section id="chr-testimony">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
