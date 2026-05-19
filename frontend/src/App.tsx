@@ -36,15 +36,45 @@ const BookmarksPage      = lazy(() => import('./pages/BookmarksPage'));
 /* ── Page loading fallback ── */
 const PageLoader: React.FC = () => (
   <div
-    className="min-h-screen flex items-center justify-center"
+    className="min-h-screen flex flex-col items-center justify-center gap-6"
     style={{ background: '#030813' }}
   >
+    {/* Glow ring */}
     <motion.div
-      animate={{ opacity: [0.3, 1, 0.3] }}
-      transition={{ duration: 1.6, repeat: Infinity }}
-      className="font-noto text-islamic-gold/60 text-lg"
+      animate={{ scale: [1, 1.08, 1], opacity: [0.12, 0.22, 0.12] }}
+      transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
+      className="absolute rounded-full pointer-events-none"
+      style={{
+        width: 260, height: 260,
+        background: 'radial-gradient(circle, rgba(201,168,76,0.18) 0%, transparent 70%)',
+      }}
+    />
+
+    {/* بسم الله الرحمن الرحيم */}
+    <motion.p
+      animate={{ opacity: [0.5, 1, 0.5] }}
+      transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+      className="font-noto text-center relative z-10"
+      style={{
+        fontSize: 'clamp(2.4rem, 9vw, 6rem)',
+        color: '#C9A84C',
+        textShadow: '0 0 40px rgba(201,168,76,0.8), 0 0 80px rgba(201,168,76,0.3)',
+        lineHeight: 1.3,
+      }}
     >
-      ﷽
+      بسم الله الرحمن الرحيم
+    </motion.p>
+
+    {/* Thin progress line */}
+    <motion.div
+      className="relative z-10 rounded-full overflow-hidden"
+      style={{ width: 'min(220px, 60vw)', height: 1, background: 'rgba(201,168,76,0.1)' }}
+    >
+      <motion.div
+        animate={{ x: ['-100%', '100%'] }}
+        transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+        style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, transparent, #C9A84C, transparent)' }}
+      />
     </motion.div>
   </div>
 );
