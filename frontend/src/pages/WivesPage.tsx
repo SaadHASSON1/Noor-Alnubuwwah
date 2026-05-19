@@ -248,7 +248,7 @@ const WifeModal: React.FC<{ wife: Wife; onClose: () => void }> = ({ wife, onClos
           <p className="font-noto mb-2" style={{ fontSize: '0.82rem', color: accent }}>
             {wife.nickname}
           </p>
-          <p className="font-kufi text-xs mb-5" style={{ color: 'rgba(255,255,255,0.70)' }}>
+          <p className="font-kufi text-xs mb-5" style={{ color: 'rgba(255,255,255,0.95)' }}>
             {wife.marriageYear}
           </p>
 
@@ -261,7 +261,7 @@ const WifeModal: React.FC<{ wife: Wife; onClose: () => void }> = ({ wife, onClos
           </div>
 
           {/* Full story */}
-          <p className="font-noto mb-5" style={{ color: 'rgba(255,255,255,0.78)', fontSize: '0.9rem', lineHeight: 1.95 }}>
+          <p className="font-noto mb-5" style={{ color: 'rgba(255,255,255,0.95)', fontSize: '0.9rem', lineHeight: 1.95 }}>
             {wife.fullStory}
           </p>
 
@@ -270,7 +270,7 @@ const WifeModal: React.FC<{ wife: Wife; onClose: () => void }> = ({ wife, onClos
             className="rounded-xl p-3 mb-4"
             style={{ background: 'rgba(0,0,0,0.25)', borderRight: `2px solid ${accent}` }}
           >
-            <p className="font-kufi text-xs mb-1" style={{ color: 'rgba(255,255,255,0.75)' }}>أبرز إسهامها</p>
+            <p className="font-kufi text-xs mb-1" style={{ color: 'rgba(255,255,255,0.95)' }}>أبرز إسهامها</p>
             <p className="font-noto" style={{ color: 'rgba(255,255,255,0.82)', fontSize: '0.87rem', lineHeight: 1.75 }}>
               {wife.achievement}
             </p>
@@ -284,7 +284,7 @@ const WifeModal: React.FC<{ wife: Wife; onClose: () => void }> = ({ wife, onClos
             <p className="font-noto italic mb-2" style={{ color: accent, fontSize: '0.9rem', lineHeight: 1.9 }}>
               "{wife.quote}"
             </p>
-            <p className="font-kufi text-xs" style={{ color: 'rgba(255,255,255,0.68)' }}>{wife.quoteSource}</p>
+            <p className="font-kufi text-xs" style={{ color: 'rgba(255,255,255,0.95)' }}>{wife.quoteSource}</p>
           </div>
         </div>
       </motion.div>
@@ -453,7 +453,7 @@ const WivesPage: React.FC = () => {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-1.5">
                     <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: wife.accentColor }} />
-                    <p className="font-kufi text-xs" style={{ color: 'rgba(255,255,255,0.70)' }}>
+                    <p className="font-kufi text-xs" style={{ color: 'rgba(255,255,255,0.95)' }}>
                       {wife.marriageYear}
                     </p>
                   </div>
@@ -479,7 +479,7 @@ const WivesPage: React.FC = () => {
           />
           <p
             className="font-noto"
-            style={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.9rem', lineHeight: 1.8 }}
+            style={{ color: 'rgba(255,255,255,0.95)', fontSize: '0.9rem', lineHeight: 1.8 }}
           >
             رضي الله عن أمهات المؤمنين جميعاً — فضلُهنّ على الأمة لا يُحصى ولا يُقدَّر
           </p>

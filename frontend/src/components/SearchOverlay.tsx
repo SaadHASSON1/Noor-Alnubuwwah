@@ -265,13 +265,13 @@ const SearchOverlay: React.FC<Props> = ({ isOpen, onClose }) => {
                             >
                               {ev.chapter}
                             </span>
-                            <span style={{ color: 'rgba(255,255,255,0.2)', fontSize: '0.7rem' }}>·</span>
-                            <span className="font-kufi" style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.5)' }}>
+                            <span style={{ color: 'rgba(255,255,255,0.92)', fontSize: '0.7rem' }}>·</span>
+                            <span className="font-kufi" style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.93)' }}>
                               {ev.year_display_m}
                             </span>
                             {typeLabel && (
                               <>
-                                <span style={{ color: 'rgba(255,255,255,0.2)', fontSize: '0.7rem' }}>·</span>
+                                <span style={{ color: 'rgba(255,255,255,0.92)', fontSize: '0.7rem' }}>·</span>
                                 <span
                                   className="font-kufi rounded px-1 py-0.5"
                                   style={{

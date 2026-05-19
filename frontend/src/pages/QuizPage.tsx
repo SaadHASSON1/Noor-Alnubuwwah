@@ -540,10 +540,10 @@ const QuizPage: React.FC = () => {
                         border: '1px solid rgba(201,168,76,0.15)',
                       }}
                     >
-                      <p className="font-kufi text-xs mb-1" style={{ color: 'rgba(255,255,255,0.75)' }}>
+                      <p className="font-kufi text-xs mb-1" style={{ color: 'rgba(255,255,255,0.95)' }}>
                         تقييمك
                       </p>
-                      <p className="font-noto text-sm" style={{ color: 'rgba(255,255,255,0.7)', lineHeight: 1.8 }}>
+                      <p className="font-noto text-sm" style={{ color: 'rgba(255,255,255,0.95)', lineHeight: 1.8 }}>
                         أجبتَ على {score} أسئلة صحيحة من أصل {totalQ} — نسبتك {Math.round(pct)}٪
                         {pct < 70 ? ' — استمر في قراءة السيرة لتحسين نتيجتك!' : ' — بارك الله فيك!'}
                       </p>
@@ -587,7 +587,7 @@ const QuizPage: React.FC = () => {
                         style={{
                           background: 'rgba(255,255,255,0.03)',
                           border: '1px solid rgba(255,255,255,0.08)',
-                          color: 'rgba(255,255,255,0.75)',
+                          color: 'rgba(255,255,255,0.95)',
                         }}
                       >
                         <Home size={14} />

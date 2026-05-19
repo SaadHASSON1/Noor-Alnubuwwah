@@ -129,7 +129,7 @@ const ChapterSidebar: React.FC<Props> = ({ events }) => {
               {/* Header */}
               <div className="px-5 py-4 border-b" style={{ borderColor: 'rgba(201,168,76,0.15)' }}>
                 <h2 className="font-amiri text-xl" style={{ color: '#C9A84C' }}>نور النبوة</h2>
-                <p className="font-noto text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.75)' }}>
+                <p className="font-noto text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.95)' }}>
                   السيرة النبوية المشرفة
                 </p>
               </div>
@@ -157,13 +157,13 @@ const ChapterSidebar: React.FC<Props> = ({ events }) => {
                         <span className="font-kufi flex-1 text-sm" style={{ color: hasActive ? color : isExpanded ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.5)' }}>
                           {chapter.name}
                         </span>
-                        <span className="text-xs font-noto" style={{ color: 'rgba(255,255,255,0.25)' }}>
+                        <span className="text-xs font-noto" style={{ color: 'rgba(255,255,255,0.92)' }}>
                           {chapter.events.length}
                         </span>
                         <svg
                           viewBox="0 0 10 10" width={10} height={10}
                           style={{
-                            color: 'rgba(255,255,255,0.68)',
+                            color: 'rgba(255,255,255,0.95)',
                             transform: isExpanded ? 'rotate(90deg)' : 'rotate(0deg)',
                             transition: 'transform 0.2s',
                             flexShrink: 0,
@@ -204,7 +204,7 @@ const ChapterSidebar: React.FC<Props> = ({ events }) => {
                                     >
                                       {ev.title}
                                     </span>
-                                    <span className="font-noto text-xs" style={{ color: 'rgba(255,255,255,0.22)' }}>
+                                    <span className="font-noto text-xs" style={{ color: 'rgba(255,255,255,0.92)' }}>
                                       {ev.year_display_m}
                                     </span>
                                   </button>
@@ -221,7 +221,7 @@ const ChapterSidebar: React.FC<Props> = ({ events }) => {
 
               {/* Footer */}
               <div className="px-5 py-3 border-t" style={{ borderColor: 'rgba(201,168,76,0.1)' }}>
-                <p className="font-noto text-xs text-center" style={{ color: 'rgba(255,255,255,0.2)' }}>
+                <p className="font-noto text-xs text-center" style={{ color: 'rgba(255,255,255,0.92)' }}>
                   ١٨ محطة في السيرة النبوية
                 </p>
               </div>

@@ -501,7 +501,7 @@ const CompanionModal: React.FC<{ companion: Companion; onClose: () => void }> = 
           {/* Description */}
           <p
             className="font-noto mb-5"
-            style={{ fontSize: '0.92rem', lineHeight: 2, color: 'rgba(255,255,255,0.78)' }}
+            style={{ fontSize: '0.92rem', lineHeight: 2, color: 'rgba(255,255,255,0.95)' }}
           >
             {companion.description}
           </p>
