@@ -15,7 +15,7 @@ const QUESTION_POOL: Question[] = [
   // مكة
   {
     question: 'في أي عام وُلد النبي ﷺ؟',
-    options: ['٥٧١ م', '٥٦٠ م', '٥٨٠ م', '٥٥٠ م'],
+    options: ['571 م', '560 م', '580 م', '550 م'],
     correct: 0,
     category: 'مكة',
   },
@@ -58,13 +58,13 @@ const QUESTION_POOL: Question[] = [
   // المدينة
   {
     question: 'في أي عام هاجر النبي ﷺ إلى المدينة المنورة؟',
-    options: ['٦٢٢ م', '٦٢٠ م', '٦١٨ م', '٦٢٥ م'],
+    options: ['622 م', '620 م', '618 م', '625 م'],
     correct: 0,
     category: 'المدينة',
   },
   {
     question: 'كم يوماً مكث النبي ﷺ في غار ثور مع أبي بكر الصديق؟',
-    options: ['٣ أيام', '٧ أيام', 'يوم واحد', '٥ أيام'],
+    options: ['3 أيام', '7 أيام', 'يوم واحد', '5 أيام'],
     correct: 0,
     category: 'المدينة',
   },
@@ -89,13 +89,13 @@ const QUESTION_POOL: Question[] = [
   // الغزوات
   {
     question: 'في أي عام هجري وقعت غزوة بدر الكبرى؟',
-    options: ['٢ هـ', '١ هـ', '٣ هـ', '٤ هـ'],
+    options: ['2 هـ', '1 هـ', '3 هـ', '4 هـ'],
     correct: 0,
     category: 'الغزوات',
   },
   {
     question: 'كم كان عدد المسلمين في غزوة بدر الكبرى؟',
-    options: ['٣١٣', '٣٠٠', '٥٠٠', '٧٠٠'],
+    options: ['313', '300', '500', '700'],
     correct: 0,
     category: 'الغزوات',
   },
@@ -144,7 +144,7 @@ const QUESTION_POOL: Question[] = [
   },
   {
     question: 'كم غزوة شارك فيها النبي ﷺ بنفسه؟',
-    options: ['٢٧', '١٥', '٣٠', '٢٠'],
+    options: ['27', '15', '30', '20'],
     correct: 0,
     category: 'الصحابة',
   },
@@ -175,7 +175,7 @@ const QUESTION_POOL: Question[] = [
   },
   {
     question: 'كم سنة استغرق نزول القرآن الكريم؟',
-    options: ['٢٣ سنة', '١٣ سنة', '١٠ سنوات', '٣٠ سنة'],
+    options: ['23 سنة', '13 سنة', '10 سنوات', '30 سنة'],
     correct: 0,
     category: 'القرآن',
   },
@@ -188,7 +188,7 @@ const QUESTION_POOL: Question[] = [
   // الشمائل
   {
     question: 'كم سنة عاش النبي ﷺ؟',
-    options: ['٦٣', '٦٠', '٧٠', '٥٥'],
+    options: ['63', '60', '70', '55'],
     correct: 0,
     category: 'الشمائل',
   },

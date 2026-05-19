@@ -17,7 +17,7 @@ const SCRIBES: Scribe[] = [
     name: 'زيد بن ثابت',
     role: 'كبير كتّاب الوحي',
     achievement: 'حفظ القرآن كاملاً وتولّى جمعه في عهد أبي بكر ثم نسخه في عهد عثمان. تعلّم السريانية والعبرية بأمر النبي ﷺ في سبعة عشر يوماً.',
-    startedWriting: '٥ هـ',
+    startedWriting: '5 هـ',
     notable: true,
   },
   {
@@ -31,7 +31,7 @@ const SCRIBES: Scribe[] = [
     name: 'عمر بن الخطاب',
     role: 'كاتب وحي ورسائل',
     achievement: 'كتب الوحي ورسائل النبي ﷺ، وكان له دور في جمع القرآن إذ هو أول من أشار بذلك.',
-    startedWriting: 'بعد إسلامه ٦ هـ ق.هـ',
+    startedWriting: 'بعد إسلامه 6 هـ ق.هـ',
     notable: false,
   },
   {
@@ -59,7 +59,7 @@ const SCRIBES: Scribe[] = [
     name: 'معاوية بن أبي سفيان',
     role: 'كاتب وحي',
     achievement: 'من أكثر الصحابة كتابةً للوحي، قال له النبي ﷺ: «اللهم علّمه الكتابة والحساب».',
-    startedWriting: '٨ هـ (بعد الفتح)',
+    startedWriting: '8 هـ (بعد الفتح)',
     notable: false,
   },
   {
@@ -122,21 +122,21 @@ const SCRIBES: Scribe[] = [
     name: 'خالد بن الوليد',
     role: 'كاتب ورسائل',
     achievement: 'سيف الله المسلول، كتب بعض رسائل النبي ﷺ العسكرية والدبلوماسية.',
-    startedWriting: '٨ هـ (بعد إسلامه)',
+    startedWriting: '8 هـ (بعد إسلامه)',
     notable: false,
   },
   {
     name: 'عمرو بن العاص',
     role: 'كاتب ودبلوماسي',
     achievement: 'كتب رسائل النبي ﷺ للملوك وقاد السفارات الدبلوماسية، فاتح مصر لاحقاً.',
-    startedWriting: '٨ هـ (بعد إسلامه)',
+    startedWriting: '8 هـ (بعد إسلامه)',
     notable: false,
   },
   {
     name: 'المغيرة بن شعبة',
     role: 'كاتب وسفير',
     achievement: 'كتب بعض رسائل النبي ﷺ وعُرف بالدهاء السياسي والفراسة.',
-    startedWriting: '٦ هـ',
+    startedWriting: '6 هـ',
     notable: false,
   },
   {
@@ -267,7 +267,7 @@ const ScribesPage: React.FC = () => {
           className="font-noto text-white/55 max-w-lg mx-auto mb-4"
           style={{ fontSize: 'clamp(0.9rem, 2vw, 1.05rem)', lineHeight: 2 }}
         >
-          ﴿ن ۚ وَالْقَلَمِ وَمَا يَسْطُرُونَ﴾ — القلم: ١
+          ﴿ن ۚ وَالْقَلَمِ وَمَا يَسْطُرُونَ﴾ — القلم: 1
         </motion.p>
 
         {/* Chief scribe note */}

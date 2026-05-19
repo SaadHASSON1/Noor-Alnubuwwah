@@ -110,7 +110,7 @@ const HomePage: React.FC = () => {
             ﴿لَّقَدْ كَانَ لَكُمْ فِي رَسُولِ اللَّهِ أُسْوَةٌ حَسَنَةٌ﴾
           </p>
           <p className="font-kufi text-islamic-gold/65 text-sm tracking-widest">
-            — سورة الأحزاب: ٢١
+            — سورة الأحزاب: 21
           </p>
         </motion.div>
       </section>

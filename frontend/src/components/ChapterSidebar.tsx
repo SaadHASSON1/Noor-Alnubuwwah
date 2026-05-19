@@ -222,7 +222,7 @@ const ChapterSidebar: React.FC<Props> = ({ events }) => {
               {/* Footer */}
               <div className="px-5 py-3 border-t" style={{ borderColor: 'rgba(201,168,76,0.1)' }}>
                 <p className="font-noto text-xs text-center" style={{ color: 'rgba(255,255,255,0.92)' }}>
-                  ١٨ محطة في السيرة النبوية
+                  18 محطة في السيرة النبوية
                 </p>
               </div>
             </motion.div>
