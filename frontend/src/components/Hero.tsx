@@ -6,7 +6,9 @@ const STATS = [
   { value: '٦٣ عاماً',  label: 'عمره ﷺ' },
   { value: '٢٣ عاماً',  label: 'مدة النبوة' },
   { value: '٢٧ غزوة',   label: 'غزواته ﷺ' },
-  { value: '٨ فصول',    label: 'فصول السيرة' },
+  { value: '٩٩+ اسماً', label: 'من أسمائه ﷺ' },
+  { value: '٢٣ كاتباً', label: 'كتّاب الوحي' },
+  { value: '١٨+ قسماً', label: 'أقسام الموقع' },
 ];
 
 /* ── Star particles — deterministic positions ── */
@@ -167,7 +169,7 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.8 }}
-          className="grid grid-cols-2 sm:grid-cols-4 gap-3 justify-items-center w-full max-w-lg mx-auto mb-8"
+          className="grid grid-cols-3 sm:grid-cols-6 gap-3 justify-items-center w-full max-w-2xl mx-auto mb-8"
         >
           {STATS.map((stat, i) => (
             <motion.div

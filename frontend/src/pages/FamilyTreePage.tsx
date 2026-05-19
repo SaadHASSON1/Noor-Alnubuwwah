@@ -234,8 +234,8 @@ const LineageGrid: React.FC = () => {
               className="font-noto font-bold text-center leading-snug"
               style={{
                 fontSize: isLast
-                  ? 'clamp(0.9rem, 2vw, 1.15rem)'
-                  : 'clamp(0.82rem, 1.7vw, 1rem)',
+                  ? 'clamp(1.1rem, 2.5vw, 1.45rem)'
+                  : 'clamp(0.95rem, 2vw, 1.2rem)',
                 color: isLast
                   ? '#C9A84C'
                   : `rgba(255,255,255,${(0.36 + progress * 0.64).toFixed(3)})`,
