@@ -285,7 +285,6 @@ const BattleCard: React.FC<{ battle: Battle; index: number }> = ({ battle, index
           </div>
         </div>
 
-        </div>
 
         {/* Expanded content */}
         <AnimatePresence>
