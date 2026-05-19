@@ -342,7 +342,7 @@ const FamilyTreePage: React.FC = () => {
             className="flex items-center justify-center gap-6 mb-8 flex-wrap"
           >
             {[
-              { label: 'عدنان', sub: 'الجد الأعلى', color: 'rgba(255,255,255,0.95)' },
+              { label: 'عدنان', sub: 'الجد الأعلى', color: '#f2f3f3' },
               { label: '←', sub: '22 جيلاً', color: '#C9A84C', arrow: true },
               { label: 'محمد ﷺ', sub: 'خاتم الأنبياء', color: '#C9A84C' },
             ].map((item, i) => (

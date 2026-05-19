@@ -214,7 +214,7 @@ const TimelinePage: React.FC = () => {
                           </h3>
                           <p
                             className="text-sm leading-relaxed"
-                            style={{ color: isLight ? '#6b4c1e' : 'rgba(255,255,255,0.7)' }}
+                            style={{ color: isLight ? '#6b4c1e' : '#b3b5b8' }}
                           >
                             {ev.subtitle}
                           </p>

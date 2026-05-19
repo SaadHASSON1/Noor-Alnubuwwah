@@ -196,7 +196,7 @@ const LetterCard: React.FC<{ letter: Letter; index: number }> = ({ letter, index
         <button
           onClick={() => setExpanded(v => !v)}
           className="w-full flex items-center justify-center gap-1.5 pt-2 font-kufi text-xs transition-colors"
-          style={{ color: '#C9A84C', borderTop: '1px solid rgba(201,168,76,0.1)' }}
+          style={{ color: '#C9A84C', borderTop: '1px solid #171819' }}
         >
           {expanded ? <><ChevronUp size={13} /> إخفاء التفاصيل</> : <><ChevronDown size={13} /> عرض نص الرسالة والنتيجة</>}
         </button>
@@ -324,7 +324,7 @@ const LettersPage: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9 }}
           className="font-noto font-bold mb-3"
-          style={{ fontSize: 'clamp(1.8rem, 5.5vw, 3.5rem)', color: '#C9A84C', textShadow: '0 0 30px rgba(201,168,76,0.4)' }}
+          style={{ fontSize: 'clamp(1.8rem, 5.5vw, 3.5rem)', color: '#C9A84C', textShadow: '0 0 30px #52482a' }}
         >
           رسائل النبي ﷺ إلى الملوك
         </motion.h1>
@@ -416,7 +416,7 @@ const LettersPage: React.FC = () => {
           {(['الكل', 'أسلم', 'رفض', 'تردد', 'أكرم ولم يسلم'] as const).map(r => {
             const isActive = responseFilter === r;
             const style = r === 'الكل'
-              ? { color: '#C9A84C', bg: 'rgba(201,168,76,0.18)', border: 'rgba(201,168,76,0.4)' }
+              ? { color: '#C9A84C', bg: '#27251d', border: '#52482a' }
               : { color: RESPONSE_STYLES[r].text, bg: RESPONSE_STYLES[r].bg, border: RESPONSE_STYLES[r].border };
             return (
               <motion.button
@@ -427,7 +427,7 @@ const LettersPage: React.FC = () => {
                 style={{
                   background: isActive ? style.bg : 'rgba(255,255,255,0.04)',
                   border: `1px solid ${isActive ? style.border : 'rgba(255,255,255,0.08)'}`,
-                  color: isActive ? style.color : 'rgba(255,255,255,0.45)',
+                  color: isActive ? style.color : '#74777d',
                 }}
               >
                 {r}

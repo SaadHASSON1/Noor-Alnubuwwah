@@ -217,7 +217,7 @@ const BattleSimulationOverlay: React.FC<BattleSimulationProps> = ({ battle, onCl
               </motion.p>
               <motion.h2
                 className="text-4xl font-bold font-amiri text-center animate-glow-pulse"
-                style={{ color: '#C9A84C', textShadow: '0 0 30px rgba(201,168,76,0.7)' }}
+                style={{ color: '#C9A84C', textShadow: '0 0 30px #8e783b' }}
                 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
               >
                 {battle.name_ar || 'المعركة'}

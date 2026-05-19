@@ -148,7 +148,7 @@ const HomePage: React.FC = () => {
             className="flex items-center justify-center gap-2 mb-4"
           >
             <Heart size={13} style={{ color: '#E8A8A8' }} />
-            <p className="font-kufi" style={{ fontSize: '0.78rem', color: 'rgba(201,168,76,0.45)', letterSpacing: '0.14em' }}>
+            <p className="font-kufi" style={{ fontSize: '0.78rem', color: '#5c502d', letterSpacing: '0.14em' }}>
               صُنع بمحبة واحترام لسيرة النبي ﷺ
             </p>
             <Heart size={13} style={{ color: '#E8A8A8' }} />
@@ -163,11 +163,11 @@ const HomePage: React.FC = () => {
           >
             <p
               className="font-noto font-bold mb-1"
-              style={{ fontSize: 'clamp(1.3rem, 3vw, 1.7rem)', color: '#C9A84C', textShadow: '0 0 20px rgba(201,168,76,0.25)' }}
+              style={{ fontSize: 'clamp(1.3rem, 3vw, 1.7rem)', color: '#C9A84C', textShadow: '0 0 20px #353021' }}
             >
               سعد حسون
             </p>
-            <p className="font-kufi" style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.35)', letterSpacing: '0.06em' }}>
+            <p className="font-kufi" style={{ fontSize: '0.85rem', color: '#5b5e66', letterSpacing: '0.06em' }}>
               مطوّر المنصة ومنشئ المحتوى
             </p>
           </motion.div>
@@ -194,7 +194,7 @@ const HomePage: React.FC = () => {
             >
               <Mail size={14} />
               <span>contact@x13labs.com</span>
-              <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.75rem' }}>— للشكاوى والاقتراحات والتحسينات</span>
+              <span style={{ color: '#4f525a', fontSize: '0.75rem' }}>— للشكاوى والاقتراحات والتحسينات</span>
             </a>
           </motion.div>
 
@@ -205,7 +205,7 @@ const HomePage: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.3 }}
             className="font-kufi"
-            style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.18)', letterSpacing: '0.1em' }}
+            style={{ fontSize: '0.72rem', color: '#30343d', letterSpacing: '0.1em' }}
           >
             نور النبوة © 2026 — المحتوى موثّق من المصادر الإسلامية المعتمدة
           </motion.p>

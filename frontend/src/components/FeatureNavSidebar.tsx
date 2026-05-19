@@ -156,7 +156,7 @@ const FeatureNavSidebar: React.FC = () => {
             >
               <p
                 className="font-noto font-bold"
-                style={{ fontSize: '1.2rem', color: '#C9A84C', textShadow: '0 0 15px rgba(201,168,76,0.3)' }}
+                style={{ fontSize: '1.2rem', color: '#C9A84C', textShadow: '0 0 15px #3e3824' }}
               >
                 نور النبوة
               </p>
@@ -191,11 +191,11 @@ const FeatureNavSidebar: React.FC = () => {
                     style={{
                       background: isActive ? 'rgba(201,168,76,0.12)' : 'transparent',
                       border: `1px solid ${isActive ? 'rgba(201,168,76,0.3)' : 'transparent'}`,
-                      color: isActive ? '#C9A84C' : 'rgba(255,255,255,0.92)',
+                      color: isActive ? '#C9A84C' : '#ebebec',
                     }}
                     whileTap={{ scale: 0.97 }}
                   >
-                    <span className="nav-icon" style={{ color: isActive ? '#C9A84C' : 'rgba(201,168,76,0.45)' }}>
+                    <span className="nav-icon" style={{ color: isActive ? '#C9A84C' : '#5c502d' }}>
                       {item.icon}
                     </span>
                     <span className="font-noto text-sm">{item.label}</span>

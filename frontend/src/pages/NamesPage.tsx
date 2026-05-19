@@ -301,7 +301,7 @@ const NamesPage: React.FC = () => {
             style={{
               background: activeGroup === null ? 'rgba(201,168,76,0.2)' : 'rgba(255,255,255,0.04)',
               border: `1px solid ${activeGroup === null ? 'rgba(201,168,76,0.4)' : 'rgba(255,255,255,0.08)'}`,
-              color: activeGroup === null ? '#C9A84C' : 'rgba(255,255,255,0.45)',
+              color: activeGroup === null ? '#C9A84C' : '#74777d',
             }}
           >
             الكل
@@ -314,7 +314,7 @@ const NamesPage: React.FC = () => {
               style={{
                 background: activeGroup === g.groupTitle ? `${g.color}22` : 'rgba(255,255,255,0.04)',
                 border: `1px solid ${activeGroup === g.groupTitle ? `${g.color}50` : 'rgba(255,255,255,0.08)'}`,
-                color: activeGroup === g.groupTitle ? g.color : 'rgba(255,255,255,0.45)',
+                color: activeGroup === g.groupTitle ? g.color : '#74777d',
               }}
             >
               {g.groupTitle}

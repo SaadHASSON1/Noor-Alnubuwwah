@@ -463,7 +463,7 @@ const CompanionModal: React.FC<{ companion: Companion; onClose: () => void }> = 
         <button
           onClick={onClose}
           className="absolute top-4 left-4 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-colors"
-          style={{ background: 'rgba(255,255,255,0.07)', color: 'rgba(255,255,255,0.82)' }}
+          style={{ background: 'rgba(255,255,255,0.07)', color: '#d2d3d5' }}
           onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.14)')}
           onMouseLeave={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.07)')}
         >
@@ -501,7 +501,7 @@ const CompanionModal: React.FC<{ companion: Companion; onClose: () => void }> = 
           {/* Description */}
           <p
             className="font-noto mb-5"
-            style={{ fontSize: '0.92rem', lineHeight: 2, color: 'rgba(255,255,255,0.95)' }}
+            style={{ fontSize: '0.92rem', lineHeight: 2, color: '#f2f3f3' }}
           >
             {companion.description}
           </p>
@@ -586,7 +586,7 @@ const CompanionsPage: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9 }}
           className="font-noto font-bold mb-3"
-          style={{ fontSize: 'clamp(2.2rem, 6vw, 4rem)', color: '#C9A84C', textShadow: '0 0 30px rgba(201,168,76,0.4)' }}
+          style={{ fontSize: 'clamp(2.2rem, 6vw, 4rem)', color: '#C9A84C', textShadow: '0 0 30px #52482a' }}
         >
           الصحابة الكرام
         </motion.h1>
@@ -660,7 +660,7 @@ const CompanionsPage: React.FC = () => {
                 style={{
                   background: isActive ? `${color}22` : 'rgba(255,255,255,0.04)',
                   border: `1px solid ${isActive ? `${color}55` : 'rgba(255,255,255,0.08)'}`,
-                  color: isActive ? color : 'rgba(255,255,255,0.45)',
+                  color: isActive ? color : '#74777d',
                 }}
               >
                 {cat}

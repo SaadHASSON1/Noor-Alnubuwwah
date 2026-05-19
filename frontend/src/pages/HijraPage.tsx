@@ -253,7 +253,7 @@ const HijraPage: React.FC = () => {
               }}
             >
               {item.icon}
-              <span style={{ color: 'rgba(255,255,255,0.92)' }}>{item.label}:</span>
+              <span style={{ color: '#ebebec' }}>{item.label}:</span>
               <span>{item.value}</span>
             </div>
           ))}
@@ -346,7 +346,7 @@ const HijraPage: React.FC = () => {
                         </h3>
                         <p
                           className="font-noto mt-0.5"
-                          style={{ fontSize: 'clamp(0.82rem, 1.8vw, 0.95rem)', color: 'rgba(255,255,255,0.93)' }}
+                          style={{ fontSize: 'clamp(0.82rem, 1.8vw, 0.95rem)', color: '#edeeee' }}
                         >
                           {stage.subtitle}
                         </p>
@@ -365,7 +365,7 @@ const HijraPage: React.FC = () => {
                         />
                         <p
                           className="font-noto"
-                          style={{ fontSize: 'clamp(0.88rem, 2vw, 1rem)', color: 'rgba(255,255,255,0.96)', lineHeight: 1.9 }}
+                          style={{ fontSize: 'clamp(0.88rem, 2vw, 1rem)', color: '#f5f5f6', lineHeight: 1.9 }}
                         >
                           {point}
                         </p>
@@ -469,7 +469,7 @@ const HijraPage: React.FC = () => {
               </p>
               <p
                 className="font-kufi mt-1"
-                style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.92)' }}
+                style={{ fontSize: '0.78rem', color: '#ebebec' }}
               >
                 {stat.label}
               </p>
@@ -487,7 +487,7 @@ const HijraPage: React.FC = () => {
         >
           <p
             className="font-noto mb-6"
-            style={{ color: 'rgba(255,255,255,0.92)', fontSize: '0.88rem', lineHeight: 1.8 }}
+            style={{ color: '#ebebec', fontSize: '0.88rem', lineHeight: 1.8 }}
           >
             المصادر: صحيح البخاري — صحيح مسلم — السيرة النبوية لابن هشام — الرحيق المختوم
           </p>

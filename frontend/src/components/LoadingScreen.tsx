@@ -250,7 +250,7 @@ const LoadingScreen: React.FC<Props> = ({ onComplete }) => {
         initial={{ opacity: 0 }} animate={{ opacity: showVerse ? 1 : 0 }} transition={{ duration: 0.5 }}>
         <p className="font-noto leading-loose text-center"
           dir="rtl"
-          style={{ fontSize: 'clamp(1rem, 3vw, 1.5rem)', color: '#C9A84C', textShadow: '0 0 20px rgba(201,168,76,0.3)' }}
+          style={{ fontSize: 'clamp(1rem, 3vw, 1.5rem)', color: '#C9A84C', textShadow: '0 0 20px #3e3824' }}
         >
           {verseText}
           {verseText.length < VERSE.length && (
@@ -272,7 +272,7 @@ const LoadingScreen: React.FC<Props> = ({ onComplete }) => {
         </div>
 
         {progress < 100 ? (
-          <p className="font-kufi" style={{ fontSize: 'clamp(0.8rem, 2vw, 0.95rem)', color: 'rgba(201,168,76,0.45)' }}>
+          <p className="font-kufi" style={{ fontSize: 'clamp(0.8rem, 2vw, 0.95rem)', color: '#5c502d' }}>
             جاري التحميل...
           </p>
         ) : (

@@ -187,7 +187,7 @@ const Hero: React.FC = () => {
               </span>
               <span
                 className="font-kufi text-center leading-tight"
-                style={{ fontSize: 'clamp(0.62rem, 1.3vw, 0.78rem)', color: 'rgba(255,255,255,0.55)', whiteSpace: 'nowrap' }}
+                style={{ fontSize: 'clamp(0.62rem, 1.3vw, 0.78rem)', color: '#8e9095', whiteSpace: 'nowrap' }}
               >
                 {stat.label}
               </span>
