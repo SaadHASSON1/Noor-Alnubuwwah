@@ -23,7 +23,7 @@ const SectionHeader: React.FC<{ label: string; title: string; subtitle: string }
     <motion.p
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false }}
+      viewport={{ once: true }}
       transition={{ duration: 0.6 }}
       className="font-kufi text-islamic-gold/80 tracking-widest text-sm mb-3"
     >
@@ -32,7 +32,7 @@ const SectionHeader: React.FC<{ label: string; title: string; subtitle: string }
     <motion.h2
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false }}
+      viewport={{ once: true }}
       transition={{ duration: 0.7, delay: 0.1 }}
       className="font-noto font-bold text-white mb-3"
       style={{ fontSize: 'clamp(1.8rem, 5vw, 3.5rem)' }}
@@ -42,7 +42,7 @@ const SectionHeader: React.FC<{ label: string; title: string; subtitle: string }
     <motion.p
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      viewport={{ once: false }}
+      viewport={{ once: true }}
       transition={{ duration: 0.7, delay: 0.2 }}
       className="text-white/70 max-w-lg mx-auto font-kufi"
       style={{ fontSize: 'clamp(0.9rem, 1.6vw, 1.05rem)', lineHeight: 2 }}
@@ -99,7 +99,7 @@ const HomePage: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8 }}
           className="max-w-3xl mx-auto text-center"
         >

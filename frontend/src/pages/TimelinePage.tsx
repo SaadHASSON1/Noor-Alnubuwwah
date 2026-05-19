@@ -119,7 +119,7 @@ const TimelinePage: React.FC = () => {
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: false, margin: '-10%' }}
+                viewport={{ once: true, margin: '-10%' }}
                 transition={{ duration: 0.55 }}
                 className="relative z-10 flex items-center gap-3 mb-5 mt-8 pr-14 pt-4"
                 style={{ borderTop: `1px solid ${meta.accentColor}20` }}
@@ -148,7 +148,7 @@ const TimelinePage: React.FC = () => {
                       key={ev.id}
                       initial={{ opacity: 0, x: 30 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: false, margin: '-5%' }}
+                      viewport={{ once: true, margin: '-5%' }}
                       transition={{ duration: 0.5, delay: i * 0.04 }}
                       className="relative"
                     >
@@ -238,7 +238,7 @@ const TimelinePage: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: false }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="flex flex-col items-center gap-3 relative pr-14"
         >

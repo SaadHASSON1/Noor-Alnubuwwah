@@ -20,7 +20,7 @@ const ChapterCard: React.FC<Props> = ({ chapter, eventCount, index }) => {
     <motion.article
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, margin: '-8%' }}
+      viewport={{ once: true, margin: '-8%' }}
       transition={{ duration: 0.6, delay: index * 0.08, ease: [0.25, 0.46, 0.45, 0.94] }}
       onClick={() => navigate(`/chapter/${encodeURIComponent(chapter.name)}`)}
       className="group relative cursor-pointer overflow-hidden rounded-2xl"
