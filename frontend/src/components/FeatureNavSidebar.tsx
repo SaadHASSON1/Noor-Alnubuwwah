@@ -1,7 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Home, Clock, Users, Sparkles, HelpCircle, ScrollText, GitBranch, Heart, Crown, X, Menu, Star, BookOpen, PenTool, Library } from 'lucide-react';
+
+/* ── خريطة preload للصفحات ── */
+const PRELOAD_MAP: Record<string, () => Promise<unknown>> = {
+  '/timeline':       () => import('../pages/TimelinePage'),
+  '/character':      () => import('../pages/CharacterPage'),
+  '/wives':          () => import('../pages/WivesPage'),
+  '/companions':     () => import('../pages/CompanionsPage'),
+  '/miracles':       () => import('../pages/MiraclesPage'),
+  '/family-tree':    () => import('../pages/FamilyTreePage'),
+  '/quiz':           () => import('../pages/QuizPage'),
+  '/farewell-sermon':() => import('../pages/FarewellSermonPage'),
+  '/prophecies':     () => import('../pages/PropheciesPage'),
+  '/names':          () => import('../pages/NamesPage'),
+  '/scribes':        () => import('../pages/ScribesPage'),
+  '/sources':        () => import('../pages/SourcesPage'),
+};
 
 interface NavItem {
   icon: React.ReactNode;
@@ -34,6 +50,12 @@ const FeatureNavSidebar: React.FC = () => {
     navigate(path);
     setIsOpen(false);
   };
+
+  /* Preload chunk عند hover — يُحمَّل مرة واحدة فقط */
+  const handlePreload = useCallback((path: string) => {
+    const fn = PRELOAD_MAP[path];
+    if (fn) fn().catch(() => {/* نتجاهل أخطاء الـ preload */});
+  }, []);
 
   return (
     <>
@@ -144,6 +166,8 @@ const FeatureNavSidebar: React.FC = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.04 * index }}
                     onClick={() => handleNav(item.path)}
+                    onMouseEnter={() => handlePreload(item.path)}
+                    onFocus={() => handlePreload(item.path)}
                     className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-right transition-colors"
                     style={{
                       background: isActive ? 'rgba(201,168,76,0.12)' : 'transparent',
