@@ -56,7 +56,7 @@ const NAME_GROUPS: NameGroup[] = [
   },
   {
     groupTitle: 'أسماء القرآن الكريم',
-    color: '#A78BFA',
+    color: '#A8C8E8',
     names: [
       {
         name: 'الشَّاهِد',
@@ -98,7 +98,7 @@ const NAME_GROUPS: NameGroup[] = [
   },
   {
     groupTitle: 'الألقاب العليا',
-    color: '#60A5FA',
+    color: '#A8E8C8',
     names: [
       {
         name: 'النَّبِيّ',

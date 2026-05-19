@@ -35,7 +35,7 @@ const LIFE_SECTIONS: LifeSection[] = [
     icon: '🍯',
     title: 'طعامه وشرابه ﷺ',
     subtitle: 'البركة في القليل',
-    color: '#FFA500',
+    color: '#E8C8A8',
     facts: [
       'كان يأكل ما يجد ولا يرد الحلال',
       'أحب الأطعمة: الثريد والعسل والدباء (القرع) والتمر واللبن',
@@ -50,7 +50,7 @@ const LIFE_SECTIONS: LifeSection[] = [
     icon: '🌙',
     title: 'نومه ﷺ',
     subtitle: 'راحة العبد الشاكر',
-    color: '#9370DB',
+    color: '#A8C8E8',
     facts: [
       'كان ينام على شقه الأيمن مستقبلاً القبلة',
       'يضع يده اليمنى تحت خده الأيمن',
@@ -64,7 +64,7 @@ const LIFE_SECTIONS: LifeSection[] = [
     icon: '👘',
     title: 'لباسه ﷺ',
     subtitle: 'البساطة والوقار',
-    color: '#40C480',
+    color: '#A8E8C8',
     facts: [
       'كان يحب البياض ويوصي به',
       'القميص أحب الثياب إليه ﷺ',
@@ -78,7 +78,7 @@ const LIFE_SECTIONS: LifeSection[] = [
     icon: '🏡',
     title: 'معاملته لأهله ﷺ',
     subtitle: 'خير الناس لأهله',
-    color: '#FF6B9D',
+    color: '#E8A8A8',
     facts: [
       '"خيركم خيركم لأهله وأنا خيركم لأهلي"',
       'كان يخيط ثوبه ويخصف نعله بنفسه',
@@ -92,7 +92,7 @@ const LIFE_SECTIONS: LifeSection[] = [
     icon: '🤝',
     title: 'أخلاقه مع الناس ﷺ',
     subtitle: 'رحمة للعالمين',
-    color: '#00BFFF',
+    color: '#C8E8A8',
     facts: [
       'لم يُسمع له صوت عالٍ في أي مجلس',
       'يبدأ بالسلام على كل من لقيه صغيراً أو كبيراً',
@@ -120,7 +120,7 @@ const LIFE_SECTIONS: LifeSection[] = [
     icon: '💚',
     title: 'مرضه وصحته ﷺ',
     subtitle: 'الأنبياء أشد بلاءً',
-    color: '#7CFC00',
+    color: '#A8E8C8',
     facts: [
       'كان أشد الناس مرضاً وأكثرهم صبراً',
       '"يُضرب للمريض أجران: أجر المريض وأجر الصابر"',

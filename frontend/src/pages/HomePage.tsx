@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Mail, Heart } from 'lucide-react';
 import Hero from '../components/Hero';
 import ChapterCard from '../components/ChapterCard';
 import IslamicParticles from '../components/IslamicParticles';
@@ -114,6 +115,102 @@ const HomePage: React.FC = () => {
           </p>
         </motion.div>
       </section>
+
+      {/* ══ Credits ══ */}
+      <motion.footer
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+        className="relative py-14 px-5"
+        style={{ background: '#020710', borderTop: '1px solid rgba(201,168,76,0.1)' }}
+      >
+        {/* subtle corner ornaments */}
+        <div className="absolute top-0 right-0 w-32 h-32 pointer-events-none opacity-[0.04]"
+          style={{ background: 'radial-gradient(circle at top right, #C9A84C, transparent 70%)' }} />
+        <div className="absolute bottom-0 left-0 w-32 h-32 pointer-events-none opacity-[0.04]"
+          style={{ background: 'radial-gradient(circle at bottom left, #C9A84C, transparent 70%)' }} />
+
+        <div className="max-w-2xl mx-auto text-center" dir="rtl">
+          {/* divider */}
+          <div className="flex items-center justify-center gap-3 mb-8 opacity-20">
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent to-islamic-gold" />
+            <div className="w-1.5 h-1.5 rotate-45 bg-islamic-gold" />
+            <div className="flex-1 h-px bg-gradient-to-l from-transparent to-islamic-gold" />
+          </div>
+
+          {/* built with love */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="flex items-center justify-center gap-2 mb-4"
+          >
+            <Heart size={13} style={{ color: '#E8A8A8' }} />
+            <p className="font-kufi" style={{ fontSize: '0.78rem', color: 'rgba(201,168,76,0.45)', letterSpacing: '0.14em' }}>
+              صُنع بمحبة واحترام لسيرة النبي ﷺ
+            </p>
+            <Heart size={13} style={{ color: '#E8A8A8' }} />
+          </motion.div>
+
+          {/* developer name */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+          >
+            <p
+              className="font-noto font-bold mb-1"
+              style={{ fontSize: 'clamp(1.3rem, 3vw, 1.7rem)', color: '#C9A84C', textShadow: '0 0 20px rgba(201,168,76,0.25)' }}
+            >
+              سعد حسون
+            </p>
+            <p className="font-kufi" style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.35)', letterSpacing: '0.06em' }}>
+              مطوّر المنصة ومنشئ المحتوى
+            </p>
+          </motion.div>
+
+          {/* email button */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="mt-6 mb-8"
+          >
+            <a
+              href="mailto:saadhassun37@gmail.com"
+              className="inline-flex items-center gap-2.5 font-kufi rounded-full sidebar-nav-item"
+              style={{
+                fontSize: 'clamp(0.78rem, 1.8vw, 0.92rem)',
+                padding: '0.6rem 1.4rem',
+                background: 'rgba(201,168,76,0.07)',
+                border: '1px solid rgba(201,168,76,0.22)',
+                color: '#C9A84C',
+                textDecoration: 'none',
+              }}
+            >
+              <Mail size={14} />
+              <span>saadhassun37@gmail.com</span>
+              <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.75rem' }}>— للشكاوى والاقتراحات والتحسينات</span>
+            </a>
+          </motion.div>
+
+          {/* bottom line */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="font-kufi"
+            style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.18)', letterSpacing: '0.1em' }}
+          >
+            نور النبوة © 2025 — المحتوى موثّق من المصادر الإسلامية المعتمدة
+          </motion.p>
+        </div>
+      </motion.footer>
     </div>
   );
 };
