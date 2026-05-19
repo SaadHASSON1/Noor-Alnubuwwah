@@ -25,6 +25,7 @@ const NamesPage          = lazy(() => import('./pages/NamesPage'));
 const ScribesPage        = lazy(() => import('./pages/ScribesPage'));
 const SourcesPage        = lazy(() => import('./pages/SourcesPage'));
 const BattlesPage        = lazy(() => import('./pages/BattlesPage'));
+const SarayaPage         = lazy(() => import('./pages/SarayaPage'));
 const LettersPage        = lazy(() => import('./pages/LettersPage'));
 const HijraPage          = lazy(() => import('./pages/HijraPage'));
 const DailyLifePage      = lazy(() => import('./pages/DailyLifePage'));
@@ -206,6 +207,9 @@ function App() {
           } />
           <Route path="/battles" element={
             <PageWrapper><BattlesPage /></PageWrapper>
+          } />
+          <Route path="/saraya" element={
+            <PageWrapper><SarayaPage /></PageWrapper>
           } />
           <Route path="/letters" element={
             <PageWrapper><LettersPage /></PageWrapper>
