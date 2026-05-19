@@ -58,7 +58,7 @@ const FeatureNavSidebar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const { count: bookmarkCount } = useBookmarks();
+  const { totalCount: bookmarkCount } = useBookmarks();
 
   const handleNav = (path: string) => {
     navigate(path);
