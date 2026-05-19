@@ -1,7 +1,8 @@
 ﻿import React, { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Home, Clock, Users, Sparkles, HelpCircle, ScrollText, GitBranch, Heart, Crown, X, Menu, Star, BookOpen, PenTool, Library, Sword, Shield, Mail, Navigation, Coffee } from 'lucide-react';
+import { Home, Clock, Users, Sparkles, HelpCircle, ScrollText, GitBranch, Heart, Crown, X, Menu, Star, BookOpen, PenTool, Library, Sword, Shield, Mail, Navigation, Coffee, Bookmark } from 'lucide-react';
+import { useBookmarks } from '../context/BookmarksContext';
 
 /* ── خريطة preload للصفحات ── */
 const PRELOAD_MAP: Record<string, () => Promise<unknown>> = {
@@ -22,6 +23,7 @@ const PRELOAD_MAP: Record<string, () => Promise<unknown>> = {
   '/letters':         () => import('../pages/LettersPage'),
   '/hijra':           () => import('../pages/HijraPage'),
   '/daily-life':      () => import('../pages/DailyLifePage'),
+  '/bookmarks':       () => import('../pages/BookmarksPage'),
 };
 
 interface NavItem {
@@ -32,6 +34,7 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   { icon: <Home size={16} />,        label: 'الرئيسية',             path: '/' },
+  { icon: <Bookmark size={16} />,    label: 'محفوظاتي',              path: '/bookmarks' },
   { icon: <Clock size={16} />,       label: 'التسلسل الزمني',       path: '/timeline' },
   { icon: <Heart size={16} />,       label: 'صفاته ﷺ',              path: '/character' },
   { icon: <Coffee size={16} />,      label: 'حياته اليومية ﷺ',      path: '/daily-life' },
@@ -55,6 +58,7 @@ const FeatureNavSidebar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { count: bookmarkCount } = useBookmarks();
 
   const handleNav = (path: string) => {
     navigate(path);
@@ -199,7 +203,16 @@ const FeatureNavSidebar: React.FC = () => {
                       {item.icon}
                     </span>
                     <span className="font-noto text-sm">{item.label}</span>
-                    {isActive && (
+                    {/* Bookmarks count badge */}
+                    {item.path === '/bookmarks' && bookmarkCount > 0 && (
+                      <span
+                        className="mr-auto font-kufi text-xs px-2 py-0.5 rounded-full"
+                        style={{ background: 'rgba(201,168,76,0.18)', color: '#C9A84C', border: '1px solid rgba(201,168,76,0.3)' }}
+                      >
+                        {bookmarkCount}
+                      </span>
+                    )}
+                    {isActive && item.path !== '/bookmarks' && (
                       <span className="mr-auto w-1.5 h-1.5 rounded-full" style={{ background: '#C9A84C' }} />
                     )}
                   </motion.button>

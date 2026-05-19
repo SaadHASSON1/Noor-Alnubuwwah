@@ -284,3 +284,31 @@ html, body {
 @media (max-width: 640px) {
   ::-webkit-scrollbar { width: 3px; }
 }
+
+/* ══════════════════════════════════════════════
+   وضع القراءة — Reading Mode
+   ══════════════════════════════════════════════ */
+body.reading-mode {
+  background: #faf6ee !important;
+}
+
+/* Reading mode scrollbar */
+body.reading-mode ::-webkit-scrollbar-track {
+  background: #f0e8d4;
+}
+
+body.reading-mode ::-webkit-scrollbar-thumb {
+  background: rgba(201, 168, 76, 0.35);
+  border-radius: 4px;
+}
+
+/* Reading mode: text selection highlight */
+body.reading-mode ::selection {
+  background: rgba(201, 168, 76, 0.3);
+  color: #2a1a00;
+}
+
+/* Reading mode: smooth page transition */
+body.reading-mode #root > div {
+  transition: background 0.35s ease;
+}
