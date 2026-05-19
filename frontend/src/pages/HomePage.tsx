@@ -207,7 +207,7 @@ const HomePage: React.FC = () => {
             className="font-kufi"
             style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.18)', letterSpacing: '0.1em' }}
           >
-            نور النبوة © 2025 — المحتوى موثّق من المصادر الإسلامية المعتمدة
+            نور النبوة © 2026 — المحتوى موثّق من المصادر الإسلامية المعتمدة
           </motion.p>
         </div>
       </motion.footer>
