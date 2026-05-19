@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Home, ChevronLeft, Search, X, ChevronDown, ChevronUp } from 'lucide-react';
+import { Home, ChevronLeft, Search, X } from 'lucide-react';
 
 interface Companion {
   name: string;
@@ -427,11 +427,106 @@ const COMPANIONS: Companion[] = [
 
 const ALL_CATEGORIES = ['الكل', ...Object.keys(CATEGORY_COLORS)];
 
+/* ─── Center Modal ─── */
+const CompanionModal: React.FC<{ companion: Companion; onClose: () => void }> = ({ companion, onClose }) => {
+  const color = CATEGORY_COLORS[companion.category] || '#C9A84C';
+  return (
+    <motion.div
+      key="companion-overlay"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+      className="fixed inset-0 z-[200] flex items-center justify-center p-4"
+      style={{ background: 'rgba(3,8,19,0.88)', backdropFilter: 'blur(10px)' }}
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.88, y: 24 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.92, y: 16 }}
+        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        className="relative w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-3xl"
+        style={{
+          background: 'rgba(8,14,30,0.97)',
+          border: `1px solid ${color}30`,
+          boxShadow: `0 24px 64px rgba(0,0,0,0.7), 0 0 0 1px ${color}10, 0 0 60px ${color}08`,
+        }}
+        onClick={e => e.stopPropagation()}
+        dir="rtl"
+      >
+        {/* Top accent bar */}
+        <div className="h-1 rounded-t-3xl" style={{ background: `linear-gradient(90deg, transparent, ${color}, transparent)` }} />
+
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 left-4 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-colors"
+          style={{ background: 'rgba(255,255,255,0.07)', color: 'rgba(255,255,255,0.5)' }}
+          onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.14)')}
+          onMouseLeave={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.07)')}
+        >
+          <X size={14} />
+        </button>
+
+        <div className="p-6 pt-5">
+          {/* Category badge */}
+          <span
+            className="font-kufi text-xs px-3 py-1 rounded-full inline-block mb-4"
+            style={{ background: `${color}15`, border: `1px solid ${color}35`, color }}
+          >
+            {companion.category}
+          </span>
+
+          {/* Name */}
+          <h2 className="font-noto font-bold mb-1" style={{ fontSize: 'clamp(1.5rem, 4vw, 2rem)', color: '#C9A84C' }}>
+            {companion.name}
+          </h2>
+          <p className="font-kufi mb-5" style={{ fontSize: '0.8rem', color: `${color}90` }}>
+            {companion.nickname}
+          </p>
+
+          {/* Achievement */}
+          <div
+            className="flex items-center gap-2 rounded-xl px-4 py-2.5 mb-5"
+            style={{ background: `${color}0e`, border: `1px solid ${color}20` }}
+          >
+            <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: color }} />
+            <p className="font-kufi" style={{ fontSize: '0.82rem', color: `${color}cc` }}>
+              {companion.achievement}
+            </p>
+          </div>
+
+          {/* Description */}
+          <p
+            className="font-noto mb-5"
+            style={{ fontSize: '0.92rem', lineHeight: 2, color: 'rgba(255,255,255,0.78)' }}
+          >
+            {companion.description}
+          </p>
+
+          {/* Hadith */}
+          {companion.hadith && (
+            <div
+              className="rounded-2xl p-4"
+              style={{ background: `${color}08`, border: `1px solid ${color}20` }}
+            >
+              <p className="font-noto italic" style={{ fontSize: '0.88rem', color: `${color}dd`, lineHeight: 1.95 }}>
+                {companion.hadith}
+              </p>
+            </div>
+          )}
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
 const CompanionsPage: React.FC = () => {
   const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState('الكل');
   const [searchQuery, setSearchQuery] = useState('');
-  const [expandedName, setExpandedName] = useState<string | null>(null);
+  const [selectedCompanion, setSelectedCompanion] = useState<Companion | null>(null);
 
   const filtered = useMemo(() => {
     return COMPANIONS.filter(c => {
@@ -465,7 +560,7 @@ const CompanionsPage: React.FC = () => {
       </div>
 
       {/* Breadcrumb */}
-      <div className="relative z-10 px-6 pt-6 pb-4" style={{ paddingRight: '4.5rem' }}>
+      <div className="relative z-10 px-6 pt-6 pb-4" style={{ paddingRight: '5rem' }}>
         <motion.nav
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -578,7 +673,7 @@ const CompanionsPage: React.FC = () => {
       {/* Count */}
       <div className="relative z-10 text-center mb-6">
         <span className="font-kufi text-xs text-white/30">
-          يُعرض {filtered.length} صحابي
+          يُعرض {filtered.length} صحابي — اضغط على أي بطاقة لعرض التفاصيل
         </span>
       </div>
 
@@ -588,7 +683,6 @@ const CompanionsPage: React.FC = () => {
           <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {filtered.map((companion, index) => {
               const color = CATEGORY_COLORS[companion.category] || '#C9A84C';
-              const isExpanded = expandedName === companion.name;
               return (
                 <motion.div
                   key={companion.name}
@@ -597,13 +691,23 @@ const CompanionsPage: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.4, delay: Math.min(index * 0.04, 0.5) }}
-                  className="relative rounded-2xl overflow-hidden cursor-pointer"
+                  whileHover={{ y: -4, scale: 1.015 }}
+                  className="relative rounded-2xl overflow-hidden cursor-pointer select-none"
                   style={{
-                    background: isExpanded ? `${color}08` : 'rgba(255,255,255,0.03)',
-                    border: `1px solid ${isExpanded ? `${color}35` : 'rgba(201,168,76,0.12)'}`,
-                    boxShadow: isExpanded ? `0 8px 32px ${color}15` : '0 4px 20px rgba(0,0,0,0.4)',
+                    background: 'rgba(255,255,255,0.03)',
+                    border: `1px solid rgba(201,168,76,0.12)`,
+                    boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
+                    transition: 'border-color 0.2s, box-shadow 0.2s',
                   }}
-                  onClick={() => setExpandedName(isExpanded ? null : companion.name)}
+                  onClick={() => setSelectedCompanion(companion)}
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLDivElement).style.borderColor = `${color}40`;
+                    (e.currentTarget as HTMLDivElement).style.boxShadow = `0 8px 32px rgba(0,0,0,0.5), 0 0 20px ${color}10`;
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(201,168,76,0.12)';
+                    (e.currentTarget as HTMLDivElement).style.boxShadow = '0 4px 20px rgba(0,0,0,0.4)';
+                  }}
                 >
                   {/* Top accent line */}
                   <div className="h-0.5 w-full" style={{ background: `linear-gradient(90deg, transparent, ${color}80, transparent)` }} />
@@ -617,61 +721,41 @@ const CompanionsPage: React.FC = () => {
                       {companion.category}
                     </span>
 
-                    {/* Name + expand icon */}
-                    <div className="flex items-start justify-between gap-2">
-                      <div className="flex-1">
-                        <h3 className="font-noto font-bold mb-0.5" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', color: '#C9A84C' }}>
-                          {companion.name}
-                        </h3>
-                        <p className="font-kufi" style={{ fontSize: '0.72rem', color: `${color}90`, lineHeight: 1.5 }}>
-                          {companion.nickname}
-                        </p>
-                      </div>
-                      <div style={{ color: `${color}60`, marginTop: 4, flexShrink: 0 }}>
-                        {isExpanded ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
-                      </div>
-                    </div>
+                    {/* Name */}
+                    <h3 className="font-noto font-bold mb-0.5" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', color: '#C9A84C' }}>
+                      {companion.name}
+                    </h3>
+                    <p className="font-kufi mb-3" style={{ fontSize: '0.72rem', color: `${color}90`, lineHeight: 1.5 }}>
+                      {companion.nickname}
+                    </p>
 
                     {/* Achievement */}
-                    <div className="mt-3 mb-3 flex items-center gap-1.5">
+                    <div className="flex items-center gap-1.5 mb-3">
                       <div className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: color }} />
                       <p className="font-kufi" style={{ fontSize: '0.75rem', color: `${color}bb` }}>
                         {companion.achievement}
                       </p>
                     </div>
 
-                    {/* Description (always visible, truncated) */}
+                    {/* Description (truncated) */}
                     <p
                       className="font-noto text-white/55 leading-relaxed"
                       style={{
                         fontSize: '0.85rem',
                         lineHeight: 1.85,
                         display: '-webkit-box',
-                        WebkitLineClamp: isExpanded ? 'unset' : 3,
+                        WebkitLineClamp: 3,
                         WebkitBoxOrient: 'vertical',
-                        overflow: isExpanded ? 'visible' : 'hidden',
+                        overflow: 'hidden',
                       } as React.CSSProperties}
                     >
                       {companion.description}
                     </p>
 
-                    {/* Hadith (only when expanded) */}
-                    <AnimatePresence>
-                      {isExpanded && companion.hadith && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="mt-4 pt-4"
-                          style={{ borderTop: `1px solid ${color}20` }}
-                        >
-                          <p className="font-noto text-sm" style={{ color: `${color}cc`, lineHeight: 1.9, fontStyle: 'italic' }}>
-                            {companion.hadith}
-                          </p>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                    {/* Tap hint */}
+                    <p className="font-kufi mt-3 text-center" style={{ fontSize: '0.65rem', color: `${color}50` }}>
+                      اضغط لعرض الكامل ›
+                    </p>
                   </div>
                 </motion.div>
               );
@@ -685,6 +769,13 @@ const CompanionsPage: React.FC = () => {
           </div>
         )}
       </div>
+
+      {/* Center Modal */}
+      <AnimatePresence>
+        {selectedCompanion && (
+          <CompanionModal companion={selectedCompanion} onClose={() => setSelectedCompanion(null)} />
+        )}
+      </AnimatePresence>
     </div>
   );
 };

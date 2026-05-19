@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Home, ChevronLeft, BookOpen, Moon, Droplets, ArrowUpCircle, TreePine, Eye, Flame, Utensils, Wind, Heart, Star, Zap, Cloud, Fish, Volume2, Shield, Search as SearchIcon, Sun, Bird, Waves } from 'lucide-react';
+import { Home, ChevronLeft, BookOpen, Moon, Droplets, ArrowUpCircle, TreePine, Eye, Flame, Utensils, Wind, Heart, Star, Zap, Cloud, Fish, Volume2, Shield, Search as SearchIcon, Sun, Bird, Waves, X } from 'lucide-react';
 
 interface Miracle {
   icon: React.ReactNode;
@@ -207,9 +207,87 @@ const MIRACLES: Miracle[] = [
   },
 ];
 
+/* ─── Center Modal ─── */
+const MiracleModal: React.FC<{ miracle: Miracle; onClose: () => void }> = ({ miracle, onClose }) => (
+  <motion.div
+    key="miracle-overlay"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 0.2 }}
+    className="fixed inset-0 z-[200] flex items-center justify-center p-4"
+    style={{ background: 'rgba(3,8,19,0.88)', backdropFilter: 'blur(10px)' }}
+    onClick={onClose}
+  >
+    <motion.div
+      initial={{ opacity: 0, scale: 0.88, y: 24 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.92, y: 16 }}
+      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+      className="relative w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-3xl"
+      style={{
+        background: 'rgba(8,14,30,0.97)',
+        border: `1px solid ${miracle.color}30`,
+        boxShadow: `0 24px 64px rgba(0,0,0,0.7), 0 0 0 1px ${miracle.color}10, 0 0 60px ${miracle.color}08`,
+      }}
+      onClick={e => e.stopPropagation()}
+      dir="rtl"
+    >
+      {/* Top accent bar */}
+      <div className="h-1 rounded-t-3xl" style={{ background: `linear-gradient(90deg, transparent, ${miracle.color}, transparent)` }} />
+
+      {/* Close button */}
+      <button
+        onClick={onClose}
+        className="absolute top-4 left-4 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-colors"
+        style={{ background: 'rgba(255,255,255,0.07)', color: 'rgba(255,255,255,0.5)' }}
+        onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.14)')}
+        onMouseLeave={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.07)')}
+      >
+        <X size={14} />
+      </button>
+
+      <div className="p-6 pt-5">
+        {/* Icon */}
+        <div
+          className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4"
+          style={{ background: `${miracle.color}15`, border: `1px solid ${miracle.color}30`, color: miracle.color }}
+        >
+          {miracle.icon}
+        </div>
+
+        {/* Title */}
+        <h2 className="font-noto font-bold mb-1" style={{ fontSize: 'clamp(1.4rem, 4vw, 1.9rem)', color: miracle.color }}>
+          {miracle.title}
+        </h2>
+        <p className="font-kufi mb-5" style={{ fontSize: '0.78rem', color: `${miracle.color}80`, letterSpacing: '0.04em' }}>
+          {miracle.subtitle}
+        </p>
+
+        {/* Description */}
+        <p className="font-noto mb-5" style={{ fontSize: '0.93rem', lineHeight: 2, color: 'rgba(255,255,255,0.82)' }}>
+          {miracle.description}
+        </p>
+
+        {/* Reference */}
+        <div
+          className="rounded-2xl p-4"
+          style={{ background: `${miracle.color}08`, border: `1px solid ${miracle.color}20` }}
+        >
+          <p className="font-kufi text-xs mb-1" style={{ color: 'rgba(255,255,255,0.35)' }}>المصدر</p>
+          <p className="font-noto" style={{ fontSize: '0.85rem', color: `${miracle.color}bb`, lineHeight: 1.8 }}>
+            {miracle.reference}
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  </motion.div>
+);
+
 const MiraclesPage: React.FC = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState('');
+  const [selectedMiracle, setSelectedMiracle] = useState<Miracle | null>(null);
 
   const filtered = MIRACLES.filter(m =>
     !search.trim() || m.title.includes(search) || m.subtitle.includes(search) || m.description.includes(search)
@@ -331,12 +409,13 @@ const MiraclesPage: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.08 * index }}
               whileHover={{ y: -6, scale: 1.02 }}
-              className="relative rounded-2xl overflow-hidden"
+              className="relative rounded-2xl overflow-hidden cursor-pointer select-none"
               style={{
                 background: 'rgba(255,255,255,0.02)',
                 border: `1px solid ${miracle.color}20`,
                 boxShadow: `0 4px 24px rgba(0,0,0,0.4), 0 0 30px ${miracle.color}08`,
               }}
+              onClick={() => setSelectedMiracle(miracle)}
             >
               {/* Gradient top */}
               <div
@@ -392,7 +471,7 @@ const MiraclesPage: React.FC = () => {
 
                 {/* Reference */}
                 <div
-                  className="text-xs font-noto p-2 rounded-lg"
+                  className="text-xs font-noto p-2 rounded-lg mb-3"
                   style={{
                     background: `${miracle.color}08`,
                     border: `1px solid ${miracle.color}18`,
@@ -402,11 +481,23 @@ const MiraclesPage: React.FC = () => {
                 >
                   {miracle.reference}
                 </div>
+
+                {/* Tap hint */}
+                <p className="font-kufi text-center" style={{ fontSize: '0.62rem', color: `${miracle.color}45` }}>
+                  اضغط للتفاصيل ›
+                </p>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
+
+      {/* Center Modal */}
+      <AnimatePresence>
+        {selectedMiracle && (
+          <MiracleModal miracle={selectedMiracle} onClose={() => setSelectedMiracle(null)} />
+        )}
+      </AnimatePresence>
     </div>
   );
 };

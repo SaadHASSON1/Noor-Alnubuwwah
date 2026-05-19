@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Home, ChevronLeft, ChevronDown, ChevronUp } from 'lucide-react';
+import { Home, ChevronLeft, X } from 'lucide-react';
 
 interface Wife {
   number: number;
@@ -175,6 +175,8 @@ const WIVES: Wife[] = [
   },
 ];
 
+const ORDINALS = ['الأولى','الثانية','الثالثة','الرابعة','الخامسة','السادسة','السابعة','الثامنة','التاسعة','العاشرة','الحادية عشرة'];
+
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
   show: (i: number) => ({
@@ -184,9 +186,114 @@ const fadeUp = {
   }),
 };
 
+/* ─── Center Modal ─── */
+const WifeModal: React.FC<{ wife: Wife; onClose: () => void }> = ({ wife, onClose }) => {
+  const accent = wife.accentColor;
+  return (
+    <motion.div
+      key="wife-overlay"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+      className="fixed inset-0 z-[200] flex items-center justify-center p-4"
+      style={{ background: 'rgba(3,8,19,0.9)', backdropFilter: 'blur(12px)' }}
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.88, y: 24 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.92, y: 16 }}
+        transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+        className="relative w-full max-w-lg max-h-[88vh] overflow-y-auto rounded-3xl"
+        style={{
+          background: wife.bg,
+          border: `1px solid ${accent.replace('0.7)', '0.35)')}`,
+          boxShadow: `0 24px 64px rgba(0,0,0,0.75), 0 0 60px ${accent.replace('0.7)', '0.06)')}`,
+        }}
+        onClick={e => e.stopPropagation()}
+        dir="rtl"
+      >
+        {/* Top accent bar */}
+        <div
+          className="h-1 rounded-t-3xl"
+          style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }}
+        />
+
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 left-4 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-colors"
+          style={{ background: 'rgba(255,255,255,0.07)', color: 'rgba(255,255,255,0.5)' }}
+          onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.14)')}
+          onMouseLeave={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.07)')}
+        >
+          <X size={14} />
+        </button>
+
+        <div className="p-6 pt-5">
+          {/* Badge */}
+          <span
+            className="font-kufi text-xs px-3 py-1 rounded-full inline-block mb-4"
+            style={{ background: accent.replace('0.7)', '0.12)'), border: `1px solid ${accent.replace('0.7)', '0.3)')}`, color: accent }}
+          >
+            الزوجة {ORDINALS[wife.number - 1]}
+          </span>
+
+          {/* Name */}
+          <h2 className="font-kufi font-bold mb-1" style={{ fontSize: 'clamp(1.4rem, 4vw, 1.9rem)', color: 'white' }}>
+            {wife.name}
+          </h2>
+          <p className="font-noto mb-2" style={{ fontSize: '0.82rem', color: accent }}>
+            {wife.nickname}
+          </p>
+          <p className="font-kufi text-xs mb-5" style={{ color: 'rgba(255,255,255,0.35)' }}>
+            {wife.marriageYear}
+          </p>
+
+          {/* Special status */}
+          <div
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full mb-5"
+            style={{ background: accent.replace('0.7)', '0.1)'), border: `1px solid ${accent.replace('0.7)', '0.25)')}` }}
+          >
+            <span className="font-kufi text-xs" style={{ color: accent }}>{wife.specialStatus}</span>
+          </div>
+
+          {/* Full story */}
+          <p className="font-noto mb-5" style={{ color: 'rgba(255,255,255,0.78)', fontSize: '0.9rem', lineHeight: 1.95 }}>
+            {wife.fullStory}
+          </p>
+
+          {/* Achievement */}
+          <div
+            className="rounded-xl p-3 mb-4"
+            style={{ background: 'rgba(0,0,0,0.25)', borderRight: `2px solid ${accent}` }}
+          >
+            <p className="font-kufi text-xs mb-1" style={{ color: 'rgba(255,255,255,0.4)' }}>أبرز إسهامها</p>
+            <p className="font-noto" style={{ color: 'rgba(255,255,255,0.82)', fontSize: '0.87rem', lineHeight: 1.75 }}>
+              {wife.achievement}
+            </p>
+          </div>
+
+          {/* Quote */}
+          <div
+            className="rounded-2xl p-4"
+            style={{ background: accent.replace('0.7)', '0.06)'), border: `1px solid ${accent.replace('0.7)', '0.2)')}` }}
+          >
+            <p className="font-noto italic mb-2" style={{ color: accent, fontSize: '0.9rem', lineHeight: 1.9 }}>
+              "{wife.quote}"
+            </p>
+            <p className="font-kufi text-xs" style={{ color: 'rgba(255,255,255,0.3)' }}>{wife.quoteSource}</p>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
 const WivesPage: React.FC = () => {
   const navigate = useNavigate();
-  const [expanded, setExpanded] = useState<number | null>(null);
+  const [selectedWife, setSelectedWife] = useState<Wife | null>(null);
 
   return (
     <div dir="rtl" className="min-h-screen" style={{ background: '#030813' }}>
@@ -285,7 +392,7 @@ const WivesPage: React.FC = () => {
             color: 'rgba(201,168,76,0.7)',
           }}
         >
-          ١١ أم كريمة — اضغط على أي منهن لعرض قصتها كاملة
+          ١١ أم كريمة — اضغط على أي بطاقة لعرض قصتها كاملة
         </div>
       </motion.div>
 
@@ -299,145 +406,57 @@ const WivesPage: React.FC = () => {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="rounded-2xl overflow-hidden cursor-pointer transition-all"
+              whileHover={{ y: -4, scale: 1.015 }}
+              className="rounded-2xl overflow-hidden cursor-pointer select-none"
               style={{
                 background: wife.bg,
-                border: `1px solid ${expanded === i ? wife.accentColor : 'rgba(255,255,255,0.06)'}`,
-                boxShadow: expanded === i ? `0 0 20px ${wife.accentColor.replace('0.7)', '0.1)')}` : 'none',
+                border: `1px solid rgba(255,255,255,0.06)`,
+                transition: 'border-color 0.2s, box-shadow 0.2s',
               }}
-              onClick={() => setExpanded(expanded === i ? null : i)}
+              onClick={() => setSelectedWife(wife)}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLDivElement).style.borderColor = wife.accentColor.replace('0.7)', '0.35)');
+                (e.currentTarget as HTMLDivElement).style.boxShadow = `0 8px 32px rgba(0,0,0,0.5)`;
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(255,255,255,0.06)';
+                (e.currentTarget as HTMLDivElement).style.boxShadow = 'none';
+              }}
             >
-              {/* Card header */}
-              <div className="p-5">
-                <div className="flex items-start justify-between gap-2 mb-3">
-                  <div>
-                    <span
-                      className="font-kufi text-xs px-2 py-0.5 rounded-full mb-2 inline-block"
-                      style={{
-                        background: `${wife.accentColor.replace('0.7)', '0.12)')}`,
-                        color: wife.accentColor,
-                      }}
-                    >
-                      الزوجة {wife.number === 1 ? 'الأولى' : wife.number === 2 ? 'الثانية' : wife.number === 3 ? 'الثالثة' : wife.number === 4 ? 'الرابعة' : wife.number === 5 ? 'الخامسة' : wife.number === 6 ? 'السادسة' : wife.number === 7 ? 'السابعة' : wife.number === 8 ? 'الثامنة' : wife.number === 9 ? 'التاسعة' : wife.number === 10 ? 'العاشرة' : 'الحادية عشرة'}
-                    </span>
-                    <h3
-                      className="font-kufi font-bold"
-                      style={{ color: 'white', fontSize: '1.05rem' }}
-                    >
-                      {wife.name}
-                    </h3>
-                    <p className="font-noto text-xs mt-0.5" style={{ color: wife.accentColor, opacity: 0.9 }}>
-                      {wife.nickname}
-                    </p>
-                  </div>
-                  <motion.div
-                    animate={{ rotate: expanded === i ? 180 : 0 }}
-                    transition={{ duration: 0.25 }}
-                    className="mt-1 shrink-0"
-                  >
-                    {expanded === i
-                      ? <ChevronUp size={16} style={{ color: wife.accentColor }} />
-                      : <ChevronDown size={16} style={{ color: 'rgba(255,255,255,0.3)' }} />
-                    }
-                  </motion.div>
-                </div>
+              {/* Top accent line */}
+              <div className="h-0.5" style={{ background: `linear-gradient(90deg, transparent, ${wife.accentColor}, transparent)` }} />
 
-                <p
-                  className="font-noto"
-                  style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.85rem', lineHeight: 1.7 }}
+              {/* Card content */}
+              <div className="p-5">
+                <span
+                  className="font-kufi text-xs px-2 py-0.5 rounded-full mb-3 inline-block"
+                  style={{ background: wife.accentColor.replace('0.7)', '0.12)'), color: wife.accentColor }}
                 >
+                  الزوجة {ORDINALS[wife.number - 1]}
+                </span>
+                <h3 className="font-kufi font-bold mb-0.5" style={{ color: 'white', fontSize: '1.05rem' }}>
+                  {wife.name}
+                </h3>
+                <p className="font-noto text-xs mb-3" style={{ color: wife.accentColor, opacity: 0.9 }}>
+                  {wife.nickname}
+                </p>
+
+                <p className="font-noto mb-3" style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.85rem', lineHeight: 1.7 }}>
                   {wife.shortDescription}
                 </p>
 
-                {/* Marriage year */}
-                <div className="flex items-center gap-1.5 mt-3">
-                  <div
-                    className="w-1.5 h-1.5 rounded-full shrink-0"
-                    style={{ background: wife.accentColor }}
-                  />
-                  <p className="font-kufi text-xs" style={{ color: 'rgba(255,255,255,0.35)' }}>
-                    {wife.marriageYear}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: wife.accentColor }} />
+                    <p className="font-kufi text-xs" style={{ color: 'rgba(255,255,255,0.35)' }}>
+                      {wife.marriageYear}
+                    </p>
+                  </div>
+                  <p className="font-kufi" style={{ fontSize: '0.62rem', color: wife.accentColor.replace('0.7)', '0.45)') }}>
+                    اضغط للتفاصيل ›
                   </p>
                 </div>
               </div>
-
-              {/* Expanded content */}
-              <AnimatePresence>
-                {expanded === i && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="overflow-hidden"
-                  >
-                    <div
-                      className="px-5 pb-5 space-y-4"
-                      style={{ borderTop: `1px solid ${wife.accentColor.replace('0.7)', '0.15)')}` }}
-                    >
-                      {/* Special status */}
-                      <div className="pt-4">
-                        <div
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full mb-3"
-                          style={{
-                            background: `${wife.accentColor.replace('0.7)', '0.1)')}`,
-                            border: `1px solid ${wife.accentColor.replace('0.7)', '0.25)')}`,
-                          }}
-                        >
-                          <span className="font-kufi text-xs" style={{ color: wife.accentColor }}>
-                            {wife.specialStatus}
-                          </span>
-                        </div>
-
-                        {/* Full story */}
-                        <p
-                          className="font-noto"
-                          style={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.88rem', lineHeight: 1.9 }}
-                        >
-                          {wife.fullStory}
-                        </p>
-                      </div>
-
-                      {/* Achievement */}
-                      <div
-                        className="rounded-xl p-3"
-                        style={{
-                          background: 'rgba(0,0,0,0.2)',
-                          borderRight: `2px solid ${wife.accentColor}`,
-                        }}
-                      >
-                        <p className="font-kufi text-xs mb-1" style={{ color: 'rgba(255,255,255,0.4)' }}>
-                          أبرز إسهامها
-                        </p>
-                        <p
-                          className="font-noto"
-                          style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.85rem', lineHeight: 1.7 }}
-                        >
-                          {wife.achievement}
-                        </p>
-                      </div>
-
-                      {/* Quote */}
-                      <div
-                        className="rounded-xl p-4"
-                        style={{
-                          background: `${wife.accentColor.replace('0.7)', '0.06)')}`,
-                          border: `1px solid ${wife.accentColor.replace('0.7)', '0.2)')}`,
-                        }}
-                      >
-                        <p
-                          className="font-noto italic mb-2"
-                          style={{ color: wife.accentColor, fontSize: '0.88rem', lineHeight: 1.9 }}
-                        >
-                          "{wife.quote}"
-                        </p>
-                        <p className="font-kufi text-xs" style={{ color: 'rgba(255,255,255,0.3)' }}>
-                          {wife.quoteSource}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
             </motion.div>
           ))}
         </div>
@@ -473,6 +492,13 @@ const WivesPage: React.FC = () => {
           </button>
         </motion.div>
       </div>
+
+      {/* Center Modal */}
+      <AnimatePresence>
+        {selectedWife && (
+          <WifeModal wife={selectedWife} onClose={() => setSelectedWife(null)} />
+        )}
+      </AnimatePresence>
     </div>
   );
 };
