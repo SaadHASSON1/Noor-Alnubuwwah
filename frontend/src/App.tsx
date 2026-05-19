@@ -20,6 +20,9 @@ const FarewellSermonPage = lazy(() => import('./pages/FarewellSermonPage'));
 const FamilyTreePage     = lazy(() => import('./pages/FamilyTreePage'));
 const CharacterPage      = lazy(() => import('./pages/CharacterPage'));
 const WivesPage          = lazy(() => import('./pages/WivesPage'));
+const PropheciesPage     = lazy(() => import('./pages/PropheciesPage'));
+const NamesPage          = lazy(() => import('./pages/NamesPage'));
+const ScribesPage        = lazy(() => import('./pages/ScribesPage'));
 
 /* ── Page loading fallback ── */
 const PageLoader: React.FC = () => (
@@ -183,6 +186,15 @@ function App() {
           } />
           <Route path="/wives" element={
             <PageWrapper><WivesPage /></PageWrapper>
+          } />
+          <Route path="/prophecies" element={
+            <PageWrapper><PropheciesPage /></PageWrapper>
+          } />
+          <Route path="/names" element={
+            <PageWrapper><NamesPage /></PageWrapper>
+          } />
+          <Route path="/scribes" element={
+            <PageWrapper><ScribesPage /></PageWrapper>
           } />
           <Route path="*" element={
             <PageWrapper>
