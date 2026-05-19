@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Home, Clock, Users, Sparkles, HelpCircle, ScrollText, GitBranch, Heart, Crown, X, Menu, Star, BookOpen, PenTool } from 'lucide-react';
+import { Home, Clock, Users, Sparkles, HelpCircle, ScrollText, GitBranch, Heart, Crown, X, Menu, Star, BookOpen, PenTool, Library } from 'lucide-react';
 
 interface NavItem {
   icon: React.ReactNode;
@@ -22,6 +22,7 @@ const NAV_ITEMS: NavItem[] = [
   { icon: <Star size={16} />,        label: 'نبوءاته ﷺ',              path: '/prophecies' },
   { icon: <BookOpen size={16} />,    label: 'أسماؤه ﷺ',               path: '/names' },
   { icon: <PenTool size={16} />,     label: 'كتّاب الوحي',             path: '/scribes' },
+  { icon: <Library size={16} />,     label: 'المصادر والمراجع',         path: '/sources' },
 ];
 
 const FeatureNavSidebar: React.FC = () => {
