@@ -3,12 +3,12 @@ import { motion } from 'framer-motion';
 
 /* ── Stat card data ── */
 const STATS = [
-  { value: '63',   label: 'عاماً — عمره ﷺ' },
-  { value: '23',   label: 'عاماً — النبوة' },
-  { value: '27',   label: 'غزوة ﷺ' },
-  { value: '+25',  label: 'اسماً ﷺ' },
-  { value: '23',   label: 'كاتب وحي' },
-  { value: '+18',  label: 'قسماً' },
+  { value: '63',  label: 'عام عمره ﷺ' },
+  { value: '23',  label: 'عام النبوة' },
+  { value: '27',  label: 'غزوة' },
+  { value: '25+', label: 'اسماً له ﷺ' },
+  { value: '23',  label: 'كاتب وحي' },
+  { value: '18+', label: 'قسماً بالله' },
 ];
 
 /* ── Star particles — deterministic positions ── */
@@ -169,33 +169,40 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.8 }}
-          className="grid grid-cols-3 sm:grid-cols-6 gap-2 justify-items-center w-full max-w-2xl mx-auto mb-8"
+          className="flex items-stretch justify-center w-full max-w-3xl mx-auto mb-8 rounded-2xl overflow-hidden"
+          style={{
+            background: 'rgba(201,168,76,0.05)',
+            border: '1px solid rgba(201,168,76,0.18)',
+          }}
         >
           {STATS.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, scale: 0.85 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 1.9 + i * 0.1 }}
-              className="flex flex-col items-center px-5 py-3 rounded-full"
-              style={{
-                background: 'rgba(201,168,76,0.06)',
-                border: '1px solid rgba(201,168,76,0.22)',
-              }}
-            >
-              <span
-                className="font-noto font-bold"
-                style={{ fontSize: 'clamp(1rem, 2.5vw, 1.3rem)', color: '#C9A84C' }}
+            <React.Fragment key={stat.label}>
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1.9 + i * 0.1 }}
+                className="flex flex-col items-center justify-center flex-1 py-4 px-2"
               >
-                {stat.value}
-              </span>
-              <span
-                className="font-kufi text-white/55"
-                style={{ fontSize: '0.82rem', letterSpacing: '0.06em' }}
-              >
-                {stat.label}
-              </span>
-            </motion.div>
+                <span
+                  className="font-noto font-bold leading-none mb-1.5"
+                  style={{ fontSize: 'clamp(1.1rem, 2.8vw, 1.5rem)', color: '#C9A84C' }}
+                >
+                  {stat.value}
+                </span>
+                <span
+                  className="font-kufi text-center leading-tight"
+                  style={{ fontSize: 'clamp(0.65rem, 1.2vw, 0.78rem)', color: 'rgba(255,255,255,0.5)', whiteSpace: 'nowrap' }}
+                >
+                  {stat.label}
+                </span>
+              </motion.div>
+              {i < STATS.length - 1 && (
+                <div
+                  className="self-stretch w-px my-3"
+                  style={{ background: 'rgba(201,168,76,0.18)' }}
+                />
+              )}
+            </React.Fragment>
           ))}
         </motion.div>
 
