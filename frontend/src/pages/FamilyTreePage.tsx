@@ -1,9 +1,9 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import {
   Home, ChevronRight, X, Users, Heart,
-  Baby, Crown, ChevronLeft, ChevronRight as ChevronRightIcon,
+  Baby, Crown,
 } from 'lucide-react';
 
 /* ══════════════════════════════════════════════
@@ -174,219 +174,78 @@ const SectionTitle: React.FC<{ icon: React.ReactNode; title: string; subtitle: s
 );
 
 /* ══════════════════════════════════════════════
-   مكوّن النسب الأفقي
+   مكوّن شبكة النسب (بطاقات مربعة)
 ══════════════════════════════════════════════ */
-const HorizontalLineage: React.FC = () => {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
-  const [activeIdx, setActiveIdx] = useState<number | null>(null);
-
-  /* ── في RTL: scrollLeft=0 يُظهر اليمين (عدنان)، scrollLeft=max يُظهر اليسار (محمد ﷺ) ── */
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    /* تمرير لمحمد ﷺ (اليسار) عند التحميل */
-    setTimeout(() => {
-      el.scrollTo({ left: el.scrollWidth - el.clientWidth, behavior: 'smooth' });
-    }, 900);
-  }, []);
-
-  const updateScroll = useCallback(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const max = el.scrollWidth - el.clientWidth;
-    const pos = el.scrollLeft; /* RTL normalized: 0=right(عدنان), max=left(محمد ﷺ) */
-    setCanScrollLeft(pos < max - 10);   /* يمكن التمرير نحو محمد ﷺ */
-    setCanScrollRight(pos > 10);        /* يمكن التمرير نحو عدنان */
-  }, []);
-
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    el.addEventListener('scroll', updateScroll, { passive: true });
-    updateScroll();
-    return () => el.removeEventListener('scroll', updateScroll);
-  }, [updateScroll]);
-
-  /* في RTL: left+300 = تمرير نحو محمد ﷺ (اليسار)، left-300 = نحو عدنان (اليمين) */
-  const scroll = (dir: 'toward-prophet' | 'toward-adnan') => {
-    scrollRef.current?.scrollBy({
-      left: dir === 'toward-prophet' ? 300 : -300,
-      behavior: 'smooth',
-    });
-  };
+const LineageGrid: React.FC = () => {
+  const total = LINEAGE_ORDERED.length;
 
   return (
-    <div className="relative">
-      {/* ── أزرار التمرير ── */}
-      <AnimatePresence>
-        {/* زر يسار → نحو محمد ﷺ */}
-        {canScrollLeft && (
-          <motion.button
-            key="scroll-left"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => scroll('toward-prophet')}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full flex items-center justify-center"
-            style={{ background: 'rgba(3,8,19,0.9)', border: '1px solid rgba(201,168,76,0.3)', color: '#C9A84C' }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            title="نحو محمد ﷺ"
+    <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-2.5" dir="rtl">
+      {LINEAGE_ORDERED.map((item, i) => {
+        const isLast = i === total - 1; /* محمد ﷺ */
+        const progress = i / (total - 1);
+
+        return (
+          <motion.div
+            key={item.name}
+            initial={{ opacity: 0, scale: 0.82 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: '-4%' }}
+            transition={{ duration: 0.38, delay: (i % 6) * 0.045 }}
+            whileHover={{ scale: isLast ? 1.04 : 1.06, y: -2 }}
+            className="relative aspect-square rounded-2xl flex flex-col items-center justify-center p-2 select-none"
+            style={{
+              background: isLast
+                ? 'linear-gradient(135deg, rgba(201,168,76,0.28), rgba(201,168,76,0.07))'
+                : `rgba(201,168,76,${(0.02 + progress * 0.07).toFixed(3)})`,
+              border: `${isLast ? 2 : 1}px solid ${
+                isLast
+                  ? 'rgba(201,168,76,0.65)'
+                  : `rgba(201,168,76,${(0.06 + progress * 0.22).toFixed(3)})`
+              }`,
+              boxShadow: isLast
+                ? '0 0 28px rgba(201,168,76,0.22), 0 0 60px rgba(201,168,76,0.08)'
+                : 'none',
+            }}
           >
-            <ChevronLeft size={18} />
-          </motion.button>
-        )}
-        {/* زر يمين → نحو عدنان */}
-        {canScrollRight && (
-          <motion.button
-            key="scroll-right"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => scroll('toward-adnan')}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full flex items-center justify-center"
-            style={{ background: 'rgba(3,8,19,0.9)', border: '1px solid rgba(201,168,76,0.3)', color: '#C9A84C' }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            title="نحو عدنان"
-          >
-            <ChevronRightIcon size={18} />
-          </motion.button>
-        )}
-      </AnimatePresence>
+            {/* رقم الجيل */}
+            <span
+              className="absolute top-1.5 left-1.5 font-kufi"
+              style={{
+                fontSize: '0.48rem',
+                color: `rgba(201,168,76,${(0.22 + progress * 0.48).toFixed(3)})`,
+                lineHeight: 1,
+              }}
+            >
+              {item.gen}
+            </span>
 
-      {/* ── ظلال التلاشي ── */}
-      <div className="absolute left-0 top-0 bottom-0 w-16 z-10 pointer-events-none"
-        style={{ background: 'linear-gradient(to right, #030813, transparent)' }} />
-      <div className="absolute right-0 top-0 bottom-0 w-16 z-10 pointer-events-none"
-        style={{ background: 'linear-gradient(to left, #030813, transparent)' }} />
+            {/* نقطة وميض لمحمد ﷺ */}
+            {isLast && (
+              <span
+                className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full animate-pulse"
+                style={{ background: '#C9A84C' }}
+              />
+            )}
 
-      {/* ── المسار الأفقي — dir="rtl": عدنان على اليمين، محمد ﷺ على اليسار ── */}
-      <div
-        ref={scrollRef}
-        className="overflow-x-auto pb-4 px-10"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', direction: 'rtl' }}
-      >
-        <div
-          className="flex items-center gap-0 py-8"
-          style={{ width: 'max-content', direction: 'rtl' }}
-        >
-          {LINEAGE_ORDERED.map((item, i) => {
-            const isLast = i === LINEAGE_ORDERED.length - 1; /* محمد ﷺ */
-            const isActive = activeIdx === i;
-
-            return (
-              <React.Fragment key={item.name}>
-                {/* ── العقدة ── */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: (LINEAGE_ORDERED.length - 1 - i) * 0.03 }}
-                  className="relative flex flex-col items-center gap-2 cursor-pointer group"
-                  style={{ minWidth: isLast ? 100 : 80 }}
-                  onClick={() => setActiveIdx(isActive ? null : i)}
-                >
-                  {/* رقم الجيل */}
-                  <span
-                    className="font-kufi opacity-30 group-hover:opacity-60 transition-opacity"
-                    style={{ color: '#C9A84C', fontSize: '0.55rem' }}
-                  >
-                    {item.gen}
-                  </span>
-
-                  {/* الدائرة */}
-                  <motion.div
-                    className="relative flex items-center justify-center rounded-full font-noto font-bold text-center"
-                    style={{
-                      width:  isLast ? 84 : 62,
-                      height: isLast ? 84 : 62,
-                      background: isLast
-                        ? 'linear-gradient(135deg, rgba(201,168,76,0.3), rgba(201,168,76,0.1))'
-                        : isActive ? 'rgba(201,168,76,0.15)' : 'rgba(201,168,76,0.06)',
-                      border: `${isLast ? 2 : 1}px solid ${
-                        isLast ? 'rgba(201,168,76,0.7)' : isActive ? 'rgba(201,168,76,0.4)' : 'rgba(201,168,76,0.2)'
-                      }`,
-                      color: isLast ? '#C9A84C' : 'rgba(255,255,255,0.72)',
-                      fontSize: isLast ? '0.72rem' : '0.65rem',
-                      boxShadow: isLast ? '0 0 30px rgba(201,168,76,0.25), 0 0 60px rgba(201,168,76,0.1)' : 'none',
-                      lineHeight: 1.3,
-                      padding: '4px',
-                    }}
-                    whileHover={{ scale: isLast ? 1.05 : 1.08 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {item.name}
-                    {isLast && (
-                      <span className="absolute -top-1 -left-1 w-3 h-3 rounded-full bg-islamic-gold animate-pulse" />
-                    )}
-                  </motion.div>
-
-                  {/* تلميح عند الضغط */}
-                  <AnimatePresence>
-                    {isActive && !isLast && (
-                      <motion.div
-                        initial={{ opacity: 0, y: -5, scale: 0.9 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: -5, scale: 0.9 }}
-                        transition={{ duration: 0.15 }}
-                        className="absolute top-full mt-2 z-30 rounded-xl px-3 py-2 whitespace-nowrap"
-                        style={{ background: 'rgba(5,11,26,0.97)', border: '1px solid rgba(201,168,76,0.25)', backdropFilter: 'blur(12px)' }}
-                      >
-                        <p className="font-noto text-white text-xs font-bold">{item.name}</p>
-                        <p className="font-kufi mt-0.5" style={{ color: 'rgba(201,168,76,0.7)', fontSize: '0.58rem' }}>
-                          الجيل {item.gen} من عدنان
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-
-                {/* ── السهم يشير لليسار ← (RTL: الأحدث على اليسار) ── */}
-                {!isLast && (
-                  <div className="flex items-center flex-shrink-0" style={{ width: 32, direction: 'ltr' }}>
-                    <svg width="32" height="16" viewBox="0 0 32 16" fill="none" className="opacity-35">
-                      {/* خط أفقي */}
-                      <line x1="32" y1="8" x2="4" y2="8" stroke="#C9A84C" strokeWidth="1" />
-                      {/* رأس السهم يشير لليسار ← */}
-                      <polyline points="10,4 4,8 10,12" stroke="#C9A84C" strokeWidth="1" fill="none" />
-                    </svg>
-                  </div>
-                )}
-              </React.Fragment>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* ── شريط التقدم ── */}
-      <div className="mt-2 mx-10 h-0.5 rounded-full overflow-hidden" style={{ background: 'rgba(201,168,76,0.08)' }}>
-        <motion.div
-          className="h-full rounded-full"
-          style={{ background: 'linear-gradient(90deg, rgba(201,168,76,0.6), rgba(201,168,76,0.2))' }}
-          initial={{ width: '0%' }}
-          whileInView={{ width: '100%' }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.2, ease: 'easeOut', delay: 0.5 }}
-        />
-      </div>
-
-      {/* ── تلميح ── */}
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="text-center font-kufi text-white/20 text-xs mt-4 flex items-center justify-center gap-2"
-        dir="rtl"
-      >
-        <ChevronRightIcon size={12} className="opacity-50" />
-        اسحب يميناً لرؤية الأجداد
-        <span className="opacity-30">•</span>
-        اسحب يساراً نحو محمد ﷺ
-        <ChevronLeft size={12} className="opacity-50" />
-      </motion.p>
+            {/* الاسم */}
+            <p
+              className="font-noto font-bold text-center leading-snug"
+              style={{
+                fontSize: isLast
+                  ? 'clamp(0.62rem, 1.4vw, 0.82rem)'
+                  : 'clamp(0.55rem, 1.1vw, 0.72rem)',
+                color: isLast
+                  ? '#C9A84C'
+                  : `rgba(255,255,255,${(0.36 + progress * 0.64).toFixed(3)})`,
+                textShadow: isLast ? '0 0 14px rgba(201,168,76,0.45)' : 'none',
+              }}
+            >
+              {item.name}
+            </p>
+          </motion.div>
+        );
+      })}
     </div>
   );
 };
@@ -466,7 +325,7 @@ const FamilyTreePage: React.FC = () => {
           <SectionTitle
             icon={<Crown size={20} />}
             title="النسب الشريف"
-            subtitle="من عدنان ← إلى محمد ﷺ — ٢٢ جيلاً"
+            subtitle="من عدنان إلى محمد ﷺ — ٢٢ جيلاً"
           />
 
           {/* بطاقة توضيحية */}
@@ -491,7 +350,7 @@ const FamilyTreePage: React.FC = () => {
             ))}
           </motion.div>
 
-          <HorizontalLineage />
+          <LineageGrid />
 
           {/* ملاحظة */}
           <motion.p
