@@ -1,8 +1,7 @@
 ﻿import React, { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Home, Clock, Users, Sparkles, HelpCircle, ScrollText, GitBranch, Heart, Crown, X, Menu, Star, BookOpen, PenTool, Library, Sword, Shield, Mail, Navigation, Coffee, BookMarked } from 'lucide-react';
-import { CHAPTERS, CHAPTER_META } from '../data/seerah';
+import { Home, Clock, Users, Sparkles, HelpCircle, ScrollText, GitBranch, Heart, Crown, X, Menu, Star, BookOpen, PenTool, Library, Sword, Shield, Mail, Navigation, Coffee } from 'lucide-react';
 
 /* ── خريطة preload للصفحات ── */
 const PRELOAD_MAP: Record<string, () => Promise<unknown>> = {
@@ -169,51 +168,9 @@ const FeatureNavSidebar: React.FC = () => {
             {/* Navigation items */}
             <nav className="flex-1 overflow-y-auto px-4 py-4 space-y-1.5">
 
-              {/* ── فصول السيرة ── */}
-              <div className="mb-2">
-                <p
-                  className="font-kufi px-3 pb-1.5 pt-0.5"
-                  style={{ fontSize: '0.72rem', color: 'rgba(201,168,76,0.55)', letterSpacing: '0.12em' }}
-                >
-                  فصول السيرة
-                </p>
-                {CHAPTERS.map((ch, index) => {
-                  const path = `/chapter/${encodeURIComponent(ch)}`;
-                  const isActive = location.pathname === path;
-                  const meta = CHAPTER_META[ch];
-                  return (
-                    <motion.button
-                      key={ch}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.03 * index }}
-                      onClick={() => handleNav(path)}
-                      className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-right transition-colors"
-                      style={{
-                        background: isActive ? `${meta.accentColor}18` : 'transparent',
-                        border: `1px solid ${isActive ? `${meta.accentColor}35` : 'transparent'}`,
-                        color: isActive ? meta.accentColor : 'rgba(255,255,255,0.92)',
-                      }}
-                      whileHover={{ background: 'rgba(201,168,76,0.07)', color: '#C9A84C' }}
-                      whileTap={{ scale: 0.97 }}
-                    >
-                      <BookMarked size={14} style={{ color: isActive ? meta.accentColor : 'rgba(201,168,76,0.35)', flexShrink: 0 }} />
-                      <div className="flex-1 text-right min-w-0">
-                        <span className="font-noto text-sm block">{ch}</span>
-                        <span className="font-kufi block truncate" style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.50)', marginTop: 1 }}>{meta.years}</span>
-                      </div>
-                      {isActive && <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: meta.accentColor }} />}
-                    </motion.button>
-                  );
-                })}
-              </div>
-
-              {/* ── فاصل ── */}
-              <div className="my-3 mx-2 h-px" style={{ background: 'rgba(201,168,76,0.12)' }} />
-
-              {/* ── الأقسام الأخرى ── */}
+              {/* ── الأقسام ── */}
               <p
-                className="font-kufi px-3 pb-1.5"
+                className="font-kufi px-3 pb-1.5 pt-0.5"
                 style={{ fontSize: '0.72rem', color: 'rgba(201,168,76,0.55)', letterSpacing: '0.12em' }}
               >
                 الأقسام
