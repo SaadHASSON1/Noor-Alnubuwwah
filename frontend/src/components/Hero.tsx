@@ -171,26 +171,37 @@ const Hero: React.FC = () => {
           className="stats-bar grid grid-cols-3 sm:grid-cols-5 gap-1.5 sm:gap-0 w-full max-w-3xl mx-auto mb-8"
         >
           {STATS.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 1.9 + i * 0.1 }}
-              className="stats-item flex flex-col items-center justify-center py-3 sm:py-4 px-2"
-            >
-              <span
-                className="font-noto font-bold leading-none mb-1"
-                style={{ fontSize: 'clamp(1.05rem, 3vw, 1.5rem)', color: '#C9A84C' }}
+            <React.Fragment key={stat.label}>
+              {/* Vertical divider between the two bottom pills on mobile */}
+              {i === 4 && (
+                <div
+                  className="sm:hidden flex items-center justify-center"
+                  style={{ gridColumn: '2 / 3', gridRow: '2' }}
+                  aria-hidden
+                >
+                  <div style={{ width: 1, height: '55%', background: 'rgba(201,168,76,0.35)', borderRadius: 1 }} />
+                </div>
+              )}
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1.9 + i * 0.1 }}
+                className={`stats-item flex flex-col items-center justify-center py-3 sm:py-4 px-2${i === 3 ? ' stat-4th' : i === 4 ? ' stat-5th' : ''}`}
               >
-                {stat.value}
-              </span>
-              <span
-                className="font-kufi text-center leading-tight"
-                style={{ fontSize: 'clamp(0.62rem, 1.3vw, 0.78rem)', color: '#8e9095', whiteSpace: 'nowrap' }}
-              >
-                {stat.label}
-              </span>
-            </motion.div>
+                <span
+                  className="font-noto font-bold leading-none mb-1"
+                  style={{ fontSize: 'clamp(1.05rem, 3vw, 1.5rem)', color: '#C9A84C' }}
+                >
+                  {stat.value}
+                </span>
+                <span
+                  className="font-kufi text-center leading-tight"
+                  style={{ fontSize: 'clamp(0.62rem, 1.3vw, 0.78rem)', color: '#8e9095', whiteSpace: 'nowrap' }}
+                >
+                  {stat.label}
+                </span>
+              </motion.div>
+            </React.Fragment>
           ))}
         </motion.div>
 
