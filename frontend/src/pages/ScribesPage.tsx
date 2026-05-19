@@ -422,7 +422,7 @@ const ScribesPage: React.FC = () => {
                   style={{
                     background: 'rgba(201,168,76,0.06)',
                     border: '1px solid rgba(201,168,76,0.14)',
-                    color: 'rgba(201,168,76,0.65)',
+                    color: '#C9A84C',
                   }}
                 >
                   <PenLine size={9} />

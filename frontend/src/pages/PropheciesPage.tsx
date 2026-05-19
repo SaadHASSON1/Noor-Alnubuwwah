@@ -356,7 +356,7 @@ const PropheciesPage: React.FC = () => {
                 {/* Source */}
                 <div
                   className="inline-block font-kufi text-xs px-3 py-1 rounded-full"
-                  style={{ background: 'rgba(201,168,76,0.06)', color: 'rgba(201,168,76,0.6)', border: '1px solid rgba(201,168,76,0.12)' }}
+                  style={{ background: 'rgba(201,168,76,0.06)', color: '#C9A84C', border: '1px solid rgba(201,168,76,0.12)' }}
                 >
                   {prophecy.source}
                 </div>

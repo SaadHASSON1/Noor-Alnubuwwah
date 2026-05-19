@@ -320,18 +320,18 @@ const QuizPage: React.FC = () => {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           className="flex items-center gap-2 font-kufi text-xs"
-          style={{ color: 'rgba(201,168,76,0.5)' }}
+          style={{ color: '#C9A84C' }}
         >
           <button
             onClick={() => navigate('/')}
             className="flex items-center gap-1 hover:text-islamic-gold transition-colors"
-            style={{ color: 'rgba(201,168,76,0.6)' }}
+            style={{ color: '#C9A84C' }}
           >
             <Home size={12} />
             <span>الرئيسية</span>
           </button>
           <ChevronLeft size={10} className="rotate-180" />
-          <span style={{ color: 'rgba(201,168,76,0.9)' }}>الاختبار التفاعلي</span>
+          <span style={{ color: '#C9A84C' }}>الاختبار التفاعلي</span>
         </motion.nav>
       </div>
 
