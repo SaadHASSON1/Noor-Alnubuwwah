@@ -2,6 +2,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Home, ChevronLeft, CheckCircle, XCircle, Award, RotateCcw, Shuffle } from 'lucide-react';
+import ShareButton from '../components/ShareButton';
 
 interface Question {
   question: string;
@@ -292,6 +293,10 @@ const QuizPage: React.FC = () => {
       className="min-h-screen flex flex-col"
       style={{ background: '#030813' }}
     >
+      {/* زر المشاركة */}
+      <div className="fixed top-4 left-4 z-[60]">
+        <ShareButton title="اختبر معلوماتك" accentColor="#C9A84C" />
+      </div>
       {/* Stars */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         {Array.from({ length: 50 }, (_, i) => (

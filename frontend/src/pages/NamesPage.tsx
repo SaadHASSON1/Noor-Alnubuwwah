@@ -2,6 +2,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Home, ChevronLeft, Star } from 'lucide-react';
+import ShareButton from '../components/ShareButton';
 
 interface ProphetName {
   name: string;
@@ -206,6 +207,10 @@ const NamesPage: React.FC = () => {
 
   return (
     <div dir="rtl" className="min-h-screen" style={{ background: '#030813' }}>
+      {/* زر المشاركة */}
+      <div className="fixed top-4 left-4 z-[60]">
+        <ShareButton title="أسماء النبي ﷺ" accentColor="#C9A84C" />
+      </div>
       {/* Stars */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         {Array.from({ length: 55 }, (_, i) => (
@@ -395,7 +400,7 @@ const NamesPage: React.FC = () => {
                     {/* Meaning */}
                     <p
                       className="font-kufi text-white/60 mb-3"
-                      style={{ fontSize: '0.7rem', lineHeight: 1.6 }}
+                      style={{ fontSize: '0.88rem', lineHeight: 1.6 }}
                     >
                       {nameItem.meaning}
                     </p>
@@ -407,7 +412,7 @@ const NamesPage: React.FC = () => {
                         background: `${group.color}0A`,
                         border: `1px solid ${group.color}18`,
                         color: `${group.color}70`,
-                        fontSize: '0.6rem',
+                        fontSize: '0.82rem',
                       }}
                     >
                       {nameItem.reference}
@@ -424,7 +429,7 @@ const NamesPage: React.FC = () => {
                         >
                           <p
                             className="font-noto text-white/50"
-                            style={{ fontSize: '0.68rem', lineHeight: 1.8 }}
+                            style={{ fontSize: '0.86rem', lineHeight: 1.8 }}
                           >
                             {nameItem.explanation}
                           </p>

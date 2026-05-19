@@ -10,6 +10,7 @@ import {
   BATTLE_ROUTES,
   type MapLocation,
 } from '../data/mapData';
+import ShareButton from '../components/ShareButton';
 
 /* ── Pulsing location marker ── */
 const LocationMarker: React.FC<{
@@ -134,6 +135,10 @@ const MapPage: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col" dir="rtl" style={{ background: '#030813' }}>
+      {/* زر المشاركة */}
+      <div className="fixed top-4 left-4 z-[60]">
+        <ShareButton title="خريطة الأحداث" accentColor="#C9A84C" />
+      </div>
 
       {/* ── Top bar ── */}
       <div

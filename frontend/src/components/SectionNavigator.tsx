@@ -106,7 +106,7 @@ const SectionNavigator: React.FC<Props> = ({ sections, accentColor }) => {
                   animate={{ opacity: isActive ? 1 : 0.38 }}
                   className="font-kufi whitespace-nowrap transition-colors group-hover:opacity-70"
                   style={{
-                    fontSize: '0.62rem',
+                    fontSize: '0.84rem',
                     color: isActive ? accentColor : 'rgba(255,255,255,0.75)',
                     fontWeight: isActive ? 700 : 400,
                     letterSpacing: isActive ? '0.02em' : 0,
@@ -118,7 +118,7 @@ const SectionNavigator: React.FC<Props> = ({ sections, accentColor }) => {
                 {/* Hover right-arrow hint */}
                 <motion.span
                   className="opacity-0 group-hover:opacity-40 transition-opacity font-kufi"
-                  style={{ fontSize: '0.5rem', color: accentColor }}
+                  style={{ fontSize: '0.92rem', color: accentColor }}
                 >
                   ›
                 </motion.span>

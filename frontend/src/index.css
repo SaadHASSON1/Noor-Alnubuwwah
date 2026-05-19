@@ -79,6 +79,10 @@
 .mecca-ring:nth-child(3) { animation-delay: 1.25s; }
 .mecca-ring:nth-child(4) { animation-delay: 0s; width: 28px; height: 28px; opacity: 0.5; }
 
+/* ── Minimum readable font sizes — lift text-xs / text-sm ── */
+.text-xs { font-size: 0.83rem !important; line-height: 1.5 !important; }
+.text-sm { font-size: 0.95rem !important; line-height: 1.6 !important; }
+
 /* ── Text readability overrides — lift faint white text so it's legible ── */
 .text-white\/60 { color: rgb(255 255 255 / 0.85) !important; }
 .text-white\/55 { color: rgb(255 255 255 / 0.82) !important; }

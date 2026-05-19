@@ -2,6 +2,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { BookOpen, Youtube, ExternalLink, BookMarked, Scroll, Library, Star, X } from 'lucide-react';
 import IslamicParticles from '../components/IslamicParticles';
+import ShareButton from '../components/ShareButton';
 
 /* ══════════════════════════════════════════
    بيانات المصادر
@@ -397,6 +398,10 @@ const SourcesPage: React.FC = () => {
 
   return (
     <div className="min-h-screen relative" dir="rtl" style={{ background: '#030813' }}>
+      {/* زر المشاركة */}
+      <div className="fixed top-4 left-4 z-[60]">
+        <ShareButton title="المصادر والمراجع" accentColor="#C9A84C" />
+      </div>
       <IslamicParticles />
 
       {/* نجوم الخلفية */}
