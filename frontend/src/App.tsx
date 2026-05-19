@@ -24,6 +24,10 @@ const PropheciesPage     = lazy(() => import('./pages/PropheciesPage'));
 const NamesPage          = lazy(() => import('./pages/NamesPage'));
 const ScribesPage        = lazy(() => import('./pages/ScribesPage'));
 const SourcesPage        = lazy(() => import('./pages/SourcesPage'));
+const BattlesPage        = lazy(() => import('./pages/BattlesPage'));
+const LettersPage        = lazy(() => import('./pages/LettersPage'));
+const HijraPage          = lazy(() => import('./pages/HijraPage'));
+const DailyLifePage      = lazy(() => import('./pages/DailyLifePage'));
 
 /* ── Page loading fallback ── */
 const PageLoader: React.FC = () => (
@@ -199,6 +203,18 @@ function App() {
           } />
           <Route path="/sources" element={
             <PageWrapper><SourcesPage /></PageWrapper>
+          } />
+          <Route path="/battles" element={
+            <PageWrapper><BattlesPage /></PageWrapper>
+          } />
+          <Route path="/letters" element={
+            <PageWrapper><LettersPage /></PageWrapper>
+          } />
+          <Route path="/hijra" element={
+            <PageWrapper><HijraPage /></PageWrapper>
+          } />
+          <Route path="/daily-life" element={
+            <PageWrapper><DailyLifePage /></PageWrapper>
           } />
           <Route path="*" element={
             <PageWrapper>

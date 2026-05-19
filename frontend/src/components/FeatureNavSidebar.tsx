@@ -1,22 +1,26 @@
 ﻿import React, { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Home, Clock, Users, Sparkles, HelpCircle, ScrollText, GitBranch, Heart, Crown, X, Menu, Star, BookOpen, PenTool, Library } from 'lucide-react';
+import { Home, Clock, Users, Sparkles, HelpCircle, ScrollText, GitBranch, Heart, Crown, X, Menu, Star, BookOpen, PenTool, Library, Sword, Mail, Navigation, Coffee } from 'lucide-react';
 
 /* ── خريطة preload للصفحات ── */
 const PRELOAD_MAP: Record<string, () => Promise<unknown>> = {
-  '/timeline':       () => import('../pages/TimelinePage'),
-  '/character':      () => import('../pages/CharacterPage'),
-  '/wives':          () => import('../pages/WivesPage'),
-  '/companions':     () => import('../pages/CompanionsPage'),
-  '/miracles':       () => import('../pages/MiraclesPage'),
-  '/family-tree':    () => import('../pages/FamilyTreePage'),
-  '/quiz':           () => import('../pages/QuizPage'),
-  '/farewell-sermon':() => import('../pages/FarewellSermonPage'),
-  '/prophecies':     () => import('../pages/PropheciesPage'),
-  '/names':          () => import('../pages/NamesPage'),
-  '/scribes':        () => import('../pages/ScribesPage'),
-  '/sources':        () => import('../pages/SourcesPage'),
+  '/timeline':        () => import('../pages/TimelinePage'),
+  '/character':       () => import('../pages/CharacterPage'),
+  '/wives':           () => import('../pages/WivesPage'),
+  '/companions':      () => import('../pages/CompanionsPage'),
+  '/miracles':        () => import('../pages/MiraclesPage'),
+  '/family-tree':     () => import('../pages/FamilyTreePage'),
+  '/quiz':            () => import('../pages/QuizPage'),
+  '/farewell-sermon': () => import('../pages/FarewellSermonPage'),
+  '/prophecies':      () => import('../pages/PropheciesPage'),
+  '/names':           () => import('../pages/NamesPage'),
+  '/scribes':         () => import('../pages/ScribesPage'),
+  '/sources':         () => import('../pages/SourcesPage'),
+  '/battles':         () => import('../pages/BattlesPage'),
+  '/letters':         () => import('../pages/LettersPage'),
+  '/hijra':           () => import('../pages/HijraPage'),
+  '/daily-life':      () => import('../pages/DailyLifePage'),
 };
 
 interface NavItem {
@@ -29,6 +33,10 @@ const NAV_ITEMS: NavItem[] = [
   { icon: <Home size={16} />,        label: 'الرئيسية',             path: '/' },
   { icon: <Clock size={16} />,       label: 'التسلسل الزمني',       path: '/timeline' },
   { icon: <Heart size={16} />,       label: 'صفاته ﷺ',              path: '/character' },
+  { icon: <Coffee size={16} />,      label: 'حياته اليومية ﷺ',      path: '/daily-life' },
+  { icon: <Navigation size={16} />,  label: 'رحلة الهجرة',           path: '/hijra' },
+  { icon: <Sword size={16} />,       label: 'غزواته ﷺ',             path: '/battles' },
+  { icon: <Mail size={16} />,        label: 'رسائله للملوك',         path: '/letters' },
   { icon: <Crown size={16} />,       label: 'أمهات المؤمنين',        path: '/wives' },
   { icon: <Users size={16} />,       label: 'الصحابة الكرام',        path: '/companions' },
   { icon: <Sparkles size={16} />,    label: 'معجزاته ﷺ',            path: '/miracles' },

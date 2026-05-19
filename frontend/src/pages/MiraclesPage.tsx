@@ -275,7 +275,7 @@ const MiracleModal: React.FC<{ miracle: Miracle; onClose: () => void }> = ({ mir
           className="rounded-2xl p-4"
           style={{ background: `${miracle.color}08`, border: `1px solid ${miracle.color}20` }}
         >
-          <p className="font-kufi text-xs mb-1" style={{ color: 'rgba(255,255,255,0.70)' }}>المصدر</p>
+          <p className="font-kufi text-xs mb-1" style={{ color: 'rgba(255,255,255,0.95)' }}>المصدر</p>
           <p className="font-noto" style={{ fontSize: '0.85rem', color: `${miracle.color}bb`, lineHeight: 1.8 }}>
             {miracle.reference}
           </p>
