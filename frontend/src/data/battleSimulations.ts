@@ -862,4 +862,40 @@ export const BATTLE_SIMULATIONS: BattleSimulation[] = [
       },
     ],
   },
+  {
+    eventId: 54,
+    name: 'غزوة السويق',
+    terrain: 'desert',
+    terrainLabel: 'ضواحي المدينة',
+    muslimColor: '#4ade80',
+    enemyColor: '#f87171',
+    phases: [
+      {
+        title: 'إغارة أبي سفيان وإحراق النخيل',
+        description: 'خرج أبو سفيان في مئتي فارس من قريش يريد الانتقام لبدر، فأحرق نخلاً وبيوتاً في ضواحي المدينة وقتل رجلاً من الأنصار.',
+        units: [
+          { id: 'medina', label: 'المدينة المنورة', x: 50, y: 75, side: 'terrain', shape: 'diamond' },
+          { id: 'e1', label: 'أبو سفيان — ٢٠٠ فارس', count: '٢٠٠', x: 50, y: 25, side: 'enemy', shape: 'circle' },
+          { id: 'e2', label: 'منطقة الإحراق', x: 50, y: 48, side: 'enemy', shape: 'circle' },
+        ],
+        arrows: [
+          { id: 'a1', x1: 50, y1: 30, x2: 50, y2: 44, color: '#f87171', label: 'الإغارة' },
+        ],
+      },
+      {
+        title: 'فرار قريش وإلقاء السويق',
+        description: 'حين سمع أبو سفيان بخروج النبي ﷺ في أثره أمر فرسانه بإلقاء أكياس السويق (الدقيق) ليخفّفوا الأحمال ويسرعوا الفرار. فجمعها المسلمون وسُمّيت الغزوة بالسويق.',
+        units: [
+          { id: 'medina', label: 'المدينة المنورة', x: 50, y: 75, side: 'terrain', shape: 'diamond' },
+          { id: 'm1', label: 'النبي ﷺ في المطاردة', count: '٢٠٠', x: 50, y: 58, side: 'muslim', shape: 'circle' },
+          { id: 'e1', label: 'قريش تفرّ شمالاً', count: '٢٠٠', x: 50, y: 22, side: 'enemy', shape: 'circle' },
+          { id: 'sw', label: 'السويق المُلقى', x: 50, y: 42, side: 'terrain', shape: 'diamond' },
+        ],
+        arrows: [
+          { id: 'a1', x1: 50, y1: 54, x2: 50, y2: 38, color: '#4ade80', label: 'مطاردة' },
+          { id: 'a2', x1: 50, y1: 30, x2: 50, y2: 16, color: '#f87171', label: 'فرار قريش' },
+        ],
+      },
+    ],
+  },
 ];
