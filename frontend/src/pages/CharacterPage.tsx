@@ -232,7 +232,7 @@ const CharacterPage: React.FC = () => {
   return (
     <div dir="rtl" className="min-h-screen" style={{ background: '#030813' }}>
       {/* زر المشاركة */}
-      <div className="fixed top-4 left-4 z-[60]">
+      <div className="fixed top-[72px] left-4 z-[60]">
         <ShareButton title="شمائل النبي ﷺ" accentColor="#C9A84C" />
       </div>
       <SectionNavigator sections={CHAR_SECTIONS} accentColor="#C9A84C" />
