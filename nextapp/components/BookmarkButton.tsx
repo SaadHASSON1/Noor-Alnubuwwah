@@ -3,6 +3,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Bookmark, BookmarkCheck } from 'lucide-react';
 import { useBookmarks } from '@/context/BookmarksContext';
+import { useReadingMode } from '@/context/ReadingModeContext';
 
 interface Props {
   eventId: number;
@@ -12,6 +13,7 @@ interface Props {
 
 const BookmarkButton: React.FC<Props> = ({ eventId, accentColor = '#C9A84C', size = 'md' }) => {
   const { toggle, isBookmarked } = useBookmarks();
+  const { isReading } = useReadingMode();
   const saved = isBookmarked(eventId);
 
   const iconSize = size === 'sm' ? 14 : 16;
@@ -28,9 +30,9 @@ const BookmarkButton: React.FC<Props> = ({ eventId, accentColor = '#C9A84C', siz
       style={{
         padding: `${padY} ${padX}`,
         fontSize,
-        background: saved ? `${accentColor}22` : 'rgba(255,255,255,0.05)',
-        border: `1px solid ${saved ? accentColor + '55' : 'rgba(255,255,255,0.12)'}`,
-        color: saved ? accentColor : 'rgba(255,255,255,0.55)',
+        background: saved ? `${accentColor}22` : (isReading ? 'rgba(201,168,76,0.06)' : 'rgba(255,255,255,0.05)'),
+        border: `1px solid ${saved ? accentColor + '55' : (isReading ? 'rgba(201,168,76,0.3)' : 'rgba(255,255,255,0.12)')}`,
+        color: saved ? accentColor : (isReading ? '#6b4c20' : 'rgba(255,255,255,0.7)'),
       }}
       aria-label={saved ? 'إزالة من المحفوظات' : 'حفظ الحدث'}
       title={saved ? 'إزالة من المحفوظات' : 'حفظ'}

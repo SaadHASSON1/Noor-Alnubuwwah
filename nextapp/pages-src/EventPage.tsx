@@ -87,8 +87,8 @@ const EventPage: React.FC = () => {
   const meta = CHAPTER_META[event.chapter];
   const accentColor = meta?.accentColor ?? '#C9A84C';
   const isLight = !!event.lightText;
-  const textBase  = isLight ? 'text-stone-800'  : 'text-white';
-  const textMuted = isLight ? 'text-stone-600'  : 'text-white/65';
+  const textBase  = isReading ? 'text-stone-800' : (isLight ? 'text-stone-800'  : 'text-white');
+  const textMuted = isReading ? 'text-stone-600' : (isLight ? 'text-stone-600'  : 'text-white/65');
 
   /* Section navigator entries — only include sections that exist for this event */
   const navSections = useMemo<NavSection[]>(() => {
@@ -214,9 +214,9 @@ const EventPage: React.FC = () => {
               style={{
                 padding: '0.5rem 0.85rem',
                 fontSize: '0.82rem',
-                background: isReading ? 'rgba(255,245,220,0.15)' : 'rgba(255,255,255,0.05)',
-                border: `1px solid ${isReading ? 'rgba(255,245,220,0.4)' : 'rgba(255,255,255,0.12)'}`,
-                color: isReading ? '#f5e8c8' : 'rgba(255,255,255,0.55)',
+                background: isReading ? 'rgba(201,168,76,0.1)' : 'rgba(255,255,255,0.05)',
+                border: `1px solid ${isReading ? 'rgba(201,168,76,0.4)' : 'rgba(255,255,255,0.12)'}`,
+                color: isReading ? readText : 'rgba(255,255,255,0.7)',
               }}
               title={isReading ? 'إيقاف وضع القراءة' : 'وضع القراءة'}
             >
@@ -376,7 +376,8 @@ const EventPage: React.FC = () => {
       <section
         className="relative py-20 px-5 md:px-12"
         style={{
-          background: isLight ? event.bg : `linear-gradient(to bottom, ${event.bg} 0%, #030813 30%)`,
+          background: isReading ? readBg : (isLight ? event.bg : `linear-gradient(to bottom, ${event.bg} 0%, #030813 30%)`),
+          transition: 'background 0.4s ease',
         }}
       >
         <div className="max-w-4xl mx-auto">
