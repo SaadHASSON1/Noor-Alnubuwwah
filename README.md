@@ -14,7 +14,7 @@
 
 <br/>
 
-[![](https://img.shields.io/badge/🌐_الموقع_المباشر-noor--alnubuwwah.x13labs.com-C9A84C?style=for-the-badge)](https://noor-alnubuwwah.x13labs.com)
+[![](https://img.shields.io/badge/🌐_-noor--alnubuwwah.x13labs.com-C9A84C?style=for-the-badge)](https://noor-alnubuwwah.x13labs.com)
 
 <br/>
 
