@@ -1,12 +1,34 @@
 import type { Metadata } from 'next';
+import { Scheherazade_New, Reem_Kufi, Amiri } from 'next/font/google';
 import './globals.css';
 import Providers from '@/components/Providers';
+
+const scheherazade = Scheherazade_New({
+  subsets: ['arabic'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--loaded-noto',
+  display: 'swap',
+});
+
+const reemKufi = Reem_Kufi({
+  subsets: ['arabic'],
+  weight: ['400', '500', '700'],
+  variable: '--loaded-kufi',
+  display: 'swap',
+});
+
+const amiri = Amiri({
+  subsets: ['arabic'],
+  weight: ['400', '700'],
+  variable: '--loaded-amiri',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   icons: { icon: '/favicon.svg' },
   title: {
-    default: 'نور النبوة — السيرة النبوية الشريفة',
-    template: '%s | نور النبوة',
+    default: '‏نور النبوة — السيرة النبوية الشريفة',
+    template: '‏%s | نور النبوة',
   },
   description: 'موقع تفاعلي شامل للسيرة النبوية الشريفة — تسلسل زمني، خرائط، غزوات، معجزات، وأحداث حياة النبي محمد ﷺ',
   keywords: ['سيرة نبوية', 'نور النبوة', 'محمد', 'النبي', 'الإسلام', 'السيرة الشريفة'],
@@ -21,12 +43,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ar" dir="rtl">
+    <html lang="ar" dir="rtl" className={`${scheherazade.variable} ${reemKufi.variable} ${amiri.variable}`}>
       <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;500;600;700&family=Reem+Kufi:wght@400;500;700&family=Amiri:ital,wght@0,400;0,700&family=Inter:wght@400;500;600&display=swap"
-          rel="stylesheet"
-        />
         <link href="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css" rel="stylesheet" />
       </head>
       <body className="bg-dark-bg text-white font-noto antialiased overflow-x-hidden">

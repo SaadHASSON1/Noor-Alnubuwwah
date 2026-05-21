@@ -7,9 +7,9 @@
   --color-desert-warm:   #C4A882;
   --color-dark-bg:       #030813;
   --color-dark-panel:    #0d1b2a;
-  --font-noto:  "Scheherazade New", serif;
-  --font-kufi:  "Reem Kufi", serif;
-  --font-amiri: Amiri, serif;
+  --font-noto:  var(--loaded-noto, "Scheherazade New"), Tahoma, serif;
+  --font-kufi:  var(--loaded-kufi, "Reem Kufi"), Tahoma, serif;
+  --font-amiri: var(--loaded-amiri, Amiri), Tahoma, serif;
   --font-sans:  Inter, sans-serif;
 }
 
@@ -25,7 +25,7 @@
   body {
     background-color: #030813;
     color: white;
-    font-family: Arial, sans-serif;
+    font-family: "Scheherazade New", "Amiri", Tahoma, "Arial Unicode MS", Arial, sans-serif;
     overflow-x: hidden;
   }
 }
