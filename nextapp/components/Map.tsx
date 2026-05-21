@@ -43,8 +43,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ activePeriod, onSimulateBat
   const meccaMarkerRef = useRef<any>(null);
   const rafRef         = useRef<number>(0);
 
-  const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN as string;
-  mapboxgl.accessToken = MAPBOX_TOKEN;
+  mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN ?? '';
 
   /* ── Init map ── */
   useEffect(() => {
