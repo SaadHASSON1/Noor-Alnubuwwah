@@ -1,0 +1,326 @@
+@import "tailwindcss";
+
+@theme {
+  --color-islamic-gold:  #C9A84C;
+  --color-islamic-green: #1B4332;
+  --color-desert-sand:   #E8D5A3;
+  --color-desert-warm:   #C4A882;
+  --color-dark-bg:       #030813;
+  --color-dark-panel:    #0d1b2a;
+  --font-noto:  "Scheherazade New", serif;
+  --font-kufi:  "Reem Kufi", serif;
+  --font-amiri: Amiri, serif;
+  --font-sans:  Inter, sans-serif;
+}
+
+@layer base {
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+  body {
+    background-color: #030813;
+    color: white;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #030813; }
+::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.4); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #C9A84C; }
+
+/* ═══════════════════════════════════════════════════════════════
+   ANIMATION KEYFRAMES
+   ═══════════════════════════════════════════════════════════════ */
+
+@keyframes twinkle {
+  0%,100% { opacity: 0.12; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.5); }
+}
+
+@keyframes golden-float {
+  0%   { transform: translateY(0) translateX(0); opacity: 0; }
+  8%   { opacity: 0.9; }
+  80%  { opacity: 0.6; }
+  100% { transform: translateY(-108vh) translateX(var(--drift, 30px)); opacity: 0; }
+}
+
+@keyframes arabesque-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes dot-pulse {
+  /* opacity-only pulse: GPU-composited, no paint */
+  0%,100% { opacity: 1;   transform: scale(1);   }
+  50%      { opacity: 0.35; transform: scale(1.35); }
+}
+
+@keyframes mecca-ring {
+  0%   { transform: scale(1);   opacity: 0.8; }
+  100% { transform: scale(3.5); opacity: 0;   }
+}
+
+@keyframes sand-flow {
+  /* translate-based: GPU-composited, no background-position paint */
+  0%   { transform: translateY(0%); }
+  100% { transform: translateY(50%); }
+}
+
+@keyframes glow-pulse {
+  /* opacity-only: GPU-composited, no text-shadow paint */
+  0%,100% { opacity: 0.35; }
+  50%      { opacity: 0.85; }
+}
+
+/* Utility classes */
+.animate-twinkle       { animation: twinkle        var(--dur, 3s) ease-in-out infinite var(--delay, 0s); }
+.animate-golden-float  { animation: golden-float   var(--dur, 9s) ease-in-out infinite var(--delay, 0s); }
+.animate-arabesque     { animation: arabesque-spin var(--dur,45s) linear    infinite; }
+.animate-dot-pulse     { animation: dot-pulse 2s ease-in-out infinite; }
+.animate-glow-pulse    { animation: glow-pulse 2.5s ease-in-out infinite; }
+
+/* Mecca pulsing marker (used in Map if still referenced) */
+.mecca-marker { position: relative; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; }
+.mecca-core   { width: 10px; height: 10px; border-radius: 50%; background: radial-gradient(circle, #FFE082, #C9A84C); box-shadow: 0 0 12px rgba(201,168,76,0.9), 0 0 24px rgba(201,168,76,0.5); z-index: 3; position: relative; }
+.mecca-ring   { position: absolute; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid #C9A84C; animation: mecca-ring 2.5s ease-out infinite; }
+.mecca-ring:nth-child(3) { animation-delay: 1.25s; }
+.mecca-ring:nth-child(4) { animation-delay: 0s; width: 28px; height: 28px; opacity: 0.5; }
+
+/* ── Minimum readable font sizes — lift text-xs / text-sm ── */
+.text-xs { font-size: 0.83rem !important; line-height: 1.5 !important; }
+.text-sm { font-size: 0.95rem !important; line-height: 1.6 !important; }
+
+/* ── Global bold Arabic fonts ── */
+.font-noto { font-weight: 700 !important; }
+.font-kufi  { font-weight: 700 !important; }
+
+/* ── Text readability overrides — all white text variants → fully opaque ── */
+.text-white\/15 { color: rgb(255 255 255 / 0.92) !important; }
+.text-white\/18 { color: rgb(255 255 255 / 0.92) !important; }
+.text-white\/20 { color: rgb(255 255 255 / 0.92) !important; }
+.text-white\/22 { color: rgb(255 255 255 / 0.92) !important; }
+.text-white\/25 { color: rgb(255 255 255 / 0.92) !important; }
+.text-white\/30 { color: rgb(255 255 255 / 0.93) !important; }
+.text-white\/35 { color: rgb(255 255 255 / 0.93) !important; }
+.text-white\/40 { color: rgb(255 255 255 / 0.93) !important; }
+.text-white\/45 { color: rgb(255 255 255 / 0.94) !important; }
+.text-white\/50 { color: rgb(255 255 255 / 0.94) !important; }
+.text-white\/55 { color: rgb(255 255 255 / 0.94) !important; }
+.text-white\/60 { color: rgb(255 255 255 / 0.95) !important; }
+.text-white\/65 { color: rgb(255 255 255 / 0.95) !important; }
+.text-white\/70 { color: rgb(255 255 255 / 0.96) !important; }
+.text-white\/75 { color: rgb(255 255 255 / 0.96) !important; }
+.text-white\/80 { color: rgb(255 255 255 / 0.97) !important; }
+.text-white\/90 { color: rgb(255 255 255 / 0.98) !important; }
+
+/* Flowing timeline line — static gradient, no paint animation */
+.timeline-line {
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    rgba(201,168,76,0.6) 15%,
+    rgba(201,168,76,0.35) 50%,
+    rgba(201,168,76,0.6) 85%,
+    transparent 100%
+  );
+}
+
+/* ── Hero stats bar — mobile: individual pills (3+2), desktop: unified bar (5) ── */
+.stats-bar {
+  /* Centre the last row of 2 pills on mobile */
+  justify-items: center;
+}
+.stats-item {
+  background: rgba(201,168,76,0.07);
+  border: 1px solid rgba(201,168,76,0.22);
+  border-radius: 0.85rem;
+  width: 100%;
+}
+/* 5 items → last 2 pills symmetrically centred in row 2 on mobile */
+@media (max-width: 639px) {
+  .stat-4th { grid-column: 1 / 2; grid-row: 2; }
+  .stat-5th { grid-column: 3 / 4; grid-row: 2; }
+}
+@media (min-width: 640px) {
+  .stats-bar {
+    background: rgba(201,168,76,0.05);
+    border: 1px solid rgba(201,168,76,0.18);
+    border-radius: 1rem;
+    overflow: hidden;
+    justify-items: stretch;
+  }
+  .stats-item {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    width: auto;
+  }
+  .stats-item:not(:last-child) {
+    border-right: 1px solid rgba(201,168,76,0.18);
+  }
+}
+
+/* ── Sidebar nav items — CSS hover (faster than Framer Motion whileHover) ── */
+.sidebar-nav-item {
+  transition: background 0.13s ease, color 0.13s ease, border-color 0.13s ease;
+}
+.sidebar-nav-item:not(.active):hover {
+  background: rgba(201,168,76,0.09) !important;
+  color: #C9A84C !important;
+}
+.sidebar-nav-item:not(.active):hover .nav-icon {
+  color: #C9A84C !important;
+}
+
+/* ── Responsive: ensure no horizontal overflow on any screen ── */
+* { box-sizing: border-box; }
+img, svg, video { max-width: 100%; }
+
+/* ── Touch: larger tap targets on mobile ── */
+@media (max-width: 640px) {
+  .sidebar-nav-item { padding-top: 0.85rem; padding-bottom: 0.85rem; }
+}
+
+/* ── Large screens (TV ≥ 1920px): increase base font scale ── */
+@media (min-width: 1920px) {
+  html { font-size: 18px; }
+}
+@media (min-width: 2560px) {
+  html { font-size: 20px; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PERFORMANCE: GPU layer hints
+   ═══════════════════════════════════════════════════════════ */
+
+/* Pre-promote interactive card articles to their own composite layer */
+article.group {
+  will-change: transform;
+}
+
+/* Animated elements that use opacity/transform only */
+.animate-twinkle,
+.animate-dot-pulse {
+  will-change: transform, opacity;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE: All screen sizes
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Extra-small phones (< 390px) ── */
+@media (max-width: 390px) {
+  /* Scale down hero text more aggressively */
+  .font-noto, .font-kufi { letter-spacing: 0 !important; }
+
+  /* Timeline: shrink right padding so cards don't overflow */
+  .pr-14 { padding-right: 2.5rem !important; }
+
+  /* Breadcrumbs: smaller text */
+  nav.font-kufi { font-size: 0.75rem !important; }
+}
+
+/* ── Mobile (< 640px) ── */
+@media (max-width: 640px) {
+  /* Remove excessive horizontal padding on section containers */
+  section.px-5 { padding-left: 0.75rem !important; padding-right: 0.75rem !important; }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Stats bar: ensure pills don't overflow */
+  .stats-item { min-width: 0; }
+
+  /* Ensure grids don't cause horizontal scroll */
+  .grid { min-width: 0; }
+}
+
+/* ── Touch devices: remove hover-state delay ── */
+@media (hover: none) {
+  /* Disable expensive hover effects on touch */
+  .group:hover { will-change: auto; }
+  .sidebar-nav-item:hover {
+    background: transparent !important;
+  }
+}
+
+/* ── Touch targets: minimum 44×44 px (WCAG) ── */
+button, a[href], [role="button"] {
+  touch-action: manipulation;
+}
+
+/* ── Prevent horizontal overflow globally ── */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* ── Safe area insets (notched phones, iPad home bar) ── */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  body { padding-bottom: env(safe-area-inset-bottom); }
+  .fixed.bottom-6 { bottom: calc(1.5rem + env(safe-area-inset-bottom)); }
+}
+
+/* ── Tablet (640px – 1023px): adjust grids ── */
+@media (min-width: 640px) and (max-width: 1023px) {
+  /* 4-col chapter grid → 2-col on tablet */
+  .lg\:grid-cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+
+  /* Sidebar: slightly narrower on tablet */
+  .fixed.w-72 { width: 16rem !important; }
+}
+
+/* ── Widescreen (≥ 1440px): expand max content width ── */
+@media (min-width: 1440px) {
+  .max-w-6xl { max-width: 80rem !important; }
+}
+
+/* ── 4K / ultra-wide (≥ 3840px) ── */
+@media (min-width: 3840px) {
+  html { font-size: 24px; }
+}
+
+/* ── Scrollbar on narrow screens ── */
+@media (max-width: 640px) {
+  ::-webkit-scrollbar { width: 3px; }
+}
+
+/* ══════════════════════════════════════════════
+   وضع القراءة — Reading Mode
+   ══════════════════════════════════════════════ */
+body.reading-mode {
+  background: #faf6ee !important;
+}
+
+/* Reading mode scrollbar */
+body.reading-mode ::-webkit-scrollbar-track {
+  background: #f0e8d4;
+}
+
+body.reading-mode ::-webkit-scrollbar-thumb {
+  background: rgba(201, 168, 76, 0.35);
+  border-radius: 4px;
+}
+
+/* Reading mode: text selection highlight */
+body.reading-mode ::selection {
+  background: rgba(201, 168, 76, 0.3);
+  color: #2a1a00;
+}
+
+/* Reading mode: smooth page transition */
+body.reading-mode #root > div {
+  transition: background 0.35s ease;
+}
