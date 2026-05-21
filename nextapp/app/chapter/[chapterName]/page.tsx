@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export async function generateStaticParams() {
   return Object.keys(CHAPTER_META).map(name => ({
-    chapterName: encodeURIComponent(name),
+    chapterName: name,
   }));
 }
 
