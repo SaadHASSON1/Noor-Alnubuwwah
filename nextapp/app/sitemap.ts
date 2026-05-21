@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { SEERAH_EVENTS, CHAPTER_META } from '@/data/seerah';
 
-const BASE_URL = 'https://noor-alnubuwwah.vercel.app';
+const BASE_URL = 'https://noor-alnubuwwah.x13labs.com';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [

@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   },
   description: 'موقع تفاعلي شامل للسيرة النبوية الشريفة — تسلسل زمني، خرائط، غزوات، معجزات، وأحداث حياة النبي محمد ﷺ',
   keywords: ['سيرة نبوية', 'نور النبوة', 'محمد', 'النبي', 'الإسلام', 'السيرة الشريفة'],
+  metadataBase: new URL('https://noor-alnubuwwah.x13labs.com'),
   openGraph: {
     title: 'نور النبوة — السيرة النبوية الشريفة',
     description: 'موقع تفاعلي شامل للسيرة النبوية الشريفة',
