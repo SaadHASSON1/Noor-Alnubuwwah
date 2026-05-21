@@ -6,6 +6,7 @@ import {
   ChevronRight, Home, MapPin, Users, BookOpen,
   BarChart2, Clock, ChevronLeft, Swords, BookText, Sun,
 } from 'lucide-react';
+import Link from 'next/link';
 import IslamicParticles from '@/components/IslamicParticles';
 import ShareButton from '@/components/ShareButton';
 import BookmarkButton from '@/components/BookmarkButton';
@@ -172,25 +173,25 @@ const EventPage: React.FC = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="absolute top-6 right-20 flex items-center gap-2 text-sm font-kufi max-w-[calc(100vw-6rem)] overflow-hidden"
+          className="absolute top-4 right-16 sm:right-20 z-[20] flex items-center gap-1 text-sm font-kufi max-w-[calc(100vw-5rem)] overflow-hidden"
           style={{ color: accentColor }}
         >
-          <button
-            onClick={() => router.push('/')}
-            className="flex items-center gap-1.5 opacity-60 hover:opacity-100 transition-opacity"
+          <Link
+            href="/"
+            className="flex items-center gap-1.5 py-2 px-1 opacity-60 hover:opacity-100 active:opacity-100 transition-opacity flex-shrink-0"
           >
             <Home size={14} />
             الرئيسية
-          </button>
-          <ChevronRight size={14} className="opacity-40" />
-          <button
-            onClick={() => router.push(`/chapter/${encodeURIComponent(event.chapter)}`)}
-            className="opacity-60 hover:opacity-100 transition-opacity"
+          </Link>
+          <ChevronRight size={14} className="opacity-40 flex-shrink-0" />
+          <Link
+            href={`/chapter/${event.chapter}`}
+            className="py-2 px-1 opacity-60 hover:opacity-100 active:opacity-100 transition-opacity truncate"
           >
             {event.chapter}
-          </button>
-          <ChevronRight size={14} className="opacity-40" />
-          <span className="opacity-90 truncate max-w-[120px]">{event.title}</span>
+          </Link>
+          <ChevronRight size={14} className="opacity-40 flex-shrink-0" />
+          <span className="opacity-90 truncate max-w-[100px]">{event.title}</span>
         </motion.nav>
 
         {/* Hero content */}

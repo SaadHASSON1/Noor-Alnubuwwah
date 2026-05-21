@@ -3,6 +3,7 @@ import React, { useMemo } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { ChevronRight, Home } from 'lucide-react';
+import Link from 'next/link';
 import EventCard from '@/components/EventCard';
 import ShareButton from '@/components/ShareButton';
 import IslamicParticles from '@/components/IslamicParticles';
@@ -113,18 +114,18 @@ const ChapterPage: React.FC = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="absolute top-6 right-20 flex items-center gap-2 text-sm font-kufi max-w-[calc(100vw-6rem)] overflow-hidden"
+          className="absolute top-4 right-16 sm:right-20 z-[20] flex items-center gap-1 text-sm font-kufi max-w-[calc(100vw-5rem)] overflow-hidden"
           style={{ color: meta.accentColor }}
         >
-          <button
-            onClick={() => router.push('/')}
-            className="flex items-center gap-1.5 opacity-60 hover:opacity-100 transition-opacity"
+          <Link
+            href="/"
+            className="flex items-center gap-1.5 py-2 px-1 opacity-60 hover:opacity-100 active:opacity-100 transition-opacity"
           >
             <Home size={14} />
             الرئيسية
-          </button>
-          <ChevronRight size={14} className="opacity-40" />
-          <span className="opacity-90">{name}</span>
+          </Link>
+          <ChevronRight size={14} className="opacity-40 flex-shrink-0" />
+          <span className="opacity-90 truncate">{name}</span>
         </motion.nav>
 
         {/* Main hero content */}
