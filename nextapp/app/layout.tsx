@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   icons: { icon: '/favicon.svg' },
   title: {
     default: '‏نور النبوة — السيرة النبوية الشريفة',
-    template: '‏%s | نور النبوة',
+    template: '‏%s — نور النبوة',
   },
   description: 'موقع تفاعلي شامل للسيرة النبوية الشريفة — تسلسل زمني، خرائط، غزوات، معجزات، وأحداث حياة النبي محمد ﷺ',
   keywords: ['سيرة نبوية', 'نور النبوة', 'محمد', 'النبي', 'الإسلام', 'السيرة الشريفة'],
@@ -45,6 +45,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ar" dir="rtl" className={`${scheherazade.variable} ${reemKufi.variable} ${amiri.variable}`}>
       <head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#030813" />
         <link href="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css" rel="stylesheet" />
       </head>
       <body className="bg-dark-bg text-white font-noto antialiased overflow-x-hidden">
