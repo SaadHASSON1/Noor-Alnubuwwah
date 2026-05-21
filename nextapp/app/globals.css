@@ -324,3 +324,54 @@ body.reading-mode ::selection {
 body.reading-mode #root > div {
   transition: background 0.35s ease;
 }
+
+/* ══════════════════════════════════════════════
+   طباعة / تصدير PDF
+   ══════════════════════════════════════════════ */
+@media print {
+  /* الحفاظ على الألوان والخلفيات كما هي */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* إعدادات الصفحة */
+  @page {
+    margin: 0.8cm 1cm;
+    size: A4;
+  }
+
+  /* إخفاء عناصر التنقل والأزرار العائمة */
+  .print-hide {
+    display: none !important;
+  }
+
+  /* السماح لكل المحتوى بالظهور */
+  .overflow-hidden {
+    overflow: visible !important;
+  }
+
+  /* إزالة min-height من الهيرو لتوفير المساحة */
+  .min-h-screen {
+    min-height: auto !important;
+  }
+
+  /* فواصل صفحات منطقية */
+  section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  h1, h2, h3 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  /* إزالة الحركات والظلال */
+  * {
+    animation: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+  }
+}

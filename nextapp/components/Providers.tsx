@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { ChevronUp, Search, Bookmark, BookmarkCheck } from 'lucide-react';
+import { ChevronUp, Search, Bookmark, BookmarkCheck, FileDown } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { BookmarksProvider, useBookmarks } from '@/context/BookmarksContext';
 import { ReadingModeProvider, useReadingMode } from '@/context/ReadingModeContext';
@@ -95,6 +95,24 @@ function GlobalNav({ onSearchOpen }: { onSearchOpen: () => void }) {
         <span>بحث</span>
       </motion.button>
 
+      <motion.button
+        onClick={() => window.print()}
+        whileHover={{ scale: 1.06 }}
+        whileTap={{ scale: 0.94 }}
+        aria-label="تحميل PDF"
+        className="flex items-center gap-1.5 px-4 py-2.5 rounded-full font-kufi text-sm"
+        style={{
+          background: btnBg,
+          border: `1px solid ${btnBorder}`,
+          color: '#C9A84C',
+          backdropFilter: 'blur(8px)',
+          boxShadow: btnShadow,
+        }}
+      >
+        <FileDown size={16} strokeWidth={1.8} />
+        <span>PDF</span>
+      </motion.button>
+
       <AnimatePresence>
         {pageLabel && (
           <motion.button
@@ -151,11 +169,13 @@ function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div dir="rtl" className="relative">
-      <ScrollToTop />
-      <BackToTop />
-      <GlobalNav onSearchOpen={() => setSearchOpen(true)} />
-      <FeatureNavSidebar />
-      <SearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
+      <div className="print-hide">
+        <ScrollToTop />
+        <BackToTop />
+        <GlobalNav onSearchOpen={() => setSearchOpen(true)} />
+        <FeatureNavSidebar />
+        <SearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
+      </div>
       {children}
     </div>
   );
