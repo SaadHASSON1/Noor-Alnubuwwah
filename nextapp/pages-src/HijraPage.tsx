@@ -11,6 +11,8 @@ interface HijraStage {
   subtitle: string;
   color: string;
   glowColor: string;
+  gradientFrom: string;
+  gradientTo: string;
   verse?: string;
   verseRef?: string;
   points: string[];
@@ -22,8 +24,10 @@ const HIJRA_STAGES: HijraStage[] = [
     number: '1',
     title: 'الإذن الإلهي بالهجرة',
     subtitle: 'ليلة المؤامرة الكبرى',
-    color: '#C9A84C',
-    glowColor: '#C9A84C',
+    color: '#A78BFA',
+    glowColor: '#A78BFA',
+    gradientFrom: '#0d0520',
+    gradientTo: '#16092e',
     verse: '﴿وَإِذْ يَمْكُرُ بِكَ الَّذِينَ كَفَرُوا لِيُثْبِتُوكَ أَوْ يَقْتُلُوكَ أَوْ يُخْرِجُوكَ﴾',
     verseRef: 'الأنفال: 30',
     icon: '🌙',
@@ -37,8 +41,10 @@ const HIJRA_STAGES: HijraStage[] = [
     number: '2',
     title: 'الخروج من مكة المكرمة',
     subtitle: 'وداع أحب البقاع',
-    color: '#E8A8A8',
-    glowColor: '#E8A8A8',
+    color: '#FBBF24',
+    glowColor: '#FBBF24',
+    gradientFrom: '#1a0e00',
+    gradientTo: '#241500',
     verse: '﴿وَجَعَلْنَا مِن بَيْنِ أَيْدِيهِمْ سَدًّا﴾',
     verseRef: 'يس: 9',
     icon: '🌟',
@@ -53,8 +59,10 @@ const HIJRA_STAGES: HijraStage[] = [
     number: '3',
     title: 'الاختباء في غار ثور',
     subtitle: 'ثلاثة أيام في رحاب الله',
-    color: '#A8E8C8',
-    glowColor: '#A8E8C8',
+    color: '#2DD4BF',
+    glowColor: '#2DD4BF',
+    gradientFrom: '#011716',
+    gradientTo: '#021f1c',
     verse: '﴿لَا تَحْزَنْ إِنَّ اللَّهَ مَعَنَا﴾',
     verseRef: 'التوبة: 40',
     icon: '🕊️',
@@ -71,8 +79,10 @@ const HIJRA_STAGES: HijraStage[] = [
     number: '4',
     title: 'مسيرة 450 كيلومتراً شمالاً',
     subtitle: 'رحلة الإيمان الكبرى',
-    color: '#E8C8A8',
-    glowColor: '#E8C8A8',
+    color: '#D97706',
+    glowColor: '#D97706',
+    gradientFrom: '#160a00',
+    gradientTo: '#1e1000',
     icon: '🐪',
     points: [
       'الدليل: عبد الله بن أريقط (غير مسلم لكنه أمين موثوق)',
@@ -85,8 +95,10 @@ const HIJRA_STAGES: HijraStage[] = [
     number: '5',
     title: 'قباء — أول مسجد في الإسلام',
     subtitle: 'أُسِّسَ على التقوى',
-    color: '#A8C8E8',
-    glowColor: '#A8C8E8',
+    color: '#34D399',
+    glowColor: '#34D399',
+    gradientFrom: '#011408',
+    gradientTo: '#031c0c',
     verse: '﴿لَمَسْجِدٌ أُسِّسَ عَلَى التَّقْوَىٰ مِنْ أَوَّلِ يَوْمٍ أَحَقُّ أَن تَقُومَ فِيهِ﴾',
     verseRef: 'التوبة: 108',
     icon: '🕌',
@@ -102,6 +114,8 @@ const HIJRA_STAGES: HijraStage[] = [
     subtitle: 'بداية عهد النور',
     color: '#C9A84C',
     glowColor: '#C9A84C',
+    gradientFrom: '#150e00',
+    gradientTo: '#1f1500',
     icon: '☀️',
     points: [
       'الجمعة 12 ربيع الأول — أول جمعة صلاها في المدينة المنورة',
@@ -320,9 +334,9 @@ const HijraPage: React.FC = () => {
                 <div
                   className="rounded-2xl overflow-hidden"
                   style={{
-                    background: stage.color,
-                    border: `1px solid ${stage.glowColor}33`,
-                    boxShadow: `0 4px 30px ${stage.glowColor}11`,
+                    background: `linear-gradient(135deg, ${stage.gradientFrom} 0%, ${stage.gradientTo} 100%)`,
+                    border: `1px solid ${stage.glowColor}30`,
+                    boxShadow: `0 4px 30px ${stage.glowColor}18`,
                   }}
                 >
                   {/* Card header */}
