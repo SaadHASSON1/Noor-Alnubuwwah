@@ -4,7 +4,7 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { ChevronUp, Search, Bookmark, BookmarkCheck } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { BookmarksProvider, useBookmarks } from '@/context/BookmarksContext';
-import { ReadingModeProvider } from '@/context/ReadingModeContext';
+import { ReadingModeProvider, useReadingMode } from '@/context/ReadingModeContext';
 import SearchOverlay from './SearchOverlay';
 import FeatureNavSidebar from './FeatureNavSidebar';
 import ScrollToTop from './ScrollToTop';
@@ -33,6 +33,7 @@ function BackToTop() {
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.08, 0.12], [0, 0, 1]);
   const scale   = useTransform(scrollYProgress, [0.08, 0.14], [0.6, 1]);
+  const { isReading } = useReadingMode();
 
   return (
     <motion.button
@@ -43,7 +44,7 @@ function BackToTop() {
         scale,
         width: 46,
         height: 46,
-        background: 'rgba(3,8,19,0.88)',
+        background: isReading ? 'rgba(250,246,238,0.92)' : 'rgba(3,8,19,0.88)',
         border: '1px solid rgba(201,168,76,0.45)',
         color: '#C9A84C',
         boxShadow: '0 4px 20px rgba(201,168,76,0.15)',
@@ -60,9 +61,14 @@ function BackToTop() {
 function GlobalNav({ onSearchOpen }: { onSearchOpen: () => void }) {
   const pathname = usePathname();
   const { isPageBookmarked, togglePage } = useBookmarks();
+  const { isReading } = useReadingMode();
 
   const pageLabel = BOOKMARKABLE_PAGES[pathname];
   const saved     = pageLabel ? isPageBookmarked(pathname) : false;
+
+  const btnBg     = isReading ? 'rgba(250,246,238,0.92)' : 'rgba(3,8,19,0.82)';
+  const btnBorder = isReading ? 'rgba(201,168,76,0.4)'   : 'rgba(201,168,76,0.22)';
+  const btnShadow = isReading ? '0 2px 12px rgba(0,0,0,0.15)' : '0 2px 12px rgba(0,0,0,0.4)';
 
   return (
     <motion.div
@@ -78,11 +84,11 @@ function GlobalNav({ onSearchOpen }: { onSearchOpen: () => void }) {
         whileTap={{ scale: 0.94 }}
         className="flex items-center gap-1.5 px-4 py-2.5 rounded-full font-kufi text-sm"
         style={{
-          background: 'rgba(3,8,19,0.82)',
-          border: '1px solid rgba(201,168,76,0.22)',
+          background: btnBg,
+          border: `1px solid ${btnBorder}`,
           color: '#C9A84C',
           backdropFilter: 'blur(8px)',
-          boxShadow: '0 2px 12px rgba(0,0,0,0.4)',
+          boxShadow: btnShadow,
         }}
       >
         <Search size={16} strokeWidth={1.8} />
@@ -103,11 +109,11 @@ function GlobalNav({ onSearchOpen }: { onSearchOpen: () => void }) {
             aria-label={saved ? 'إزالة من المحفوظات' : 'حفظ الصفحة'}
             className="flex items-center gap-1.5 px-4 py-2.5 rounded-full font-kufi text-sm"
             style={{
-              background: saved ? 'rgba(201,168,76,0.18)' : 'rgba(3,8,19,0.82)',
-              border: `1px solid ${saved ? 'rgba(201,168,76,0.5)' : 'rgba(201,168,76,0.22)'}`,
+              background: saved ? 'rgba(201,168,76,0.18)' : btnBg,
+              border: `1px solid ${saved ? 'rgba(201,168,76,0.5)' : btnBorder}`,
               color: '#C9A84C',
               backdropFilter: 'blur(8px)',
-              boxShadow: '0 2px 12px rgba(0,0,0,0.4)',
+              boxShadow: btnShadow,
             }}
           >
             <AnimatePresence mode="wait">
