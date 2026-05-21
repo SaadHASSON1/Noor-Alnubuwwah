@@ -1,8 +1,29 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <rect width="100" height="100" rx="20" fill="#1a1a2e"/>
-  <!-- Crescent moon -->
-  <path d="M55 20 A25 25 0 1 0 55 80 A18 18 0 1 1 55 20Z" fill="#d4af6a"/>
-  <!-- Star -->
-  <polygon points="72,35 74.5,42.5 82,42.5 76,47 78.5,54.5 72,50 65.5,54.5 68,47 62,42.5 69.5,42.5"
-           fill="#d4af6a"/>
+  <defs>
+    <!-- Gold gradient — light hits from upper-left -->
+    <radialGradient id="gold" cx="38" cy="38" r="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#f0d468"/>
+      <stop offset="50%"  stop-color="#C9A84C"/>
+      <stop offset="100%" stop-color="#886420"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100" height="100" rx="20" fill="#030813"/>
+  <!-- Subtle gold border -->
+  <rect x="1.5" y="1.5" width="97" height="97" rx="19"
+        fill="none" stroke="#C9A84C" stroke-width="2" stroke-opacity="0.30"/>
+
+  <!-- Crescent moon: filled circle minus offset cutout -->
+  <circle cx="42" cy="52" r="30" fill="url(#gold)"/>
+  <circle cx="54" cy="44" r="25" fill="#030813"/>
+
+  <!-- Five-pointed star  cx=72 cy=28  R=8 r=3.5
+       Outer: 72,20  79.6,25.5  76.7,34.5  67.3,34.5  64.4,25.5
+       Inner: 74.1,25.2  75.3,29.1  72,31.5  68.7,29.1  69.9,25.2  -->
+  <polygon
+    points="72,20 74.1,25.2 79.6,25.5 75.3,29.1 76.7,34.5
+            72,31.5 67.3,34.5 68.7,29.1 64.4,25.5 69.9,25.2"
+    fill="url(#gold)"
+  />
 </svg>
