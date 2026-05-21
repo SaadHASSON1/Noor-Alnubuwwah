@@ -137,7 +137,7 @@ const MapPage: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col" dir="rtl" style={{ background: '#030813' }}>
       {/* زر المشاركة */}
-      <div className="fixed top-[72px] left-4 z-[60]">
+      <div className="fixed top-[5.5rem] left-4 z-[60]">
         <ShareButton title="خريطة الأحداث" accentColor="#C9A84C" />
       </div>
 
