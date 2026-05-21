@@ -9,7 +9,6 @@ import {
 import IslamicParticles from '@/components/IslamicParticles';
 import ShareButton from '@/components/ShareButton';
 import BookmarkButton from '@/components/BookmarkButton';
-import EventMap from '@/components/EventMap';
 import BattleSimulator from '@/components/BattleSimulator';
 import SectionNavigator, { NavSection } from '@/components/SectionNavigator';
 import { SEERAH_EVENTS, CHAPTER_META, SEERAH_EVENTS as ALL } from '@/data/seerah';
@@ -433,8 +432,6 @@ const EventPage: React.FC = () => {
             </motion.div>
           )}
 
-          {/* ── Embedded map ── */}
-          <EventMap eventId={event.id} accentColor={accentColor} isLight={isLight} />
 
           {/* ── Stats ── */}
           {event.stats && event.stats.length > 0 && (
