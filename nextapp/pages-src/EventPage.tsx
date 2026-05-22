@@ -15,6 +15,9 @@ import SectionNavigator, { NavSection } from '@/components/SectionNavigator';
 import { SEERAH_EVENTS, CHAPTER_META, SEERAH_EVENTS as ALL } from '@/data/seerah';
 import { BATTLE_SIMULATIONS } from '@/data/battleSimulations';
 import { useReadingMode } from '@/context/ReadingModeContext';
+import { useLanguage } from '@/context/LanguageContext';
+import { SEERAH_EN } from '@/data/seerah-en';
+import { t } from '@/lib/i18n';
 import type { SeerahEvent } from '@/data/seerah';
 
 /* ── Section block wrapper ── */
@@ -67,22 +70,36 @@ const EventPage: React.FC = () => {
   const router = useRouter();
   const id = Number(eventId);
   const { isReading, toggle: toggleReading } = useReadingMode();
+  const { lang, isEn } = useLanguage();
 
   const event: SeerahEvent | undefined = ALL.find(e => e.id === id);
 
   if (!event) {
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ background: '#030813' }}>
-        <div className="text-center" dir="rtl">
-          <p className="font-noto text-white/50 text-xl mb-4">الحدث غير موجود</p>
+        <div className="text-center" dir={isEn ? 'ltr' : 'rtl'}>
+          <p className="font-noto text-white/50 text-xl mb-4">{t(lang, 'notFound')}</p>
           <button onClick={() => router.push('/')}
             className="font-kufi text-islamic-gold text-sm border border-islamic-gold/30 px-6 py-2 rounded-full hover:bg-islamic-gold/10 transition-colors">
-            العودة للرئيسية
+            {t(lang, 'backHome')}
           </button>
         </div>
       </div>
     );
   }
+
+  /* English overlay (may be undefined for untranslated events) */
+  const enData = SEERAH_EN[event.id];
+
+  /* Resolved text — falls back to Arabic if no English translation */
+  const displayTitle       = isEn && enData ? enData.title       : event.title;
+  const displaySubtitle    = isEn && enData ? enData.subtitle    : event.subtitle;
+  const displayDescription = isEn && enData
+    ? (enData.fullDescription ?? enData.description)
+    : (event.fullDescription ?? event.description);
+  const displayHighlight   = isEn && enData ? enData.highlight   : event.highlight;
+  const displayHighlights  = isEn && enData?.highlights ? enData.highlights : event.highlights;
+  const displayLocation    = isEn && enData?.location   ? enData.location   : event.location;
 
   const meta = CHAPTER_META[event.chapter];
   const accentColor = meta?.accentColor ?? '#C9A84C';
@@ -93,16 +110,17 @@ const EventPage: React.FC = () => {
   /* Section navigator entries — only include sections that exist for this event */
   const navSections = useMemo<NavSection[]>(() => {
     const secs: NavSection[] = [];
-    if (event.highlights?.length)    secs.push({ id: 'ev-highlights', label: 'أبرز اللحظات' });
-    if (event.stats?.length)         secs.push({ id: 'ev-stats',      label: 'إحصائيات وأرقام' });
-    if (event.battleTimeline?.length) secs.push({ id: 'ev-timeline',  label: 'مراحل المعركة' });
+    if (event.highlights?.length || (isEn && enData?.highlights?.length))
+                                     secs.push({ id: 'ev-highlights', label: t(lang, 'highlights') });
+    if (event.stats?.length)         secs.push({ id: 'ev-stats',      label: t(lang, 'stats') });
+    if (event.battleTimeline?.length) secs.push({ id: 'ev-timeline',  label: t(lang, 'battleTimeline') });
     if (BATTLE_SIMULATIONS.some(s => s.eventId === event.id))
-                                     secs.push({ id: 'ev-simulation', label: 'محاكاة المعركة' });
-    if (event.keyFigures?.length)    secs.push({ id: 'ev-figures',    label: 'شخصيات بارزة' });
-    if (event.hadiths?.length)       secs.push({ id: 'ev-hadiths',    label: 'أحاديث شريفة' });
-    if (event.relatedVerses?.length) secs.push({ id: 'ev-verses',     label: 'آيات قرآنية' });
+                                     secs.push({ id: 'ev-simulation', label: t(lang, 'battleSim') });
+    if (event.keyFigures?.length)    secs.push({ id: 'ev-figures',    label: t(lang, 'keyFigures') });
+    if (event.hadiths?.length)       secs.push({ id: 'ev-hadiths',    label: t(lang, 'hadiths') });
+    if (event.relatedVerses?.length) secs.push({ id: 'ev-verses',     label: t(lang, 'verses') });
     return secs;
-  }, [event]);
+  }, [event, lang, isEn, enData]);
 
   /* Prev / Next event */
   const allIdx = SEERAH_EVENTS.findIndex(e => e.id === id);
@@ -116,7 +134,7 @@ const EventPage: React.FC = () => {
   return (
     <div
       className="min-h-screen relative"
-      dir="rtl"
+      dir={isEn ? 'ltr' : 'rtl'}
       style={{ background: isReading ? readBg : event.bg, transition: 'background 0.4s ease' }}
     >
       {!isLight && !isReading && <IslamicParticles />}
@@ -181,7 +199,7 @@ const EventPage: React.FC = () => {
             className="flex items-center gap-1.5 py-2 px-1 opacity-60 hover:opacity-100 active:opacity-100 transition-opacity flex-shrink-0"
           >
             <Home size={14} />
-            الرئيسية
+            {t(lang, 'home')}
           </Link>
           <ChevronRight size={14} className="opacity-40 flex-shrink-0" />
           <Link
@@ -191,7 +209,7 @@ const EventPage: React.FC = () => {
             {event.chapter}
           </Link>
           <ChevronRight size={14} className="opacity-40 flex-shrink-0" />
-          <span className="opacity-90 truncate max-w-[100px]">{event.title}</span>
+          <span className="opacity-90 truncate max-w-[100px]">{displayTitle}</span>
         </motion.nav>
 
         {/* Hero content */}
@@ -199,10 +217,10 @@ const EventPage: React.FC = () => {
           {/* Action buttons row */}
           <div className="flex items-center gap-2 mb-4 flex-wrap">
             <ShareButton
-              title={event.title}
+              title={displayTitle}
               accentColor={accentColor}
-              quote={event.highlight}
-              description={event.description}
+              quote={displayHighlight}
+              description={isEn && enData ? enData.description : event.description}
             />
             <BookmarkButton eventId={event.id} accentColor={accentColor} />
             {/* Reading Mode toggle */}
@@ -218,11 +236,11 @@ const EventPage: React.FC = () => {
                 border: `1px solid ${isReading ? 'rgba(201,168,76,0.4)' : 'rgba(255,255,255,0.12)'}`,
                 color: isReading ? readText : 'rgba(255,255,255,0.7)',
               }}
-              title={isReading ? 'إيقاف وضع القراءة' : 'وضع القراءة'}
+              title={isReading ? (isEn ? 'Normal Mode' : 'إيقاف وضع القراءة') : (isEn ? 'Reading Mode' : 'وضع القراءة')}
             >
               {isReading
-                ? <><Sun size={15} strokeWidth={1.8} /><span>عادي</span></>
-                : <><BookText size={15} strokeWidth={1.8} /><span>قراءة</span></>
+                ? <><Sun size={15} strokeWidth={1.8} /><span>{isEn ? 'Normal' : 'عادي'}</span></>
+                : <><BookText size={15} strokeWidth={1.8} /><span>{t(lang, 'readingMode')}</span></>
               }
             </motion.button>
           </div>
@@ -244,13 +262,13 @@ const EventPage: React.FC = () => {
             >
               {event.chapter}
             </span>
-            {event.location && (
+            {displayLocation && (
               <span
                 className="font-noto text-sm flex items-center gap-1 opacity-60"
                 style={{ color: accentColor }}
               >
                 <MapPin size={13} />
-                {event.location}
+                {displayLocation}
               </span>
             )}
           </motion.div>
@@ -275,14 +293,14 @@ const EventPage: React.FC = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15 }}
-            className="font-noto font-bold leading-tight mb-3"
+            className={`font-bold leading-tight mb-3 ${isEn ? 'font-sans' : 'font-noto'}`}
             style={{
               fontSize: isReading ? 'clamp(2.2rem, 7vw, 5rem)' : 'clamp(3rem, 10vw, 8rem)',
               color: isReading ? readText : (isLight ? '#2d1e08' : 'white'),
               transition: 'font-size 0.3s ease, color 0.3s ease',
             }}
           >
-            {event.title}
+            {displayTitle}
           </motion.h1>
 
           {/* Subtitle */}
@@ -297,7 +315,7 @@ const EventPage: React.FC = () => {
             }}
             className={isReading ? '' : textMuted}
           >
-            {event.subtitle}
+            {displaySubtitle}
           </motion.p>
 
           {/* Gold divider */}
@@ -327,7 +345,7 @@ const EventPage: React.FC = () => {
             }}
             className={isReading ? '' : `max-w-2xl ${textMuted}`}
           >
-            {event.fullDescription ?? event.description}
+            {displayDescription}
           </motion.p>
 
           {/* Primary Quranic verse */}
@@ -361,7 +379,7 @@ const EventPage: React.FC = () => {
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5 }}
         >
           <p className="font-kufi text-xs tracking-widest opacity-40" style={{ color: accentColor }}>
-            التفاصيل
+            {isEn ? 'details' : 'التفاصيل'}
           </p>
           <motion.div
             className="w-px h-10"
@@ -383,7 +401,7 @@ const EventPage: React.FC = () => {
         <div className="max-w-4xl mx-auto">
 
           {/* ── Highlights ── */}
-          {event.highlights && event.highlights.length > 0 && (
+          {displayHighlights && displayHighlights.length > 0 && (
             <motion.div
               id="ev-highlights"
               initial={{ opacity: 0, y: 24 }}
@@ -403,12 +421,12 @@ const EventPage: React.FC = () => {
                   className="font-noto font-bold"
                   style={{ fontSize: 'clamp(1.2rem, 2.5vw, 1.6rem)', color: accentColor }}
                 >
-                  أبرز اللحظات
+                  {t(lang, 'highlights')}
                 </h3>
                 <div className="flex-1 h-px opacity-20" style={{ background: accentColor }} />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {event.highlights.map((h, i) => (
+                {displayHighlights?.map((h, i) => (
                   <motion.div
                     key={i}
                     initial={{ opacity: 0, x: 16 }}
@@ -440,7 +458,7 @@ const EventPage: React.FC = () => {
             <Section
               id="ev-stats"
               icon={<BarChart2 size={16} color={accentColor} strokeWidth={1.5} />}
-              title="إحصائيات وأرقام"
+              title={t(lang, 'stats')}
               accentColor={accentColor}
               delay={0}
             >
@@ -483,7 +501,7 @@ const EventPage: React.FC = () => {
             <Section
               id="ev-timeline"
               icon={<Clock size={16} color={accentColor} strokeWidth={1.5} />}
-              title="مراحل المعركة"
+              title={t(lang, 'battleTimeline')}
               accentColor={accentColor}
               delay={0.05}
             >
@@ -532,7 +550,7 @@ const EventPage: React.FC = () => {
             const sim = BATTLE_SIMULATIONS.find(s => s.eventId === event.id);
             if (!sim) return null;
             return (
-              <Section id="ev-simulation" icon={<Swords size={16} color={accentColor} strokeWidth={1.5} />} title="محاكاة المعركة" accentColor={accentColor} delay={0.5}>
+              <Section id="ev-simulation" icon={<Swords size={16} color={accentColor} strokeWidth={1.5} />} title={t(lang, 'battleSim')} accentColor={accentColor} delay={0.5}>
                 <BattleSimulator sim={sim} accentColor={accentColor} />
               </Section>
             );
@@ -545,7 +563,7 @@ const EventPage: React.FC = () => {
               <Section
                 id="ev-figures"
                 icon={<Users size={16} color={accentColor} strokeWidth={1.5} />}
-                title="شخصيات بارزة"
+                title={t(lang, 'keyFigures')}
                 accentColor={accentColor}
                 delay={0.1}
               >
@@ -592,7 +610,7 @@ const EventPage: React.FC = () => {
               <Section
                 id="ev-hadiths"
                 icon={<BookOpen size={16} color={accentColor} strokeWidth={1.5} />}
-                title="أحاديث شريفة"
+                title={t(lang, 'hadiths')}
                 accentColor={accentColor}
                 delay={0.1}
               >
@@ -647,7 +665,7 @@ const EventPage: React.FC = () => {
               <Section
                 id="ev-verses"
                 icon={<BookOpen size={16} color={accentColor} strokeWidth={1.5} />}
-                title="آيات قرآنية كريمة"
+                title={t(lang, 'verses')}
                 accentColor={accentColor}
                 delay={0.1}
               >
@@ -711,12 +729,14 @@ const EventPage: React.FC = () => {
                   background: `${accentColor}09`,
                   border: `1px solid ${accentColor}20`,
                 }}
-                whileHover={{ x: -4 }}
+                whileHover={{ x: isEn ? 4 : -4 }}
               >
-                <ChevronRight size={18} style={{ color: accentColor }} className="flex-shrink-0" />
+                {isEn ? <ChevronLeft size={18} style={{ color: accentColor }} className="flex-shrink-0" /> : <ChevronRight size={18} style={{ color: accentColor }} className="flex-shrink-0" />}
                 <div>
-                  <p className="font-kufi text-sm opacity-70 mb-1" style={{ color: accentColor }}>التالي</p>
-                  <p className={`font-noto text-base font-bold ${textBase}`}>{nextEvent.title}</p>
+                  <p className="font-kufi text-sm opacity-70 mb-1" style={{ color: accentColor }}>{t(lang, 'nextEvent')}</p>
+                  <p className={`font-noto text-base font-bold ${textBase}`}>
+                    {isEn && SEERAH_EN[nextEvent.id] ? SEERAH_EN[nextEvent.id].title : nextEvent.title}
+                  </p>
                 </div>
               </motion.button>
             ) : <div className="flex-1" />}
@@ -729,13 +749,15 @@ const EventPage: React.FC = () => {
                   background: `${accentColor}09`,
                   border: `1px solid ${accentColor}20`,
                 }}
-                whileHover={{ x: 4 }}
+                whileHover={{ x: isEn ? -4 : 4 }}
               >
                 <div>
-                  <p className="font-kufi text-sm opacity-70 mb-1" style={{ color: accentColor }}>السابق</p>
-                  <p className={`font-noto text-base font-bold ${textBase}`}>{prevEvent.title}</p>
+                  <p className="font-kufi text-sm opacity-70 mb-1" style={{ color: accentColor }}>{t(lang, 'prevEvent')}</p>
+                  <p className={`font-noto text-base font-bold ${textBase}`}>
+                    {isEn && SEERAH_EN[prevEvent.id] ? SEERAH_EN[prevEvent.id].title : prevEvent.title}
+                  </p>
                 </div>
-                <ChevronLeft size={18} style={{ color: accentColor }} className="flex-shrink-0" />
+                {isEn ? <ChevronRight size={18} style={{ color: accentColor }} className="flex-shrink-0" /> : <ChevronLeft size={18} style={{ color: accentColor }} className="flex-shrink-0" />}
               </motion.button>
             ) : <div className="flex-1" />}
           </div>
@@ -751,7 +773,7 @@ const EventPage: React.FC = () => {
                 background: `${accentColor}0d`,
               }}
             >
-              العودة لفصل {event.chapter}
+              {isEn ? `Back to: ${event.chapter}` : `العودة لفصل ${event.chapter}`}
             </button>
           </div>
         </div>

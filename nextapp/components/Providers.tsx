@@ -5,6 +5,8 @@ import { ChevronUp, Search, Bookmark, BookmarkCheck } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { BookmarksProvider, useBookmarks } from '@/context/BookmarksContext';
 import { ReadingModeProvider, useReadingMode } from '@/context/ReadingModeContext';
+import { LanguageProvider, useLanguage } from '@/context/LanguageContext';
+import { t } from '@/lib/i18n';
 import SearchOverlay from './SearchOverlay';
 import FeatureNavSidebar from './FeatureNavSidebar';
 import ScrollToTop from './ScrollToTop';
@@ -62,6 +64,7 @@ function GlobalNav({ onSearchOpen }: { onSearchOpen: () => void }) {
   const pathname = usePathname();
   const { isPageBookmarked, togglePage } = useBookmarks();
   const { isReading } = useReadingMode();
+  const { lang, setLang, isEn } = useLanguage();
 
   const pageLabel = BOOKMARKABLE_PAGES[pathname];
   const saved     = pageLabel ? isPageBookmarked(pathname) : false;
@@ -76,8 +79,27 @@ function GlobalNav({ onSearchOpen }: { onSearchOpen: () => void }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.6 }}
       className="fixed top-5 left-5 z-[100] flex items-center gap-1.5"
-      dir="rtl"
+      dir="ltr"
     >
+      {/* Language toggle */}
+      <motion.button
+        onClick={() => setLang(isEn ? 'ar' : 'en')}
+        whileHover={{ scale: 1.06 }}
+        whileTap={{ scale: 0.94 }}
+        aria-label="Toggle language"
+        className="flex items-center gap-1 px-3 py-2.5 rounded-full text-sm font-sans font-semibold"
+        style={{
+          background: isEn ? 'rgba(201,168,76,0.18)' : btnBg,
+          border: `1px solid ${isEn ? 'rgba(201,168,76,0.5)' : btnBorder}`,
+          color: '#C9A84C',
+          backdropFilter: 'blur(8px)',
+          boxShadow: btnShadow,
+          letterSpacing: '0.05em',
+        }}
+      >
+        <span>{isEn ? 'AR' : 'EN'}</span>
+      </motion.button>
+
       <motion.button
         onClick={onSearchOpen}
         whileHover={{ scale: 1.06 }}
@@ -92,7 +114,7 @@ function GlobalNav({ onSearchOpen }: { onSearchOpen: () => void }) {
         }}
       >
         <Search size={16} strokeWidth={1.8} />
-        <span>بحث</span>
+        <span>{t(lang, 'search')}</span>
       </motion.button>
 
       <AnimatePresence>
@@ -127,7 +149,7 @@ function GlobalNav({ onSearchOpen }: { onSearchOpen: () => void }) {
                 </motion.span>
               )}
             </AnimatePresence>
-            <span>{saved ? 'محفوظة' : 'حفظ'}</span>
+            <span>{saved ? t(lang, 'bookmarked') : t(lang, 'bookmark')}</span>
           </motion.button>
         )}
       </AnimatePresence>
@@ -137,6 +159,7 @@ function GlobalNav({ onSearchOpen }: { onSearchOpen: () => void }) {
 
 function AppShell({ children }: { children: React.ReactNode }) {
   const [searchOpen, setSearchOpen] = useState(false);
+  const { isEn } = useLanguage();
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -150,7 +173,7 @@ function AppShell({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <div dir="rtl" className="relative">
+    <div className="relative" dir={isEn ? 'ltr' : 'rtl'}>
       <ScrollToTop />
       <BackToTop />
       <GlobalNav onSearchOpen={() => setSearchOpen(true)} />
@@ -163,10 +186,12 @@ function AppShell({ children }: { children: React.ReactNode }) {
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <BookmarksProvider>
-      <ReadingModeProvider>
-        <AppShell>{children}</AppShell>
-      </ReadingModeProvider>
-    </BookmarksProvider>
+    <LanguageProvider>
+      <BookmarksProvider>
+        <ReadingModeProvider>
+          <AppShell>{children}</AppShell>
+        </ReadingModeProvider>
+      </BookmarksProvider>
+    </LanguageProvider>
   );
 }

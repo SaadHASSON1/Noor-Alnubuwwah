@@ -4,9 +4,11 @@ import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import {
   Moon, BookOpen, Swords, Footprints, Scroll,
-  Crown, Mountain, Sunrise, Sparkles, ChevronLeft,
+  Crown, Mountain, Sunrise, Sparkles, ChevronLeft, ChevronRight,
 } from 'lucide-react';
 import BookmarkButton from './BookmarkButton';
+import { useLanguage } from '@/context/LanguageContext';
+import { SEERAH_EN } from '@/data/seerah-en';
 import type { SeerahEvent } from '@/data/seerah';
 
 interface Props {
@@ -28,7 +30,7 @@ const TYPE_ICONS: Record<string, React.ElementType> = {
   life:       Sparkles,
 };
 
-const TYPE_LABELS: Record<string, string> = {
+const TYPE_LABELS_AR: Record<string, string> = {
   birth:      'مولد',
   revelation: 'وحي',
   battle:     'غزوة',
@@ -39,13 +41,31 @@ const TYPE_LABELS: Record<string, string> = {
   death:      'رحيل',
   life:       'حياة',
 };
+const TYPE_LABELS_EN: Record<string, string> = {
+  birth:      'Birth',
+  revelation: 'Revelation',
+  battle:     'Battle',
+  hijra:      'Migration',
+  treaty:     'Treaty',
+  victory:    'Conquest',
+  farewell:   'Farewell',
+  death:      'Passing',
+  life:       'Life',
+};
 
 const EventCard: React.FC<Props> = ({ event, accentColor, index, chapterBg }) => {
   const router = useRouter();
+  const { isEn } = useLanguage();
   const Icon = TYPE_ICONS[event.type] ?? Sparkles;
   const isLight = !!event.lightText;
   const textBase  = isLight ? 'text-stone-800'  : 'text-white';
   const textMuted = isLight ? 'text-stone-600'  : 'text-white/60';
+
+  const enData = SEERAH_EN[event.id];
+  const displayTitle    = isEn && enData ? enData.title       : event.title;
+  const displaySubtitle = isEn && enData ? enData.subtitle    : event.subtitle;
+  const displayDesc     = isEn && enData ? enData.description : event.description;
+  const TYPE_LABELS = isEn ? TYPE_LABELS_EN : TYPE_LABELS_AR;
 
   return (
     <motion.article
@@ -86,7 +106,7 @@ const EventCard: React.FC<Props> = ({ event, accentColor, index, chapterBg }) =>
             }}
           >
             <Icon size={13} strokeWidth={2} />
-            <span>{TYPE_LABELS[event.type] ?? 'حدث'}</span>
+            <span>{TYPE_LABELS[event.type] ?? (isEn ? 'Event' : 'حدث')}</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="font-noto text-sm opacity-75" style={{ color: accentColor }}>
@@ -103,12 +123,12 @@ const EventCard: React.FC<Props> = ({ event, accentColor, index, chapterBg }) =>
           className={`font-noto font-bold leading-snug ${textBase}`}
           style={{ fontSize: 'clamp(1.3rem, 2.5vw, 1.8rem)' }}
         >
-          {event.title}
+          {displayTitle}
         </h3>
 
         {/* Subtitle */}
         <p className={`text-base leading-relaxed ${textMuted}`}>
-          {event.subtitle}
+          {displaySubtitle}
         </p>
 
         {/* Description preview */}
@@ -116,7 +136,7 @@ const EventCard: React.FC<Props> = ({ event, accentColor, index, chapterBg }) =>
           className={`text-sm leading-loose line-clamp-4 ${textMuted}`}
           style={{ opacity: 0.9 }}
         >
-          {event.description}
+          {displayDesc}
         </p>
 
         {/* Verse snippet */}
@@ -141,10 +161,10 @@ const EventCard: React.FC<Props> = ({ event, accentColor, index, chapterBg }) =>
             className="flex items-center gap-1.5 text-sm font-kufi opacity-70 group-hover:opacity-100 transition-opacity"
             style={{ color: accentColor }}
             initial={{ x: 0 }}
-            whileHover={{ x: -4 }}
+            whileHover={{ x: isEn ? 4 : -4 }}
           >
-            اقرأ التفاصيل
-            <ChevronLeft size={14} strokeWidth={2} />
+            {isEn ? 'Read More' : 'اقرأ التفاصيل'}
+            {isEn ? <ChevronRight size={14} strokeWidth={2} /> : <ChevronLeft size={14} strokeWidth={2} />}
           </motion.span>
         </div>
       </div>

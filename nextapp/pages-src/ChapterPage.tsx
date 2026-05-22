@@ -8,6 +8,8 @@ import EventCard from '@/components/EventCard';
 import ShareButton from '@/components/ShareButton';
 import IslamicParticles from '@/components/IslamicParticles';
 import { CHAPTER_META, SEERAH_EVENTS } from '@/data/seerah';
+import { useLanguage } from '@/context/LanguageContext';
+import { t } from '@/lib/i18n';
 
 /* ── Arabesque corner for chapter hero ── */
 const ArabesqueCorner: React.FC<{ rotate?: number; color: string }> = ({ rotate = 0, color }) => (
@@ -31,17 +33,18 @@ const ArabesqueCorner: React.FC<{ rotate?: number; color: string }> = ({ rotate 
 const ChapterPage: React.FC = () => {
   const { chapterName } = useParams<{ chapterName: string }>();
   const router = useRouter();
+  const { lang, isEn } = useLanguage();
   const name = decodeURIComponent(chapterName ?? '');
   const meta = CHAPTER_META[name];
 
   if (!meta) {
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ background: '#030813' }}>
-        <div className="text-center" dir="rtl">
-          <p className="font-noto text-white/50 text-xl mb-4">الفصل غير موجود</p>
+        <div className="text-center" dir={isEn ? 'ltr' : 'rtl'}>
+          <p className="font-noto text-white/50 text-xl mb-4">{isEn ? 'Chapter not found' : 'الفصل غير موجود'}</p>
           <button onClick={() => router.push('/')}
             className="font-kufi text-islamic-gold text-sm border border-islamic-gold/30 px-6 py-2 rounded-full hover:bg-islamic-gold/10 transition-colors">
-            العودة للرئيسية
+            {t(lang, 'backHome')}
           </button>
         </div>
       </div>
@@ -63,7 +66,7 @@ const ChapterPage: React.FC = () => {
   })), []);
 
   return (
-    <div className="min-h-screen relative" dir="rtl" style={{ background: meta.gradientFrom }}>
+    <div className="min-h-screen relative" dir={isEn ? 'ltr' : 'rtl'} style={{ background: meta.gradientFrom }}>
       {!isLight && <IslamicParticles />}
 
       {/* ══ Chapter Hero ══ */}
@@ -122,7 +125,7 @@ const ChapterPage: React.FC = () => {
             className="flex items-center gap-1.5 py-2 px-1 opacity-60 hover:opacity-100 active:opacity-100 transition-opacity"
           >
             <Home size={14} />
-            الرئيسية
+            {t(lang, 'home')}
           </Link>
           <ChevronRight size={14} className="opacity-40 flex-shrink-0" />
           <span className="opacity-90 truncate">{name}</span>
@@ -149,7 +152,7 @@ const ChapterPage: React.FC = () => {
               className="font-kufi text-sm tracking-widest"
               style={{ color: meta.accentColor }}
             >
-              الفصل
+              {t(lang, 'chapter')}
             </span>
           </motion.div>
 
@@ -211,14 +214,14 @@ const ChapterPage: React.FC = () => {
               <p className="font-noto font-bold text-2xl" style={{ color: meta.accentColor }}>
                 {events.length}
               </p>
-              <p className={`font-kufi text-sm ${textMuted}`}>حدث</p>
+              <p className={`font-kufi text-sm ${textMuted}`}>{isEn ? 'events' : 'حدث'}</p>
             </div>
             <div className="w-px h-10 opacity-20" style={{ background: meta.accentColor }} />
             <div>
               <p className="font-noto font-bold" style={{ fontSize: '1.1rem', color: meta.accentColor }}>
                 {meta.years}
               </p>
-              <p className={`font-kufi text-sm ${textMuted}`}>الفترة الزمنية</p>
+              <p className={`font-kufi text-sm ${textMuted}`}>{isEn ? 'Time period' : 'الفترة الزمنية'}</p>
             </div>
           </motion.div>
         </div>
@@ -239,7 +242,7 @@ const ChapterPage: React.FC = () => {
             className="font-kufi text-center mb-10 tracking-widest text-sm"
             style={{ color: meta.accentColor, opacity: 0.9 }}
           >
-            أحداث الفصل
+            {isEn ? 'Chapter Events' : 'أحداث الفصل'}
           </motion.p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">

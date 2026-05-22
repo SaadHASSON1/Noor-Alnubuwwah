@@ -1,14 +1,23 @@
 'use client';
 import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/context/LanguageContext';
+import { t } from '@/lib/i18n';
 
 /* ── Stat card data ── */
-const STATS = [
+const STATS_AR = [
   { value: '63',  label: 'عام عمره ﷺ' },
   { value: '23',  label: 'عام النبوة' },
   { value: '27',  label: 'غزوة' },
   { value: '25+', label: 'اسماً له ﷺ' },
   { value: '23',  label: 'كاتب وحي' },
+];
+const STATS_EN = [
+  { value: '63',  label: 'Years of his life ﷺ' },
+  { value: '23',  label: 'Years of prophethood' },
+  { value: '27',  label: 'Expeditions' },
+  { value: '25+', label: 'Names of the Prophet ﷺ' },
+  { value: '23',  label: 'Scribes of revelation' },
 ];
 
 /* ── Star particles — deterministic positions ── */
@@ -105,6 +114,9 @@ const GeometricAccents: React.FC = () => (
    HERO — Starry Night Shrine concept
    ════════════════════════════════════════════════════ */
 const Hero: React.FC = () => {
+  const { lang, isEn } = useLanguage();
+  const STATS = isEn ? STATS_EN : STATS_AR;
+
   const handleScrollDown = () => {
     window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
   };
@@ -113,7 +125,7 @@ const Hero: React.FC = () => {
     <div
       className="relative flex flex-col items-center justify-center overflow-hidden"
       style={{ height: '100vh', background: '#030813' }}
-      dir="rtl"
+      dir={isEn ? 'ltr' : 'rtl'}
     >
       <Stars />
       <GeometricAccents />
@@ -134,7 +146,8 @@ const Hero: React.FC = () => {
             letterSpacing: '0.1em',
           }}
         >
-          سيرة النبي محمد ﷺ  •  571 م — 632 م
+          {isEn ? 'The Life of Prophet Muhammad ﷺ  •  571 CE — 632 CE'
+                : 'سيرة النبي محمد ﷺ  •  571 م — 632 م'}
         </motion.div>
 
         {/* Main title */}
@@ -144,12 +157,12 @@ const Hero: React.FC = () => {
           transition={{ duration: 1.3, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="font-noto font-bold leading-none mb-4"
           style={{
-            fontSize: 'clamp(4rem, 14vw, 10rem)',
+            fontSize: isEn ? 'clamp(2.5rem, 8vw, 6.5rem)' : 'clamp(4rem, 14vw, 10rem)',
             color: '#C9A84C',
             textShadow: '0 0 50px rgba(201,168,76,0.6), 0 0 100px rgba(201,168,76,0.2)',
           }}
         >
-          نور النبوة
+          {isEn ? t(lang, 'seerahTitle') : 'نور النبوة'}
         </motion.h1>
 
         {/* Golden divider */}
@@ -243,7 +256,7 @@ const Hero: React.FC = () => {
             letterSpacing: '0.06em',
           }}
         >
-          ابدأ الرحلة ←
+          {isEn ? `${t(lang, 'startJourney')} →` : 'ابدأ الرحلة ←'}
         </motion.button>
       </div>
 
@@ -258,7 +271,7 @@ const Hero: React.FC = () => {
           className="font-kufi text-islamic-gold/45"
           style={{ fontSize: '0.9rem', letterSpacing: '0.2em' }}
         >
-          مرّر للأسفل
+          {isEn ? 'Scroll down' : 'مرّر للأسفل'}
         </p>
         <motion.div
           className="w-px bg-gradient-to-b from-islamic-gold/50 to-transparent"

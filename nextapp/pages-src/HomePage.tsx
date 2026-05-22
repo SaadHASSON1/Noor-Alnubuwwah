@@ -6,6 +6,8 @@ import Hero from '@/components/Hero';
 import ChapterCard from '@/components/ChapterCard';
 import IslamicParticles from '@/components/IslamicParticles';
 import { CHAPTERS, CHAPTER_META, SEERAH_EVENTS } from '@/data/seerah';
+import { useLanguage } from '@/context/LanguageContext';
+import { t } from '@/lib/i18n';
 
 /* ── Diamond divider ── */
 const GoldDivider: React.FC = () => (
@@ -55,6 +57,7 @@ const SectionHeader: React.FC<{ label: string; title: string; subtitle: string }
 );
 
 const HomePage: React.FC = () => {
+  const { lang, isEn } = useLanguage();
   const eventCounts = React.useMemo(() => {
     const counts: Record<string, number> = {};
     for (const ch of CHAPTERS) counts[ch] = 0;
@@ -65,19 +68,22 @@ const HomePage: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative" dir="rtl">
+    <div className="relative" dir={isEn ? 'ltr' : 'rtl'}>
       <IslamicParticles />
       <Hero />
 
-      {/* ══ القسم الأول: فصول السيرة الثمانية ══ */}
+      {/* ══ Chapters section ══ */}
       <section
         className="relative py-24 px-5 md:px-12"
         style={{ background: 'linear-gradient(to bottom, #030813 0%, #05060f 100%)' }}
       >
         <SectionHeader
-          label="سيرة خير البشر"
-          title="فصول السيرة النبوية"
-          subtitle="رحلة في ثمانية فصول من حياة النبي ﷺ — من مولده المبارك حتى انتقاله إلى الرفيق الأعلى"
+          label={isEn ? 'The Life of the Best of Mankind' : 'سيرة خير البشر'}
+          title={isEn ? 'Chapters of the Prophetic Biography' : 'فصول السيرة النبوية'}
+          subtitle={isEn
+            ? 'A journey through eight chapters of the Prophet\'s life ﷺ — from his blessed birth to his passing'
+            : 'رحلة في ثمانية فصول من حياة النبي ﷺ — من مولده المبارك حتى انتقاله إلى الرفيق الأعلى'
+          }
         />
 
         <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -150,7 +156,7 @@ const HomePage: React.FC = () => {
           >
             <Heart size={13} style={{ color: '#E8A8A8' }} />
             <p className="font-kufi" style={{ fontSize: '0.78rem', color: '#5c502d', letterSpacing: '0.14em' }}>
-              صُنع بمحبة واحترام لسيرة النبي ﷺ
+              {isEn ? 'Made with love and respect for the life of the Prophet ﷺ' : 'صُنع بمحبة واحترام لسيرة النبي ﷺ'}
             </p>
             <Heart size={13} style={{ color: '#E8A8A8' }} />
           </motion.div>
@@ -169,7 +175,7 @@ const HomePage: React.FC = () => {
               سعد حسون
             </p>
             <p className="font-kufi" style={{ fontSize: '0.85rem', color: '#5b5e66', letterSpacing: '0.06em' }}>
-              مطوّر المنصة ومنشئ المحتوى
+              {isEn ? 'Platform developer & content creator' : 'مطوّر المنصة ومنشئ المحتوى'}
             </p>
           </motion.div>
 
@@ -195,7 +201,9 @@ const HomePage: React.FC = () => {
             >
               <Mail size={14} />
               <span>contact@x13labs.com</span>
-              <span style={{ color: '#4f525a', fontSize: '0.75rem' }}>— للشكاوى والاقتراحات والتحسينات</span>
+              <span style={{ color: '#4f525a', fontSize: '0.75rem' }}>
+                {isEn ? '— feedback & suggestions' : '— للشكاوى والاقتراحات والتحسينات'}
+              </span>
             </a>
           </motion.div>
 
@@ -208,7 +216,8 @@ const HomePage: React.FC = () => {
             className="font-kufi"
             style={{ fontSize: '0.72rem', color: '#30343d', letterSpacing: '0.1em' }}
           >
-            نور النبوة © 2026 — المحتوى موثّق من المصادر الإسلامية المعتمدة
+            {isEn ? 'Noor Al-Nubuwwah © 2026 — Content sourced from authenticated Islamic references'
+                   : 'نور النبوة © 2026 — المحتوى موثّق من المصادر الإسلامية المعتمدة'}
           </motion.p>
         </div>
       </motion.footer>

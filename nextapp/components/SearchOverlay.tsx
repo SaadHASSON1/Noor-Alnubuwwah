@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X, BookOpen, ChevronLeft, Sword, Star, Zap, Heart, Map } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { SEERAH_EVENTS, CHAPTER_META } from '@/data/seerah';
+import { SEERAH_EN } from '@/data/seerah-en';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface Props {
   isOpen: boolean;
@@ -58,9 +60,13 @@ const TYPE_ICONS: Record<string, React.ReactNode> = {
   death:      <Heart     size={12} strokeWidth={1.8} />,
 };
 
-const TYPE_LABELS: Record<string, string> = {
+const TYPE_LABELS_AR: Record<string, string> = {
   birth: 'مولد', revelation: 'وحي', battle: 'غزوة', hijra: 'هجرة',
   victory: 'فتح', treaty: 'معاهدة', farewell: 'وداع', death: 'وفاة', life: 'حياة',
+};
+const TYPE_LABELS_EN: Record<string, string> = {
+  birth: 'Birth', revelation: 'Revelation', battle: 'Battle', hijra: 'Migration',
+  victory: 'Conquest', treaty: 'Treaty', farewell: 'Farewell', death: 'Passing', life: 'Life',
 };
 
 /* ── Highlight matching terms in original text ── */
@@ -87,6 +93,8 @@ const SearchOverlay: React.FC<Props> = ({ isOpen, onClose }) => {
   const [activeIdx, setActiveIdx] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
+  const { isEn } = useLanguage();
+  const TYPE_LABELS = isEn ? TYPE_LABELS_EN : TYPE_LABELS_AR;
 
   useEffect(() => {
     if (isOpen) {
@@ -120,14 +128,30 @@ const SearchOverlay: React.FC<Props> = ({ isOpen, onClose }) => {
     const terms = normalise(q).split(/\s+/).filter(Boolean);
 
     const scored = SEERAH_EVENTS
-      .map(ev => ({ ev, score: scoreEvent(ev, terms) }))
+      .map(ev => {
+        let score = scoreEvent(ev, terms);
+        // Also score against English data if available
+        if (isEn) {
+          const en = SEERAH_EN[ev.id];
+          if (en) {
+            const titleN = normalise(en.title);
+            const descN  = normalise(en.description);
+            for (const term of terms) {
+              if (!term) continue;
+              if (titleN.includes(term)) score += titleN === term ? 100 : 60;
+              if (descN.includes(term))  score += 10;
+            }
+          }
+        }
+        return { ev, score };
+      })
       .filter(x => x.score > 0)
       .sort((a, b) => b.score - a.score)
       .slice(0, 10)
       .map(x => x.ev);
 
     return scored;
-  }, [query]);
+  }, [query, isEn]);
 
   // Clamp activeIdx
   const clampedIdx = Math.min(activeIdx, Math.max(0, results.length - 1));
@@ -157,7 +181,7 @@ const SearchOverlay: React.FC<Props> = ({ isOpen, onClose }) => {
             exit={{ opacity: 0, y: -18, scale: 0.97 }}
             transition={{ duration: 0.22, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="w-full max-w-xl"
-            dir="rtl"
+            dir={isEn ? 'ltr' : 'rtl'}
           >
             {/* ── Input bar ── */}
             <div
@@ -173,7 +197,7 @@ const SearchOverlay: React.FC<Props> = ({ isOpen, onClose }) => {
                 ref={inputRef}
                 value={query}
                 onChange={e => { setQuery(e.target.value); setActiveIdx(0); }}
-                placeholder="ابحث في أحداث السيرة النبوية…"
+                placeholder={isEn ? 'Search Seerah events…' : 'ابحث في أحداث السيرة النبوية…'}
                 className="flex-1 bg-transparent text-white font-noto font-bold text-base outline-none placeholder:text-white/30"
                 style={{ fontSize: '1.05rem' }}
                 autoComplete="off"
@@ -218,7 +242,7 @@ const SearchOverlay: React.FC<Props> = ({ isOpen, onClose }) => {
                     style={{ borderColor: 'rgba(201,168,76,0.1)' }}
                   >
                     <p className="font-kufi text-islamic-gold/60" style={{ fontSize: '0.78rem' }}>
-                      {results.length} نتيجة
+                      {isEn ? `${results.length} result${results.length !== 1 ? 's' : ''}` : `${results.length} نتيجة`}
                     </p>
                   </div>
 
@@ -228,13 +252,15 @@ const SearchOverlay: React.FC<Props> = ({ isOpen, onClose }) => {
                     const isActive = i === clampedIdx;
                     const typeIcon = TYPE_ICONS[ev.type] ?? <BookOpen size={12} strokeWidth={1.8} />;
                     const typeLabel = TYPE_LABELS[ev.type] ?? '';
+                    const enData = SEERAH_EN[ev.id];
+                    const displayTitle = isEn && enData ? enData.title : ev.title;
 
                     return (
                       <button
                         key={ev.id}
                         onClick={() => handleSelect(ev.id)}
                         onMouseEnter={() => setActiveIdx(i)}
-                        className="w-full flex items-center gap-4 px-5 py-3.5 text-right transition-colors group"
+                        className={`w-full flex items-center gap-4 px-5 py-3.5 ${isEn ? 'text-left' : 'text-right'} transition-colors group`}
                         style={{
                           background: isActive ? `rgba(201,168,76,0.06)` : 'transparent',
                           borderBottom: i < results.length - 1
@@ -255,9 +281,9 @@ const SearchOverlay: React.FC<Props> = ({ isOpen, onClose }) => {
                         </div>
 
                         {/* Text */}
-                        <div className="flex-1 min-w-0 text-right">
+                        <div className={`flex-1 min-w-0 ${isEn ? 'text-left' : 'text-right'}`}>
                           <p className="font-noto text-white font-bold truncate leading-snug" style={{ fontSize: '0.98rem' }}>
-                            <Highlighted text={ev.title} terms={terms} />
+                            <Highlighted text={displayTitle} terms={terms} />
                           </p>
                           <div className="flex items-center gap-2 mt-0.5">
                             <span
@@ -315,10 +341,10 @@ const SearchOverlay: React.FC<Props> = ({ isOpen, onClose }) => {
                 >
                   <Search size={28} color="rgba(201,168,76,0.3)" className="mx-auto mb-3" />
                   <p className="font-noto text-white/50 text-sm mb-1">
-                    لا توجد نتائج لـ «{query}»
+                    {isEn ? `No results for "${query}"` : `لا توجد نتائج لـ «${query}»`}
                   </p>
                   <p className="font-kufi text-white/25" style={{ fontSize: '0.8rem' }}>
-                    جرّب كلمات مختلفة أو أقصر
+                    {isEn ? 'Try different or shorter keywords' : 'جرّب كلمات مختلفة أو أقصر'}
                   </p>
                 </motion.div>
               )}
@@ -332,10 +358,10 @@ const SearchOverlay: React.FC<Props> = ({ isOpen, onClose }) => {
                   className="text-center pt-4 pb-2"
                 >
                   <p className="font-kufi text-white/22 tracking-widest" style={{ fontSize: '0.8rem' }}>
-                    ابدأ الكتابة للبحث في أحداث السيرة
+                    {isEn ? 'Start typing to search Seerah events' : 'ابدأ الكتابة للبحث في أحداث السيرة'}
                   </p>
                   <p className="font-kufi text-white/15 mt-1" style={{ fontSize: '0.72rem' }}>
-                    ↑↓ للتنقل · Enter للفتح · ESC للإغلاق
+                    {isEn ? '↑↓ navigate · Enter open · ESC close' : '↑↓ للتنقل · Enter للفتح · ESC للإغلاق'}
                   </p>
                 </motion.div>
               )}

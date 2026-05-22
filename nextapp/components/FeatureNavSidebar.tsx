@@ -4,34 +4,36 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter, usePathname } from 'next/navigation';
 import { Home, Clock, Users, Sparkles, HelpCircle, ScrollText, GitBranch, Heart, Crown, X, Menu, Star, BookOpen, PenTool, Library, Sword, Shield, Mail, Navigation, Coffee, Bookmark } from 'lucide-react';
 import { useBookmarks } from '@/context/BookmarksContext';
+import { useLanguage } from '@/context/LanguageContext';
 
 
 interface NavItem {
   icon: React.ReactNode;
-  label: string;
+  labelAr: string;
+  labelEn: string;
   path: string;
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { icon: <Home size={16} />,        label: 'الرئيسية',             path: '/' },
-  { icon: <Bookmark size={16} />,    label: 'محفوظاتي',              path: '/bookmarks' },
-  { icon: <Clock size={16} />,       label: 'التسلسل الزمني',       path: '/timeline' },
-  { icon: <Heart size={16} />,       label: 'صفاته ﷺ',              path: '/character' },
-  { icon: <Coffee size={16} />,      label: 'حياته اليومية ﷺ',      path: '/daily-life' },
-  { icon: <Navigation size={16} />,  label: 'رحلة الهجرة',           path: '/hijra' },
-  { icon: <Sword size={16} />,       label: 'غزواته ﷺ',             path: '/battles' },
-  { icon: <Shield size={16} />,      label: 'السرايا العسكرية',      path: '/saraya' },
-  { icon: <Mail size={16} />,        label: 'رسائله للملوك',         path: '/letters' },
-  { icon: <Crown size={16} />,       label: 'أمهات المؤمنين',        path: '/wives' },
-  { icon: <Users size={16} />,       label: 'الصحابة الكرام',        path: '/companions' },
-  { icon: <Sparkles size={16} />,    label: 'معجزاته ﷺ',            path: '/miracles' },
-  { icon: <GitBranch size={16} />,   label: 'شجرة النسب الشريف',     path: '/family-tree' },
-  { icon: <HelpCircle size={16} />,  label: 'الاختبار التفاعلي',     path: '/quiz' },
-  { icon: <ScrollText size={16} />,  label: 'خطبة الوداع الكاملة',   path: '/farewell-sermon' },
-  { icon: <Star size={16} />,        label: 'نبوءاته ﷺ',              path: '/prophecies' },
-  { icon: <BookOpen size={16} />,    label: 'أسماؤه ﷺ',               path: '/names' },
-  { icon: <PenTool size={16} />,     label: 'كتّاب الوحي',             path: '/scribes' },
-  { icon: <Library size={16} />,     label: 'المصادر والمراجع',         path: '/sources' },
+  { icon: <Home size={16} />,        labelAr: 'الرئيسية',             labelEn: 'Home',                    path: '/' },
+  { icon: <Bookmark size={16} />,    labelAr: 'محفوظاتي',              labelEn: 'Bookmarks',               path: '/bookmarks' },
+  { icon: <Clock size={16} />,       labelAr: 'التسلسل الزمني',       labelEn: 'Timeline',                path: '/timeline' },
+  { icon: <Heart size={16} />,       labelAr: 'صفاته ﷺ',              labelEn: 'Character ﷺ',             path: '/character' },
+  { icon: <Coffee size={16} />,      labelAr: 'حياته اليومية ﷺ',      labelEn: 'Daily Life ﷺ',            path: '/daily-life' },
+  { icon: <Navigation size={16} />,  labelAr: 'رحلة الهجرة',           labelEn: 'The Hijra',               path: '/hijra' },
+  { icon: <Sword size={16} />,       labelAr: 'غزواته ﷺ',             labelEn: 'Battles ﷺ',               path: '/battles' },
+  { icon: <Shield size={16} />,      labelAr: 'السرايا العسكرية',      labelEn: 'Military Expeditions',    path: '/saraya' },
+  { icon: <Mail size={16} />,        labelAr: 'رسائله للملوك',         labelEn: 'Letters to Kings',        path: '/letters' },
+  { icon: <Crown size={16} />,       labelAr: 'أمهات المؤمنين',        labelEn: 'Mothers of Believers',    path: '/wives' },
+  { icon: <Users size={16} />,       labelAr: 'الصحابة الكرام',        labelEn: 'The Companions',          path: '/companions' },
+  { icon: <Sparkles size={16} />,    labelAr: 'معجزاته ﷺ',            labelEn: 'Miracles ﷺ',              path: '/miracles' },
+  { icon: <GitBranch size={16} />,   labelAr: 'شجرة النسب الشريف',     labelEn: 'Prophetic Lineage',       path: '/family-tree' },
+  { icon: <HelpCircle size={16} />,  labelAr: 'الاختبار التفاعلي',     labelEn: 'Interactive Quiz',        path: '/quiz' },
+  { icon: <ScrollText size={16} />,  labelAr: 'خطبة الوداع الكاملة',   labelEn: 'Farewell Sermon',         path: '/farewell-sermon' },
+  { icon: <Star size={16} />,        labelAr: 'نبوءاته ﷺ',              labelEn: 'Prophecies ﷺ',            path: '/prophecies' },
+  { icon: <BookOpen size={16} />,    labelAr: 'أسماؤه ﷺ',               labelEn: 'His Names ﷺ',             path: '/names' },
+  { icon: <PenTool size={16} />,     labelAr: 'كتّاب الوحي',             labelEn: 'Scribes of Revelation',  path: '/scribes' },
+  { icon: <Library size={16} />,     labelAr: 'المصادر والمراجع',         labelEn: 'Sources & References',   path: '/sources' },
 ];
 
 const FeatureNavSidebar: React.FC = () => {
@@ -39,6 +41,7 @@ const FeatureNavSidebar: React.FC = () => {
   const router = useRouter();
   const pathname = usePathname();
   const { totalCount: bookmarkCount } = useBookmarks();
+  const { isEn } = useLanguage();
 
   const handleNav = (path: string) => {
     router.push(path);
@@ -114,7 +117,7 @@ const FeatureNavSidebar: React.FC = () => {
         {isOpen && (
           <motion.div
             key="sidebar"
-            dir="rtl"
+            dir={isEn ? 'ltr' : 'rtl'}
             initial={{ x: '100%', opacity: 0 }}
             animate={{ x: '0%', opacity: 1 }}
             exit={{ x: '100%', opacity: 0 }}
@@ -137,22 +140,22 @@ const FeatureNavSidebar: React.FC = () => {
                 className="font-noto font-bold"
                 style={{ fontSize: '1.2rem', color: '#C9A84C', textShadow: '0 0 15px #3e3824' }}
               >
-                نور النبوة
+                {isEn ? 'Noor Al-Nubuwwah' : 'نور النبوة'}
               </p>
               <p className="font-kufi text-white/30 text-xs mt-1" style={{ letterSpacing: '0.05em' }}>
-                سيرة النبي محمد ﷺ
+                {isEn ? 'The Life of Prophet Muhammad ﷺ' : 'سيرة النبي محمد ﷺ'}
               </p>
             </div>
 
             {/* Navigation items */}
             <nav className="flex-1 overflow-y-auto px-4 py-4 space-y-1.5">
 
-              {/* ── الأقسام ── */}
+              {/* ── Sections ── */}
               <p
                 className="font-kufi px-3 pb-1.5 pt-0.5"
                 style={{ fontSize: '0.72rem', color: '#C9A84C', letterSpacing: '0.12em' }}
               >
-                الأقسام
+                {isEn ? 'Sections' : 'الأقسام'}
               </p>
 
               {NAV_ITEMS.map((item, index) => {
@@ -164,7 +167,7 @@ const FeatureNavSidebar: React.FC = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.025 * index, duration: 0.22 }}
                     onClick={() => handleNav(item.path)}
-                    className={`sidebar-nav-item${isActive ? ' active' : ''} w-full flex items-center gap-3 px-4 py-3 rounded-xl text-right`}
+                    className={`sidebar-nav-item${isActive ? ' active' : ''} w-full flex items-center gap-3 px-4 py-3 rounded-xl ${isEn ? 'text-left' : 'text-right'}`}
                     style={{
                       background: isActive ? 'rgba(201,168,76,0.12)' : 'transparent',
                       border: `1px solid ${isActive ? 'rgba(201,168,76,0.3)' : 'transparent'}`,
@@ -175,7 +178,7 @@ const FeatureNavSidebar: React.FC = () => {
                     <span className="nav-icon" style={{ color: isActive ? '#C9A84C' : '#5c502d' }}>
                       {item.icon}
                     </span>
-                    <span className="font-noto text-sm">{item.label}</span>
+                    <span className="font-noto text-sm">{isEn ? item.labelEn : item.labelAr}</span>
                     {/* Bookmarks count badge */}
                     {item.path === '/bookmarks' && bookmarkCount > 0 && (
                       <span
