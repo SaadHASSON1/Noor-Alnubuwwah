@@ -267,7 +267,7 @@ const FamilyTreePage: React.FC = () => {
   return (
     <div className="min-h-screen" dir={isEn ? 'ltr' : 'rtl'} style={{ background: '#030813' }}>
       {/* زر المشاركة */}
-      <div className="fixed top-[5.5rem] left-4 z-[60]">
+      <div className={`fixed top-[5.5rem] ${isEn ? 'right-4' : 'left-4'} z-[60]`}>
         <ShareButton title={isEn ? 'Prophetic Lineage' : 'شجرة النسب الشريف'} accentColor="#C9A84C" />
       </div>
 
@@ -301,7 +301,7 @@ const FamilyTreePage: React.FC = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="absolute top-6 right-20 flex items-center gap-2 text-sm font-kufi max-w-[calc(100vw-6rem)]"
+          className={`absolute top-6 flex items-center gap-2 text-sm font-kufi max-w-[calc(100vw-6rem)] ${isEn ? 'left-20' : 'right-20'}`}
           style={{ color: '#C9A84C' }}
         >
           <button onClick={() => router.push('/')} className="flex items-center gap-1.5 opacity-60 hover:opacity-100 transition-opacity">
@@ -426,7 +426,7 @@ const FamilyTreePage: React.FC = () => {
             <div className="w-2 h-2 rotate-45 bg-islamic-gold" />
             <div className="flex-1 h-px bg-gradient-to-l from-transparent to-islamic-gold" />
           </div>
-          <p className="font-noto text-islamic-gold/75 mb-2" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.5rem)', lineHeight: 2 }}>
+          <p className="font-noto text-islamic-gold/75 mb-2" dir="rtl" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.5rem)', lineHeight: 2 }}>
             ﴿مُّحَمَّدٌ رَّسُولُ اللَّهِ ۚ وَالَّذِينَ مَعَهُ أَشِدَّاءُ عَلَى الْكُفَّارِ رُحَمَاءُ بَيْنَهُمْ﴾
           </p>
           <p className="font-kufi text-islamic-gold/45 text-sm tracking-widest">{isEn ? '— Surah Al-Fath: 29' : '— سورة الفتح: 29'}</p>

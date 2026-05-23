@@ -18,20 +18,20 @@ const NAV_ITEMS: NavItem[] = [
   { icon: <Home size={16} />,        labelAr: 'الرئيسية',             labelEn: 'Home',                    path: '/' },
   { icon: <Bookmark size={16} />,    labelAr: 'محفوظاتي',              labelEn: 'Bookmarks',               path: '/bookmarks' },
   { icon: <Clock size={16} />,       labelAr: 'التسلسل الزمني',       labelEn: 'Timeline',                path: '/timeline' },
-  { icon: <Heart size={16} />,       labelAr: 'صفاته ﷺ',              labelEn: 'Character ﷺ',             path: '/character' },
-  { icon: <Coffee size={16} />,      labelAr: 'حياته اليومية ﷺ',      labelEn: 'Daily Life ﷺ',            path: '/daily-life' },
+  { icon: <Heart size={16} />,       labelAr: 'صفاته ﷺ',              labelEn: 'His Character',           path: '/character' },
+  { icon: <Coffee size={16} />,      labelAr: 'حياته اليومية ﷺ',      labelEn: 'Daily Life',              path: '/daily-life' },
   { icon: <Navigation size={16} />,  labelAr: 'رحلة الهجرة',           labelEn: 'The Hijra',               path: '/hijra' },
-  { icon: <Sword size={16} />,       labelAr: 'غزواته ﷺ',             labelEn: 'Battles ﷺ',               path: '/battles' },
+  { icon: <Sword size={16} />,       labelAr: 'غزواته ﷺ',             labelEn: 'Battles',                 path: '/battles' },
   { icon: <Shield size={16} />,      labelAr: 'السرايا العسكرية',      labelEn: 'Military Expeditions',    path: '/saraya' },
   { icon: <Mail size={16} />,        labelAr: 'رسائله للملوك',         labelEn: 'Letters to Kings',        path: '/letters' },
   { icon: <Crown size={16} />,       labelAr: 'أمهات المؤمنين',        labelEn: 'Mothers of Believers',    path: '/wives' },
   { icon: <Users size={16} />,       labelAr: 'الصحابة الكرام',        labelEn: 'The Companions',          path: '/companions' },
-  { icon: <Sparkles size={16} />,    labelAr: 'معجزاته ﷺ',            labelEn: 'Miracles ﷺ',              path: '/miracles' },
+  { icon: <Sparkles size={16} />,    labelAr: 'معجزاته ﷺ',            labelEn: 'His Miracles',            path: '/miracles' },
   { icon: <GitBranch size={16} />,   labelAr: 'شجرة النسب الشريف',     labelEn: 'Prophetic Lineage',       path: '/family-tree' },
   { icon: <HelpCircle size={16} />,  labelAr: 'الاختبار التفاعلي',     labelEn: 'Interactive Quiz',        path: '/quiz' },
   { icon: <ScrollText size={16} />,  labelAr: 'خطبة الوداع الكاملة',   labelEn: 'Farewell Sermon',         path: '/farewell-sermon' },
-  { icon: <Star size={16} />,        labelAr: 'نبوءاته ﷺ',              labelEn: 'Prophecies ﷺ',            path: '/prophecies' },
-  { icon: <BookOpen size={16} />,    labelAr: 'أسماؤه ﷺ',               labelEn: 'His Names ﷺ',             path: '/names' },
+  { icon: <Star size={16} />,        labelAr: 'نبوءاته ﷺ',              labelEn: 'His Prophecies',          path: '/prophecies' },
+  { icon: <BookOpen size={16} />,    labelAr: 'أسماؤه ﷺ',               labelEn: 'His Names',               path: '/names' },
   { icon: <PenTool size={16} />,     labelAr: 'كتّاب الوحي',             labelEn: 'Scribes of Revelation',  path: '/scribes' },
   { icon: <Library size={16} />,     labelAr: 'المصادر والمراجع',         labelEn: 'Sources & References',   path: '/sources' },
 ];
@@ -58,7 +58,7 @@ const FeatureNavSidebar: React.FC = () => {
         transition={{ delay: 0.6 }}
         onClick={() => setIsOpen(v => !v)}
         aria-label={isOpen ? 'إغلاق القائمة' : 'فتح القائمة'}
-        className="fixed top-5 right-5 z-[60] flex items-center justify-center rounded-full"
+        className={`fixed top-5 z-[60] flex items-center justify-center rounded-full ${isEn ? 'left-5' : 'right-5'}`}
         style={{
           width: 40,
           height: 40,
@@ -118,17 +118,18 @@ const FeatureNavSidebar: React.FC = () => {
           <motion.div
             key="sidebar"
             dir={isEn ? 'ltr' : 'rtl'}
-            initial={{ x: '100%', opacity: 0 }}
+            initial={{ x: isEn ? '-100%' : '100%', opacity: 0 }}
             animate={{ x: '0%', opacity: 1 }}
-            exit={{ x: '100%', opacity: 0 }}
+            exit={{ x: isEn ? '-100%' : '100%', opacity: 0 }}
             transition={{ type: 'spring', stiffness: 340, damping: 35 }}
-            className="fixed right-0 top-0 h-full z-[59] flex flex-col"
+            className={`fixed top-0 h-full z-[59] flex flex-col ${isEn ? 'left-0' : 'right-0'}`}
             style={{
               width: 'min(280px, 90vw)',
               background: 'rgba(3,8,19,0.97)',
-              borderLeft: '1px solid rgba(201,168,76,0.2)',
+              borderRight: isEn ? '1px solid rgba(201,168,76,0.2)' : undefined,
+              borderLeft: !isEn ? '1px solid rgba(201,168,76,0.2)' : undefined,
               backdropFilter: 'blur(16px)',
-              boxShadow: '-8px 0 40px rgba(0,0,0,0.6)',
+              boxShadow: isEn ? '8px 0 40px rgba(0,0,0,0.6)' : '-8px 0 40px rgba(0,0,0,0.6)',
             }}
           >
             {/* Header */}
@@ -143,7 +144,7 @@ const FeatureNavSidebar: React.FC = () => {
                 {isEn ? 'Noor Al-Nubuwwah' : 'نور النبوة'}
               </p>
               <p className="font-kufi text-white/30 text-xs mt-1" style={{ letterSpacing: '0.05em' }}>
-                {isEn ? 'The Life of Prophet Muhammad ﷺ' : 'سيرة النبي محمد ﷺ'}
+                {isEn ? 'The Life of Prophet Muhammad' : 'سيرة النبي محمد ﷺ'}
               </p>
             </div>
 
@@ -163,7 +164,7 @@ const FeatureNavSidebar: React.FC = () => {
                 return (
                   <motion.button
                     key={item.path}
-                    initial={{ opacity: 0, x: 16 }}
+                    initial={{ opacity: 0, x: isEn ? -16 : 16 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.025 * index, duration: 0.22 }}
                     onClick={() => handleNav(item.path)}
@@ -182,14 +183,14 @@ const FeatureNavSidebar: React.FC = () => {
                     {/* Bookmarks count badge */}
                     {item.path === '/bookmarks' && bookmarkCount > 0 && (
                       <span
-                        className="mr-auto font-kufi text-xs px-2 py-0.5 rounded-full"
+                        className={`${isEn ? 'ml-auto' : 'mr-auto'} font-kufi text-xs px-2 py-0.5 rounded-full`}
                         style={{ background: 'rgba(201,168,76,0.18)', color: '#C9A84C', border: '1px solid rgba(201,168,76,0.3)' }}
                       >
                         {bookmarkCount}
                       </span>
                     )}
                     {isActive && item.path !== '/bookmarks' && (
-                      <span className="mr-auto w-1.5 h-1.5 rounded-full" style={{ background: '#C9A84C' }} />
+                      <span className={`${isEn ? 'ml-auto' : 'mr-auto'} w-1.5 h-1.5 rounded-full`} style={{ background: '#C9A84C' }} />
                     )}
                   </motion.button>
                 );

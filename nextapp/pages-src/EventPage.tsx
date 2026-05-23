@@ -191,7 +191,7 @@ const EventPage: React.FC = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="absolute top-4 right-16 sm:right-20 z-[20] flex items-center gap-1 text-sm font-kufi max-w-[calc(100vw-5rem)] overflow-hidden"
+          className={`absolute top-4 z-[20] flex items-center gap-1 text-sm font-kufi max-w-[calc(100vw-5rem)] overflow-hidden ${isEn ? 'left-16 sm:left-20' : 'right-16 sm:right-20'}`}
           style={{ color: accentColor }}
         >
           <Link
@@ -791,7 +791,10 @@ const EventPage: React.FC = () => {
                 background: `${accentColor}0d`,
               }}
             >
-              {isEn ? `Back to: ${event.chapter}` : `العودة لفصل ${event.chapter}`}
+              {isEn
+                ? `Back to: ${CHAPTER_META[event.chapter]?.nameEn ?? event.chapter}`
+                : `العودة لفصل ${event.chapter}`
+              }
             </button>
           </div>
         </div>

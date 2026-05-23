@@ -117,7 +117,7 @@ const ChapterPage: React.FC = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="absolute top-4 right-16 sm:right-20 z-[20] flex items-center gap-1 text-sm font-kufi max-w-[calc(100vw-5rem)] overflow-hidden"
+          className={`absolute top-4 z-[20] flex items-center gap-1 text-sm font-kufi max-w-[calc(100vw-5rem)] overflow-hidden ${isEn ? 'left-16 sm:left-20' : 'right-16 sm:right-20'}`}
           style={{ color: meta.accentColor }}
         >
           <Link
@@ -128,7 +128,7 @@ const ChapterPage: React.FC = () => {
             {t(lang, 'home')}
           </Link>
           <ChevronRight size={14} className="opacity-40 flex-shrink-0" />
-          <span className="opacity-90 truncate">{name}</span>
+          <span className="opacity-90 truncate">{isEn && meta.nameEn ? meta.nameEn : name}</span>
         </motion.nav>
 
         {/* Main hero content */}
@@ -167,7 +167,7 @@ const ChapterPage: React.FC = () => {
               textShadow: isLight ? 'none' : `0 0 60px ${meta.accentColor}40`,
             }}
           >
-            {name}
+            {isEn && meta.nameEn ? meta.nameEn : name}
           </motion.h1>
 
           {/* Subtitle */}
@@ -178,7 +178,7 @@ const ChapterPage: React.FC = () => {
             className="mb-3"
             style={{ fontSize: 'clamp(1rem, 2.5vw, 1.5rem)', color: meta.accentColor, opacity: 0.85 }}
           >
-            {meta.subtitle}
+            {isEn && meta.subtitleEn ? meta.subtitleEn : meta.subtitle}
           </motion.p>
 
           {/* Divider */}
@@ -200,7 +200,7 @@ const ChapterPage: React.FC = () => {
             className={`max-w-2xl ${textMuted}`}
             style={{ fontSize: 'clamp(0.95rem, 1.8vw, 1.15rem)', lineHeight: 2 }}
           >
-            {meta.description}
+            {isEn && meta.descriptionEn ? meta.descriptionEn : meta.description}
           </motion.p>
 
           {/* Stats row */}

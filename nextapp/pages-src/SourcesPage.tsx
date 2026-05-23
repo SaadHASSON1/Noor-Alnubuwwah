@@ -429,7 +429,7 @@ const SourcesPage: React.FC = () => {
   return (
     <div className="min-h-screen relative" dir={isEn ? 'ltr' : 'rtl'} style={{ background: '#030813' }}>
       {/* زر المشاركة */}
-      <div className="fixed top-[5.5rem] left-4 z-[60]">
+      <div className={`fixed top-[5.5rem] ${isEn ? 'right-4' : 'left-4'} z-[60]`}>
         <ShareButton title={isEn ? 'Sources & References' : 'المصادر والمراجع'} accentColor="#C9A84C" />
       </div>
       <IslamicParticles />
@@ -525,7 +525,7 @@ const SourcesPage: React.FC = () => {
         className="text-center py-8 px-6"
         style={{ borderTop: '1px solid rgba(201,168,76,0.08)', borderBottom: '1px solid rgba(201,168,76,0.08)' }}
       >
-        <p className="font-noto text-white text-sm leading-loose" style={{ opacity: 0.95 }}>
+        <p className="font-noto text-white text-sm leading-loose" dir="rtl" style={{ opacity: 0.95 }}>
           ﴿ لَقَدْ كَانَ لَكُمْ فِي رَسُولِ اللَّهِ أُسْوَةٌ حَسَنَةٌ ﴾
         </p>
         <p className="font-kufi text-white text-xs mt-1" style={{ opacity: 0.85 }}>{isEn ? 'Surah Al-Ahzab — Verse 21' : 'سورة الأحزاب — الآية 21'}</p>

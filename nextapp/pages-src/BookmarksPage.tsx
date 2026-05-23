@@ -22,7 +22,7 @@ const BookmarksPage: React.FC = () => {
       <motion.nav
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
-        className="fixed top-6 right-20 z-50 flex items-center gap-2 text-sm font-kufi"
+        className={`fixed top-6 z-50 flex items-center gap-2 text-sm font-kufi ${isEn ? 'left-20' : 'right-20'}`}
         style={{ color: '#C9A84C' }}
       >
         <button onClick={() => router.push('/')} className="flex items-center gap-1.5 opacity-60 hover:opacity-100 transition-opacity">
@@ -222,7 +222,7 @@ const BookmarksPage: React.FC = () => {
                       className="font-noto font-bold hover:opacity-75 transition-opacity"
                       style={{ fontSize: 'clamp(1.3rem, 3vw, 1.8rem)', color: meta?.accentColor ?? '#C9A84C' }}
                     >
-                      {chapter}
+                      {isEn && meta?.nameEn ? meta.nameEn : chapter}
                     </button>
                     <div className="flex-1 h-px opacity-15" style={{ background: meta?.accentColor ?? '#C9A84C' }} />
                     <span className="font-kufi text-xs" style={{ color: meta?.accentColor ?? '#C9A84C', opacity: 0.6 }}>

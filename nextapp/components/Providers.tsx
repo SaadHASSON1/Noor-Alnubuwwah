@@ -36,11 +36,12 @@ function BackToTop() {
   const opacity = useTransform(scrollYProgress, [0, 0.08, 0.12], [0, 0, 1]);
   const scale   = useTransform(scrollYProgress, [0.08, 0.14], [0.6, 1]);
   const { isReading } = useReadingMode();
+  const { isEn } = useLanguage();
 
   return (
     <motion.button
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      className="fixed bottom-6 left-6 z-50 flex items-center justify-center rounded-full"
+      className={`fixed bottom-6 z-50 flex items-center justify-center rounded-full ${isEn ? 'right-6' : 'left-6'}`}
       style={{
         opacity,
         scale,
@@ -78,7 +79,7 @@ function GlobalNav({ onSearchOpen }: { onSearchOpen: () => void }) {
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.6 }}
-      className="fixed top-5 left-5 z-[100] flex items-center gap-1.5"
+      className={`fixed top-5 z-[100] flex items-center gap-1.5 ${isEn ? 'right-5' : 'left-5'}`}
       dir="ltr"
     >
       {/* Language toggle */}

@@ -16,7 +16,7 @@ const TimelinePage: React.FC = () => {
   return (
     <div className="min-h-screen relative" dir={isEn ? 'ltr' : 'rtl'} style={{ background: '#030813' }}>
       {/* زر المشاركة */}
-      <div className="fixed top-[5.5rem] left-4 z-[60]">
+      <div className={`fixed top-[5.5rem] ${isEn ? 'right-4' : 'left-4'} z-[60]`}>
         <ShareButton title={isEn ? 'Seerah Timeline' : 'التسلسل الزمني للسيرة'} accentColor="#C9A84C" />
       </div>
       <IslamicParticles />
@@ -25,7 +25,7 @@ const TimelinePage: React.FC = () => {
       <motion.nav
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
-        className="fixed top-6 right-20 z-50 flex items-center gap-2 text-sm font-kufi max-w-[calc(100vw-6rem)]"
+        className={`fixed top-6 z-50 flex items-center gap-2 text-sm font-kufi max-w-[calc(100vw-6rem)] ${isEn ? 'left-20' : 'right-20'}`}
         style={{ color: '#C9A84C' }}
       >
         <button
@@ -133,7 +133,7 @@ const TimelinePage: React.FC = () => {
                   className="font-noto font-bold hover:opacity-80 transition-opacity"
                   style={{ fontSize: 'clamp(1.4rem, 3.5vw, 2.2rem)', color: meta.accentColor }}
                 >
-                  {chapterName}
+                  {isEn && meta.nameEn ? meta.nameEn : chapterName}
                 </button>
                 <span
                   className="font-kufi text-xs px-2.5 py-1 rounded-full opacity-70"
@@ -203,7 +203,7 @@ const TimelinePage: React.FC = () => {
                                 border: `1px solid ${meta.accentColor}30`,
                               }}
                             >
-                              {ev.chapter}
+                              {isEn && CHAPTER_META[ev.chapter]?.nameEn ? CHAPTER_META[ev.chapter].nameEn : ev.chapter}
                             </span>
                           </div>
 
@@ -255,10 +255,16 @@ const TimelinePage: React.FC = () => {
           <p
             className="font-noto text-islamic-gold/50 text-center"
             style={{ fontSize: 'clamp(1rem, 2vw, 1.2rem)', lineHeight: 2 }}
+            dir="rtl"
           >
             ﴿إِنَّكَ مَيِّتٌ وَإِنَّهُم مَّيِّتُونَ﴾
           </p>
-          <p className="font-kufi text-islamic-gold/25 text-xs tracking-widest">— {isEn ? 'Surah Az-Zumar: 30' : 'سورة الزمر: 30'}</p>
+          {isEn && (
+            <p className="font-noto text-islamic-gold/30 text-center text-xs mb-1" style={{ lineHeight: 1.8, fontStyle: 'italic' }}>
+              "Indeed, you are to die, and indeed, they are to die."
+            </p>
+          )}
+          <p className="font-kufi text-islamic-gold/25 text-xs tracking-widest">— {isEn ? 'Az-Zumar: 30' : 'سورة الزمر: 30'}</p>
         </motion.div>
       </div>
     </div>

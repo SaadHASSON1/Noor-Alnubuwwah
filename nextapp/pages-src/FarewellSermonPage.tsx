@@ -75,7 +75,7 @@ const FarewellSermonPage: React.FC = () => {
       style={{ background: '#030813' }}
     >
       {/* زر المشاركة */}
-      <div className="fixed top-[5.5rem] left-4 z-[60]">
+      <div className={`fixed top-[5.5rem] ${isEn ? 'right-4' : 'left-4'} z-[60]`}>
         <ShareButton title={isEn ? 'The Farewell Sermon' : 'خطبة الوداع'} accentColor="#C9A84C" />
       </div>
       {/* Stars background */}

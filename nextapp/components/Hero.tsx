@@ -13,10 +13,10 @@ const STATS_AR = [
   { value: '23',  label: 'كاتب وحي' },
 ];
 const STATS_EN = [
-  { value: '63',  label: 'Years of his life ﷺ' },
+  { value: '63',  label: 'Years of his life' },
   { value: '23',  label: 'Years of prophethood' },
   { value: '27',  label: 'Expeditions' },
-  { value: '25+', label: 'Names of the Prophet ﷺ' },
+  { value: '25+', label: 'Names of the Prophet' },
   { value: '23',  label: 'Scribes of revelation' },
 ];
 
@@ -146,7 +146,7 @@ const Hero: React.FC = () => {
             letterSpacing: '0.1em',
           }}
         >
-          {isEn ? 'The Life of Prophet Muhammad ﷺ  •  571 CE — 632 CE'
+          {isEn ? 'The Life of Prophet Muhammad  •  571 CE — 632 CE'
                 : 'سيرة النبي محمد ﷺ  •  571 م — 632 م'}
         </motion.div>
 
@@ -229,14 +229,23 @@ const Hero: React.FC = () => {
           <p
             className="font-noto text-islamic-gold/70 mb-1"
             style={{ fontSize: 'clamp(1.1rem, 2.8vw, 1.6rem)', lineHeight: 1.9 }}
+            dir="rtl"
           >
             ﴿وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً لِّلْعَالَمِينَ﴾
           </p>
+          {isEn && (
+            <p
+              className="font-kufi text-islamic-gold/55 mb-1"
+              style={{ fontSize: '0.8rem', letterSpacing: '0.05em', fontStyle: 'italic' }}
+            >
+              "And We have not sent you except as a mercy to the worlds."
+            </p>
+          )}
           <p
             className="font-kufi text-islamic-gold/50"
             style={{ fontSize: '0.85rem', letterSpacing: '0.14em' }}
           >
-            — سورة الأنبياء: 107
+            {isEn ? "— Al-Anbiya': 107" : '— سورة الأنبياء: 107'}
           </p>
         </motion.div>
 
