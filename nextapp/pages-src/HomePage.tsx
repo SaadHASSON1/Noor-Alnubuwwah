@@ -113,12 +113,18 @@ const HomePage: React.FC = () => {
           <GoldDivider />
           <p
             className="font-noto text-islamic-gold/80 mb-2"
+            dir="rtl"
             style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.6rem)', lineHeight: 2 }}
           >
             ﴿لَّقَدْ كَانَ لَكُمْ فِي رَسُولِ اللَّهِ أُسْوَةٌ حَسَنَةٌ﴾
           </p>
+          {isEn && (
+            <p className="font-kufi text-islamic-gold/50 text-sm mb-1" style={{ lineHeight: 1.7 }}>
+              "There has certainly been for you in the Messenger of Allah an excellent pattern."
+            </p>
+          )}
           <p className="font-kufi text-islamic-gold/65 text-sm tracking-widest">
-            — سورة الأحزاب: 21
+            {isEn ? '— Al-Ahzab: 21' : '— سورة الأحزاب: 21'}
           </p>
         </motion.div>
       </section>
@@ -138,7 +144,7 @@ const HomePage: React.FC = () => {
         <div className="absolute bottom-0 left-0 w-32 h-32 pointer-events-none opacity-[0.04]"
           style={{ background: 'radial-gradient(circle at bottom left, #C9A84C, transparent 70%)' }} />
 
-        <div className="max-w-2xl mx-auto text-center" dir="rtl">
+        <div className="max-w-2xl mx-auto text-center" dir={isEn ? 'ltr' : 'rtl'}>
           {/* divider */}
           <div className="flex items-center justify-center gap-3 mb-8 opacity-20">
             <div className="flex-1 h-px bg-gradient-to-r from-transparent to-islamic-gold" />
@@ -156,7 +162,7 @@ const HomePage: React.FC = () => {
           >
             <Heart size={13} style={{ color: '#E8A8A8' }} />
             <p className="font-kufi" style={{ fontSize: '0.78rem', color: '#5c502d', letterSpacing: '0.14em' }}>
-              {isEn ? 'Made with love and respect for the life of the Prophet ﷺ' : 'صُنع بمحبة واحترام لسيرة النبي ﷺ'}
+              {isEn ? 'Made with love and respect for the life of the Prophet' : 'صُنع بمحبة واحترام لسيرة النبي ﷺ'}
             </p>
             <Heart size={13} style={{ color: '#E8A8A8' }} />
           </motion.div>
@@ -172,7 +178,7 @@ const HomePage: React.FC = () => {
               className="font-noto font-bold mb-1"
               style={{ fontSize: 'clamp(1.3rem, 3vw, 1.7rem)', color: '#C9A84C', textShadow: '0 0 20px #353021' }}
             >
-              سعد حسون
+              {isEn ? 'Saad Hassoun' : 'سعد حسون'}
             </p>
             <p className="font-kufi" style={{ fontSize: '0.85rem', color: '#5b5e66', letterSpacing: '0.06em' }}>
               {isEn ? 'Platform developer & content creator' : 'مطوّر المنصة ومنشئ المحتوى'}
