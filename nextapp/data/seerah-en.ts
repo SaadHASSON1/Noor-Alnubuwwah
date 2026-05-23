@@ -19,6 +19,7 @@ export interface SeerahEventEn {
   highlights?: string[];
   location?: string;
   statsLabels?: string[];
+  statsValues?: string[];
   keyFiguresEn?: SeerahEventEnKeyFigure[];
   hadithsEn?: SeerahEventEnHadith[];
   battleTimelineEn?: SeerahEventEnBattlePhase[];
@@ -35,6 +36,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'The Light',
     location: 'Mecca — Valley of Banu Hashim',
     statsLabels: ['Year CE', 'Date', 'Day'],
+    statsValues: ['571 CE', '12 Rabi al-Awwal', 'Monday'],
     keyFiguresEn: [
       { name: 'Āminah bint Wahb', role: 'His noble mother' },
       { name: 'ʿAbd al-Muṭṭalib', role: 'His grandfather and first guardian' },
@@ -70,6 +72,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'A Pure Heart',
     location: 'Desert of Banū Saʿd — Hawāzin',
     statsLabels: ['His age ﷺ', 'Location', 'Repeated'],
+    statsValues: ['About 4 years', 'Desert of Banū Saʿd', 'Twice: in childhood and before the Miʿrāj'],
     keyFiguresEn: [
       { name: 'Ḥalīmah al-Saʿdiyyah', role: 'His wet nurse who returned him to his mother in fear' },
       { name: 'Jibrīl and Mīkāʾīl', role: 'The two angels who performed the purification' },
@@ -102,6 +105,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'Raised by His Lord',
     location: 'Al-Abwāʼ — between Mecca and Medina',
     statsLabels: ['His age ﷺ at her death', 'Place of death', 'His guardian after her'],
+    statsValues: ['6 years', 'Al-Abwāʼ — between Mecca and Medina', 'His grandfather ʿAbd al-Muṭṭalib'],
     keyFiguresEn: [
       { name: 'Āminah bint Wahb', role: 'His noble mother, may Allah have mercy on her' },
       { name: 'ʿAbd al-Muṭṭalib', role: 'His grandfather and guardian after her death' },
@@ -132,6 +136,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'Recognized by the Wise',
     location: 'Buṣrā — Syria',
     statsLabels: ['His age ﷺ', 'Destination'],
+    statsValues: ['12 years', 'Buṣrā — Greater Syria'],
     keyFiguresEn: [
       { name: 'Abū Ṭālib ibn ʿAbd al-Muṭṭalib', role: 'His uncle and protector on the journey' },
       { name: 'Baḥīrā the Monk', role: 'The learned Christian monk who recognized the signs of prophethood from his scriptures' },
@@ -158,6 +163,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'Champion of Justice',
     location: 'Mecca — House of ʿAbdullāh ibn Judʼān',
     statsLabels: ['His age ﷺ', 'Location', 'Participating tribes'],
+    statsValues: ['About 20 years', 'House of ʿAbdullāh ibn Judʿān — Mecca', 'Banū Hāshim, Zuhrah, and Taym'],
     keyFiguresEn: [
       { name: 'Muḥammad ibn ʿAbdullāh ﷺ', role: 'Witness to the Pact and its greatest advocate' },
       { name: 'ʿAbdullāh ibn Judʿān', role: 'The man in whose house the Pact was formed' },
@@ -186,6 +192,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'His Greatest Supporter',
     location: 'Mecca',
     statsLabels: ['His age ﷺ', 'Her age', 'Years of marriage', 'Their children'],
+    statsValues: ['25 years', '40 years', '25 years', '6 children'],
     keyFiguresEn: [
       { name: 'Khadījah bint Khuwaylid', role: 'His first wife — mother of his children — first of the believers' },
       { name: 'Abū Ṭālib', role: 'Conducted the marriage contract on behalf of his nephew' },
@@ -219,6 +226,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'Wisdom Before Prophethood',
     location: 'The Sacred Mosque — Mecca',
     statsLabels: ['His age ﷺ', 'Duration of construction', 'Disputing tribes'],
+    statsValues: ['35 years', 'Several months', 'Four Quraysh tribes'],
     keyFiguresEn: [
       { name: 'Muḥammad ibn ʿAbdullāh ﷺ', role: 'The arbiter whom all tribes agreed to accept' },
       { name: 'Chiefs of Quraysh', role: 'The tribal leaders disputing over the honor of placing the Stone' },
@@ -247,6 +255,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'Iqraʼ',
     location: 'Cave of Ḥirāʼ — Mount of Light, Mecca',
     statsLabels: ['His age ﷺ', 'Month', 'First verses revealed', 'Duration of retreat'],
+    statsValues: ['40 years', 'Ramaḍān', 'Sūrah al-ʿAlaq: 1–5', 'One month each year'],
     keyFiguresEn: [
       { name: 'Jibrīl (ʿalayhis-salām)', role: 'The Trustee of Revelation — first to bring the Qurʾān' },
       { name: 'Khadījah bint Khuwaylid', role: 'First to believe and comfort him when he returned trembling' },
@@ -280,6 +289,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'The First Believers',
     location: 'Mecca',
     statsLabels: ['Duration of secret call', 'First man to believe', 'First child to believe'],
+    statsValues: ['3 years', 'Abū Bakr al-Ṣiddīq', 'ʿAlī ibn Abī Ṭālib'],
     keyFiguresEn: [
       { name: 'Khadījah bint Khuwaylid', role: 'First of all believers — first to confirm the Message' },
       { name: 'Abū Bakr al-Ṣiddīq', role: 'First free man to embrace Islam — a gifted caller to the faith' },
@@ -311,6 +321,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'The Warning',
     location: 'Mount Al-Ṣafā — Mecca',
     statsLabels: ['Duration of secret call', 'His age ﷺ'],
+    statsValues: ['3 years', '43 years'],
     keyFiguresEn: [
       { name: 'Abū Bakr al-Ṣiddīq', role: 'First free man to embrace Islam — a gifted caller to the faith' },
       { name: 'ʿAlī ibn Abī Ṭālib', role: 'First of the youth to embrace Islam' },
@@ -342,6 +353,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'The First Refuge',
     location: 'Abyssinia (Ethiopia)',
     statsLabels: ['Migrants in first group', 'Migrants in second group', 'King of Abyssinia'],
+    statsValues: ['15 people', 'About 101 people', 'The Negus Aṣḥamah'],
     keyFiguresEn: [
       { name: 'Jaʿfar ibn Abī Ṭālib', role: 'Spokesperson for the Muslims before the Negus' },
       { name: 'al-Najāshī Aṣḥamah', role: 'King of Abyssinia who protected the Muslims and refused to return them' },
@@ -371,6 +383,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'Lion of Allah',
     location: 'Mecca',
     statsLabels: ['Year', 'His title', 'Reason for his conversion'],
+    statsValues: ['Year 6 of the mission', 'Lion of Allah and Lion of His Messenger', 'Defense of his nephew and conviction in truth'],
     keyFiguresEn: [
       { name: 'Ḥamzah ibn ʿAbd al-Muṭṭalib', role: 'The Prophet\'s uncle and foster brother — Master of the Martyrs at Uḥud' },
       { name: 'Abū Jahl ʿAmr ibn Hishām', role: 'Whose insult to the Prophet ﷺ sparked Ḥamzah\'s conversion' },
@@ -398,6 +411,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'The Turning Point',
     location: 'Mecca',
     statsLabels: ['Year', 'His age at conversion', 'Immediate effect'],
+    statsValues: ['About Year 6 of the mission', 'About 26 years', 'Muslims prayed openly at the Sacred Mosque'],
     keyFiguresEn: [
       { name: 'ʿUmar ibn al-Khaṭṭāb', role: 'Al-Fārūq — second of the Rightly-Guided Caliphs — Islam was strengthened through his embrace' },
       { name: 'Fāṭimah bint al-Khaṭṭāb', role: 'His sister whose Islam was the cause of his guidance' },
@@ -430,6 +444,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'Steadfast Under Siege',
     location: 'Valley of Abū Ṭālib — Mecca',
     statsLabels: ['Duration of the siege', 'Signatories of the document', 'End of siege'],
+    statsValues: ['3 years', 'All Quraysh leaders', "Termites consumed the document by Allah's command"],
     keyFiguresEn: [
       { name: 'Abū Ṭālib', role: 'The Prophet\'s uncle who protected the Muslims throughout the siege' },
       { name: 'Abū Jahl', role: 'Among the most vocal advocates of the siege and of coercing Banū Hāshim' },
@@ -459,6 +474,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'Grief and Resolve',
     location: 'Mecca',
     statsLabels: ['Year of sorrow', 'Years of his marriage to Khadījah', 'Abū Ṭālib\'s age at death'],
+    statsValues: ['619 CE', '25 years', 'About 80 years'],
     keyFiguresEn: [
       { name: 'Khadījah bint Khuwaylid', role: 'His faithful wife who supported him for 25 years' },
       { name: 'Abū Ṭālib ibn ʿAbd al-Muṭṭalib', role: 'His uncle who protected him from Quraysh but did not embrace Islam' },
@@ -488,6 +504,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'Wounded but Unwavering',
     location: 'Ṭāʼif — Hijaz',
     statsLabels: ['Distance to Ṭāʾif', 'His companion', 'Duration of stay'],
+    statsValues: ['About 80 km', 'Zayd ibn Ḥārithah', 'About ten days'],
     keyFiguresEn: [
       { name: 'Zayd ibn Ḥārithah', role: 'The faithful companion who shielded the Prophet ﷺ from the stones with his own body' },
       { name: 'ʿAbd Yālīl ibn ʿAmr', role: 'Chief of Thaqīf who rejected the call with mockery' },
@@ -521,6 +538,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'Beyond the Heavens',
     location: 'Mecca → Jerusalem → The Seven Heavens',
     statsLabels: ['Prayers ordained', 'Number of heavens', 'Wings of Jibrīl', 'Prophets he met'],
+    statsValues: ['5 prayers (with the reward of 50)', '7 heavens', '600 wings', 'Ādam, Yaḥyā, ʿĪsā, Yūsuf, Idrīs, Hārūn, Ibrāhīm'],
     keyFiguresEn: [
       { name: 'Jibrīl ʿalayhi al-salām', role: 'His companion throughout the Night Journey and Ascension' },
       { name: 'Ibrāhīm ʿalayhi al-salām', role: 'Met in the seventh heaven beside the Frequented House (al-Bayt al-Maʿmūr)' },
@@ -560,6 +578,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'The First Pledge',
     location: 'ʿAqabah — near Mina, Mecca',
     statsLabels: ['Number who pledged', 'Envoy sent', 'Terms of the pledge'],
+    statsValues: ['Twelve men', 'Muṣʿab ibn ʿUmayr', 'Monotheism, honesty, and good character'],
     keyFiguresEn: [
       { name: 'Muṣʿab ibn ʿUmayr', role: 'First Islamic envoy — sent to Yathrib to teach the Qurʾān and spread Islam' },
       { name: 'Asʿad ibn Zurārah', role: 'Leader of the first group of Ansār who pledged at ʿAqabah' },
@@ -587,6 +606,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'The Pledge of Victory',
     location: 'ʿAqabah — near Mina, Mecca',
     statsLabels: ['Number who pledged', 'Leaders chosen', 'Time of the pledge'],
+    statsValues: ['77 including two women', 'Twelve leaders like the Tribes of Israel', 'In the depths of night, secretly from Quraysh'],
     keyFiguresEn: [
       { name: 'al-Barāʾ ibn Maʿrūr', role: 'First to extend his hand in pledge to the Prophet ﷺ at the Second ʿAqabah' },
       { name: 'ʿAbdullāh ibn Rawāḥah', role: 'One of the twelve chosen leaders (nuqabāʾ) of the Ansār' },
@@ -616,6 +636,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'A New Beginning',
     location: 'Mecca → Cave of Thawr → Medina',
     statsLabels: ['Days hidden in Cave of Thawr', 'Distance from Mecca to Medina', 'Start of the Hijri calendar'],
+    statsValues: ['3 nights', 'About 400 km', '1 Muḥarram 1 AH'],
     keyFiguresEn: [
       { name: 'Abū Bakr al-Ṣiddīq', role: 'The Prophet\'s companion in the cave and on the journey — "Do not grieve; indeed Allah is with us"' },
       { name: 'ʿAlī ibn Abī Ṭālib', role: 'Slept in the Prophet\'s bed the night of the departure to deceive the would-be assassins' },
@@ -654,6 +675,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'Foundation of a Nation',
     location: 'Medina',
     statsLabels: ['Initial area', 'Building materials', 'Year built'],
+    statsValues: ['100 × 100 cubits', 'Mud bricks, palm trunks, and palm fronds', 'Year 1 AH'],
     keyFiguresEn: [
       { name: 'Sahl and Suhayl', role: 'The two orphan boys who owned the land — the Prophet ﷺ insisted on buying it rather than accepting it as a gift' },
       { name: 'Abū Ayyūb al-Anṣārī', role: 'Hosted the Prophet ﷺ in his home while the mosque was being built' },
@@ -681,6 +703,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'United by Faith',
     location: 'Medina',
     statsLabels: ['Number of pairs', 'Location', 'Immediate outcome'],
+    statsValues: ['About 45 pairs', 'House of Anas ibn Mālik', 'First social solidarity system in Islam'],
     keyFiguresEn: [
       { name: 'ʿAbd al-Raḥmān ibn ʿAwf', role: 'The Muhājir who declined his Ansārī brother\'s wealth and said: "Just show me the marketplace" — and prospered through honest trade' },
       { name: 'Saʿd ibn al-Rabīʿ', role: 'The Ansārī who offered to split his entire wealth and household with his Muhājir brother — an unparalleled act of generosity' },
@@ -707,9 +730,10 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     subtitle: 'Aḥad Aḥad — The First Call to Prayer in Islam',
     highlight: 'Allāhu Akbar',
     location: 'Medina — the Prophet’s Mosque',
-    statsLabels: ['First muʾadhdhin', 'How the adhān was revealed', 'Times called daily'],
+    statsLabels: [‘First muʾadhdhin’, ‘How the adhān was revealed’, ‘Times called daily’],
+    statsValues: [‘Bilāl ibn Rabāḥ al-Ḥabashī’, ‘Through a true dream of ʿAbdullāh ibn Zayd al-Anṣārī’, ‘5 times daily’],
     keyFiguresEn: [
-      { name: 'Bilāl ibn Rabāḥ', role: 'The freed Abyssinian slave — chosen as Islam\’s first muʾadhdhin for his powerful, beautiful voice' },
+      { name: ‘Bilāl ibn Rabāḥ’, role: ‘The freed Abyssinian slave — chosen as Islam\’s first muʾadhdhin for his powerful, beautiful voice’ },
       { name: 'ʿAbdullāh ibn Zayd', role: 'The companion who heard the words of the adhān in a true dream and reported it to the Prophet ﷺ' },
     ],
     hadithsEn: [
@@ -735,6 +759,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'First Constitution',
     location: 'Medina',
     statsLabels: ['Number of clauses', 'Signatories', 'Year issued'],
+    statsValues: ['About 47 articles', 'Emigrants, Helpers, and Jewish tribes of Yathrib', 'Year 1 AH'],
     keyFiguresEn: [
       { name: 'The Prophet Muḥammad ﷺ', role: 'The architect of the Charter — the first written political constitution in history' },
       { name: 'Banū Qaynuqāʿ, Banū al-Naḍīr, and Banū Qurayẓah', role: 'The Jewish tribes of Medina who were included in the Charter as a single community with rights and responsibilities' },
@@ -763,6 +788,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'Toward the Kaʻah',
     location: 'Medina — Mosque of Banu Salamah',
     statsLabels: ['Months praying toward al-Aqṣā', 'New qiblah', 'Mosque renamed'],
+    statsValues: ['About 16–17 months in Medina', 'Toward the Sacred Kaʿbah in Mecca', 'Masjid al-Qiblatain — Mosque of Two Qiblahs'],
     keyFiguresEn: [
       { name: 'The Prophet Muḥammad ﷺ', role: 'Used to turn his face toward the sky yearning for the command to face the Kaʿbah' },
     ],
@@ -790,6 +816,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'The Month of the Qurʼān',
     location: 'Medina',
     statsLabels: ['Year ordained', 'Month of fasting', 'Night of Power'],
+    statsValues: ['Year 2 AH', 'Ramaḍān — the month of the Qurʾān', 'In the last ten odd nights of Ramaḍān'],
     keyFiguresEn: [
       { name: 'The Prophet Muḥammad ﷺ', role: 'Used to intensify worship in the last ten nights, performing iʿtikāf every Ramaḍān until his death' },
     ],
@@ -818,6 +845,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'The Day of Criterion',
     location: 'Wells of Badr — 70 km southwest of Medina',
     statsLabels: ['Number of Muslims', 'Number of polytheists', 'Enemy killed', 'Enemy captured', 'Muslim martyrs'],
+    statsValues: ['313', '1,000', '70', '70', '14'],
     keyFiguresEn: [
       { name: 'Ḥamzah ibn ʿAbd al-Muṭṭalib', role: 'The Lion of Allah — fought with unmatched valor' },
       { name: 'ʿAlī ibn Abī Ṭālib', role: 'The foremost warrior of the Muslims that day' },
@@ -859,6 +887,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     subtitle: 'First Confrontation with the Jews of Medina',
     highlight: 'Treaty Broken',
     statsLabels: ['Duration of the siege', 'Outcome', 'Cause'],
+    statsValues: ['15 days', 'Expulsion of Banū Qaynuqāʿ from Medina', 'Breaking the treaty and provoking the Muslims'],
     keyFiguresEn: [
       { name: 'ʿAbdullāh ibn Ubayy', role: 'The hypocrite leader who interceded for Banū Qaynuqāʿ — the Prophet ﷺ accepted his plea but exiled the tribe' },
     ],
@@ -883,6 +912,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     subtitle: 'Abū Sufyān Burns and Flees',
     highlight: 'The Fleeing Raid',
     statsLabels: ["Abū Sufyān's force", 'Outcome', 'Why it is named al-Sawīq'],
+    statsValues: ['200 horsemen led by Abū Sufyān', 'Abū Sufyān fled without confrontation', 'Bags of sawīq (roasted barley) abandoned in flight'],
     keyFiguresEn: [
       { name: 'Abū Sufyān ibn Ḥarb', role: 'Led the raid to fulfill his vow of revenge for Badr — burned and fled without engaging' },
       { name: 'Salamah ibn al-Akwaʿ', role: 'One of the swiftest companions in pursuit of the retreating Qurayshis' },
@@ -908,6 +938,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     subtitle: 'The First Expedition Led Personally by the Prophet ﷺ',
     highlight: 'The Prophet Commands',
     statsLabels: ['Number of Muslim fighters', 'Target caravan', 'Outcome'],
+    statsValues: ['200 fighters', '2,500 camels', 'Return without encounter — caravan had taken a different route'],
     keyFiguresEn: [
       { name: 'Umayyah ibn Khalaf al-Jumaḥī', role: 'Leader of the Qurayshi caravan that was the target of the expedition' },
       { name: 'Saʿd ibn Abī Waqqāṣ', role: 'One of the standard-bearers of the Muslim army in this expedition' },
@@ -938,6 +969,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'A Bitter Lesson',
     location: 'Mount Uhud — north of Medina',
     statsLabels: ['Number of Muslims', 'Number of polytheists', 'Muslim martyrs', 'Archers stationed on the hill'],
+    statsValues: ['700', '3,000', '70', '50'],
     keyFiguresEn: [
       { name: 'Ḥamzah ibn ʿAbd al-Muṭṭalib', role: 'Master of the Martyrs — killed at Uḥud; his body was mutilated' },
       { name: 'Muṣʿab ibn ʿUmayr', role: 'Bearer of the Islamic standard — martyred defending the Prophet ﷺ' },
@@ -978,6 +1010,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     subtitle: 'The Assassination Plot and the Exile of the Treacherous',
     highlight: 'Treachery Foiled',
     statsLabels: ['Duration of the siege', 'Outcome', 'Destination of exile'],
+    statsValues: ['About 15 days', 'Expulsion of Banū al-Naḍīr', 'Khaybar and the Levant'],
     keyFiguresEn: [
       { name: 'Ḥuyayy ibn Akhṭab', role: 'Chief of Banū al-Naḍīr — who later organized the coalition against Medina at the Battle of the Trench' },
     ],
@@ -1003,6 +1036,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     subtitle: 'The Prayer of Fear Is Ordained for the First Time',
     highlight: 'Ṣalāt al-Khawf',
     statsLabels: ['Year', 'Tribes engaged', 'Significance'],
+    statsValues: ['Year 4 AH', 'Ghaṭafān and Anmār', 'First legislation of the Prayer of Fear (Ṣalāt al-Khawf)'],
     keyFiguresEn: [
       { name: 'The Prophet Muḥammad ﷺ', role: 'Personally led the expedition and instituted Ṣalāt al-Khawf' },
     ],
@@ -1032,6 +1066,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     subtitle: 'Securing the North and Establishing Islamic Prestige',
     highlight: 'Strength Projects Peace',
     statsLabels: ['Year', 'Target region', 'Outcome'],
+    statsValues: ['Year 5 AH', 'Dūmat al-Jandal — northern Hijaz near Syria', 'Tribes withdrew before any confrontation'],
     keyFiguresEn: [
       { name: 'The Prophet Muḥammad ﷺ', role: 'Personally led the northernmost Muslim military reach — toward Byzantine Syria' },
     ],
@@ -1062,6 +1097,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'The Great Alliance Fails',
     location: 'Medina',
     statsLabels: ['Number in the coalition', 'Number of Muslims', 'Duration of the siege', 'Length of the trench'],
+    statsValues: ['10,000 fighters', 'About 3,000', 'About one month', 'About 5 km'],
     keyFiguresEn: [
       { name: 'Salmān al-Fārisī', role: 'The Persian companion who proposed the trench — every faction claimed: "Salmān is one of ours"' },
       { name: 'Nuʿaym ibn Masʿud', role: 'Secretly accepted Islam and used strategic deception to sow distrust between Quraysh, Ghaṭfān, and Banū Qurayẓah — breaking the coalition from within' },
@@ -1102,6 +1138,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     subtitle: 'Betrayal at the Hour of Greatest Need',
     highlight: 'Betrayal Answered',
     statsLabels: ['Duration of the siege', 'Ruling', 'Cause'],
+    statsValues: ['25 days', 'Arbitration by Saʿd ibn Muʿādh', 'Treaty betrayal during the Battle of the Trench'],
     keyFiguresEn: [
       { name: 'Saʿd ibn Muʿádh', role: 'Chief of the Aws — appointed as arbiter by Banū Qurayẓah themselves; ruled according to the Torah and died of his wound immediately after' },
       { name: 'Ḥuyayy ibn Akhyṭab', role: 'Chief of Banū al-Naḍīr who persuaded Banū Qurayẓah to break their treaty — was executed alongside them' },
@@ -1136,6 +1173,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     subtitle: "The Slander and the Innocence of ʿcĀʼisha",
     highlight: 'Innocence from Above',
     statsLabels: ['Tribe of Banū al-Muṣṭaliq', 'The slander incident', 'Year'],
+    statsValues: ['From Khuzāʿah, led by al-Ḥārith ibn Abī Ḍirār', 'A month of grief then divine vindication', 'Year 5 or 6 AH'],
     keyFiguresEn: [
       { name: 'ʿĀʾishah bint Abī Bakr', role: 'The Mother of the Believers whose innocence Allah declared in the Qurʾān — verses recited until the Day of Judgment' },
       { name: 'ʿAbdullāh ibn Ubayy', role: 'Leader of the hypocrites who spread the slander across Medina for a month' },
@@ -1166,6 +1204,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'A Clear Conquest',
     location: 'Hudaybiyyah — outskirts of Mecca',
     statsLabels: ['Number of companions', 'Duration of the truce', 'Year'],
+    statsValues: ['1,400 Companions', '10 years', '6 AH — 628 CE'],
     keyFiguresEn: [
       { name: 'ʿUthmān ibn ʿAffān', role: "The Prophet's envoy to Quraysh — when rumors of his death spread, the Pledge of al-Riḍwān was taken" },
       { name: 'Suhayl ibn ʿAmr', role: "Quraysh's negotiator who insisted on removing 'Messenger of Allah' from the treaty text" },
@@ -1197,6 +1236,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     subtitle: 'Islam Calls the World',
     highlight: 'The World Is Called',
     statsLabels: ['Number of letters sent', 'Most prominent recipients', 'Fate of Khosrow'],
+    statsValues: ['Six or more letters to rulers', 'Heraclius, Khosrow, Muqawqis, and the Negus', 'He tore the letter so Allah tore his kingdom'],
     keyFiguresEn: [
       { name: 'Heraclius (Byzantine Emperor)', role: 'Read the letter seriously, investigated the Prophet\'s claims, and concluded he was a true prophet — but did not embrace Islam for fear of losing his throne' },
       { name: 'Khosrow II (Sasanian Emperor)', role: 'Tore the letter in arrogance — the Prophet ﷺ said "Allah has torn his kingdom" — and within years his own son killed him and the empire collapsed' },
@@ -1227,6 +1267,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'Alī Bears the Banner',
     location: 'Khaybar — northern Hijaz',
     statsLabels: ['Size of the Muslim army', 'Number of fortresses', 'Outcome'],
+    statsValues: ['1,600 fighters', 'Seven fortified strongholds', 'Complete conquest of Khaybar'],
     keyFiguresEn: [
       { name: 'ʿAlī ibn Abī Ṭālib', role: 'Bearer of the banner — the Prophet ﷺ cured his eye infection, gave him the standard, and Allah granted victory on his hands' },
       { name: 'Marḥab al-Yahūdī', role: "Khaybar's most feared warrior — killed by ʿAlī ibn Abī Ṭālib in single combat" },
@@ -1255,6 +1296,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'Swords of Allah',
     location: 'Medina',
     statsLabels: ['Year of conversion', 'Khālid\'s title', 'ʿAmr\'s role afterward'],
+    statsValues: ['Year 7 AH', 'Sword of Allah (Sayf Allāh)', 'Governor and conqueror of Egypt'],
     keyFiguresEn: [
       { name: 'Khālid ibn al-Walīd', role: 'The undefeated general who had flanked the Muslims at Uḥud — now given the title "Sayf-ullāh" (Sword of Allah) by the Prophet ﷺ himself' },
       { name: 'ʿAmr ibn al-ʿĀṣ', role: 'The sharp diplomat and strategist who later conquered Egypt and governed it' },
@@ -1282,6 +1324,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'Returning in Peace',
     location: 'Mecca',
     statsLabels: ['Number of companions', 'Duration in Mecca', 'Year'],
+    statsValues: ['About 2,000 Muslims', 'Three full days', 'Dhul-Qaʿdah 7 AH'],
     keyFiguresEn: [
       { name: 'Bilāl ibn Rabāḥ', role: 'Called the adhān from atop the Kaʿbah — the freed slave who had been tortured for saying "One" now proclaimed it from Islam\'s holiest summit' },
     ],
@@ -1308,6 +1351,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'The Eagles of Muʼtaḥ',
     location: "Muʼtaḥ — modern Jordan",
     statsLabels: ['Muslim fighters', 'Byzantine and allied forces', 'Year'],
+    statsValues: ['3,000 fighters', '100,000 or more', '8 AH'],
     keyFiguresEn: [
       { name: 'Zayd ibn Ḥārithah', role: 'First appointed commander — martyred leading the charge' },
       { name: 'Jaʿfar ibn Abī Ṭālib', role: 'Second commander — fought holding the banner with both arms after they were severed; titled "Dhū al-Janaḥayn" (The One with Two Wings)' },
@@ -1338,6 +1382,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: "'Today Is the Day of Mercy'",
     location: 'Mecca',
     statsLabels: ['Number of companions', 'Muslim casualties', 'Idols in the Kaʿbah'],
+    statsValues: ['10,000', 'Almost none', '360 idols'],
     keyFiguresEn: [
       { name: 'Abū Sufyān ibn Ḥarb', role: 'Captured on the night before the conquest — finally accepted Islam; the Prophet ﷺ honored him by declaring his house a place of safety' },
       { name: 'Bilāl ibn Rabāḥ', role: 'Called the adhān from the roof of the Kaʿbah after the conquest — the freed slave who had been tortured for his faith now called from its summit' },
@@ -1377,6 +1422,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'The Prophet Stood Firm',
     location: 'Valley of Ḥunayn — east of Mecca',
     statsLabels: ['Muslim fighters', 'Opposing tribes', 'Year'],
+    statsValues: ['12,000 fighters', 'Hawāzin and Thaqīf', '8 AH — shortly after the Conquest of Mecca'],
     keyFiguresEn: [
       { name: 'The Prophet Muḥammad ﷺ', role: 'Remained on his mule alone as thousands fled around him — calling: "I am the Prophet, no lie — I am the son of ʿAbd al-Muṭṭalib"' },
       { name: 'al-ʿAbbās ibn ʿAbd al-Muṭṭalib', role: 'Cried out with his powerful voice at the Prophet\'s command, rallying the fleeing companions back' },
@@ -1405,6 +1451,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'Patient Forbearance',
     location: 'Ṭāʼif',
     statsLabels: ['Duration of the siege', 'Outcome', 'When they entered Islam'],
+    statsValues: ['18–20 days', 'Siege lifted without conquest', 'Thaqīf embraced Islam voluntarily after a year'],
     keyFiguresEn: [
       { name: 'The Prophet Muḥammad ﷺ', role: 'Refused to curse the Thaqīf who had stoned him out of the city a decade earlier — and prayed: "O Allah, guide the Thaqīf and bring them"' },
     ],
@@ -1460,6 +1507,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'The Army of Hardship',
     location: 'Tabūk — northern Hijaz',
     statsLabels: ['Year', 'Muslim army size', 'Outcome'],
+    statsValues: ['9 AH', '30,000 fighters', 'Byzantine army deterred — no confrontation'],
     keyFiguresEn: [
       { name: 'ʿUthmān ibn ʿAffān', role: 'Equipped one-third of the entire army personally with his own wealth — earning the Prophet\'s ﷺ declaration that nothing could harm him after this' },
       { name: 'Abū Bakr al-Ṣiddīq', role: 'Gave all his wealth when asked: "What have you left for your family?" He replied: "Allah and His Messenger"' },
@@ -1491,6 +1539,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     subtitle: 'The Most Knowledgeable in Ḥalāl and Ḥarām',
     highlight: 'The Teacher of Yemen',
     statsLabels: ['Year sent', 'His roles', 'His distinction'],
+    statsValues: ['Year 10 AH', 'Teacher, governor, and judge', 'The most knowledgeable of ḥalāl and ḥarām'],
     keyFiguresEn: [
       { name: 'Muʿādh ibn Jabal', role: 'The Prophet\'s most trusted teacher — sent as governor, judge, and teacher of Yemen; described as the most knowledgeable of ḥalāl and ḥarām' },
     ],
@@ -1517,6 +1566,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     subtitle: "'The Heart Grieves, the Eye Weeps'",
     highlight: 'Grief and Gratitude',
     statsLabels: ['Age of Ibrāhīm at death', 'His mother', 'Event that coincided'],
+    statsValues: ['17 or 18 months', 'Māriyah al-Qibṭiyyah', 'Solar eclipse on the day of his death'],
     keyFiguresEn: [
       { name: 'Ibrāhīm ibn Muḥammad ﷺ', role: 'His last child — son of Māriyah al-Qibṭiyyah; the only child born after the Hijrah; died at sixteen months' },
       { name: 'Māriyah al-Qibṭiyyah', role: 'His mother — given to the Prophet ﷺ as a gift by al-Muqawqis of Egypt; embraced Islam' },
@@ -1544,6 +1594,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'In Multitudes',
     location: 'Medina',
     statsLabels: ['Year', 'Number of delegations', 'Scope'],
+    statsValues: ['Year 9 AH', 'More than 70 delegations', 'Unification of the entire Arabian Peninsula'],
     keyFiguresEn: [
       { name: 'The delegation of Thaqīf', role: 'The tribe of Ṭāʾif — who had stoned the Prophet ﷺ out of their city — came as a delegation of faith and entered Islam in 9 AH' },
     ],
@@ -1571,6 +1622,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'The Eternal Charter',
     location: 'ʿArafat — Mecca',
     statsLabels: ['Number of companions', 'Location of the sermon', 'Year'],
+    statsValues: ['More than 100,000', 'Plain of ʿArafat — Mount Raḥmah', '10 AH — 632 CE'],
     keyFiguresEn: [
       { name: 'The Prophet Muḥammad ﷺ', role: 'Delivered the Farewell Sermon — a timeless declaration of human equality, the sanctity of life, the rights of women, and the finality of prophethood' },
       { name: 'Bilāl ibn Rabāḥ', role: 'Repeated the Prophet\'s words to those who could not hear — a human microphone for the greatest sermon in history' },
@@ -1602,6 +1654,7 @@ export const SEERAH_EN: Record<number, SeerahEventEn> = {
     highlight: 'To the Highest Companion',
     location: "Medina — ʼcĀʼisha's Room",
     statsLabels: ['Date of his passing', 'His age', 'Location'],
+    statsValues: ['12 Rabīʿ al-Awwal 11 AH', '63 years', "ʿĀʾishah's room — adjacent to the Prophet's Mosque, Medina"],
     keyFiguresEn: [
       { name: 'ʿĀʾishah bint Abī Bakr', role: 'He passed with his head in her lap — she said: "Allah gathered His Prophet\'s final breath with my saliva"' },
       { name: 'Abū Bakr al-Ṣiddīq', role: 'Kissed the Prophet\'s forehead saying "You were beautiful in life and beautiful in death" — then delivered the immortal words from the pulpit that steadied the entire community' },

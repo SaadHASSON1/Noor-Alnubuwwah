@@ -496,7 +496,7 @@ const EventPage: React.FC = () => {
                       className="font-noto font-bold"
                       style={{ fontSize: 'clamp(1.1rem, 2.8vw, 1.9rem)', color: accentColor }}
                     >
-                      {stat.value}
+                      {isEn && enData?.statsValues ? enData.statsValues[i] : stat.value}
                     </p>
                   </motion.div>
                 ))}
@@ -598,10 +598,10 @@ const EventPage: React.FC = () => {
                           border: `1px solid ${accentColor}35`,
                         }}
                       >
-                        {fig.name[0]}
+                        {isEn && enData?.keyFiguresEn ? enData.keyFiguresEn[i].name[0] : fig.name[0]}
                       </div>
                       <div className="min-w-0">
-                        <p className={`font-noto font-bold text-base ${textBase}`}>{fig.name}</p>
+                        <p className={`font-noto font-bold text-base ${textBase}`}>{isEn && enData?.keyFiguresEn ? enData.keyFiguresEn[i].name : fig.name}</p>
                         <p className={`font-kufi text-sm opacity-80 line-clamp-2 ${textMuted}`}>
                           {isEn && enData?.keyFiguresEn ? enData.keyFiguresEn[i].role : fig.role}
                         </p>

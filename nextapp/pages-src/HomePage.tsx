@@ -178,7 +178,7 @@ const HomePage: React.FC = () => {
               className="font-noto font-bold mb-1"
               style={{ fontSize: 'clamp(1.3rem, 3vw, 1.7rem)', color: '#C9A84C', textShadow: '0 0 20px #353021' }}
             >
-              {isEn ? 'Saad Hassoun' : 'سعد حسون'}
+              {isEn ? 'Saad Hasson' : 'سعد حسون'}
             </p>
             <p className="font-kufi" style={{ fontSize: '0.85rem', color: '#5b5e66', letterSpacing: '0.06em' }}>
               {isEn ? 'Platform developer & content creator' : 'مطوّر المنصة ومنشئ المحتوى'}
