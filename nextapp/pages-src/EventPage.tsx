@@ -293,9 +293,9 @@ const EventPage: React.FC = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15 }}
-            className={`font-bold leading-tight mb-3 ${isEn ? 'font-sans' : 'font-noto'}`}
+            className={`font-bold leading-snug mb-3 ${isEn ? 'font-sans' : 'font-noto'}`}
             style={{
-              fontSize: isReading ? 'clamp(2.2rem, 7vw, 5rem)' : 'clamp(3rem, 10vw, 8rem)',
+              fontSize: isReading ? 'clamp(1.8rem, 4vw, 3rem)' : 'clamp(2rem, 5vw, 4rem)',
               color: isReading ? readText : (isLight ? '#2d1e08' : 'white'),
               transition: 'font-size 0.3s ease, color 0.3s ease',
             }}
@@ -494,7 +494,7 @@ const EventPage: React.FC = () => {
                     {/* Value below — slightly smaller */}
                     <p
                       className="font-noto font-bold"
-                      style={{ fontSize: 'clamp(1.1rem, 2.8vw, 1.9rem)', color: accentColor }}
+                      style={{ fontSize: 'clamp(0.95rem, 1.8vw, 1.4rem)', color: accentColor, wordBreak: 'break-word', lineHeight: 1.4 }}
                     >
                       {isEn && enData?.statsValues ? enData.statsValues[i] : stat.value}
                     </p>
@@ -516,14 +516,14 @@ const EventPage: React.FC = () => {
               <div className="relative">
                 {/* Timeline line */}
                 <div
-                  className="absolute right-4 top-0 bottom-0 w-px timeline-line"
+                  className={`absolute ${isEn ? 'left-4' : 'right-4'} top-0 bottom-0 w-px timeline-line`}
                   style={{ background: `linear-gradient(to bottom, transparent, ${accentColor}60, transparent)` }}
                 />
-                <div className="space-y-6 pr-12">
+                <div className={`space-y-6 ${isEn ? 'pl-12' : 'pr-12'}`}>
                   {event.battleTimeline.map((phase, i) => (
                     <motion.div
                       key={i}
-                      initial={{ opacity: 0, x: -20 }}
+                      initial={{ opacity: 0, x: isEn ? -20 : 20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: i * 0.1 }}
@@ -531,7 +531,7 @@ const EventPage: React.FC = () => {
                     >
                       {/* Dot */}
                       <div
-                        className="absolute -right-[2.45rem] top-1.5 w-3 h-3 rounded-full border-2 animate-dot-pulse"
+                        className={`absolute ${isEn ? '-left-[2.45rem]' : '-right-[2.45rem]'} top-1.5 w-3 h-3 rounded-full border-2 animate-dot-pulse`}
                         style={{ borderColor: accentColor, background: event.bg }}
                       />
                       <h4

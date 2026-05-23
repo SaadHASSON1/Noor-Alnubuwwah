@@ -514,7 +514,7 @@ const ScribesPage: React.FC = () => {
                         </span>
                       )}
                     </div>
-                    <p className="font-kufi text-white/45 mt-0.5" style={{ fontSize: '0.86rem' }}>
+                    <p className="font-kufi text-white/45 mt-0.5 line-clamp-1" style={{ fontSize: '0.86rem' }}>
                       {isEn ? scribe.roleEn : scribe.role}
                     </p>
                   </div>
@@ -522,7 +522,7 @@ const ScribesPage: React.FC = () => {
 
                 {/* Achievement */}
                 <p
-                  className="font-noto text-white/60 mb-4"
+                  className="font-noto text-white/60 mb-4 line-clamp-3"
                   style={{ fontSize: 'clamp(0.78rem, 1.6vw, 0.88rem)', lineHeight: 1.9 }}
                 >
                   {isEn ? scribe.achievementEn : scribe.achievement}

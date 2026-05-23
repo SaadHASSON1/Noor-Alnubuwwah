@@ -437,7 +437,7 @@ const SariyaCard: React.FC<{ sariya: Sariya; index: number; isEn: boolean }> = (
               </span>
               <span className="font-kufi text-xs text-white/35">{sariya.yearH} / {sariya.yearM}</span>
             </div>
-            <h3 className="font-noto font-bold" style={{ fontSize: 'clamp(1.05rem, 2.5vw, 1.3rem)', color: '#C9A84C' }}>
+            <h3 className="font-noto font-bold line-clamp-2" style={{ fontSize: 'clamp(1.05rem, 2.5vw, 1.3rem)', color: '#C9A84C' }}>
               {isEn ? sariya.nameEn : sariya.name}
             </h3>
           </div>
@@ -470,7 +470,7 @@ const SariyaCard: React.FC<{ sariya: Sariya; index: number; isEn: boolean }> = (
         </div>
 
         {/* Significance */}
-        <p className="font-kufi mb-4" style={{ fontSize: '0.82rem', color: '#C9A84C', lineHeight: 1.65 }}>
+        <p className="font-kufi mb-4 line-clamp-2" style={{ fontSize: '0.82rem', color: '#C9A84C', lineHeight: 1.65 }}>
           {isEn ? sariya.significanceEn : sariya.significance}
         </p>
 

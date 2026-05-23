@@ -341,11 +341,11 @@ const NamesPage: React.FC = () => {
                   }}>
                   <div className="h-0.5" style={{ background: `linear-gradient(90deg, transparent, ${group.color}80, transparent)` }} />
                   <div className="p-4 text-center">
-                    <div className="font-noto font-bold mb-2"
-                      style={{ fontSize: 'clamp(1.3rem, 3vw, 1.7rem)', color: group.color, textShadow: `0 0 20px ${group.color}50`, lineHeight: 1.4 }}>
+                    <div className="font-noto font-bold mb-2 line-clamp-2"
+                      style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)', color: group.color, textShadow: `0 0 20px ${group.color}50`, lineHeight: 1.4 }}>
                       {isEn ? nameItem.nameEn : nameItem.name}
                     </div>
-                    <p className="font-kufi text-white/60 mb-3" style={{ fontSize: '0.88rem', lineHeight: 1.6 }}>
+                    <p className="font-kufi text-white/60 mb-3 line-clamp-3" style={{ fontSize: '0.88rem', lineHeight: 1.6 }}>
                       {isEn ? nameItem.meaningEn : nameItem.meaning}
                     </p>
                     <div className="font-kufi text-xs px-2 py-1 rounded-full inline-block"

@@ -120,14 +120,14 @@ const EventCard: React.FC<Props> = ({ event, accentColor, index, chapterBg }) =>
 
         {/* Title */}
         <h3
-          className={`font-noto font-bold leading-snug ${textBase}`}
-          style={{ fontSize: 'clamp(1.3rem, 2.5vw, 1.8rem)' }}
+          className={`font-noto font-bold leading-snug line-clamp-2 ${textBase}`}
+          style={{ fontSize: 'clamp(1.2rem, 2.2vw, 1.6rem)' }}
         >
           {displayTitle}
         </h3>
 
         {/* Subtitle */}
-        <p className={`text-base leading-relaxed ${textMuted}`}>
+        <p className={`text-base leading-relaxed line-clamp-2 ${textMuted}`}>
           {displaySubtitle}
         </p>
 

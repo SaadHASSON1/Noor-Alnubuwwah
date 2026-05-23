@@ -391,10 +391,10 @@ const SourceCard: React.FC<{ source: Source; index: number; isEn: boolean }> = (
         {/* رأس البطاقة */}
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1">
-            <h3 className="font-noto font-bold text-white" style={{ fontSize: '1rem', lineHeight: 1.5 }}>
+            <h3 className="font-noto font-bold text-white line-clamp-2" style={{ fontSize: '1rem', lineHeight: 1.5 }}>
               {isEn && source.titleEn ? source.titleEn : source.title}
             </h3>
-            <p className="font-kufi text-sm mt-0.5 font-medium" style={{ color: `${color}` }}>
+            <p className="font-kufi text-sm mt-0.5 font-medium line-clamp-1" style={{ color: `${color}` }}>
               {isEn && source.authorEn ? source.authorEn : source.author}
             </p>
           </div>
@@ -430,7 +430,7 @@ const SourceCard: React.FC<{ source: Source; index: number; isEn: boolean }> = (
         </div>
 
         {/* الوصف */}
-        <p className="font-noto text-white leading-relaxed" style={{ fontSize: '0.85rem', opacity: 0.82 }}>
+        <p className="font-noto text-white leading-relaxed line-clamp-3" style={{ fontSize: '0.85rem', opacity: 0.82 }}>
           {isEn && source.descriptionEn ? source.descriptionEn : source.description}
         </p>
 

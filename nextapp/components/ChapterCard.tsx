@@ -91,15 +91,15 @@ const ChapterCard: React.FC<Props> = ({ chapter, eventCount, index }) => {
 
         {/* Chapter name */}
         <h2
-          className={`font-noto font-bold mb-2 ${textBase}`}
-          style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.1 }}
+          className={`font-noto font-bold mb-2 line-clamp-2 ${textBase}`}
+          style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.4rem)', lineHeight: 1.15 }}
         >
           {isEn ? chapter.nameEn : chapter.name}
         </h2>
 
         {/* Subtitle */}
         <p
-          className="font-kufi text-base mb-4 tracking-wide"
+          className="font-kufi text-base mb-4 tracking-wide line-clamp-1"
           style={{ color: chapter.accentColor, opacity: 0.95 }}
         >
           {isEn ? chapter.subtitleEn : chapter.subtitle}
@@ -113,7 +113,7 @@ const ChapterCard: React.FC<Props> = ({ chapter, eventCount, index }) => {
 
         {/* Description */}
         <p
-          className={`text-sm leading-relaxed flex-1 ${textMuted}`}
+          className={`text-sm leading-relaxed flex-1 line-clamp-5 ${textMuted}`}
           style={{ lineHeight: 2, opacity: 0.9 }}
         >
           {isEn ? chapter.descriptionEn : chapter.description}

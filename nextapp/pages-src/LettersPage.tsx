@@ -224,10 +224,10 @@ const LetterCard: React.FC<{ letter: Letter; index: number; isEn: boolean }> = (
               </span>
               <span className="font-kufi text-xs text-white/35">{letter.year}</span>
             </div>
-            <h3 className="font-noto font-bold" style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.35rem)', color: '#C9A84C' }}>
+            <h3 className="font-noto font-bold line-clamp-2" style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.35rem)', color: '#C9A84C' }}>
               {isEn ? `Letter to ${letter.recipientEn}` : `كتاب إلى ${letter.recipient}`}
             </h3>
-            <p className="font-kufi mt-0.5" style={{ fontSize: '0.8rem', color: '#C9A84C' }}>
+            <p className="font-kufi mt-0.5 line-clamp-1" style={{ fontSize: '0.8rem', color: '#C9A84C' }}>
               {isEn ? `${letter.titleEn} — ${letter.kingdomEn}` : `${letter.title} — ${letter.kingdom}`}
             </p>
           </div>
@@ -250,7 +250,7 @@ const LetterCard: React.FC<{ letter: Letter; index: number; isEn: boolean }> = (
         </div>
 
         {/* Summary */}
-        <p className="font-noto text-white/60 mb-3" style={{ fontSize: '0.87rem', lineHeight: 1.85 }}>
+        <p className="font-noto text-white/60 mb-3 line-clamp-3" style={{ fontSize: '0.87rem', lineHeight: 1.85 }}>
           {isEn ? letter.summaryEn : letter.summary}
         </p>
 

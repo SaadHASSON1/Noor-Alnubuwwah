@@ -555,14 +555,14 @@ const WivesPage: React.FC = () => {
                 >
                   {isEn ? `Wife #${ORDINALS_EN[wife.number - 1]}` : `الزوجة ${ORDINALS[wife.number - 1]}`}
                 </span>
-                <h3 className="font-kufi font-bold mb-0.5" style={{ color: 'white', fontSize: '1.05rem' }}>
+                <h3 className="font-kufi font-bold mb-0.5 line-clamp-1" style={{ color: 'white', fontSize: '1.05rem' }}>
                   {isEn ? wife.nameEn : wife.name}
                 </h3>
-                <p className="font-noto text-xs mb-3" style={{ color: wife.accentColor, opacity: 0.9 }}>
+                <p className="font-noto text-xs mb-3 line-clamp-1" style={{ color: wife.accentColor, opacity: 0.9 }}>
                   {isEn ? wife.nicknameEn : wife.nickname}
                 </p>
 
-                <p className="font-noto mb-3" style={{ color: '#dedfe0', fontSize: '0.85rem', lineHeight: 1.7 }}>
+                <p className="font-noto mb-3 line-clamp-3" style={{ color: '#dedfe0', fontSize: '0.85rem', lineHeight: 1.7 }}>
                   {isEn ? wife.shortDescriptionEn : wife.shortDescription}
                 </p>
 

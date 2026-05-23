@@ -163,7 +163,7 @@ const ChapterPage: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.1 }}
             className={`font-noto font-bold leading-none mb-4 ${textBase}`}
             style={{
-              fontSize: 'clamp(4rem, 14vw, 11rem)',
+              fontSize: 'clamp(2.5rem, 8vw, 6rem)',
               textShadow: isLight ? 'none' : `0 0 60px ${meta.accentColor}40`,
             }}
           >

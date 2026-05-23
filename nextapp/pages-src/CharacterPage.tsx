@@ -362,10 +362,10 @@ const CharacterPage: React.FC = () => {
                 className="rounded-2xl p-5"
                 style={{ background: 'rgba(201,168,76,0.04)', border: '1px solid rgba(201,168,76,0.15)' }}
               >
-                <h3 className="font-kufi font-bold mb-2" style={{ color: '#C9A84C', fontSize: '1rem' }}>
+                <h3 className="font-kufi font-bold mb-2 line-clamp-1" style={{ color: '#C9A84C', fontSize: '1rem' }}>
                   {isEn ? item.traitEn : item.trait}
                 </h3>
-                <p className="font-noto mb-3" style={{ color: '#f2f3f3', fontSize: '0.9rem', lineHeight: 1.8 }}>
+                <p className="font-noto mb-3 line-clamp-3" style={{ color: '#f2f3f3', fontSize: '0.9rem', lineHeight: 1.8 }}>
                   {isEn ? item.descriptionEn : item.description}
                 </p>
                 <div className="rounded-xl p-3" style={{ background: 'rgba(201,168,76,0.06)', borderRight: '2px solid rgba(201,168,76,0.4)' }}>
@@ -410,11 +410,11 @@ const CharacterPage: React.FC = () => {
               >
                 <div className="flex items-center gap-3 mb-2">
                   <span style={{ color: '#C9A84C', fontSize: '1.2rem' }}>{trait.icon}</span>
-                  <h3 className="font-kufi font-bold" style={{ color: '#C9A84C' }}>
+                  <h3 className="font-kufi font-bold line-clamp-1" style={{ color: '#C9A84C' }}>
                     {isEn ? trait.nameEn : trait.name}
                   </h3>
                 </div>
-                <p className="font-noto" style={{ color: '#e1e1e3', fontSize: '0.85rem', lineHeight: 1.8 }}>
+                <p className="font-noto line-clamp-3" style={{ color: '#e1e1e3', fontSize: '0.85rem', lineHeight: 1.8 }}>
                   {isEn ? trait.descriptionEn : trait.description}
                 </p>
                 <AnimatePresence>
@@ -534,7 +534,7 @@ const CharacterPage: React.FC = () => {
                 style={{ background: 'rgba(201,168,76,0.04)', border: '1px solid rgba(201,168,76,0.15)' }}
               >
                 <div className="text-3xl mb-4" style={{ color: '#C9A84C', fontFamily: 'serif', textAlign: isEn ? 'left' : 'right' }}>❝</div>
-                <p className="font-noto mb-4" dir={isEn ? 'ltr' : 'rtl'} style={{ color: '#f5f5f6', fontSize: '0.95rem', lineHeight: 2 }}>
+                <p className="font-noto mb-4 line-clamp-5" dir={isEn ? 'ltr' : 'rtl'} style={{ color: '#f5f5f6', fontSize: '0.95rem', lineHeight: 2 }}>
                   {isEn ? testimony.quoteEn : testimony.quote}
                 </p>
                 <div className="border-t pt-3" style={{ borderColor: 'rgba(201,168,76,0.1)' }}>

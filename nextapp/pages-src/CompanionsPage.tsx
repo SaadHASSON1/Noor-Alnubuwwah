@@ -977,17 +977,17 @@ const CompanionsPage: React.FC = () => {
                     </span>
 
                     {/* Name */}
-                    <h3 className="font-noto font-bold mb-0.5" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', color: '#C9A84C' }}>
+                    <h3 className="font-noto font-bold mb-0.5 line-clamp-1" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', color: '#C9A84C' }}>
                       {isEn ? companion.nameEn : companion.name}
                     </h3>
-                    <p className="font-kufi mb-3" style={{ fontSize: '0.88rem', color, lineHeight: 1.5 }}>
+                    <p className="font-kufi mb-3 line-clamp-2" style={{ fontSize: '0.88rem', color, lineHeight: 1.5 }}>
                       {isEn ? companion.nicknameEn : companion.nickname}
                     </p>
 
                     {/* Achievement */}
                     <div className="flex items-center gap-1.5 mb-3">
                       <div className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: color }} />
-                      <p className="font-kufi" style={{ fontSize: '0.9rem', color }}>
+                      <p className="font-kufi line-clamp-1" style={{ fontSize: '0.9rem', color }}>
                         {isEn ? companion.achievementEn : companion.achievement}
                       </p>
                     </div>

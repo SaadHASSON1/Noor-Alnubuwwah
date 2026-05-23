@@ -342,7 +342,7 @@ const BattleCard: React.FC<BattleCardProps> = ({ battle, index, isEn }) => {
               </span>
               <span className="font-kufi text-xs text-white/35">{battle.year}</span>
             </div>
-            <h3 className="font-noto font-bold" style={{ fontSize: 'clamp(1.05rem, 2.5vw, 1.3rem)', color: '#C9A84C' }}>
+            <h3 className="font-noto font-bold line-clamp-2" style={{ fontSize: 'clamp(1.05rem, 2.5vw, 1.3rem)', color: '#C9A84C' }}>
               {isEn ? battle.nameEn : battle.name}
             </h3>
           </div>
@@ -356,7 +356,7 @@ const BattleCard: React.FC<BattleCardProps> = ({ battle, index, isEn }) => {
         </div>
 
         {/* Significance */}
-        <p className="font-kufi mb-4" style={{ fontSize: '0.82rem', color: '#C9A84C', lineHeight: 1.65 }}>
+        <p className="font-kufi mb-4 line-clamp-2" style={{ fontSize: '0.82rem', color: '#C9A84C', lineHeight: 1.65 }}>
           {isEn ? battle.significanceEn : battle.significance}
         </p>
 

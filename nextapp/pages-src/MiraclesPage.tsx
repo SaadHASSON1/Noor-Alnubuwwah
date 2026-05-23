@@ -383,13 +383,13 @@ const MiraclesPage: React.FC = () => {
                   style={{ background: `${miracle.color}12`, border: `1px solid ${miracle.color}25`, color: miracle.color }}>
                   {miracle.icon}
                 </div>
-                <h3 className="font-noto font-bold mb-1" style={{ fontSize: 'clamp(1rem, 2vw, 1.15rem)', color: miracle.color }}>
+                <h3 className="font-noto font-bold mb-1 line-clamp-2" style={{ fontSize: 'clamp(1rem, 2vw, 1.15rem)', color: miracle.color }}>
                   {isEn ? miracle.titleEn : miracle.title}
                 </h3>
-                <p className="font-kufi mb-3 opacity-60" style={{ fontSize: '0.88rem', color: miracle.color, letterSpacing: '0.04em' }}>
+                <p className="font-kufi mb-3 opacity-60 line-clamp-1" style={{ fontSize: '0.88rem', color: miracle.color, letterSpacing: '0.04em' }}>
                   {isEn ? miracle.subtitleEn : miracle.subtitle}
                 </p>
-                <p className="font-noto text-white/55 mb-4" style={{ fontSize: 'clamp(0.78rem, 1.5vw, 0.85rem)', lineHeight: 1.9 }}>
+                <p className="font-noto text-white/55 mb-4 line-clamp-4" style={{ fontSize: 'clamp(0.78rem, 1.5vw, 0.85rem)', lineHeight: 1.9 }}>
                   {isEn ? miracle.descriptionEn : miracle.description}
                 </p>
                 <div className="text-xs font-noto p-2 rounded-lg mb-3" dir="rtl"

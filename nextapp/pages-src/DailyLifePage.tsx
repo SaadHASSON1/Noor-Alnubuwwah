@@ -305,10 +305,10 @@ const DailyLifePage: React.FC = () => {
                       {section.icon}
                     </span>
                     <div>
-                      <h3 className="font-kufi font-bold" style={{ fontSize: 'clamp(0.9rem, 2vw, 1.05rem)', color: isActive ? section.color : 'white', transition: 'color 0.3s' }}>
+                      <h3 className="font-kufi font-bold line-clamp-1" style={{ fontSize: 'clamp(0.9rem, 2vw, 1.05rem)', color: isActive ? section.color : 'white', transition: 'color 0.3s' }}>
                         {isEn ? section.titleEn : section.title}
                       </h3>
-                      <p className="font-noto" style={{ fontSize: 'clamp(0.75rem, 1.5vw, 0.85rem)', color: '#ebebec', marginTop: '1px' }}>
+                      <p className="font-noto line-clamp-1" style={{ fontSize: 'clamp(0.75rem, 1.5vw, 0.85rem)', color: '#ebebec', marginTop: '1px' }}>
                         {isEn ? section.subtitleEn : section.subtitle}
                       </p>
                     </div>
