@@ -8,6 +8,7 @@ import { useLanguage } from '@/context/LanguageContext';
 
 interface Companion {
   name: string;
+  nameEn: string;
   nickname: string;
   nicknameEn: string;
   description: string;
@@ -40,7 +41,7 @@ const CATEGORY_LABELS_EN: Record<string, string> = {
 const COMPANIONS: Companion[] = [
   // ── العشرة المبشرون ──
   {
-    name: 'أبو بكر الصديق',
+    name: 'أبو بكر الصديق', nameEn: 'Abu Bakr al-Siddiq',
     nickname: 'الصديق — خليل النبي ﷺ',
     nicknameEn: 'Al-Ṣiddīq — The Truthful, Companion in the Cave',
     achievement: 'أول الخلفاء الراشدين',
@@ -52,7 +53,7 @@ const COMPANIONS: Companion[] = [
     hadithEn: 'The Prophet ﷺ said: "Had I taken a close friend from my nation, I would have taken Abū Bakr as a close friend."',
   },
   {
-    name: 'عمر بن الخطاب',
+    name: 'عمر بن الخطاب', nameEn: 'Umar ibn al-Khattab',
     nickname: 'الفاروق — أمير المؤمنين',
     nicknameEn: 'Al-Fārūq — Commander of the Faithful',
     achievement: 'ثاني الخلفاء الراشدين',
@@ -64,7 +65,7 @@ const COMPANIONS: Companion[] = [
     hadithEn: 'The Prophet ﷺ said: "If there were a prophet after me, it would have been ʿUmar."',
   },
   {
-    name: 'عثمان بن عفان',
+    name: 'عثمان بن عفان', nameEn: 'Uthman ibn Affan',
     nickname: 'ذو النورين',
     nicknameEn: 'Dhū al-Nūrayn — Possessor of Two Lights',
     achievement: 'ثالث الخلفاء — جامع القرآن',
@@ -76,7 +77,7 @@ const COMPANIONS: Companion[] = [
     hadithEn: 'The Prophet ﷺ said: "Whatever ʿUthmān does after today will not harm him."',
   },
   {
-    name: 'علي بن أبي طالب',
+    name: 'علي بن أبي طالب', nameEn: 'Ali ibn Abi Talib',
     nickname: 'أسد الله — أبو السبطين',
     nicknameEn: 'Lion of Allāh — Father of the Two Grandsons',
     achievement: 'رابع الخلفاء الراشدين',
@@ -88,7 +89,7 @@ const COMPANIONS: Companion[] = [
     hadithEn: 'The Prophet ﷺ said: "I am the city of knowledge and ʿAlī is its gate."',
   },
   {
-    name: 'طلحة بن عبيدالله',
+    name: 'طلحة بن عبيدالله', nameEn: 'Talhah ibn Ubaydallah',
     nickname: 'طلحة الخير — طلحة الجواد',
     nicknameEn: 'Ṭalḥah the Good — Ṭalḥah the Generous',
     achievement: 'من أكرم الصحابة جوداً',
@@ -98,7 +99,7 @@ const COMPANIONS: Companion[] = [
     category: 'العشرة المبشرون',
   },
   {
-    name: 'الزبير بن العوام',
+    name: 'الزبير بن العوام', nameEn: 'al-Zubayr ibn al-Awwam',
     nickname: 'حواري النبي ﷺ',
     nicknameEn: 'Disciple of the Prophet ﷺ',
     achievement: 'فارس الإسلام الأول',
@@ -108,7 +109,7 @@ const COMPANIONS: Companion[] = [
     category: 'العشرة المبشرون',
   },
   {
-    name: 'عبد الرحمن بن عوف',
+    name: 'عبد الرحمن بن عوف', nameEn: 'Abd al-Rahman ibn Awf',
     nickname: 'أحد العشرة المبشرين',
     nicknameEn: 'One of the Ten Promised Paradise',
     achievement: 'تاجر الصحابة الأول',
@@ -120,7 +121,7 @@ const COMPANIONS: Companion[] = [
     hadithEn: 'The Prophet ﷺ said: "ʿAbd al-Raḥmān ibn ʿAwf is in Paradise."',
   },
   {
-    name: 'سعد بن أبي وقاص',
+    name: 'سعد بن أبي وقاص', nameEn: 'Sad ibn Abi Waqqas',
     nickname: 'فارس الإسلام الأول',
     nicknameEn: 'First Archer of Islam',
     achievement: 'أول من رمى سهماً في الإسلام',
@@ -132,7 +133,7 @@ const COMPANIONS: Companion[] = [
     hadithEn: 'The Prophet ﷺ said: "O Allāh, make his arrow true and answer his supplication."',
   },
   {
-    name: 'سعيد بن زيد',
+    name: 'سعيد بن زيد', nameEn: 'Said ibn Zayd',
     nickname: 'من السابقين الأولين',
     nicknameEn: 'Among the First Believers',
     achievement: 'من مبكّري الإسلام',
@@ -142,7 +143,7 @@ const COMPANIONS: Companion[] = [
     category: 'العشرة المبشرون',
   },
   {
-    name: 'أبو عبيدة بن الجراح',
+    name: 'أبو عبيدة بن الجراح', nameEn: 'Abu Ubayda ibn al-Jarrah',
     nickname: 'أمين هذه الأمة',
     nicknameEn: 'Trustee of this Nation',
     achievement: 'فاتح بلاد الشام',
@@ -156,7 +157,7 @@ const COMPANIONS: Companion[] = [
 
   // ── المهاجرون ──
   {
-    name: 'حمزة بن عبد المطلب',
+    name: 'حمزة بن عبد المطلب', nameEn: 'Hamzah ibn Abd al-Muttalib',
     nickname: 'أسد الله وأسد رسوله',
     nicknameEn: 'Lion of Allāh and Lion of His Messenger',
     achievement: 'سيد الشهداء',
@@ -168,7 +169,7 @@ const COMPANIONS: Companion[] = [
     hadithEn: 'The Prophet ﷺ said: "Ḥamzah is the Master of Martyrs on the Day of Resurrection."',
   },
   {
-    name: 'جعفر بن أبي طالب',
+    name: 'جعفر بن أبي طالب', nameEn: 'Jafar ibn Abi Talib',
     nickname: 'الطيّار — ذو الجناحين',
     nicknameEn: 'Al-Ṭayyār — The Two-Winged',
     achievement: 'خطيب المسلمين أمام النجاشي',
@@ -180,7 +181,7 @@ const COMPANIONS: Companion[] = [
     hadithEn: 'The Prophet ﷺ said to him: "You resemble me in appearance and character."',
   },
   {
-    name: 'مصعب بن عمير',
+    name: 'مصعب بن عمير', nameEn: 'Musab ibn Umayr',
     nickname: 'أول سفير في الإسلام',
     nicknameEn: 'First Ambassador in Islam',
     achievement: 'من دعاة الإسلام الأوائل',
@@ -190,7 +191,7 @@ const COMPANIONS: Companion[] = [
     category: 'المهاجرون',
   },
   {
-    name: 'خباب بن الأرت',
+    name: 'خباب بن الأرت', nameEn: 'Khabbab ibn al-Aratt',
     nickname: 'صاحب النار',
     nicknameEn: 'The Companion of Fire',
     achievement: 'من أوائل المعذَّبين في مكة',
@@ -200,7 +201,7 @@ const COMPANIONS: Companion[] = [
     category: 'المهاجرون',
   },
   {
-    name: 'عمّار بن ياسر',
+    name: 'عمّار بن ياسر', nameEn: 'Ammar ibn Yasir',
     nickname: 'المعذَّب في الله',
     nicknameEn: 'The One Tortured for Allāh',
     achievement: 'ابن أول شهيدة في الإسلام',
@@ -210,7 +211,7 @@ const COMPANIONS: Companion[] = [
     category: 'المهاجرون',
   },
   {
-    name: 'بلال بن رباح',
+    name: 'بلال بن رباح', nameEn: 'Bilal ibn Rabah',
     nickname: 'مؤذن النبي ﷺ',
     nicknameEn: 'Muezzin of the Prophet ﷺ',
     achievement: 'أول مؤذن في الإسلام',
@@ -222,7 +223,7 @@ const COMPANIONS: Companion[] = [
     hadithEn: 'The Prophet ﷺ said: "I heard the shuffling of your sandals in Paradise."',
   },
   {
-    name: 'سلمان الفارسي',
+    name: 'سلمان الفارسي', nameEn: 'Salman al-Farisi',
     nickname: 'سلمان منّا أهل البيت',
     nicknameEn: 'Salmān — From the Ahl al-Bayt',
     achievement: 'صاحب فكرة الخندق',
@@ -232,7 +233,7 @@ const COMPANIONS: Companion[] = [
     category: 'المهاجرون',
   },
   {
-    name: 'أبو ذر الغفاري',
+    name: 'أبو ذر الغفاري', nameEn: 'Abu Dharr al-Ghifari',
     nickname: 'أصدق من أقلّت الغبراء',
     nicknameEn: 'The Most Truthful under the Sky',
     achievement: 'رمز الزهد والصدق',
@@ -242,7 +243,7 @@ const COMPANIONS: Companion[] = [
     category: 'المهاجرون',
   },
   {
-    name: 'صهيب الرومي',
+    name: 'صهيب الرومي', nameEn: 'Suhayb al-Rumi',
     nickname: 'صهيب الرومي',
     nicknameEn: 'Ṣuhayb the Roman',
     achievement: 'فدى نفسه بماله هجرةً',
@@ -252,7 +253,7 @@ const COMPANIONS: Companion[] = [
     category: 'المهاجرون',
   },
   {
-    name: 'أبو سلمة المخزومي',
+    name: 'أبو سلمة المخزومي', nameEn: 'Abu Salamah al-Makhzumi',
     nickname: 'السابق إلى الهجرتين',
     nicknameEn: 'The First to Both Hijrahs',
     achievement: 'أول من هاجر إلى المدينة',
@@ -264,7 +265,7 @@ const COMPANIONS: Companion[] = [
 
   // ── الأنصار ──
   {
-    name: 'سعد بن معاذ',
+    name: 'سعد بن معاذ', nameEn: 'Sad ibn Muadh',
     nickname: 'سيد الأوس',
     nicknameEn: 'Chief of the Aws',
     achievement: 'الذي اهتزّ لموته عرش الرحمن',
@@ -276,7 +277,7 @@ const COMPANIONS: Companion[] = [
     hadithEn: 'The Prophet ﷺ said: "The Throne of the Merciful trembled at the death of Saʿd ibn Muʿādh."',
   },
   {
-    name: 'أبو أيوب الأنصاري',
+    name: 'أبو أيوب الأنصاري', nameEn: 'Abu Ayyub al-Ansari',
     nickname: 'مضيف النبي ﷺ',
     nicknameEn: 'Host of the Prophet ﷺ',
     achievement: 'نزل النبي ﷺ في داره',
@@ -286,7 +287,7 @@ const COMPANIONS: Companion[] = [
     category: 'الأنصار',
   },
   {
-    name: 'معاذ بن جبل',
+    name: 'معاذ بن جبل', nameEn: 'Muadh ibn Jabal',
     nickname: 'أعلم الأمة بالحلال والحرام',
     nicknameEn: 'Most Knowledgeable in Lawful and Unlawful',
     achievement: 'معلّم اليمن',
@@ -298,7 +299,7 @@ const COMPANIONS: Companion[] = [
     hadithEn: 'The Prophet ﷺ said: "The most knowledgeable of my nation in lawful and unlawful matters is Muʿādh ibn Jabal."',
   },
   {
-    name: 'أبيّ بن كعب',
+    name: 'أبيّ بن كعب', nameEn: 'Ubayy ibn Kab',
     nickname: 'سيد القرّاء',
     nicknameEn: 'Master of the Reciters',
     achievement: 'أقرأ الصحابة',
@@ -310,7 +311,7 @@ const COMPANIONS: Companion[] = [
     hadithEn: 'The Prophet ﷺ said: "The best reciter of my nation is Ubayy ibn Kaʿb."',
   },
   {
-    name: 'أنس بن مالك',
+    name: 'أنس بن مالك', nameEn: 'Anas ibn Malik',
     nickname: 'خادم النبي ﷺ',
     nicknameEn: 'Servant of the Prophet ﷺ',
     achievement: 'أكثر الصحابة رواية للحديث',
@@ -322,7 +323,7 @@ const COMPANIONS: Companion[] = [
     hadithEn: 'The Prophet ﷺ said: "O Allāh, increase his wealth and children and lengthen his life."',
   },
   {
-    name: 'أبو طلحة الأنصاري',
+    name: 'أبو طلحة الأنصاري', nameEn: 'Abu Talhah al-Ansari',
     nickname: 'الرامي الثبّات',
     nicknameEn: 'The Steadfast Archer',
     achievement: 'كان صوته في الصف أشد من فرقة',
@@ -332,7 +333,7 @@ const COMPANIONS: Companion[] = [
     category: 'الأنصار',
   },
   {
-    name: 'عبادة بن الصامت',
+    name: 'عبادة بن الصامت', nameEn: 'Ubadah ibn al-Samit',
     nickname: 'نقيب الأنصار',
     nicknameEn: 'Steward of the Anṣār',
     achievement: 'من نقباء بيعة العقبة الثانية',
@@ -342,7 +343,7 @@ const COMPANIONS: Companion[] = [
     category: 'الأنصار',
   },
   {
-    name: 'سعد بن عبادة',
+    name: 'سعد بن عبادة', nameEn: 'Sad ibn Ubadah',
     nickname: 'سيد الخزرج',
     nicknameEn: 'Chief of the Khazraj',
     achievement: 'أكرم الأنصار جوداً',
@@ -352,7 +353,7 @@ const COMPANIONS: Companion[] = [
     category: 'الأنصار',
   },
   {
-    name: 'البراء بن مالك',
+    name: 'البراء بن مالك', nameEn: "al-Bara' ibn Malik",
     nickname: 'فارس المسلمين',
     nicknameEn: 'Champion of the Muslims',
     achievement: 'بطل اليمامة',
@@ -364,7 +365,7 @@ const COMPANIONS: Companion[] = [
     hadithEn: 'The Prophet ﷺ said: "How many a dishevelled, dusty man in worn garments — if he were to swear by Allāh He would fulfil his oath — among them is al-Barāʾ."',
   },
   {
-    name: 'محمد بن مسلمة',
+    name: 'محمد بن مسلمة', nameEn: 'Muhammad ibn Maslamah',
     nickname: 'فارس النبي ﷺ',
     nicknameEn: 'Knight of the Prophet ﷺ',
     achievement: 'قائد السرايا الخاصة',
@@ -376,7 +377,7 @@ const COMPANIONS: Companion[] = [
 
   // ── الصحابيات ──
   {
-    name: 'فاطمة الزهراء',
+    name: 'فاطمة الزهراء', nameEn: 'Fatimah al-Zahra',
     nickname: 'سيدة نساء العالمين',
     nicknameEn: 'Mistress of the Women of the Worlds',
     achievement: 'بضعة رسول الله ﷺ',
@@ -388,7 +389,7 @@ const COMPANIONS: Companion[] = [
     hadithEn: 'The Prophet ﷺ said: "Fāṭimah is a part of me; whoever angers her angers me."',
   },
   {
-    name: 'خديجة بنت خويلد',
+    name: 'خديجة بنت خويلد', nameEn: 'Khadijah bint Khuwaylid',
     nickname: 'أم المؤمنين — أول من أسلمت',
     nicknameEn: 'Mother of the Faithful — First to Embrace Islam',
     achievement: 'أول المؤمنين رجالاً ونساءً',
@@ -400,7 +401,7 @@ const COMPANIONS: Companion[] = [
     hadithEn: 'The Prophet ﷺ said: "Allāh did not replace her with anyone better — she believed in me when people disbelieved."',
   },
   {
-    name: 'عائشة بنت أبي بكر',
+    name: 'عائشة بنت أبي بكر', nameEn: 'Aishah bint Abi Bakr',
     nickname: 'حبيبة النبي ﷺ — عالمة الإسلام',
     nicknameEn: 'Beloved of the Prophet ﷺ — Scholar of Islam',
     achievement: 'أكثر الصحابة رواية بعد الرجال',
@@ -412,7 +413,7 @@ const COMPANIONS: Companion[] = [
     hadithEn: 'The Prophet ﷺ said: "Take half your religion from this woman — the Ḥumayra."',
   },
   {
-    name: 'أسماء بنت أبي بكر',
+    name: 'أسماء بنت أبي بكر', nameEn: "Asma' bint Abi Bakr",
     nickname: 'ذات النطاقين',
     nicknameEn: 'Dhāt al-Niṭāqayn — She of the Two Belts',
     achievement: 'صاحبة الهجرة',
@@ -424,7 +425,7 @@ const COMPANIONS: Companion[] = [
     hadithEn: 'The Prophet ﷺ said to her: "Do not hoard, lest it be hoarded from you."',
   },
   {
-    name: 'سمية بنت خباط',
+    name: 'سمية بنت خباط', nameEn: 'Sumayyah bint Khayyat',
     nickname: 'أول شهيدة في الإسلام',
     nicknameEn: 'First Martyr in Islam',
     achievement: 'أول من استُشهد في الإسلام',
@@ -436,7 +437,7 @@ const COMPANIONS: Companion[] = [
     hadithEn: 'The Prophet ﷺ said: "Be patient, O family of Yāsir — for your appointment is Paradise."',
   },
   {
-    name: 'أم سلمة هند المخزومية',
+    name: 'أم سلمة هند المخزومية', nameEn: 'Umm Salamah Hind al-Makhzumiyyah',
     nickname: 'أم المؤمنين الفقيهة',
     nicknameEn: 'The Jurisprudent Mother of the Faithful',
     achievement: 'آخر أمهات المؤمنين وفاةً',
@@ -446,7 +447,7 @@ const COMPANIONS: Companion[] = [
     category: 'الصحابيات',
   },
   {
-    name: 'أم عمارة نسيبة بنت كعب',
+    name: 'أم عمارة نسيبة بنت كعب', nameEn: 'Umm Ammarah Nusaybah bint Kab',
     nickname: 'بطلة أحد',
     nicknameEn: 'Heroine of Uḥud',
     achievement: 'حاربت دفاعاً عن النبي ﷺ',
@@ -456,7 +457,7 @@ const COMPANIONS: Companion[] = [
     category: 'الصحابيات',
   },
   {
-    name: 'حفصة بنت عمر',
+    name: 'حفصة بنت عمر', nameEn: 'Hafsah bint Umar',
     nickname: 'أم المؤمنين — حافظة القرآن',
     nicknameEn: 'Mother of the Faithful — Guardian of the Qurʾān',
     achievement: 'أُودع عندها المصحف الأول',
@@ -466,7 +467,7 @@ const COMPANIONS: Companion[] = [
     category: 'الصحابيات',
   },
   {
-    name: 'صفية بنت عبد المطلب',
+    name: 'صفية بنت عبد المطلب', nameEn: 'Safiyyah bint Abd al-Muttalib',
     nickname: 'عمّة النبي ﷺ',
     nicknameEn: 'Paternal Aunt of the Prophet ﷺ',
     achievement: 'بطلة حصار الخندق',
@@ -476,7 +477,7 @@ const COMPANIONS: Companion[] = [
     category: 'الصحابيات',
   },
   {
-    name: 'أم الفضل لبابة',
+    name: 'أم الفضل لبابة', nameEn: 'Umm al-Fadl Lubabah',
     nickname: 'ثاني من أسلمن بعد خديجة',
     nicknameEn: 'Second Woman to Embrace Islam after Khadījah',
     achievement: 'أخت ميمونة ووالدة ابن عباس',
@@ -488,7 +489,7 @@ const COMPANIONS: Companion[] = [
 
   // ── العلماء والقرّاء ──
   {
-    name: 'عبد الله بن مسعود',
+    name: 'عبد الله بن مسعود', nameEn: 'Abdullah ibn Masud',
     nickname: 'أقرب الناس هدياً بالنبي ﷺ',
     nicknameEn: 'Closest to the Prophet\'s ﷺ Way',
     achievement: 'مرجع الكوفة في الفقه والقرآن',
@@ -500,7 +501,7 @@ const COMPANIONS: Companion[] = [
     hadithEn: 'The Prophet ﷺ said: "Receive the Qurʾān from four: from ʿAbdullāh ibn Masʿūd..."',
   },
   {
-    name: 'عبد الله بن عباس',
+    name: 'عبد الله بن عباس', nameEn: 'Abdullah ibn Abbas',
     nickname: 'حبر الأمة — البحر',
     nicknameEn: 'Ḥibr al-Ummah — The Ocean',
     achievement: 'أعلم الصحابة بالتفسير',
@@ -512,7 +513,7 @@ const COMPANIONS: Companion[] = [
     hadithEn: 'The Prophet ﷺ said: "O Allāh, grant him deep understanding of the religion and teach him interpretation."',
   },
   {
-    name: 'عبد الله بن عمر',
+    name: 'عبد الله بن عمر', nameEn: 'Abdullah ibn Umar',
     nickname: 'من أكثر الصحابة اتباعاً للسنة',
     nicknameEn: 'Most Diligent in Following the Sunnah',
     achievement: 'روى أكثر من ألفين وستمئة حديث',
@@ -522,7 +523,7 @@ const COMPANIONS: Companion[] = [
     category: 'العلماء والقرّاء',
   },
   {
-    name: 'أبو هريرة',
+    name: 'أبو هريرة', nameEn: 'Abu Hurayrah',
     nickname: 'أكثر الصحابة رواية للحديث',
     nicknameEn: 'Most Prolific Narrator of Ḥadīth',
     achievement: 'روى أكثر من خمسة آلاف حديث',
@@ -534,7 +535,7 @@ const COMPANIONS: Companion[] = [
     hadithEn: 'The Prophet ﷺ said: "O Allāh, let him not forget what I have told him."',
   },
   {
-    name: 'زيد بن ثابت',
+    name: 'زيد بن ثابت', nameEn: 'Zayd ibn Thabit',
     nickname: 'كاتب الوحي',
     nicknameEn: 'Scribe of Revelation',
     achievement: 'جامع القرآن بأمر أبي بكر',
@@ -546,7 +547,7 @@ const COMPANIONS: Companion[] = [
     hadithEn: 'The Prophet ﷺ said: "The most knowledgeable of you in inheritance law is Zayd ibn Thābit."',
   },
   {
-    name: 'أبو موسى الأشعري',
+    name: 'أبو موسى الأشعري', nameEn: 'Abu Musa al-Ashari',
     nickname: 'صوت داود في هذه الأمة',
     nicknameEn: 'The Voice of Dāwūd in this Nation',
     achievement: 'أحد عمّال النبي ﷺ على اليمن',
@@ -560,7 +561,7 @@ const COMPANIONS: Companion[] = [
 
   // ── الفرسان والقادة ──
   {
-    name: 'خالد بن الوليد',
+    name: 'خالد بن الوليد', nameEn: 'Khalid ibn al-Walid',
     nickname: 'سيف الله المسلول',
     nicknameEn: 'The Drawn Sword of Allāh',
     achievement: 'لم يُهزم في معركة واحدة طوال حياته',
@@ -572,7 +573,7 @@ const COMPANIONS: Companion[] = [
     hadithEn: 'The Prophet ﷺ said: "Khālid is a sword from the swords of Allāh that He has drawn against the polytheists."',
   },
   {
-    name: 'عمرو بن العاص',
+    name: 'عمرو بن العاص', nameEn: 'Amr ibn al-As',
     nickname: 'فاتح مصر',
     nicknameEn: 'Conqueror of Egypt',
     achievement: 'فتح مصر بأربعة آلاف مقاتل',
@@ -582,7 +583,7 @@ const COMPANIONS: Companion[] = [
     category: 'الفرسان والقادة',
   },
   {
-    name: 'عبد الله بن رواحة',
+    name: 'عبد الله بن رواحة', nameEn: 'Abdullah ibn Rawahah',
     nickname: 'شاعر النبي ﷺ',
     nicknameEn: 'Poet of the Prophet ﷺ',
     achievement: 'أحد قادة مؤتة الثلاثة',
@@ -592,7 +593,7 @@ const COMPANIONS: Companion[] = [
     category: 'الفرسان والقادة',
   },
   {
-    name: 'المقداد بن الأسود',
+    name: 'المقداد بن الأسود', nameEn: 'al-Miqdad ibn al-Aswad',
     nickname: 'أول فارس في الإسلام',
     nicknameEn: 'First Cavalier in Islam',
     achievement: 'أول من قاتل فارساً في الإسلام',
@@ -602,7 +603,7 @@ const COMPANIONS: Companion[] = [
     category: 'الفرسان والقادة',
   },
   {
-    name: 'عكرمة بن أبي جهل',
+    name: 'عكرمة بن أبي جهل', nameEn: 'Ikrimah ibn Abi Jahl',
     nickname: 'ابن فرعون هذه الأمة',
     nicknameEn: 'Son of the Pharaoh of this Nation',
     achievement: 'من أبطال فتوح الشام',
@@ -612,7 +613,7 @@ const COMPANIONS: Companion[] = [
     category: 'الفرسان والقادة',
   },
   {
-    name: 'عبد الله بن جحش',
+    name: 'عبد الله بن جحش', nameEn: 'Abdullah ibn Jahsh',
     nickname: 'قائد أول سرية',
     nicknameEn: 'Commander of the First Expedition',
     achievement: 'قاد أول سرية في الإسلام',
@@ -683,7 +684,7 @@ const CompanionModal: React.FC<{ companion: Companion; onClose: () => void; isEn
 
           {/* Name */}
           <h2 className="font-noto font-bold mb-1" style={{ fontSize: 'clamp(1.5rem, 4vw, 2rem)', color: '#C9A84C' }}>
-            {companion.name}
+            {isEn ? companion.nameEn : companion.name}
           </h2>
           <p className="font-kufi mb-5" style={{ fontSize: '0.8rem', color }}>
             {isEn ? companion.nicknameEn : companion.nickname}
@@ -742,7 +743,7 @@ const CompanionsPage: React.FC = () => {
       const matchCat = activeCategory === 'الكل' || c.category === activeCategory;
       const q = searchQuery.trim();
       const matchSearch = !q || (isEn
-        ? (c.name.includes(q) || c.nicknameEn.toLowerCase().includes(q.toLowerCase()) || c.descriptionEn.toLowerCase().includes(q.toLowerCase()))
+        ? (c.nameEn.toLowerCase().includes(q.toLowerCase()) || c.nicknameEn.toLowerCase().includes(q.toLowerCase()) || c.descriptionEn.toLowerCase().includes(q.toLowerCase()))
         : (c.name.includes(q) || c.nickname.includes(q) || c.description.includes(q)));
       return matchCat && matchSearch;
     });
@@ -977,7 +978,7 @@ const CompanionsPage: React.FC = () => {
 
                     {/* Name */}
                     <h3 className="font-noto font-bold mb-0.5" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', color: '#C9A84C' }}>
-                      {companion.name}
+                      {isEn ? companion.nameEn : companion.name}
                     </h3>
                     <p className="font-kufi mb-3" style={{ fontSize: '0.88rem', color, lineHeight: 1.5 }}>
                       {isEn ? companion.nicknameEn : companion.nickname}

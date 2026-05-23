@@ -8,6 +8,7 @@ import { useLanguage } from '@/context/LanguageContext';
 
 interface ProphetName {
   name: string;
+  nameEn: string;
   meaning: string; meaningEn: string;
   reference: string;
   explanation: string; explanationEn: string;
@@ -25,35 +26,35 @@ const NAME_GROUPS: NameGroup[] = [
     color: '#C9A84C',
     names: [
       {
-        name: 'مُحَمَّد',
+        name: 'مُحَمَّد', nameEn: 'Muhammad',
         meaning: 'الذي يُحمد كثيراً', meaningEn: 'The Greatly Praised',
         reference: 'القرآن — آل عمران: 144',
         explanation: 'اسمه الشريف الذي سمّاه به جدُّه عبد المطلب وهو اسم نادر قبل مبعثه ﷺ، سمّاه به ليُحمد في السماء والأرض.',
         explanationEn: 'His noble name, given by his grandfather Abd al-Muttalib — a rare name before his mission ﷺ. He named him thus so he would be praised in the heavens and on earth.',
       },
       {
-        name: 'أَحْمَد',
+        name: 'أَحْمَد', nameEn: 'Ahmad',
         meaning: 'أكثر الحامدين لله', meaningEn: 'The Most Praising of Allah',
         reference: 'القرآن — الصف: 6',
         explanation: '﴿وَمُبَشِّرًا بِرَسُولٍ يَأْتِي مِن بَعْدِي اسْمُهُ أَحْمَدُ﴾ — بشّر به عيسى عليه السلام.',
         explanationEn: '﴿And giving glad tidings of a messenger to come after me whose name shall be Ahmad﴾ — foretold by Jesus (peace be upon him).',
       },
       {
-        name: 'الْمَاحِي',
+        name: 'الْمَاحِي', nameEn: 'Al-Mahi',
         meaning: 'الذي يمحو الله به الكفر', meaningEn: 'Through Whom Allah Erases Disbelief',
         reference: 'صحيح البخاري ومسلم',
         explanation: 'قال ﷺ: «أنا الماحي الذي يمحو الله بي الكفر» — محا الله به الشرك من جزيرة العرب.',
         explanationEn: 'He ﷺ said: "I am al-Mahi, through whom Allah erases disbelief" — by him, Allah eradicated polytheism from the Arabian Peninsula.',
       },
       {
-        name: 'الْحَاشِر',
+        name: 'الْحَاشِر', nameEn: 'Al-Hashir',
         meaning: 'الذي يُحشر الناس على قدمه', meaningEn: 'Before Whom People Are Gathered',
         reference: 'صحيح البخاري ومسلم',
         explanation: 'الناس يُحشرون في الآخرة على قدمه ﷺ، أي يكون أول من يُبعث يوم القيامة وفق بعض الروايات.',
         explanationEn: 'People will be gathered on the Day of Judgement following in his footsteps ﷺ — he will be the first to be raised according to some narrations.',
       },
       {
-        name: 'الْعَاقِب',
+        name: 'الْعَاقِب', nameEn: 'Al-Aqib',
         meaning: 'الذي ليس بعده نبي', meaningEn: 'The Last After Whom There Is No Prophet',
         reference: 'صحيح البخاري ومسلم',
         explanation: 'العاقب: الذي عقب الأنبياء جميعًا. خاتمهم وآخرهم ولا نبي بعده ﷺ.',
@@ -66,42 +67,42 @@ const NAME_GROUPS: NameGroup[] = [
     color: '#A8C8E8',
     names: [
       {
-        name: 'الشَّاهِد',
+        name: 'الشَّاهِد', nameEn: 'Al-Shahid',
         meaning: 'الشاهد على الأمم', meaningEn: 'Witness over the Nations',
         reference: 'القرآن — الأحزاب: 45',
         explanation: '﴿يَا أَيُّهَا النَّبِيُّ إِنَّا أَرْسَلْنَاكَ شَاهِدًا﴾ — شاهد على أمته يوم القيامة.',
         explanationEn: '﴿O Prophet, We have sent you as a witness﴾ — he will be a witness over his nation on the Day of Judgement.',
       },
       {
-        name: 'الْمُبَشِّر',
+        name: 'الْمُبَشِّر', nameEn: 'Al-Mubashshir',
         meaning: 'البشير بالجنة', meaningEn: 'The Bearer of Glad Tidings',
         reference: 'القرآن — الأحزاب: 45',
         explanation: '﴿وَمُبَشِّرًا وَنَذِيرًا﴾ — يبشّر المؤمنين بالجنة والرضوان والنصر.',
         explanationEn: '﴿And as a bearer of glad tidings and a warner﴾ — he gave the believers the good news of Paradise, Allah\'s pleasure, and victory.',
       },
       {
-        name: 'النَّذِير',
+        name: 'النَّذِير', nameEn: 'Al-Nadhir',
         meaning: 'المحذِّر من النار', meaningEn: 'The Warner',
         reference: 'القرآن — الأحزاب: 45',
         explanation: 'أُرسل ﷺ لينذر الناس من عذاب الله ويُحذّرهم من الشرك والمعاصي.',
         explanationEn: 'He was sent ﷺ to warn people of Allah\'s punishment and caution them against polytheism and sin.',
       },
       {
-        name: 'السِّرَاج الْمُنِير',
+        name: 'السِّرَاج الْمُنِير', nameEn: 'Al-Siraj al-Munir',
         meaning: 'النور الساطع المضيء', meaningEn: 'The Illuminating Lamp',
         reference: 'القرآن — الأحزاب: 46',
         explanation: '﴿وَسِرَاجًا مُّنِيرًا﴾ — نور يهدي الناس من الظلمات إلى النور.',
         explanationEn: '﴿And as an illuminating lamp﴾ — a light that guides people from darkness into light.',
       },
       {
-        name: 'الرَّحْمَة',
+        name: 'الرَّحْمَة', nameEn: 'Al-Rahmah',
         meaning: 'رحمة للعالمين', meaningEn: 'Mercy to All the Worlds',
         reference: 'القرآن — الأنبياء: 107',
         explanation: '﴿وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً لِّلْعَالَمِينَ﴾ — رحمته شملت الإنس والجن والبهائم.',
         explanationEn: '﴿And We have not sent you except as a mercy to the worlds﴾ — his mercy encompassed humans, jinn, and all creatures.',
       },
       {
-        name: 'الدَّاعِي',
+        name: 'الدَّاعِي', nameEn: "Al-Da'i",
         meaning: 'الداعي إلى الله', meaningEn: 'The Caller to Allah',
         reference: 'القرآن — الأحزاب: 46',
         explanation: '﴿وَدَاعِيًا إِلَى اللَّهِ بِإِذْنِهِ﴾ — دعا الناس جميعاً إلى توحيد الله.',
@@ -114,42 +115,42 @@ const NAME_GROUPS: NameGroup[] = [
     color: '#A8E8C8',
     names: [
       {
-        name: 'النَّبِيّ',
+        name: 'النَّبِيّ', nameEn: 'Al-Nabi',
         meaning: 'المُنبَأ بالوحي والمُنبِئ', meaningEn: 'The One Informed by Revelation',
         reference: 'القرآن — الأعراف: 157',
         explanation: 'النبي: المخبَر بالوحي من الله والمخبِر عنه، رُفعت درجته فوق درجة سائر الخلق.',
         explanationEn: 'The prophet: the one informed by revelation from Allah and conveying it — his rank was raised above all creation.',
       },
       {
-        name: 'الرَّسُول',
+        name: 'الرَّسُول', nameEn: 'Al-Rasul',
         meaning: 'المبعوث برسالة', meaningEn: 'The Messenger Sent with a Mission',
         reference: 'القرآن — آل عمران: 144',
         explanation: 'الرسول أعلى درجة من النبي — أُرسل بشريعة كاملة لجميع الثقلين الجن والإنس.',
         explanationEn: 'Messenger is a higher rank than prophet — he was sent with a complete Shari\'ah for all mankind and jinn.',
       },
       {
-        name: 'الْمُصْطَفَى',
+        name: 'الْمُصْطَفَى', nameEn: 'Al-Mustafa',
         meaning: 'المختار من خلق الله', meaningEn: 'The Chosen One from Allah\'s Creation',
         reference: 'صحيح مسلم — كتاب الفضائل',
         explanation: '«إن الله اصطفى كنانة من ولد إسماعيل، واصطفى قريشاً من كنانة، واصطفاني من قريش».',
         explanationEn: '"Allah chose Kinana from the children of Isma\'il, chose Quraysh from Kinana, and chose me from Quraysh."',
       },
       {
-        name: 'الْمُخْتَار',
+        name: 'الْمُخْتَار', nameEn: 'Al-Mukhtar',
         meaning: 'المنتخَب من بين الخلق', meaningEn: 'The Selected One from All Creation',
         reference: 'صحيح مسلم — كتاب الفضائل',
         explanation: 'اختاره الله تعالى من بين جميع خلقه ليكون خاتم رسله وأشرف أنبيائه.',
         explanationEn: 'Allah Most High selected him from among all of His creation to be the seal of His messengers and the noblest of His prophets.',
       },
       {
-        name: 'الْأَمِين',
+        name: 'الْأَمِين', nameEn: 'Al-Amin',
         meaning: 'الموثوق الصادق', meaningEn: 'The Trustworthy',
         reference: 'سيرة ابن هشام',
         explanation: 'لُقِّب بالأمين قبل البعثة لصدقه وأمانته، وكانت قريش تُودعه أماناتها.',
         explanationEn: 'He was titled al-Amin (The Trustworthy) before his mission for his truthfulness and reliability — Quraysh would entrust him with their valuables.',
       },
       {
-        name: 'الصَّادِق',
+        name: 'الصَّادِق', nameEn: 'Al-Sadiq',
         meaning: 'الصادق في كل أحواله', meaningEn: 'The Truthful in All His States',
         reference: 'صحيح البخاري — كتاب الأنبياء',
         explanation: 'لم يُعرف عنه ﷺ كذب قط لا قبل البعثة ولا بعدها، حتى شهد له أعداؤه بالصدق.',
@@ -162,56 +163,56 @@ const NAME_GROUPS: NameGroup[] = [
     color: '#34D399',
     names: [
       {
-        name: 'خَاتَم النَّبِيِّين',
+        name: 'خَاتَم النَّبِيِّين', nameEn: 'Khatam al-Nabiyyin',
         meaning: 'آخر الأنبياء والمرسلين', meaningEn: 'Seal of the Prophets and Messengers',
         reference: 'القرآن — الأحزاب: 40',
         explanation: '﴿وَخَاتَمَ النَّبِيِّينَ﴾ — قال ﷺ: «لا نبي بعدي». أُغلق باب النبوة به إلى يوم القيامة.',
         explanationEn: '﴿And the seal of the prophets﴾ — he ﷺ said: "There is no prophet after me." The door of prophethood was closed by him until the Day of Judgement.',
       },
       {
-        name: 'نَبِيّ الرَّحْمَة',
+        name: 'نَبِيّ الرَّحْمَة', nameEn: 'Nabi al-Rahmah',
         meaning: 'النبي المبعوث بالرحمة', meaningEn: 'The Prophet of Mercy',
         reference: 'صحيح مسلم',
         explanation: '«أنا نبي الرحمة، أنا نبي الملحمة» — رحمة في كل أمره حتى مع أعدائه.',
         explanationEn: '"I am the prophet of mercy, I am the prophet of the great battles" — merciful in all his affairs even with his enemies.',
       },
       {
-        name: 'نَبِيّ التَّوْبَة',
+        name: 'نَبِيّ التَّوْبَة', nameEn: 'Nabi al-Tawbah',
         meaning: 'الذي فُتحت بنبوته باب التوبة', meaningEn: 'The Prophet of Repentance',
         reference: 'صحيح مسلم',
         explanation: 'دعا الناس إلى التوبة وجعل أمته أمة يفتح الله لها باب التوبة دائماً.',
         explanationEn: 'He called people to repentance and made his nation one for whom Allah always keeps the door of repentance open.',
       },
       {
-        name: 'نَبِيّ الْمَلْحَمَة',
+        name: 'نَبِيّ الْمَلْحَمَة', nameEn: 'Nabi al-Malhamah',
         meaning: 'نبي الجهاد والنصر', meaningEn: 'The Prophet of the Great Battles',
         reference: 'صحيح مسلم',
         explanation: 'بُعث بالسيف رحمةً للخلق وأُذن له بالقتال لإقامة العدل ورفع الظلم.',
         explanationEn: 'He was sent with the sword as a mercy to creation, and was permitted to fight to establish justice and remove oppression.',
       },
       {
-        name: 'الشَّفِيع الْمُشَفَّع',
+        name: 'الشَّفِيع الْمُشَفَّع', nameEn: "Al-Shafi' al-Mushaffa'",
         meaning: 'صاحب الشفاعة العظمى', meaningEn: 'The Interceder Whose Intercession Is Accepted',
         reference: 'صحيح البخاري ومسلم',
         explanation: '«أنا سيد ولد آدم ولا فخر، وأنا أول من تنشق عنه الأرض، وأول شافع».',
         explanationEn: '"I am the master of the children of Adam and I say it not out of boasting; I am the first to rise from the earth and the first to intercede."',
       },
       {
-        name: 'الْحَبِيب',
+        name: 'الْحَبِيب', nameEn: 'Al-Habib',
         meaning: 'حبيب الله تعالى', meaningEn: "Allah's Beloved",
         reference: 'الترمذي — صحّحه الألباني',
         explanation: 'قال ﷺ: «إبراهيم خليل الله وأنا حبيب الله، وذلك فضل الله يؤتيه من يشاء».',
         explanationEn: 'He ﷺ said: "Ibrahim is the khalil (intimate friend) of Allah, and I am the habib (beloved) of Allah — that is the bounty of Allah which He gives to whom He wills."',
       },
       {
-        name: 'سَيِّد وَلَد آدَم',
+        name: 'سَيِّد وَلَد آدَم', nameEn: 'Sayyid Walad Adam',
         meaning: 'أشرف البشر جميعاً', meaningEn: 'Master of the Children of Adam',
         reference: 'صحيح مسلم — كتاب الفضائل',
         explanation: '«أنا سيد ولد آدم يوم القيامة ولا فخر» — تواضع ﷺ مع علو مكانته.',
         explanationEn: '"I am the master of the children of Adam on the Day of Judgement and I say it not out of boasting" — humility ﷺ despite his elevated station.',
       },
       {
-        name: 'إِمَام الْمُتَّقِين',
+        name: 'إِمَام الْمُتَّقِين', nameEn: 'Imam al-Muttaqin',
         meaning: 'قائد أهل التقوى', meaningEn: 'Leader of the God-fearing',
         reference: 'صحيح مسلم — كتاب المساجد',
         explanation: 'أمّ الأنبياء جميعاً في ليلة الإسراء والمعراج في بيت المقدس صلاةً واحدة.',
@@ -340,10 +341,9 @@ const NamesPage: React.FC = () => {
                   }}>
                   <div className="h-0.5" style={{ background: `linear-gradient(90deg, transparent, ${group.color}80, transparent)` }} />
                   <div className="p-4 text-center">
-                    {/* Arabic name always shown */}
                     <div className="font-noto font-bold mb-2"
                       style={{ fontSize: 'clamp(1.3rem, 3vw, 1.7rem)', color: group.color, textShadow: `0 0 20px ${group.color}50`, lineHeight: 1.4 }}>
-                      {nameItem.name}
+                      {isEn ? nameItem.nameEn : nameItem.name}
                     </div>
                     <p className="font-kufi text-white/60 mb-3" style={{ fontSize: '0.88rem', lineHeight: 1.6 }}>
                       {isEn ? nameItem.meaningEn : nameItem.meaning}

@@ -12,7 +12,9 @@ import { useLanguage } from '@/context/LanguageContext';
 interface Source {
   id: number;
   title: string;
+  titleEn?: string;
   author: string;
+  authorEn?: string;
   type: 'book' | 'hadith' | 'video' | 'tafsir';
   description: string;
   descriptionEn?: string;
@@ -29,7 +31,9 @@ const SOURCES: Source[] = [
     id: 1,
     type: 'book',
     title: 'السيرة النبوية',
+    titleEn: 'Al-Seerah al-Nabawiyyah',
     author: 'ابن هشام (ت 218هـ)',
+    authorEn: 'Ibn Hisham (d. 218 AH)',
     description: 'أشهر كتب السيرة النبوية وأوسعها، يُعدّ المرجع الأول لكل باحث في سيرة المصطفى ﷺ. اعتمد على رواية ابن إسحاق وهذّبها.',
     descriptionEn: 'The most famous and comprehensive Seerah book, considered the primary reference for any researcher into the life of the Prophet ﷺ. Based on Ibn Ishaq\'s narration, refined and edited.',
     badge: 'المرجع الأول',
@@ -39,7 +43,9 @@ const SOURCES: Source[] = [
     id: 2,
     type: 'book',
     title: 'الرحيق المختوم',
+    titleEn: 'The Sealed Nectar',
     author: 'الشيخ صفي الرحمن المباركفوري (ت 1427هـ)',
+    authorEn: 'Shaykh Safi al-Rahman al-Mubarakfuri (d. 1427 AH)',
     description: 'حاز جائزة رابطة العالم الإسلامي الأولى. سيرة شاملة ومتكاملة بأسلوب علمي سلس، يجمع بين التحقيق والتوثيق.',
     descriptionEn: 'Winner of the Muslim World League\'s first prize. A comprehensive Seerah with a flowing scholarly style, combining research and documentation.',
     badge: 'جائزة رابطة العالم الإسلامي',
@@ -49,7 +55,9 @@ const SOURCES: Source[] = [
     id: 3,
     type: 'book',
     title: 'البداية والنهاية — السيرة',
+    titleEn: 'Al-Bidaya wal-Nihaya — The Seerah',
     author: 'الحافظ ابن كثير (ت 774هـ)',
+    authorEn: 'Al-Hafiz Ibn Kathir (d. 774 AH)',
     description: 'موسوعة تاريخية إسلامية تضمّ السيرة النبوية بتفاصيلها الدقيقة مع تخريج الأحاديث والروايات.',
     descriptionEn: 'An Islamic historical encyclopedia containing the Seerah in precise detail with hadith verification and authentication.',
   },
@@ -57,7 +65,9 @@ const SOURCES: Source[] = [
     id: 4,
     type: 'book',
     title: 'فقه السيرة النبوية',
+    titleEn: 'Jurisprudence of the Prophetic Seerah',
     author: 'الشيخ محمد الغزالي (ت 1416هـ)',
+    authorEn: 'Shaykh Muhammad al-Ghazali (d. 1416 AH)',
     description: 'يستخرج من السيرة دروساً وفقهاً حيّاً للأمة الإسلامية المعاصرة، بأسلوب خطابي قوي.',
     descriptionEn: 'Derives living lessons and jurisprudence from the Seerah for the contemporary Muslim world, in a powerful rhetorical style.',
   },
@@ -65,7 +75,9 @@ const SOURCES: Source[] = [
     id: 5,
     type: 'book',
     title: 'فقه السيرة',
+    titleEn: "Fiqh al-Seerah",
     author: 'الشيخ محمد سعيد رمضان البوطي (ت 1434هـ)',
+    authorEn: "Shaykh Muhammad Sa'id Ramadan al-Buti (d. 1434 AH)",
     description: 'دراسة منهجية معمّقة لسيرة النبي ﷺ تجمع بين التحليل الفقهي والاستنباط العملي.',
     descriptionEn: 'An in-depth systematic study of the Prophet\'s ﷺ life combining jurisprudential analysis with practical derivations.',
   },
@@ -73,7 +85,9 @@ const SOURCES: Source[] = [
     id: 6,
     type: 'book',
     title: 'نور اليقين في سيرة سيد المرسلين',
+    titleEn: "Nur al-Yaqin: Life of the Chief of Messengers",
     author: 'الشيخ محمد الخضري بك (ت 1345هـ)',
+    authorEn: 'Shaykh Muhammad al-Khadari Bek (d. 1345 AH)',
     description: 'كتاب مختصر وجامع، اشتُهر في المدارس الدينية، وصيغ بأسلوب واضح مرتّب على الأحداث.',
     descriptionEn: 'A concise yet comprehensive work, popular in religious schools, written in a clear style arranged chronologically.',
   },
@@ -81,7 +95,9 @@ const SOURCES: Source[] = [
     id: 7,
     type: 'book',
     title: 'زاد المعاد في هدي خير العباد',
+    titleEn: "Zad al-Ma'ad: Provisions for the Hereafter",
     author: 'الإمام ابن قيّم الجوزية (ت 751هـ)',
+    authorEn: 'Imam Ibn Qayyim al-Jawziyyah (d. 751 AH)',
     description: 'يتناول هدي النبي ﷺ في عباداته وحياته اليومية وغزواته، ويستنبط الأحكام الفقهية منها.',
     descriptionEn: 'Covers the Prophet\'s ﷺ guidance in worship, daily life, and battles, deriving jurisprudential rulings from each aspect.',
     badge: 'الهدي النبوي',
@@ -91,7 +107,9 @@ const SOURCES: Source[] = [
     id: 8,
     type: 'book',
     title: 'الشمائل المحمدية',
+    titleEn: "Al-Shama'il al-Muhammadiyyah",
     author: 'الإمام الترمذي (ت 279هـ)',
+    authorEn: 'Imam al-Tirmidhi (d. 279 AH)',
     description: 'أبرز كتاب في وصف شمائل النبي ﷺ وخُلُقه وصفاته الجسدية والخُلُقية، بأسانيد محتجّ بها.',
     descriptionEn: 'The most notable book describing the Prophet\'s ﷺ characteristics, character, and physical and moral traits, with authenticated chains of narration.',
   },
@@ -99,7 +117,9 @@ const SOURCES: Source[] = [
     id: 9,
     type: 'book',
     title: 'دلائل النبوة',
+    titleEn: "Dala'il al-Nubuwwah",
     author: 'الإمام البيهقي (ت 458هـ)',
+    authorEn: 'Imam al-Bayhaqi (d. 458 AH)',
     description: 'يُعنى بجمع المعجزات والدلائل الكاشفة عن نبوة محمد ﷺ، مع التخريج والتوثيق العلمي.',
     descriptionEn: 'Dedicated to collecting the miracles and proofs manifesting the prophethood of Muhammad ﷺ, with scholarly verification.',
     badge: 'المعجزات والنبوة',
@@ -110,7 +130,9 @@ const SOURCES: Source[] = [
     id: 10,
     type: 'hadith',
     title: 'صحيح البخاري',
+    titleEn: 'Sahih al-Bukhari',
     author: 'الإمام البخاري (ت 256هـ)',
+    authorEn: 'Imam al-Bukhari (d. 256 AH)',
     description: 'أصحّ كتاب بعد القرآن الكريم. يضمّ أحاديث السيرة والمغازي والشمائل في أبواب مخصّصة.',
     descriptionEn: 'The most authentic book after the Holy Quran, containing Seerah narrations, battles, and prophetic characteristics in dedicated chapters.',
   },
@@ -118,7 +140,9 @@ const SOURCES: Source[] = [
     id: 11,
     type: 'hadith',
     title: 'صحيح مسلم',
+    titleEn: 'Sahih Muslim',
     author: 'الإمام مسلم (ت 261هـ)',
+    authorEn: 'Imam Muslim (d. 261 AH)',
     description: 'ثاني أصحّ كتب الحديث. يحتوي على أحاديث السيرة والفضائل النبوية مع منهجية عالية.',
     descriptionEn: 'The second most authentic hadith collection, containing Seerah narrations and prophetic virtues with rigorous methodology.',
   },
@@ -126,7 +150,9 @@ const SOURCES: Source[] = [
     id: 12,
     type: 'hadith',
     title: 'سنن أبي داود',
+    titleEn: 'Sunan Abu Dawud',
     author: 'الإمام أبو داود (ت 275هـ)',
+    authorEn: 'Imam Abu Dawud (d. 275 AH)',
     description: 'من كتب السنن الكبرى التي تضمّ أحاديث في الفقه والسيرة والغزوات.',
     descriptionEn: 'One of the major Sunan collections, containing hadith on jurisprudence, Seerah, and military campaigns.',
   },
@@ -134,7 +160,9 @@ const SOURCES: Source[] = [
     id: 13,
     type: 'hadith',
     title: 'مسند الإمام أحمد',
+    titleEn: 'Musnad Imam Ahmad',
     author: 'الإمام أحمد بن حنبل (ت 241هـ)',
+    authorEn: 'Imam Ahmad ibn Hanbal (d. 241 AH)',
     description: 'من أكبر كتب الحديث حجماً، يضمّ أربعين ألف حديث تقريباً ويُعدّ مرجعاً للأحاديث النبوية.',
     descriptionEn: 'One of the largest hadith collections by volume, containing approximately forty thousand narrations and considered a key prophetic hadith reference.',
   },
@@ -143,7 +171,9 @@ const SOURCES: Source[] = [
     id: 14,
     type: 'tafsir',
     title: 'تفسير ابن كثير',
+    titleEn: 'Tafsir Ibn Kathir',
     author: 'الحافظ ابن كثير (ت 774هـ)',
+    authorEn: 'Al-Hafiz Ibn Kathir (d. 774 AH)',
     description: 'أشهر كتب التفسير، يستشهد بأحاديث السيرة لتفسير الآيات المتعلقة بغزوات النبي ﷺ وأحداث حياته.',
     descriptionEn: 'The most famous Quranic commentary, drawing on Seerah narrations to explain verses related to the Prophet\'s ﷺ battles and life events.',
   },
@@ -151,7 +181,9 @@ const SOURCES: Source[] = [
     id: 15,
     type: 'tafsir',
     title: 'في ظلال القرآن',
+    titleEn: 'In the Shade of the Quran',
     author: 'الشيخ سيد قطب (ت 1966م)',
+    authorEn: 'Shaykh Sayyid Qutb (d. 1966 CE)',
     description: 'تفسير أدبي حركي يربط معاني الآيات بأحداث السيرة والواقع الإسلامي المعاصر.',
     descriptionEn: 'A literary and activist commentary connecting the meanings of verses to Seerah events and contemporary Islamic reality.',
   },
@@ -160,7 +192,9 @@ const SOURCES: Source[] = [
     id: 16,
     type: 'video',
     title: 'سلسلة السيرة النبوية الكاملة',
+    titleEn: 'Complete Prophetic Seerah Series',
     author: 'الشيخ أحمد السيد',
+    authorEn: 'Shaykh Ahmad al-Sayyid',
     description: 'سلسلة متكاملة تتناول السيرة النبوية الشريفة بأسلوب علمي منهجي محبّب، تضمّ دروساً مفصّلة عن حياة النبي ﷺ من المولد حتى الوفاة مع التحليل والاستنباط.',
     descriptionEn: 'A comprehensive series covering the Noble Prophetic Seerah with a beloved scholarly approach, featuring detailed lessons on the Prophet\'s ﷺ life from birth to passing, with analysis and derivations.',
     badge: 'قائمة التشغيل',
@@ -251,8 +285,8 @@ const SourceModal: React.FC<{ source: Source; onClose: () => void; isEn: boolean
           {/* زر إغلاق */}
           <button
             onClick={onClose}
-            className="absolute top-4 left-4 w-8 h-8 rounded-full flex items-center justify-center transition-colors"
-            style={{ background: `${color}15`, color }}
+            className="absolute top-4 w-8 h-8 rounded-full flex items-center justify-center transition-colors"
+            style={{ [isEn ? 'right' : 'left']: '1rem', background: `${color}15`, color }}
           >
             <X size={16} />
           </button>
@@ -269,8 +303,8 @@ const SourceModal: React.FC<{ source: Source; onClose: () => void; isEn: boolean
               {source.type === 'video'  && <Youtube size={20} />}
             </div>
             <div className="flex-1">
-              <h2 className="font-noto font-bold text-white text-xl leading-snug mb-1">{source.title}</h2>
-              <p className="font-kufi text-sm" style={{ color: `${color}` }}>{source.author}</p>
+              <h2 className="font-noto font-bold text-white text-xl leading-snug mb-1">{isEn && source.titleEn ? source.titleEn : source.title}</h2>
+              <p className="font-kufi text-sm" style={{ color: `${color}` }}>{isEn && source.authorEn ? source.authorEn : source.author}</p>
             </div>
           </div>
 
@@ -358,10 +392,10 @@ const SourceCard: React.FC<{ source: Source; index: number; isEn: boolean }> = (
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1">
             <h3 className="font-noto font-bold text-white" style={{ fontSize: '1rem', lineHeight: 1.5 }}>
-              {source.title}
+              {isEn && source.titleEn ? source.titleEn : source.title}
             </h3>
             <p className="font-kufi text-sm mt-0.5 font-medium" style={{ color: `${color}` }}>
-              {source.author}
+              {isEn && source.authorEn ? source.authorEn : source.author}
             </p>
           </div>
 

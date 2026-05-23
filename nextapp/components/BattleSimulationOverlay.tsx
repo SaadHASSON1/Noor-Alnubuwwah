@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Shield, Users } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface BattleSimulationProps {
   battle: any;
@@ -165,6 +166,7 @@ const WavingFlag: React.FC<{ color: string; label: string }> = ({ color, label }
    ══════════════════════════════════════════════════════════ */
 const BattleSimulationOverlay: React.FC<BattleSimulationProps> = ({ battle, onClose }) => {
   const [phase, setPhase] = useState<'clash' | 'content'>('clash');
+  const { isEn } = useLanguage();
 
   if (!battle) return null;
 
@@ -173,7 +175,7 @@ const BattleSimulationOverlay: React.FC<BattleSimulationProps> = ({ battle, onCl
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-sm rtl p-4"
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-sm p-4 ${isEn ? 'ltr' : 'rtl'}`}
     >
       <motion.div
         initial={{ scale: 0.88, y: 30 }}
@@ -196,7 +198,7 @@ const BattleSimulationOverlay: React.FC<BattleSimulationProps> = ({ battle, onCl
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 left-4 p-2 bg-dark-bg/60 hover:bg-red-500/25 text-white rounded-full transition-colors z-20"
+          className={`absolute top-4 p-2 bg-dark-bg/60 hover:bg-red-500/25 text-white rounded-full transition-colors z-20 ${isEn ? 'right-4' : 'left-4'}`}
         >
           <X className="w-5 h-5" />
         </button>

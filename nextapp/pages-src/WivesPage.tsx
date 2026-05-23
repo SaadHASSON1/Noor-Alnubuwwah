@@ -9,6 +9,7 @@ import { useLanguage } from '@/context/LanguageContext';
 interface Wife {
   number: number;
   name: string;
+  nameEn: string;
   nickname: string;
   nicknameEn: string;
   marriageYear: string;
@@ -32,7 +33,7 @@ interface Wife {
 const WIVES: Wife[] = [
   {
     number: 1,
-    name: 'خديجة بنت خويلد',
+    name: 'خديجة بنت خويلد', nameEn: 'Khadijah bint Khuwaylid',
     nickname: 'أم المؤمنين — الكبرى',
     nicknameEn: 'Mother of the Faithful — The Elder',
     marriageYear: '595 م — قبل البعثة بخمس عشرة سنة',
@@ -54,7 +55,7 @@ const WIVES: Wife[] = [
   },
   {
     number: 2,
-    name: 'سودة بنت زمعة',
+    name: 'سودة بنت زمعة', nameEn: "Sawdah bint Zam'ah",
     nickname: 'أم المؤمنين — الصابرة',
     nicknameEn: 'Mother of the Faithful — The Patient',
     marriageYear: '620 م — بعد وفاة خديجة',
@@ -76,7 +77,7 @@ const WIVES: Wife[] = [
   },
   {
     number: 3,
-    name: 'عائشة بنت أبي بكر',
+    name: 'عائشة بنت أبي بكر', nameEn: 'Aishah bint Abi Bakr',
     nickname: 'حميراء — أُمّ المؤمنين',
     nicknameEn: 'Ḥumayra — Mother of the Faithful',
     marriageYear: '623 م — السنة الثانية من الهجرة',
@@ -98,7 +99,7 @@ const WIVES: Wife[] = [
   },
   {
     number: 4,
-    name: 'حفصة بنت عمر',
+    name: 'حفصة بنت عمر', nameEn: "Hafsah bint 'Umar",
     nickname: 'حافظة القرآن',
     nicknameEn: 'Guardian of the Qurʾān',
     marriageYear: '625 م — السنة الثالثة من الهجرة',
@@ -120,7 +121,7 @@ const WIVES: Wife[] = [
   },
   {
     number: 5,
-    name: 'زينب بنت خزيمة',
+    name: 'زينب بنت خزيمة', nameEn: 'Zaynab bint Khuzaymah',
     nickname: 'أم المساكين',
     nicknameEn: 'Mother of the Poor',
     marriageYear: '625 م — السنة الرابعة من الهجرة',
@@ -142,7 +143,7 @@ const WIVES: Wife[] = [
   },
   {
     number: 6,
-    name: 'أم سلمة هند المخزومية',
+    name: 'أم سلمة هند المخزومية', nameEn: 'Umm Salamah Hind al-Makhzumiyyah',
     nickname: 'ذات العقل والرأي',
     nicknameEn: 'The Wise Counsellor',
     marriageYear: '626 م — السنة الرابعة من الهجرة',
@@ -164,7 +165,7 @@ const WIVES: Wife[] = [
   },
   {
     number: 7,
-    name: 'زينب بنت جحش',
+    name: 'زينب بنت جحش', nameEn: 'Zaynab bint Jahsh',
     nickname: 'من زوّجها الله من فوق سبع سماوات',
     nicknameEn: 'She Whom Allāh Married Above Seven Heavens',
     marriageYear: '627 م — السنة الخامسة من الهجرة',
@@ -186,7 +187,7 @@ const WIVES: Wife[] = [
   },
   {
     number: 8,
-    name: 'جويرية بنت الحارث',
+    name: 'جويرية بنت الحارث', nameEn: 'Juwayriyyah bint al-Harith',
     nickname: 'المباركة على قومها',
     nicknameEn: 'Blessed to Her People',
     marriageYear: '627 م — السنة الخامسة من الهجرة',
@@ -208,7 +209,7 @@ const WIVES: Wife[] = [
   },
   {
     number: 9,
-    name: 'أم حبيبة رملة بنت أبي سفيان',
+    name: 'أم حبيبة رملة بنت أبي سفيان', nameEn: 'Umm Habibah Ramlah bint Abi Sufyan',
     nickname: 'المهاجرة الصابرة',
     nicknameEn: 'The Patient Emigrant',
     marriageYear: '628 م — السنة السادسة من الهجرة',
@@ -230,7 +231,7 @@ const WIVES: Wife[] = [
   },
   {
     number: 10,
-    name: 'صفية بنت حيي',
+    name: 'صفية بنت حيي', nameEn: 'Safiyyah bint Huyayy',
     nickname: 'بنت النبيّين',
     nicknameEn: 'Daughter of the Prophets',
     marriageYear: '628 م — بعد خيبر',
@@ -252,7 +253,7 @@ const WIVES: Wife[] = [
   },
   {
     number: 11,
-    name: 'ميمونة بنت الحارث',
+    name: 'ميمونة بنت الحارث', nameEn: 'Maymunah bint al-Harith',
     nickname: 'آخر من تزوّجها النبي ﷺ',
     nicknameEn: 'The Last to Be Married by the Prophet ﷺ',
     marriageYear: '629 م — عمرة القضاء',
@@ -348,7 +349,7 @@ const WifeModal: React.FC<{ wife: Wife; onClose: () => void; isEn: boolean }> = 
 
           {/* Name */}
           <h2 className="font-kufi font-bold mb-1" style={{ fontSize: 'clamp(1.4rem, 4vw, 1.9rem)', color: 'white' }}>
-            {wife.name}
+            {isEn ? wife.nameEn : wife.name}
           </h2>
           <p className="font-noto mb-2" style={{ fontSize: '0.82rem', color: accent }}>
             {isEn ? wife.nicknameEn : wife.nickname}
@@ -555,7 +556,7 @@ const WivesPage: React.FC = () => {
                   {isEn ? `Wife #${ORDINALS_EN[wife.number - 1]}` : `الزوجة ${ORDINALS[wife.number - 1]}`}
                 </span>
                 <h3 className="font-kufi font-bold mb-0.5" style={{ color: 'white', fontSize: '1.05rem' }}>
-                  {wife.name}
+                  {isEn ? wife.nameEn : wife.name}
                 </h3>
                 <p className="font-noto text-xs mb-3" style={{ color: wife.accentColor, opacity: 0.9 }}>
                   {isEn ? wife.nicknameEn : wife.nickname}

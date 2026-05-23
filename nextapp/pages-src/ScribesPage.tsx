@@ -8,6 +8,7 @@ import { useLanguage } from '@/context/LanguageContext';
 
 interface Scribe {
   name: string;
+  nameEn: string;
   role: string;
   roleEn: string;
   achievement: string;
@@ -19,7 +20,7 @@ interface Scribe {
 
 const SCRIBES: Scribe[] = [
   {
-    name: 'زيد بن ثابت',
+    name: 'زيد بن ثابت', nameEn: 'Zayd ibn Thabit',
     role: 'كبير كتّاب الوحي',
     roleEn: 'Chief Scribe of Revelation',
     achievement: 'حفظ القرآن كاملاً وتولّى جمعه في عهد أبي بكر ثم نسخه في عهد عثمان. تعلّم السريانية والعبرية بأمر النبي ﷺ في سبعة عشر يوماً.',
@@ -29,7 +30,7 @@ const SCRIBES: Scribe[] = [
     notable: true,
   },
   {
-    name: 'أبو بكر الصديق',
+    name: 'أبو بكر الصديق', nameEn: 'Abu Bakr al-Siddiq',
     role: 'كاتب وحي وشريك نبوة',
     roleEn: 'Scribe of Revelation and Prophetic Companion',
     achievement: 'أقرب الناس إلى النبي ﷺ، كان يكتب بعض الوحي ورسائل النبي ﷺ.',
@@ -39,7 +40,7 @@ const SCRIBES: Scribe[] = [
     notable: false,
   },
   {
-    name: 'عمر بن الخطاب',
+    name: 'عمر بن الخطاب', nameEn: 'Umar ibn al-Khattab',
     role: 'كاتب وحي ورسائل',
     roleEn: 'Scribe of Revelation and Letters',
     achievement: 'كتب الوحي ورسائل النبي ﷺ، وكان له دور في جمع القرآن إذ هو أول من أشار بذلك.',
@@ -49,7 +50,7 @@ const SCRIBES: Scribe[] = [
     notable: false,
   },
   {
-    name: 'عثمان بن عفان',
+    name: 'عثمان بن عفان', nameEn: 'Uthman ibn Affan',
     role: 'كاتب وحي وجامع القرآن',
     roleEn: 'Scribe of Revelation and Compiler of the Qurʾān',
     achievement: 'كتب الوحي وأشرف لاحقاً على المصحف الإمام الذي أُرسلت نسخه لعواصم المسلمين.',
@@ -59,7 +60,7 @@ const SCRIBES: Scribe[] = [
     notable: false,
   },
   {
-    name: 'علي بن أبي طالب',
+    name: 'علي بن أبي طالب', nameEn: 'Ali ibn Abi Talib',
     role: 'كاتب وحي ورسائل',
     roleEn: 'Scribe of Revelation and Letters',
     achievement: 'من أوائل الكتّاب وأعلمهم بالقرآن، كتب صحيفة الصلح في الحديبية.',
@@ -69,7 +70,7 @@ const SCRIBES: Scribe[] = [
     notable: false,
   },
   {
-    name: 'أُبيّ بن كعب',
+    name: 'أُبيّ بن كعب', nameEn: "Ubayy ibn Ka'b",
     role: 'كاتب وحي وحافظ',
     roleEn: 'Scribe of Revelation and Ḥāfiẓ',
     achievement: 'من أعلم الصحابة بالقرآن وأجودهم في القراءة. قال عنه النبي ﷺ: «أقرأ أمتي أُبيّ».',
@@ -79,7 +80,7 @@ const SCRIBES: Scribe[] = [
     notable: false,
   },
   {
-    name: 'معاوية بن أبي سفيان',
+    name: 'معاوية بن أبي سفيان', nameEn: 'Muawiyah ibn Abi Sufyan',
     role: 'كاتب وحي',
     roleEn: 'Scribe of Revelation',
     achievement: 'من أكثر الصحابة كتابةً للوحي، قال له النبي ﷺ: «اللهم علّمه الكتابة والحساب».',
@@ -89,7 +90,7 @@ const SCRIBES: Scribe[] = [
     notable: false,
   },
   {
-    name: 'عبد الله بن مسعود',
+    name: 'عبد الله بن مسعود', nameEn: "Abdullah ibn Mas'ud",
     role: 'كاتب وحافظ قرآن',
     roleEn: 'Scribe and Qurʾānic Ḥāfiẓ',
     achievement: 'أول من جهر بقراءة القرآن في مكة. قال ﷺ: «من أراد أن يقرأ القرآن غضاً فليقرأه على ابن أم عبد».',
@@ -99,7 +100,7 @@ const SCRIBES: Scribe[] = [
     notable: false,
   },
   {
-    name: 'الزبير بن العوام',
+    name: 'الزبير بن العوام', nameEn: 'Al-Zubayr ibn al-Awwam',
     role: 'كاتب وحي ورسائل',
     roleEn: 'Scribe of Revelation and Letters',
     achievement: 'ابن عمة النبي ﷺ وحواريّه، كتب بعض المراسلات النبوية.',
@@ -109,7 +110,7 @@ const SCRIBES: Scribe[] = [
     notable: false,
   },
   {
-    name: 'خالد بن سعيد بن العاص',
+    name: 'خالد بن سعيد بن العاص', nameEn: "Khalid ibn Sa'id ibn al-'As",
     role: 'كاتب وحي مبكر',
     roleEn: 'Early Scribe of Revelation',
     achievement: 'من أوائل من كتبوا الوحي، أسلم قبل كثيرين وكان يكتب للنبي ﷺ في فجر الإسلام.',
@@ -119,7 +120,7 @@ const SCRIBES: Scribe[] = [
     notable: false,
   },
   {
-    name: 'أبان بن سعيد بن العاص',
+    name: 'أبان بن سعيد بن العاص', nameEn: "Aban ibn Sa'id ibn al-'As",
     role: 'كاتب وحي',
     roleEn: 'Scribe of Revelation',
     achievement: 'أخو خالد بن سعيد، كتب للنبي ﷺ وكان من الكتّاب النشطين.',
@@ -129,7 +130,7 @@ const SCRIBES: Scribe[] = [
     notable: false,
   },
   {
-    name: 'حنظلة الأسيدي',
+    name: 'حنظلة الأسيدي', nameEn: 'Hanzalah al-Usayyidi',
     role: 'كاتب وحي وشهيد',
     roleEn: 'Scribe of Revelation and Martyr',
     achievement: '«غسيل الملائكة» — استُشهد في أُحد وقد خرج من عرسه مباشرةً إلى المعركة فغسّلته الملائكة.',
@@ -139,7 +140,7 @@ const SCRIBES: Scribe[] = [
     notable: false,
   },
   {
-    name: 'العلاء بن الحضرمي',
+    name: 'العلاء بن الحضرمي', nameEn: "Al-'Ala' ibn al-Hadrami",
     role: 'كاتب ورسول',
     roleEn: 'Scribe and Emissary',
     achievement: 'بعثه النبي ﷺ والياً على البحرين وكاتباً لرسائله السياسية.',
@@ -149,7 +150,7 @@ const SCRIBES: Scribe[] = [
     notable: false,
   },
   {
-    name: 'شرحبيل بن حسنة',
+    name: 'شرحبيل بن حسنة', nameEn: 'Shurahbil ibn Hasanah',
     role: 'كاتب رسائل وقائد',
     roleEn: 'Scribe of Letters and Commander',
     achievement: 'كتب رسائل النبي ﷺ إلى الملوك والأمراء، وأبلى بلاءً حسناً في فتوح الشام.',
@@ -159,7 +160,7 @@ const SCRIBES: Scribe[] = [
     notable: false,
   },
   {
-    name: 'عبد الله بن رواحة',
+    name: 'عبد الله بن رواحة', nameEn: 'Abdullah ibn Rawahah',
     role: 'كاتب وشاعر النبي ﷺ',
     roleEn: 'Scribe and Poet of the Prophet ﷺ',
     achievement: 'شاعر النبي ﷺ المدافع عنه بلسانه وسيفه، استُشهد في غزوة مؤتة أميراً.',
@@ -169,7 +170,7 @@ const SCRIBES: Scribe[] = [
     notable: false,
   },
   {
-    name: 'خالد بن الوليد',
+    name: 'خالد بن الوليد', nameEn: 'Khalid ibn al-Walid',
     role: 'كاتب ورسائل',
     roleEn: 'Scribe and Correspondence',
     achievement: 'سيف الله المسلول، كتب بعض رسائل النبي ﷺ العسكرية والدبلوماسية.',
@@ -179,7 +180,7 @@ const SCRIBES: Scribe[] = [
     notable: false,
   },
   {
-    name: 'عمرو بن العاص',
+    name: 'عمرو بن العاص', nameEn: "Amr ibn al-'As",
     role: 'كاتب ودبلوماسي',
     roleEn: 'Scribe and Diplomat',
     achievement: 'كتب رسائل النبي ﷺ للملوك وقاد السفارات الدبلوماسية، فاتح مصر لاحقاً.',
@@ -189,7 +190,7 @@ const SCRIBES: Scribe[] = [
     notable: false,
   },
   {
-    name: 'المغيرة بن شعبة',
+    name: 'المغيرة بن شعبة', nameEn: "Al-Mughirah ibn Shu'bah",
     role: 'كاتب وسفير',
     roleEn: 'Scribe and Ambassador',
     achievement: 'كتب بعض رسائل النبي ﷺ وعُرف بالدهاء السياسي والفراسة.',
@@ -199,7 +200,7 @@ const SCRIBES: Scribe[] = [
     notable: false,
   },
   {
-    name: 'معاذ بن جبل',
+    name: 'معاذ بن جبل', nameEn: 'Muadh ibn Jabal',
     role: 'كاتب وفقيه الأمة',
     roleEn: 'Scribe and Jurist of the Nation',
     achievement: 'قال ﷺ: «أعلم أمتي بالحلال والحرام معاذ». بعثه النبي ﷺ قاضياً ومعلماً لليمن.',
@@ -209,7 +210,7 @@ const SCRIBES: Scribe[] = [
     notable: false,
   },
   {
-    name: 'جهيم بن الصلت',
+    name: 'جهيم بن الصلت', nameEn: 'Juhaym ibn al-Salt',
     role: 'كاتب رسائل',
     roleEn: 'Scribe of Letters',
     achievement: 'كتب للنبي ﷺ رسائله وكان من الكتّاب المهرة في عصره.',
@@ -219,7 +220,7 @@ const SCRIBES: Scribe[] = [
     notable: false,
   },
   {
-    name: 'بريدة بن الحصيب',
+    name: 'بريدة بن الحصيب', nameEn: 'Buraydah ibn al-Husayb',
     role: 'كاتب وقائد سرية',
     roleEn: 'Scribe and Expedition Commander',
     achievement: 'كتب للنبي ﷺ وقاد سرايا وكان من الصحابة الأجلاء.',
@@ -229,7 +230,7 @@ const SCRIBES: Scribe[] = [
     notable: false,
   },
   {
-    name: 'الحصين بن النمير',
+    name: 'الحصين بن النمير', nameEn: 'Al-Husayn ibn al-Numayr',
     role: 'كاتب رسائل',
     roleEn: 'Scribe of Letters',
     achievement: 'كتب بعض الرسائل النبوية الرسمية إلى القبائل والملوك.',
@@ -239,7 +240,7 @@ const SCRIBES: Scribe[] = [
     notable: false,
   },
   {
-    name: 'عبد الله بن سعد بن أبي سرح',
+    name: 'عبد الله بن سعد بن أبي سرح', nameEn: "Abdullah ibn Sa'd ibn Abi Sarh",
     role: 'كاتب وحي (ثم ارتدّ ثم تاب)',
     roleEn: 'Scribe of Revelation (then apostatized, then repented)',
     achievement: 'كان يكتب الوحي ثم ادّعى تحريفه وارتدّ، ثم أسلم يوم الفتح وعفا عنه النبي ﷺ وحسن إسلامه.',
@@ -497,7 +498,7 @@ const ScribesPage: React.FC = () => {
                           lineHeight: 1.4,
                         }}
                       >
-                        {scribe.name}
+                        {isEn ? scribe.nameEn : scribe.name}
                       </h3>
                       {scribe.notable && (
                         <span
