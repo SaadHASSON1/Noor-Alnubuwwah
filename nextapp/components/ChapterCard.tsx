@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { ChevronLeft } from 'lucide-react';
 import type { ChapterMeta } from '@/data/seerah';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface Props {
   chapter: ChapterMeta;
@@ -13,6 +14,7 @@ interface Props {
 
 const ChapterCard: React.FC<Props> = ({ chapter, eventCount, index }) => {
   const router = useRouter();
+  const { isEn } = useLanguage();
   const isLight = chapter.name === 'الرحيل';
   const textBase  = isLight ? 'text-stone-800' : 'text-white';
   const textMuted = isLight ? 'text-stone-600' : 'text-white/60';
@@ -42,7 +44,7 @@ const ChapterCard: React.FC<Props> = ({ chapter, eventCount, index }) => {
         }}
       />
 
-      {/* Background year watermark */}
+      {/* Background watermark — always Arabic name for aesthetics */}
       <div
         className="absolute inset-0 flex items-end justify-start overflow-hidden pointer-events-none select-none"
         aria-hidden="true"
@@ -62,8 +64,12 @@ const ChapterCard: React.FC<Props> = ({ chapter, eventCount, index }) => {
       />
 
       {/* Content */}
-      <div className="relative z-10 p-7 flex flex-col h-full" style={{ minHeight: 240 }}>
-        {/* Chapter number badge */}
+      <div
+        className="relative z-10 p-7 flex flex-col h-full"
+        style={{ minHeight: 240 }}
+        dir={isEn ? 'ltr' : 'rtl'}
+      >
+        {/* Event count badge + years */}
         <div className="flex items-center justify-between mb-4">
           <span
             className="font-kufi text-sm tracking-widest px-3 py-1.5 rounded-full"
@@ -73,7 +79,7 @@ const ChapterCard: React.FC<Props> = ({ chapter, eventCount, index }) => {
               border: `1px solid ${chapter.accentColor}35`,
             }}
           >
-            {eventCount} أحداث
+            {isEn ? `${eventCount} events` : `${eventCount} أحداث`}
           </span>
           <span
             className="font-noto text-sm opacity-75"
@@ -88,7 +94,7 @@ const ChapterCard: React.FC<Props> = ({ chapter, eventCount, index }) => {
           className={`font-noto font-bold mb-2 ${textBase}`}
           style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.1 }}
         >
-          {chapter.name}
+          {isEn ? chapter.nameEn : chapter.name}
         </h2>
 
         {/* Subtitle */}
@@ -96,7 +102,7 @@ const ChapterCard: React.FC<Props> = ({ chapter, eventCount, index }) => {
           className="font-kufi text-base mb-4 tracking-wide"
           style={{ color: chapter.accentColor, opacity: 0.95 }}
         >
-          {chapter.subtitle}
+          {isEn ? chapter.subtitleEn : chapter.subtitle}
         </p>
 
         {/* Divider */}
@@ -110,19 +116,20 @@ const ChapterCard: React.FC<Props> = ({ chapter, eventCount, index }) => {
           className={`text-sm leading-relaxed flex-1 ${textMuted}`}
           style={{ lineHeight: 2, opacity: 0.9 }}
         >
-          {chapter.description}
+          {isEn ? chapter.descriptionEn : chapter.description}
         </p>
 
-        {/* CTA arrow */}
-        <div className="flex items-center justify-end mt-5">
+        {/* CTA */}
+        <div className={`flex items-center mt-5 ${isEn ? 'justify-start' : 'justify-end'}`}>
           <motion.div
             className="flex items-center gap-2 text-sm font-kufi"
             style={{ color: chapter.accentColor }}
             initial={{ x: 0 }}
-            whileHover={{ x: -4 }}
+            whileHover={{ x: isEn ? 4 : -4 }}
           >
-            <span className="opacity-85">استعرض الفصل</span>
-            <ChevronLeft size={16} strokeWidth={2} />
+            {isEn && <ChevronLeft size={16} strokeWidth={2} className="rotate-180" />}
+            <span className="opacity-85">{isEn ? 'Explore Chapter' : 'استعرض الفصل'}</span>
+            {!isEn && <ChevronLeft size={16} strokeWidth={2} />}
           </motion.div>
         </div>
       </div>

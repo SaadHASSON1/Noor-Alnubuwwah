@@ -47,9 +47,9 @@ export interface SeerahEvent {
 }
 
 export interface ChapterMeta {
-  name: string;
-  subtitle: string;
-  description: string;
+  name: string;       nameEn: string;
+  subtitle: string;   subtitleEn: string;
+  description: string; descriptionEn: string;
   bg: string;
   accentColor: string;
   gradientFrom: string;
@@ -61,9 +61,10 @@ export const CHAPTERS = ['الفجر', 'النور', 'الابتلاء', 'اله
 
 export const CHAPTER_META: Record<string, ChapterMeta> = {
   'الفجر': {
-    name: 'الفجر',
-    subtitle: 'البداية والنشأة',
+    name: 'الفجر',           nameEn: 'The Dawn',
+    subtitle: 'البداية والنشأة', subtitleEn: 'Beginnings & Upbringing',
     description: 'من مولده ﷺ في مكة المكرمة حتى بواكير الرسالة — طفولة رعاها الله، وشباب زكّاه الصدق والأمانة',
+    descriptionEn: 'From his ﷺ birth in Makkah to the dawn of prophethood — a childhood nurtured by Allah, a youth defined by truthfulness and trustworthiness',
     bg: '#020912',
     accentColor: '#C9A84C',
     gradientFrom: '#020912',
@@ -71,9 +72,10 @@ export const CHAPTER_META: Record<string, ChapterMeta> = {
     years: '571 — 610 م',
   },
   'النور': {
-    name: 'النور',
-    subtitle: 'فجر الوحي',
+    name: 'النور',       nameEn: 'The Light',
+    subtitle: 'فجر الوحي', subtitleEn: 'Dawn of Revelation',
     description: 'نزول القرآن الكريم في غار حراء، وانطلاق الدعوة سراً ثم جهراً في مكة المكرمة',
+    descriptionEn: "The descent of the Quran in the Cave of Hira', and the call to Islam launched first in secret then openly in Makkah",
     bg: '#090a28',
     accentColor: '#A8C8E8',
     gradientFrom: '#090a28',
@@ -81,9 +83,10 @@ export const CHAPTER_META: Record<string, ChapterMeta> = {
     years: '610 — 615 م',
   },
   'الابتلاء': {
-    name: 'الابتلاء',
-    subtitle: 'الصبر والثبات',
+    name: 'الابتلاء',       nameEn: 'The Trial',
+    subtitle: 'الصبر والثبات', subtitleEn: 'Patience & Steadfastness',
     description: 'سنوات الأذى والحصار وعام الحزن، ثم الإسراء والمعراج كبشرى إلهية للمحبوب المبتلى',
+    descriptionEn: 'Years of persecution, the siege, and the Year of Grief — then the Night Journey and Ascension as a divine gift to the beloved Prophet ﷺ',
     bg: '#120820',
     accentColor: '#E8A8A8',
     gradientFrom: '#120820',
@@ -91,9 +94,10 @@ export const CHAPTER_META: Record<string, ChapterMeta> = {
     years: '615 — 622 م',
   },
   'الهجرة': {
-    name: 'الهجرة',
-    subtitle: 'بداية دولة الإسلام',
+    name: 'الهجرة',             nameEn: 'The Migration',
+    subtitle: 'بداية دولة الإسلام', subtitleEn: 'Birth of the Islamic State',
     description: 'رحلة التحوّل الكبرى من مكة إلى المدينة، وتأسيس المجتمع الإسلامي وبناء المسجد النبوي',
+    descriptionEn: "The great turning point from Makkah to Madinah — founding the Islamic society and building the Prophet's Mosque",
     bg: '#150f04',
     accentColor: '#A8E8C8',
     gradientFrom: '#150f04',
@@ -101,9 +105,10 @@ export const CHAPTER_META: Record<string, ChapterMeta> = {
     years: '622 م / 1 هـ',
   },
   'المعارك': {
-    name: 'المعارك',
-    subtitle: 'الدفاع والكرامة',
+    name: 'المعارك',       nameEn: 'The Battles',
+    subtitle: 'الدفاع والكرامة', subtitleEn: 'Defense & Dignity',
     description: 'غزوات بدر وأحد والخندق — ثلاثة دروس في النصر والابتلاء والصمود في وجه الأحزاب',
+    descriptionEn: 'The battles of Badr, Uhud, and al-Khandaq — three lessons in victory, trial, and steadfastness against the confederate forces',
     bg: '#190202',
     accentColor: '#E8C8A8',
     gradientFrom: '#190202',
@@ -111,9 +116,10 @@ export const CHAPTER_META: Record<string, ChapterMeta> = {
     years: '624 — 627 م',
   },
   'الفتح': {
-    name: 'الفتح',
-    subtitle: 'العفو والانتصار',
+    name: 'الفتح',         nameEn: 'The Conquest',
+    subtitle: 'العفو والانتصار', subtitleEn: 'Forgiveness & Victory',
     description: 'صلح الحديبية الذي أخفى فتحاً عظيماً، ثم دخول مكة بالرحمة لا بالسيف، وإعلان العفو العام',
+    descriptionEn: 'The Treaty of Hudaybiyyah that concealed a great opening, then entering Makkah with mercy not the sword, and declaring a general amnesty',
     bg: '#1e1600',
     accentColor: '#C8E8A8',
     gradientFrom: '#1e1600',
@@ -121,9 +127,10 @@ export const CHAPTER_META: Record<string, ChapterMeta> = {
     years: '628 — 630 م',
   },
   'الوداع': {
-    name: 'الوداع',
-    subtitle: 'اكتمال الرسالة',
+    name: 'الوداع',         nameEn: 'The Farewell',
+    subtitle: 'اكتمال الرسالة', subtitleEn: 'Completion of the Message',
     description: 'حجة الوداع على جبل عرفات أمام مئة ألف صحابي، وإتمام الدين الحنيف بآخر آية نزلت',
+    descriptionEn: 'The Farewell Pilgrimage at Mount Arafat before a hundred thousand companions, and the completion of the faith with the last revealed verse',
     bg: '#3d2d10',
     accentColor: '#D4B896',
     gradientFrom: '#3d2d10',
@@ -131,9 +138,10 @@ export const CHAPTER_META: Record<string, ChapterMeta> = {
     years: '632 م / 10 هـ',
   },
   'الرحيل': {
-    name: 'الرحيل',
-    subtitle: 'الانتقال إلى الرفيق الأعلى',
+    name: 'الرحيل',                         nameEn: 'The Departure',
+    subtitle: 'الانتقال إلى الرفيق الأعلى', subtitleEn: 'Ascending to the Highest Companion',
     description: 'لحظة الفراق الأعظم — يوم انتقل خاتم الأنبياء ﷺ تاركاً أمة ورسالة خالدة إلى يوم الدين',
+    descriptionEn: 'The greatest moment of farewell — the day the Seal of Prophets ﷺ departed, leaving behind a nation and an eternal message until the Day of Judgment',
     bg: '#c4a882',
     accentColor: '#8B6914',
     gradientFrom: '#c4a882',
