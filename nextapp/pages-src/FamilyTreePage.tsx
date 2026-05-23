@@ -7,6 +7,7 @@ import {
   Baby, Crown,
 } from 'lucide-react';
 import ShareButton from '@/components/ShareButton';
+import { useLanguage } from '@/context/LanguageContext';
 
 /* ══════════════════════════════════════════════
    TYPES
@@ -15,7 +16,9 @@ interface Person {
   name: string;
   title?: string;
   relation: string;
+  relationEn?: string;
   info?: string;
+  infoEn?: string;
   color?: string;
 }
 
@@ -48,43 +51,43 @@ const LINEAGE_ORDERED = [
 ];
 
 const PARENTS: Person[] = [
-  { name: 'عبد الله بن عبد المطلب', relation: 'الأب', info: 'توفي قبل ولادة النبي ﷺ في رحلة تجارية إلى المدينة وعمره خمس وعشرون سنة', color: '#A8C8E8' },
-  { name: 'آمنة بنت وهب',           relation: 'الأم', info: 'من بني زهرة من قريش، توفيت في الأبواء وعمر النبي ﷺ ست سنوات', color: '#E8A8C8' },
+  { name: 'عبد الله بن عبد المطلب', relation: 'الأب', relationEn: 'Father', info: 'توفي قبل ولادة النبي ﷺ في رحلة تجارية إلى المدينة وعمره خمس وعشرون سنة', infoEn: 'Died before the birth of the Prophet ﷺ on a trade journey to Medina at the age of twenty-five.', color: '#A8C8E8' },
+  { name: 'آمنة بنت وهب',           relation: 'الأم', relationEn: 'Mother', info: 'من بني زهرة من قريش، توفيت في الأبواء وعمر النبي ﷺ ست سنوات', infoEn: 'From the Banu Zuhra branch of Quraysh, she passed away in al-Abwa when the Prophet ﷺ was six years old.', color: '#E8A8C8' },
 ];
 const GRANDFATHERS: Person[] = [
-  { name: 'عبد المطلب بن هاشم',        relation: 'الجد من أب',    info: 'كافل النبي ﷺ بعد وفاة أمه، وكان سيد قريش وحافر بئر زمزم', color: '#C9A84C' },
-  { name: 'وهب بن عبد مناف',           relation: 'الجد من أم',    info: 'سيد بني زهرة في عصره', color: '#C9A84C' },
-  { name: 'حليمة السعدية',             relation: 'المرضعة',       info: 'من بني سعد بن بكر من هوازن، أرضعته في البادية سنواتٍ وأصابتهم بركته', color: '#A8E8C8' },
-  { name: 'ثويبة الأسلمية',            relation: 'أول من أرضعته', info: 'جارية أبي لهب، أرضعته أياماً قبل حليمة وأرضعت قبله حمزة بن عبد المطلب', color: '#A8E8C8' },
+  { name: 'عبد المطلب بن هاشم',  relation: 'الجد من أب',    relationEn: 'Paternal Grandfather',  info: 'كافل النبي ﷺ بعد وفاة أمه، وكان سيد قريش وحافر بئر زمزم', infoEn: 'Guardian of the Prophet ﷺ after his mother\'s death; he was the chieftain of Quraysh and the one who excavated the Well of Zamzam.', color: '#C9A84C' },
+  { name: 'وهب بن عبد مناف',      relation: 'الجد من أم',    relationEn: 'Maternal Grandfather',  info: 'سيد بني زهرة في عصره', infoEn: 'Chieftain of Banu Zuhra in his era.', color: '#C9A84C' },
+  { name: 'حليمة السعدية',        relation: 'المرضعة',       relationEn: 'Foster Mother',          info: 'من بني سعد بن بكر من هوازن، أرضعته في البادية سنواتٍ وأصابتهم بركته', infoEn: 'From Banu Sa\'d ibn Bakr of Hawazin, she nursed him in the desert for years and her household was blessed by his presence.', color: '#A8E8C8' },
+  { name: 'ثويبة الأسلمية',       relation: 'أول من أرضعته', relationEn: 'First Wet Nurse',        info: 'جارية أبي لهب، أرضعته أياماً قبل حليمة وأرضعت قبله حمزة بن عبد المطلب', infoEn: 'A servant of Abu Lahab; she nursed him for a few days before Halima and had previously nursed Hamza ibn Abd al-Muttalib.', color: '#A8E8C8' },
 ];
 const UNCLES: Person[] = [
-  { name: 'حمزة بن عبد المطلب',       relation: 'العم',          info: 'أسد الله وأسد رسوله — سيد الشهداء في أحد', color: '#E8C8A8' },
-  { name: 'العباس بن عبد المطلب',     relation: 'العم',          info: 'جدّ الخلفاء العباسيين — أسلم قبيل فتح مكة', color: '#E8C8A8' },
-  { name: 'أبو طالب بن عبد المطلب',   relation: 'العم الحامي',   info: 'كافله بعد جده ودافع عنه طوال حياته ولم يُسلم', color: '#C8A8E8' },
-  { name: 'أبو لهب عبد العزى',        relation: 'العم العدو',    info: 'أشد أعداء النبي ﷺ من أهله، نزلت فيه سورة المسد', color: '#E8A8A8' },
+  { name: 'حمزة بن عبد المطلب',     relation: 'العم',          relationEn: 'Uncle',              info: 'أسد الله وأسد رسوله — سيد الشهداء في أحد', infoEn: 'Lion of Allah and Lion of His Messenger — the Master of Martyrs at the Battle of Uhud.', color: '#E8C8A8' },
+  { name: 'العباس بن عبد المطلب',   relation: 'العم',          relationEn: 'Uncle',              info: 'جدّ الخلفاء العباسيين — أسلم قبيل فتح مكة', infoEn: 'Ancestor of the Abbasid Caliphs — he embraced Islam shortly before the Conquest of Mecca.', color: '#E8C8A8' },
+  { name: 'أبو طالب بن عبد المطلب', relation: 'العم الحامي',   relationEn: 'Protecting Uncle',   info: 'كافله بعد جده ودافع عنه طوال حياته ولم يُسلم', infoEn: 'His guardian after his grandfather; he defended him throughout his life but did not embrace Islam.', color: '#C8A8E8' },
+  { name: 'أبو لهب عبد العزى',      relation: 'العم العدو',    relationEn: 'Hostile Uncle',       info: 'أشد أعداء النبي ﷺ من أهله، نزلت فيه سورة المسد', infoEn: 'The most hostile of the Prophet\'s ﷺ relatives; Surah Al-Masad was revealed about him.', color: '#E8A8A8' },
 ];
 const WIVES: Person[] = [
-  { name: 'خديجة بنت خويلد',           relation: 'الزوجة الأولى',  info: 'أول المؤمنين، عاشا معاً 25 عاماً، أم أكثر أولاده', color: '#FFD700' },
-  { name: 'سودة بنت زمعة',             relation: 'الزوجة الثانية', info: 'تزوجها بعد وفاة خديجة في مكة', color: '#C9A84C' },
-  { name: 'عائشة بنت أبي بكر',         relation: 'أم المؤمنين',    info: 'حبيبته وأعلم نساء الأمة، روت آلاف الأحاديث', color: '#FFD700' },
-  { name: 'حفصة بنت عمر',              relation: 'أم المؤمنين',    info: 'بنت عمر بن الخطاب، حافظة القرآن', color: '#C9A84C' },
-  { name: 'زينب بنت خزيمة',            relation: 'أم المؤمنين',    info: 'لُقّبت أم المساكين لكثرة إطعامها الفقراء', color: '#C9A84C' },
-  { name: 'أم سلمة هند بنت أبي أمية', relation: 'أم المؤمنين',    info: 'من أكثر أمهات المؤمنين علماً وفقهاً', color: '#C9A84C' },
-  { name: 'زينب بنت جحش',              relation: 'أم المؤمنين',    info: 'تزوجها بأمر الله في سورة الأحزاب', color: '#C9A84C' },
-  { name: 'جويرية بنت الحارث',         relation: 'أم المؤمنين',    info: 'بنت زعيم بني المصطلق، تزوّجها فأعتق المسلمون أسراهم', color: '#C9A84C' },
-  { name: 'أم حبيبة رملة بنت أبي سفيان', relation: 'أم المؤمنين', info: 'هاجرت إلى الحبشة وتزوجها النبي ﷺ وهي هناك', color: '#C9A84C' },
-  { name: 'صفية بنت حيي',              relation: 'أم المؤمنين',    info: 'من بني النضير، أسلمت بعد خيبر وتزوّجها النبي ﷺ', color: '#C9A84C' },
-  { name: 'ميمونة بنت الحارث',         relation: 'أم المؤمنين',    info: 'آخر من تزوجها النبي ﷺ في عمرة القضاء', color: '#C9A84C' },
-  { name: 'مارية القبطية',             relation: 'أم إبراهيم',     info: 'أهداها المقوقس، أم ولده إبراهيم الذي مات طفلاً', color: '#A8C8E8' },
+  { name: 'خديجة بنت خويلد',              relation: 'الزوجة الأولى',  relationEn: 'First Wife',              info: 'أول المؤمنين، عاشا معاً 25 عاماً، أم أكثر أولاده', infoEn: 'The first believer; they lived together for 25 years and she is the mother of most of his children.', color: '#FFD700' },
+  { name: 'سودة بنت زمعة',                relation: 'الزوجة الثانية', relationEn: 'Second Wife',             info: 'تزوجها بعد وفاة خديجة في مكة', infoEn: 'He married her after the death of Khadijah while still in Mecca.', color: '#C9A84C' },
+  { name: 'عائشة بنت أبي بكر',            relation: 'أم المؤمنين',    relationEn: 'Mother of the Believers', info: 'حبيبته وأعلم نساء الأمة، روت آلاف الأحاديث', infoEn: 'His beloved and the most learned woman of the Ummah; she narrated thousands of hadiths.', color: '#FFD700' },
+  { name: 'حفصة بنت عمر',                 relation: 'أم المؤمنين',    relationEn: 'Mother of the Believers', info: 'بنت عمر بن الخطاب، حافظة القرآن', infoEn: 'Daughter of Umar ibn al-Khattab, a memoriser of the Quran.', color: '#C9A84C' },
+  { name: 'زينب بنت خزيمة',               relation: 'أم المؤمنين',    relationEn: 'Mother of the Believers', info: 'لُقّبت أم المساكين لكثرة إطعامها الفقراء', infoEn: 'She was called "Mother of the Poor" due to her generous feeding of the needy.', color: '#C9A84C' },
+  { name: 'أم سلمة هند بنت أبي أمية',    relation: 'أم المؤمنين',    relationEn: 'Mother of the Believers', info: 'من أكثر أمهات المؤمنين علماً وفقهاً', infoEn: 'Among the most knowledgeable of the Mothers of the Believers in religious scholarship.', color: '#C9A84C' },
+  { name: 'زينب بنت جحش',                 relation: 'أم المؤمنين',    relationEn: 'Mother of the Believers', info: 'تزوجها بأمر الله في سورة الأحزاب', infoEn: 'He married her by divine command, as mentioned in Surah Al-Ahzab.', color: '#C9A84C' },
+  { name: 'جويرية بنت الحارث',            relation: 'أم المؤمنين',    relationEn: 'Mother of the Believers', info: 'بنت زعيم بني المصطلق، تزوّجها فأعتق المسلمون أسراهم', infoEn: 'Daughter of the chief of Banu al-Mustaliq; when he married her, the Muslims freed their captives.', color: '#C9A84C' },
+  { name: 'أم حبيبة رملة بنت أبي سفيان', relation: 'أم المؤمنين',    relationEn: 'Mother of the Believers', info: 'هاجرت إلى الحبشة وتزوجها النبي ﷺ وهي هناك', infoEn: 'She emigrated to Abyssinia and the Prophet ﷺ married her while she was there.', color: '#C9A84C' },
+  { name: 'صفية بنت حيي',                 relation: 'أم المؤمنين',    relationEn: 'Mother of the Believers', info: 'من بني النضير، أسلمت بعد خيبر وتزوّجها النبي ﷺ', infoEn: 'From Banu al-Nadir; she embraced Islam after Khaybar and the Prophet ﷺ married her.', color: '#C9A84C' },
+  { name: 'ميمونة بنت الحارث',            relation: 'أم المؤمنين',    relationEn: 'Mother of the Believers', info: 'آخر من تزوجها النبي ﷺ في عمرة القضاء', infoEn: 'The last woman the Prophet ﷺ married, during the Umrat al-Qada.', color: '#C9A84C' },
+  { name: 'مارية القبطية',                relation: 'أم إبراهيم',     relationEn: 'Mother of Ibrahim',      info: 'أهداها المقوقس، أم ولده إبراهيم الذي مات طفلاً', infoEn: 'Gifted by the Muqawqis; mother of his son Ibrahim who died in infancy.', color: '#A8C8E8' },
 ];
 const CHILDREN: Person[] = [
-  { name: 'القاسم',                  relation: 'الابن البكر',   info: 'من خديجة، مات طفلاً وبه كُني أبا القاسم', color: '#A8E8C8' },
-  { name: 'عبد الله (الطاهر الطيب)', relation: 'الابن',         info: 'من خديجة، مات طفلاً، وله لقبان الطاهر والطيب', color: '#A8E8C8' },
-  { name: 'إبراهيم',                 relation: 'الابن',         info: 'من مارية القبطية، مات رضيعاً فبكى عليه النبي ﷺ', color: '#A8E8C8' },
-  { name: 'زينب بنت محمد',           relation: 'البنت الكبرى', info: 'تزوجت أبا العاص بن الربيع وهاجرت إلى المدينة', color: '#E8A8C8' },
-  { name: 'رقية بنت محمد',           relation: 'البنت',         info: 'تزوجت عثمان بن عفان، ماتت يوم بدر', color: '#E8A8C8' },
-  { name: 'أم كلثوم بنت محمد',       relation: 'البنت',         info: 'تزوجت عثمان بن عفان بعد وفاة رقية فسُمّي ذا النورين', color: '#E8A8C8' },
-  { name: 'فاطمة الزهراء',           relation: 'البنت الصغرى', info: 'سيدة نساء العالمين، زوجة علي، أم الحسن والحسين', color: '#FFD700' },
+  { name: 'القاسم',                  relation: 'الابن البكر',   relationEn: 'Eldest Son',          info: 'من خديجة، مات طفلاً وبه كُني أبا القاسم', infoEn: 'Son of Khadijah; died in infancy, and the Prophet ﷺ was given the kunya Abu al-Qasim after him.', color: '#A8E8C8' },
+  { name: 'عبد الله (الطاهر الطيب)', relation: 'الابن',         relationEn: 'Son',                 info: 'من خديجة، مات طفلاً، وله لقبان الطاهر والطيب', infoEn: 'Son of Khadijah; died in infancy and bore the two epithets al-Tahir and al-Tayyib.', color: '#A8E8C8' },
+  { name: 'إبراهيم',                 relation: 'الابن',         relationEn: 'Son',                 info: 'من مارية القبطية، مات رضيعاً فبكى عليه النبي ﷺ', infoEn: 'Son of Maria al-Qibtiyya; he died as an infant and the Prophet ﷺ wept over him.', color: '#A8E8C8' },
+  { name: 'زينب بنت محمد',           relation: 'البنت الكبرى', relationEn: 'Eldest Daughter',     info: 'تزوجت أبا العاص بن الربيع وهاجرت إلى المدينة', infoEn: 'She married Abu al-As ibn al-Rabi\' and later migrated to Medina.', color: '#E8A8C8' },
+  { name: 'رقية بنت محمد',           relation: 'البنت',         relationEn: 'Daughter',            info: 'تزوجت عثمان بن عفان، ماتت يوم بدر', infoEn: 'She married Uthman ibn Affan and passed away on the day of Badr.', color: '#E8A8C8' },
+  { name: 'أم كلثوم بنت محمد',       relation: 'البنت',         relationEn: 'Daughter',            info: 'تزوجت عثمان بن عفان بعد وفاة رقية فسُمّي ذا النورين', infoEn: 'She married Uthman after Ruqayya\'s death, earning him the title Dhul-Nurayn (Possessor of Two Lights).', color: '#E8A8C8' },
+  { name: 'فاطمة الزهراء',           relation: 'البنت الصغرى', relationEn: 'Youngest Daughter',   info: 'سيدة نساء العالمين، زوجة علي، أم الحسن والحسين', infoEn: 'The Lady of the Women of All Worlds; wife of Ali, mother of al-Hasan and al-Husayn.', color: '#FFD700' },
 ];
 
 /* نجوم محسوبة مسبقاً (تفادياً لـ Math.random داخل الـ render) */
@@ -99,9 +102,11 @@ const STARS = Array.from({ length: 60 }, (_, i) => ({
 /* ══════════════════════════════════════════════
    مكوّن البطاقة الشخصية
 ══════════════════════════════════════════════ */
-const PersonCard: React.FC<{ person: Person; index: number }> = React.memo(({ person, index }) => {
+const PersonCard: React.FC<{ person: Person; index: number; isEn?: boolean }> = React.memo(({ person, index, isEn }) => {
   const [open, setOpen] = useState(false);
   const color = person.color ?? '#C9A84C';
+  const displayRelation = isEn && person.relationEn ? person.relationEn : person.relation;
+  const displayInfo = isEn && person.infoEn ? person.infoEn : person.info;
   return (
     <>
       <motion.div
@@ -119,8 +124,8 @@ const PersonCard: React.FC<{ person: Person; index: number }> = React.memo(({ pe
           <div className="w-2 h-2 rounded-full mt-2 shrink-0" style={{ background: color, boxShadow: `0 0 6px ${color}60` }} />
           <div className="flex-1 min-w-0">
             <p className="font-noto font-bold text-white leading-snug" style={{ fontSize: 'clamp(0.9rem,1.8vw,1.05rem)' }}>{person.name}</p>
-            <p className="font-kufi text-xs mt-0.5 opacity-70" style={{ color }}>{person.relation}</p>
-            {person.info && <p className="font-kufi text-xs mt-1 opacity-35 text-white">اضغط للتفاصيل</p>}
+            <p className="font-kufi text-xs mt-0.5 opacity-70" style={{ color }}>{displayRelation}</p>
+            {person.info && <p className="font-kufi text-xs mt-1 opacity-35 text-white">{isEn ? 'Tap for details' : 'اضغط للتفاصيل'}</p>}
           </div>
         </div>
       </motion.div>
@@ -140,7 +145,7 @@ const PersonCard: React.FC<{ person: Person; index: number }> = React.memo(({ pe
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
               transition={{ duration: 0.25 }}
-              className="relative max-w-sm w-full rounded-2xl p-6 text-right"
+              className={`relative max-w-sm w-full rounded-2xl p-6 ${isEn ? 'text-left' : 'text-right'}`}
               style={{ background: '#0a0f1e', border: `1px solid ${color}35` }}
               onClick={e => e.stopPropagation()}
             >
@@ -149,9 +154,9 @@ const PersonCard: React.FC<{ person: Person; index: number }> = React.memo(({ pe
               </button>
               <div className="w-1.5 h-1.5 rounded-full mb-3" style={{ background: color, boxShadow: `0 0 8px ${color}` }} />
               <h3 className="font-noto font-bold text-white mb-1" style={{ fontSize: '1.2rem' }}>{person.name}</h3>
-              <p className="font-kufi text-sm mb-4" style={{ color, opacity: 0.85 }}>{person.relation}</p>
+              <p className="font-kufi text-sm mb-4" style={{ color, opacity: 0.85 }}>{displayRelation}</p>
               <div className="h-px opacity-20 mb-4" style={{ background: color }} />
-              <p className="font-noto text-white/80 leading-loose" style={{ fontSize: '0.95rem', lineHeight: 2 }}>{person.info}</p>
+              <p className="font-noto text-white/80 leading-loose" style={{ fontSize: '0.95rem', lineHeight: 2 }}>{displayInfo}</p>
             </motion.div>
           </motion.div>
         )}
@@ -257,12 +262,13 @@ const LineageGrid: React.FC = () => {
 ══════════════════════════════════════════════ */
 const FamilyTreePage: React.FC = () => {
   const router = useRouter();
+  const { isEn } = useLanguage();
 
   return (
-    <div className="min-h-screen" dir="rtl" style={{ background: '#030813' }}>
+    <div className="min-h-screen" dir={isEn ? 'ltr' : 'rtl'} style={{ background: '#030813' }}>
       {/* زر المشاركة */}
       <div className="fixed top-[5.5rem] left-4 z-[60]">
-        <ShareButton title="شجرة النسب الشريف" accentColor="#C9A84C" />
+        <ShareButton title={isEn ? 'Prophetic Lineage' : 'شجرة النسب الشريف'} accentColor="#C9A84C" />
       </div>
 
       {/* ── Hero ── */}
@@ -299,26 +305,26 @@ const FamilyTreePage: React.FC = () => {
           style={{ color: '#C9A84C' }}
         >
           <button onClick={() => router.push('/')} className="flex items-center gap-1.5 opacity-60 hover:opacity-100 transition-opacity">
-            <Home size={14} />الرئيسية
+            <Home size={14} />{isEn ? 'Home' : 'الرئيسية'}
           </button>
           <ChevronRight size={14} className="opacity-40" />
-          <span className="opacity-90">شجرة النسب</span>
+          <span className="opacity-90">{isEn ? 'Family Tree' : 'شجرة النسب'}</span>
         </motion.nav>
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 pb-14 pt-28 text-center">
           <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
             className="font-kufi text-islamic-gold/70 tracking-widest text-sm mb-4">
-            النسب الشريف
+            {isEn ? 'Prophetic Lineage' : 'النسب الشريف'}
           </motion.p>
           <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1 }}
             className="font-noto font-bold text-white leading-none mb-4"
             style={{ fontSize: 'clamp(2.5rem, 10vw, 6rem)', textShadow: '0 0 50px rgba(201,168,76,0.3)' }}>
-            شجرة النسب
+            {isEn ? 'Family Tree' : 'شجرة النسب'}
           </motion.h1>
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.3 }}
             className="font-noto text-white/60 max-w-lg mx-auto"
             style={{ fontSize: 'clamp(0.9rem, 2vw, 1.1rem)', lineHeight: 2 }}>
-            من عدنان إلى محمد ﷺ — 22 جيلاً من أشرف النسب
+            {isEn ? 'From Adnan to Muhammad ﷺ — 22 generations of the noblest lineage' : 'من عدنان إلى محمد ﷺ — 22 جيلاً من أشرف النسب'}
           </motion.p>
         </div>
       </section>
@@ -330,8 +336,8 @@ const FamilyTreePage: React.FC = () => {
         <section>
           <SectionTitle
             icon={<Crown size={20} />}
-            title="النسب الشريف"
-            subtitle="من عدنان إلى محمد ﷺ — 22 جيلاً"
+            title={isEn ? 'Prophetic Lineage' : 'النسب الشريف'}
+            subtitle={isEn ? 'From Adnan to Muhammad ﷺ — 22 generations' : 'من عدنان إلى محمد ﷺ — 22 جيلاً'}
           />
 
           {/* بطاقة توضيحية */}
@@ -343,9 +349,9 @@ const FamilyTreePage: React.FC = () => {
             className="flex items-center justify-center gap-6 mb-8 flex-wrap"
           >
             {[
-              { label: 'عدنان', sub: 'الجد الأعلى', color: '#f2f3f3' },
-              { label: '←', sub: '22 جيلاً', color: '#C9A84C', arrow: true },
-              { label: 'محمد ﷺ', sub: 'خاتم الأنبياء', color: '#C9A84C' },
+              { label: 'عدنان', sub: isEn ? 'Highest Ancestor' : 'الجد الأعلى', color: '#f2f3f3' },
+              { label: '←', sub: isEn ? '22 generations' : '22 جيلاً', color: '#C9A84C', arrow: true },
+              { label: 'محمد ﷺ', sub: isEn ? 'Seal of the Prophets' : 'خاتم الأنبياء', color: '#C9A84C' },
             ].map((item, i) => (
               <div key={i} className="text-center">
                 <p className={`font-noto font-bold ${item.arrow ? 'text-3xl' : 'text-lg'}`} style={{ color: item.color }}>
@@ -366,42 +372,42 @@ const FamilyTreePage: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="text-center font-kufi text-white/20 text-xs mt-6"
           >
-            يصل نسبه ﷺ إلى إسماعيل بن إبراهيم عليهما السلام • • •
+            {isEn ? 'His ﷺ lineage traces back to Ismail ibn Ibrahim (peace be upon them) • • •' : 'يصل نسبه ﷺ إلى إسماعيل بن إبراهيم عليهما السلام • • •'}
           </motion.p>
         </section>
 
         {/* ② الوالدان */}
         <section>
-          <SectionTitle icon={<Heart size={20} />} title="الوالدان الكريمان" subtitle="أبوه وأمه ومن أرضعوه" />
+          <SectionTitle icon={<Heart size={20} />} title={isEn ? 'Noble Parents' : 'الوالدان الكريمان'} subtitle={isEn ? 'His father, mother, and those who nursed him' : 'أبوه وأمه ومن أرضعوه'} />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-            {PARENTS.map((p, i) => <PersonCard key={i} person={p} index={i} />)}
+            {PARENTS.map((p, i) => <PersonCard key={i} person={p} index={i} isEn={isEn} />)}
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {GRANDFATHERS.map((p, i) => <PersonCard key={i} person={p} index={i} />)}
+            {GRANDFATHERS.map((p, i) => <PersonCard key={i} person={p} index={i} isEn={isEn} />)}
           </div>
         </section>
 
         {/* ③ الأعمام */}
         <section>
-          <SectionTitle icon={<Users size={20} />} title="أعمامه ﷺ" subtitle="من أعمامه البارزون" />
+          <SectionTitle icon={<Users size={20} />} title={isEn ? 'His ﷺ Paternal Uncles' : 'أعمامه ﷺ'} subtitle={isEn ? 'His prominent paternal uncles' : 'من أعمامه البارزون'} />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {UNCLES.map((p, i) => <PersonCard key={i} person={p} index={i} />)}
+            {UNCLES.map((p, i) => <PersonCard key={i} person={p} index={i} isEn={isEn} />)}
           </div>
         </section>
 
         {/* ④ أمهات المؤمنين */}
         <section>
-          <SectionTitle icon={<Heart size={20} />} title="أمهات المؤمنين" subtitle="زوجاته الطاهرات رضي الله عنهن" />
+          <SectionTitle icon={<Heart size={20} />} title={isEn ? 'Mothers of the Believers' : 'أمهات المؤمنين'} subtitle={isEn ? 'His pure wives, may Allah be pleased with them' : 'زوجاته الطاهرات رضي الله عنهن'} />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {WIVES.map((p, i) => <PersonCard key={i} person={p} index={i} />)}
+            {WIVES.map((p, i) => <PersonCard key={i} person={p} index={i} isEn={isEn} />)}
           </div>
         </section>
 
         {/* ⑤ الأبناء والبنات */}
         <section>
-          <SectionTitle icon={<Baby size={20} />} title="أبناؤه وبناته" subtitle="ذريته الكريمة ﷺ" />
+          <SectionTitle icon={<Baby size={20} />} title={isEn ? 'His ﷺ Children' : 'أبناؤه وبناته'} subtitle={isEn ? 'His noble offspring ﷺ' : 'ذريته الكريمة ﷺ'} />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {CHILDREN.map((p, i) => <PersonCard key={i} person={p} index={i} />)}
+            {CHILDREN.map((p, i) => <PersonCard key={i} person={p} index={i} isEn={isEn} />)}
           </div>
         </section>
 
@@ -423,7 +429,7 @@ const FamilyTreePage: React.FC = () => {
           <p className="font-noto text-islamic-gold/75 mb-2" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.5rem)', lineHeight: 2 }}>
             ﴿مُّحَمَّدٌ رَّسُولُ اللَّهِ ۚ وَالَّذِينَ مَعَهُ أَشِدَّاءُ عَلَى الْكُفَّارِ رُحَمَاءُ بَيْنَهُمْ﴾
           </p>
-          <p className="font-kufi text-islamic-gold/45 text-sm tracking-widest">— سورة الفتح: 29</p>
+          <p className="font-kufi text-islamic-gold/45 text-sm tracking-widest">{isEn ? '— Surah Al-Fath: 29' : '— سورة الفتح: 29'}</p>
         </motion.div>
       </div>
     </div>

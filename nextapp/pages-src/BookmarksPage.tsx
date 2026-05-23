@@ -6,15 +6,17 @@ import { Home, ChevronRight, Bookmark, BookmarkCheck, BookmarkX, FileText } from
 import { useBookmarks } from '@/context/BookmarksContext';
 import { SEERAH_EVENTS, CHAPTER_META } from '@/data/seerah';
 import EventCard from '@/components/EventCard';
+import { useLanguage } from '@/context/LanguageContext';
 
 const BookmarksPage: React.FC = () => {
   const router = useRouter();
+  const { isEn } = useLanguage();
   const { bookmarks, clear, count, pageBookmarks, clearPages, pageCount, totalCount } = useBookmarks();
 
   const savedEvents = SEERAH_EVENTS.filter(e => bookmarks.has(e.id));
 
   return (
-    <div className="min-h-screen relative" dir="rtl" style={{ background: '#030813' }}>
+    <div className="min-h-screen relative" dir={isEn ? 'ltr' : 'rtl'} style={{ background: '#030813' }}>
 
       {/* Breadcrumb */}
       <motion.nav
@@ -24,10 +26,10 @@ const BookmarksPage: React.FC = () => {
         style={{ color: '#C9A84C' }}
       >
         <button onClick={() => router.push('/')} className="flex items-center gap-1.5 opacity-60 hover:opacity-100 transition-opacity">
-          <Home size={14} />الرئيسية
+          <Home size={14} />{isEn ? 'Home' : 'الرئيسية'}
         </button>
         <ChevronRight size={14} className="opacity-40" />
-        <span className="opacity-90">المحفوظات</span>
+        <span className="opacity-90">{isEn ? 'Bookmarks' : 'المحفوظات'}</span>
       </motion.nav>
 
       {/* Hero */}
@@ -50,7 +52,7 @@ const BookmarksPage: React.FC = () => {
           className="inline-flex items-center gap-2 mb-4"
         >
           <Bookmark size={18} style={{ color: '#C9A84C' }} />
-          <p className="font-kufi text-islamic-gold/50 text-xs tracking-widest">المحفوظات الشخصية</p>
+          <p className="font-kufi text-islamic-gold/50 text-xs tracking-widest">{isEn ? 'Personal Bookmarks' : 'المحفوظات الشخصية'}</p>
         </motion.div>
 
         <motion.h1
@@ -60,7 +62,7 @@ const BookmarksPage: React.FC = () => {
           className="font-noto font-bold text-islamic-gold mb-3"
           style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)' }}
         >
-          محفوظاتي
+          {isEn ? 'My Bookmarks' : 'محفوظاتي'}
         </motion.h1>
 
         <motion.p
@@ -71,8 +73,10 @@ const BookmarksPage: React.FC = () => {
           style={{ color: '#8e9095' }}
         >
           {totalCount > 0
-            ? `${count > 0 ? `${count} حدث` : ''}${count > 0 && pageCount > 0 ? ' · ' : ''}${pageCount > 0 ? `${pageCount} صفحة` : ''} محفوظ`
-            : 'لا توجد محفوظات بعد'}
+            ? isEn
+              ? `${count > 0 ? `${count} event${count !== 1 ? 's' : ''}` : ''}${count > 0 && pageCount > 0 ? ' · ' : ''}${pageCount > 0 ? `${pageCount} page${pageCount !== 1 ? 's' : ''}` : ''} saved`
+              : `${count > 0 ? `${count} حدث` : ''}${count > 0 && pageCount > 0 ? ' · ' : ''}${pageCount > 0 ? `${pageCount} صفحة` : ''} محفوظ`
+            : isEn ? 'No bookmarks yet' : 'لا توجد محفوظات بعد'}
         </motion.p>
       </div>
 
@@ -93,10 +97,10 @@ const BookmarksPage: React.FC = () => {
               <Bookmark size={32} style={{ color: 'rgba(201,168,76,0.4)' }} strokeWidth={1.5} />
             </div>
             <p className="font-noto text-xl mb-2" style={{ color: 'rgba(255,255,255,0.5)' }}>
-              لم تحفظ أي حدث بعد
+              {isEn ? 'No events saved yet' : 'لم تحفظ أي حدث بعد'}
             </p>
             <p className="font-kufi text-sm mb-8" style={{ color: 'rgba(255,255,255,0.3)' }}>
-              اضغط على أيقونة الحفظ في أي حدث لإضافته هنا
+              {isEn ? 'Tap the bookmark icon on any event to save it here' : 'اضغط على أيقونة الحفظ في أي حدث لإضافته هنا'}
             </p>
             <button
               onClick={() => router.push('/')}
@@ -107,7 +111,7 @@ const BookmarksPage: React.FC = () => {
                 color: '#C9A84C',
               }}
             >
-              تصفّح السيرة النبوية ←
+              {isEn ? '← Browse the Seerah' : 'تصفّح السيرة النبوية ←'}
             </button>
           </motion.div>
         ) : (
@@ -120,7 +124,7 @@ const BookmarksPage: React.FC = () => {
               className="flex justify-end mb-6"
             >
               <button
-                onClick={() => { if (confirm('هل تريد مسح جميع المحفوظات؟')) { clear(); clearPages(); } }}
+                onClick={() => { if (confirm(isEn ? 'Clear all bookmarks?' : 'هل تريد مسح جميع المحفوظات؟')) { clear(); clearPages(); } }}
                 className="flex items-center gap-2 font-kufi text-sm px-4 py-2 rounded-full transition-all"
                 style={{
                   background: 'rgba(255,80,80,0.07)',
@@ -129,7 +133,7 @@ const BookmarksPage: React.FC = () => {
                 }}
               >
                 <BookmarkX size={14} />
-                مسح الكل
+                {isEn ? 'Clear All' : 'مسح الكل'}
               </button>
             </motion.div>
 
@@ -144,11 +148,11 @@ const BookmarksPage: React.FC = () => {
                 <div className="flex items-center gap-3 mb-5">
                   <FileText size={16} style={{ color: '#C9A84C' }} />
                   <h2 className="font-noto font-bold" style={{ fontSize: 'clamp(1.2rem, 3vw, 1.6rem)', color: '#C9A84C' }}>
-                    الصفحات المحفوظة
+                    {isEn ? 'Saved Pages' : 'الصفحات المحفوظة'}
                   </h2>
                   <div className="flex-1 h-px opacity-15" style={{ background: '#C9A84C' }} />
                   <span className="font-kufi text-xs" style={{ color: '#C9A84C', opacity: 0.6 }}>
-                    {pageCount} صفحة
+                    {pageCount} {isEn ? `page${pageCount !== 1 ? 's' : ''}` : 'صفحة'}
                   </span>
                 </div>
 
@@ -187,11 +191,11 @@ const BookmarksPage: React.FC = () => {
               >
                 <Bookmark size={16} style={{ color: '#C9A84C' }} />
                 <h2 className="font-noto font-bold" style={{ fontSize: 'clamp(1.2rem, 3vw, 1.6rem)', color: '#C9A84C' }}>
-                  أحداث السيرة المحفوظة
+                  {isEn ? 'Saved Seerah Events' : 'أحداث السيرة المحفوظة'}
                 </h2>
                 <div className="flex-1 h-px opacity-15" style={{ background: '#C9A84C' }} />
                 <span className="font-kufi text-xs" style={{ color: '#C9A84C', opacity: 0.6 }}>
-                  {count} حدث
+                  {count} {isEn ? `event${count !== 1 ? 's' : ''}` : 'حدث'}
                 </span>
               </motion.div>
             )}
@@ -222,7 +226,7 @@ const BookmarksPage: React.FC = () => {
                     </button>
                     <div className="flex-1 h-px opacity-15" style={{ background: meta?.accentColor ?? '#C9A84C' }} />
                     <span className="font-kufi text-xs" style={{ color: meta?.accentColor ?? '#C9A84C', opacity: 0.6 }}>
-                      {events.length} حدث
+                      {events.length} {isEn ? `event${events.length !== 1 ? 's' : ''}` : 'حدث'}
                     </span>
                   </motion.div>
 

@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { BookOpen, Youtube, ExternalLink, BookMarked, Scroll, Library, Star, X } from 'lucide-react';
 import IslamicParticles from '@/components/IslamicParticles';
 import ShareButton from '@/components/ShareButton';
+import { useLanguage } from '@/context/LanguageContext';
 
 /* ══════════════════════════════════════════
    بيانات المصادر
@@ -14,9 +15,12 @@ interface Source {
   author: string;
   type: 'book' | 'hadith' | 'video' | 'tafsir';
   description: string;
+  descriptionEn?: string;
   note?: string;
+  noteEn?: string;
   link?: string;
   badge?: string;
+  badgeEn?: string;
 }
 
 const SOURCES: Source[] = [
@@ -26,76 +30,80 @@ const SOURCES: Source[] = [
     type: 'book',
     title: 'السيرة النبوية',
     author: 'ابن هشام (ت 218هـ)',
-    description:
-      'أشهر كتب السيرة النبوية وأوسعها، يُعدّ المرجع الأول لكل باحث في سيرة المصطفى ﷺ. اعتمد على رواية ابن إسحاق وهذّبها.',
+    description: 'أشهر كتب السيرة النبوية وأوسعها، يُعدّ المرجع الأول لكل باحث في سيرة المصطفى ﷺ. اعتمد على رواية ابن إسحاق وهذّبها.',
+    descriptionEn: 'The most famous and comprehensive Seerah book, considered the primary reference for any researcher into the life of the Prophet ﷺ. Based on Ibn Ishaq\'s narration, refined and edited.',
     badge: 'المرجع الأول',
+    badgeEn: 'Primary Reference',
   },
   {
     id: 2,
     type: 'book',
     title: 'الرحيق المختوم',
     author: 'الشيخ صفي الرحمن المباركفوري (ت 1427هـ)',
-    description:
-      'حاز جائزة رابطة العالم الإسلامي الأولى. سيرة شاملة ومتكاملة بأسلوب علمي سلس، يجمع بين التحقيق والتوثيق.',
+    description: 'حاز جائزة رابطة العالم الإسلامي الأولى. سيرة شاملة ومتكاملة بأسلوب علمي سلس، يجمع بين التحقيق والتوثيق.',
+    descriptionEn: 'Winner of the Muslim World League\'s first prize. A comprehensive Seerah with a flowing scholarly style, combining research and documentation.',
     badge: 'جائزة رابطة العالم الإسلامي',
+    badgeEn: 'Muslim World League Award',
   },
   {
     id: 3,
     type: 'book',
     title: 'البداية والنهاية — السيرة',
     author: 'الحافظ ابن كثير (ت 774هـ)',
-    description:
-      'موسوعة تاريخية إسلامية تضمّ السيرة النبوية بتفاصيلها الدقيقة مع تخريج الأحاديث والروايات.',
+    description: 'موسوعة تاريخية إسلامية تضمّ السيرة النبوية بتفاصيلها الدقيقة مع تخريج الأحاديث والروايات.',
+    descriptionEn: 'An Islamic historical encyclopedia containing the Seerah in precise detail with hadith verification and authentication.',
   },
   {
     id: 4,
     type: 'book',
     title: 'فقه السيرة النبوية',
     author: 'الشيخ محمد الغزالي (ت 1416هـ)',
-    description:
-      'يستخرج من السيرة دروساً وفقهاً حيّاً للأمة الإسلامية المعاصرة، بأسلوب خطابي قوي.',
+    description: 'يستخرج من السيرة دروساً وفقهاً حيّاً للأمة الإسلامية المعاصرة، بأسلوب خطابي قوي.',
+    descriptionEn: 'Derives living lessons and jurisprudence from the Seerah for the contemporary Muslim world, in a powerful rhetorical style.',
   },
   {
     id: 5,
     type: 'book',
     title: 'فقه السيرة',
     author: 'الشيخ محمد سعيد رمضان البوطي (ت 1434هـ)',
-    description:
-      'دراسة منهجية معمّقة لسيرة النبي ﷺ تجمع بين التحليل الفقهي والاستنباط العملي.',
+    description: 'دراسة منهجية معمّقة لسيرة النبي ﷺ تجمع بين التحليل الفقهي والاستنباط العملي.',
+    descriptionEn: 'An in-depth systematic study of the Prophet\'s ﷺ life combining jurisprudential analysis with practical derivations.',
   },
   {
     id: 6,
     type: 'book',
     title: 'نور اليقين في سيرة سيد المرسلين',
     author: 'الشيخ محمد الخضري بك (ت 1345هـ)',
-    description:
-      'كتاب مختصر وجامع، اشتُهر في المدارس الدينية، وصيغ بأسلوب واضح مرتّب على الأحداث.',
+    description: 'كتاب مختصر وجامع، اشتُهر في المدارس الدينية، وصيغ بأسلوب واضح مرتّب على الأحداث.',
+    descriptionEn: 'A concise yet comprehensive work, popular in religious schools, written in a clear style arranged chronologically.',
   },
   {
     id: 7,
     type: 'book',
     title: 'زاد المعاد في هدي خير العباد',
     author: 'الإمام ابن قيّم الجوزية (ت 751هـ)',
-    description:
-      'يتناول هدي النبي ﷺ في عباداته وحياته اليومية وغزواته، ويستنبط الأحكام الفقهية منها.',
+    description: 'يتناول هدي النبي ﷺ في عباداته وحياته اليومية وغزواته، ويستنبط الأحكام الفقهية منها.',
+    descriptionEn: 'Covers the Prophet\'s ﷺ guidance in worship, daily life, and battles, deriving jurisprudential rulings from each aspect.',
     badge: 'الهدي النبوي',
+    badgeEn: 'Prophetic Guidance',
   },
   {
     id: 8,
     type: 'book',
     title: 'الشمائل المحمدية',
     author: 'الإمام الترمذي (ت 279هـ)',
-    description:
-      'أبرز كتاب في وصف شمائل النبي ﷺ وخُلُقه وصفاته الجسدية والخُلُقية، بأسانيد محتجّ بها.',
+    description: 'أبرز كتاب في وصف شمائل النبي ﷺ وخُلُقه وصفاته الجسدية والخُلُقية، بأسانيد محتجّ بها.',
+    descriptionEn: 'The most notable book describing the Prophet\'s ﷺ characteristics, character, and physical and moral traits, with authenticated chains of narration.',
   },
   {
     id: 9,
     type: 'book',
     title: 'دلائل النبوة',
     author: 'الإمام البيهقي (ت 458هـ)',
-    description:
-      'يُعنى بجمع المعجزات والدلائل الكاشفة عن نبوة محمد ﷺ، مع التخريج والتوثيق العلمي.',
+    description: 'يُعنى بجمع المعجزات والدلائل الكاشفة عن نبوة محمد ﷺ، مع التخريج والتوثيق العلمي.',
+    descriptionEn: 'Dedicated to collecting the miracles and proofs manifesting the prophethood of Muhammad ﷺ, with scholarly verification.',
     badge: 'المعجزات والنبوة',
+    badgeEn: 'Miracles & Prophethood',
   },
   /* ── كتب الحديث ── */
   {
@@ -103,32 +111,32 @@ const SOURCES: Source[] = [
     type: 'hadith',
     title: 'صحيح البخاري',
     author: 'الإمام البخاري (ت 256هـ)',
-    description:
-      'أصحّ كتاب بعد القرآن الكريم. يضمّ أحاديث السيرة والمغازي والشمائل في أبواب مخصّصة.',
+    description: 'أصحّ كتاب بعد القرآن الكريم. يضمّ أحاديث السيرة والمغازي والشمائل في أبواب مخصّصة.',
+    descriptionEn: 'The most authentic book after the Holy Quran, containing Seerah narrations, battles, and prophetic characteristics in dedicated chapters.',
   },
   {
     id: 11,
     type: 'hadith',
     title: 'صحيح مسلم',
     author: 'الإمام مسلم (ت 261هـ)',
-    description:
-      'ثاني أصحّ كتب الحديث. يحتوي على أحاديث السيرة والفضائل النبوية مع منهجية عالية.',
+    description: 'ثاني أصحّ كتب الحديث. يحتوي على أحاديث السيرة والفضائل النبوية مع منهجية عالية.',
+    descriptionEn: 'The second most authentic hadith collection, containing Seerah narrations and prophetic virtues with rigorous methodology.',
   },
   {
     id: 12,
     type: 'hadith',
     title: 'سنن أبي داود',
     author: 'الإمام أبو داود (ت 275هـ)',
-    description:
-      'من كتب السنن الكبرى التي تضمّ أحاديث في الفقه والسيرة والغزوات.',
+    description: 'من كتب السنن الكبرى التي تضمّ أحاديث في الفقه والسيرة والغزوات.',
+    descriptionEn: 'One of the major Sunan collections, containing hadith on jurisprudence, Seerah, and military campaigns.',
   },
   {
     id: 13,
     type: 'hadith',
     title: 'مسند الإمام أحمد',
     author: 'الإمام أحمد بن حنبل (ت 241هـ)',
-    description:
-      'من أكبر كتب الحديث حجماً، يضمّ أربعين ألف حديث تقريباً ويُعدّ مرجعاً للأحاديث النبوية.',
+    description: 'من أكبر كتب الحديث حجماً، يضمّ أربعين ألف حديث تقريباً ويُعدّ مرجعاً للأحاديث النبوية.',
+    descriptionEn: 'One of the largest hadith collections by volume, containing approximately forty thousand narrations and considered a key prophetic hadith reference.',
   },
   /* ── التفسير ── */
   {
@@ -136,16 +144,16 @@ const SOURCES: Source[] = [
     type: 'tafsir',
     title: 'تفسير ابن كثير',
     author: 'الحافظ ابن كثير (ت 774هـ)',
-    description:
-      'أشهر كتب التفسير، يستشهد بأحاديث السيرة لتفسير الآيات المتعلقة بغزوات النبي ﷺ وأحداث حياته.',
+    description: 'أشهر كتب التفسير، يستشهد بأحاديث السيرة لتفسير الآيات المتعلقة بغزوات النبي ﷺ وأحداث حياته.',
+    descriptionEn: 'The most famous Quranic commentary, drawing on Seerah narrations to explain verses related to the Prophet\'s ﷺ battles and life events.',
   },
   {
     id: 15,
     type: 'tafsir',
     title: 'في ظلال القرآن',
     author: 'الشيخ سيد قطب (ت 1966م)',
-    description:
-      'تفسير أدبي حركي يربط معاني الآيات بأحداث السيرة والواقع الإسلامي المعاصر.',
+    description: 'تفسير أدبي حركي يربط معاني الآيات بأحداث السيرة والواقع الإسلامي المعاصر.',
+    descriptionEn: 'A literary and activist commentary connecting the meanings of verses to Seerah events and contemporary Islamic reality.',
   },
   /* ── المصادر المرئية ── */
   {
@@ -153,10 +161,12 @@ const SOURCES: Source[] = [
     type: 'video',
     title: 'سلسلة السيرة النبوية الكاملة',
     author: 'الشيخ أحمد السيد',
-    description:
-      'سلسلة متكاملة تتناول السيرة النبوية الشريفة بأسلوب علمي منهجي محبّب، تضمّ دروساً مفصّلة عن حياة النبي ﷺ من المولد حتى الوفاة مع التحليل والاستنباط.',
+    description: 'سلسلة متكاملة تتناول السيرة النبوية الشريفة بأسلوب علمي منهجي محبّب، تضمّ دروساً مفصّلة عن حياة النبي ﷺ من المولد حتى الوفاة مع التحليل والاستنباط.',
+    descriptionEn: 'A comprehensive series covering the Noble Prophetic Seerah with a beloved scholarly approach, featuring detailed lessons on the Prophet\'s ﷺ life from birth to passing, with analysis and derivations.',
     badge: 'قائمة التشغيل',
+    badgeEn: 'Full Playlist',
     note: 'قائمة التشغيل على يوتيوب',
+    noteEn: 'YouTube Playlist',
     link: 'https://www.youtube.com/playlist?list=PLZmiPrHYOIsQKAjv6rhq5clGlihS1Xlgu',
   },
 ];
@@ -164,12 +174,20 @@ const SOURCES: Source[] = [
 /* ══════════════════════════════════════════
    إعدادات الفئات
 ══════════════════════════════════════════ */
-const CATEGORIES = [
+const CATEGORIES_AR = [
   { key: 'all',    label: 'الكل',          icon: <Library size={14} /> },
   { key: 'book',   label: 'كتب السيرة',    icon: <BookOpen size={14} /> },
   { key: 'hadith', label: 'كتب الحديث',    icon: <Scroll size={14} /> },
   { key: 'tafsir', label: 'التفسير',        icon: <BookMarked size={14} /> },
   { key: 'video',  label: 'مصادر مرئية',   icon: <Youtube size={14} /> },
+];
+
+const CATEGORIES_EN = [
+  { key: 'all',    label: 'All',           icon: <Library size={14} /> },
+  { key: 'book',   label: 'Seerah Books',  icon: <BookOpen size={14} /> },
+  { key: 'hadith', label: 'Hadith Books',  icon: <Scroll size={14} /> },
+  { key: 'tafsir', label: 'Tafsir',        icon: <BookMarked size={14} /> },
+  { key: 'video',  label: 'Video Sources', icon: <Youtube size={14} /> },
 ];
 
 const TYPE_COLORS: Record<string, string> = {
@@ -179,18 +197,25 @@ const TYPE_COLORS: Record<string, string> = {
   video:  '#F87171',
 };
 
-const TYPE_LABELS: Record<string, string> = {
+const TYPE_LABELS_AR: Record<string, string> = {
   book:   'كتاب سيرة',
   hadith: 'كتاب حديث',
   tafsir: 'تفسير',
   video:  'مصدر مرئي',
 };
+const TYPE_LABELS_EN: Record<string, string> = {
+  book:   'Seerah Book',
+  hadith: 'Hadith Book',
+  tafsir: 'Tafsir',
+  video:  'Video Source',
+};
 
 /* ══════════════════════════════════════════
    مكوّن المودال
 ══════════════════════════════════════════ */
-const SourceModal: React.FC<{ source: Source; onClose: () => void }> = ({ source, onClose }) => {
+const SourceModal: React.FC<{ source: Source; onClose: () => void; isEn: boolean }> = ({ source, onClose, isEn }) => {
   const color = TYPE_COLORS[source.type];
+  const TYPE_LABELS = isEn ? TYPE_LABELS_EN : TYPE_LABELS_AR;
   return (
     <motion.div
       key="source-overlay"
@@ -214,7 +239,7 @@ const SourceModal: React.FC<{ source: Source; onClose: () => void }> = ({ source
           boxShadow: `0 0 60px rgba(0,0,0,0.6), 0 0 40px ${color}12`,
         }}
         onClick={e => e.stopPropagation()}
-        dir="rtl"
+        dir={isEn ? 'ltr' : 'rtl'}
       >
         {/* شريط لوني علوي */}
         <div
@@ -263,7 +288,7 @@ const SourceModal: React.FC<{ source: Source; onClose: () => void }> = ({ source
                 style={{ background: 'rgba(201,168,76,0.1)', color: '#C9A84C', border: '1px solid rgba(201,168,76,0.25)' }}
               >
                 <Star size={10} />
-                {source.badge}
+                {isEn && source.badgeEn ? source.badgeEn : source.badge}
               </span>
             )}
           </div>
@@ -276,7 +301,7 @@ const SourceModal: React.FC<{ source: Source; onClose: () => void }> = ({ source
             className="font-noto leading-loose text-white"
             style={{ fontSize: '0.95rem', lineHeight: 2 }}
           >
-            {source.description}
+            {isEn && source.descriptionEn ? source.descriptionEn : source.description}
           </p>
 
           {/* رابط */}
@@ -290,7 +315,7 @@ const SourceModal: React.FC<{ source: Source; onClose: () => void }> = ({ source
               onClick={e => e.stopPropagation()}
             >
               {source.type === 'video' ? <Youtube size={15} /> : <ExternalLink size={15} />}
-              {source.note ?? 'زيارة المصدر'}
+              {isEn ? (source.noteEn ?? 'Visit Source') : (source.note ?? 'زيارة المصدر')}
             </a>
           )}
         </div>
@@ -302,9 +327,10 @@ const SourceModal: React.FC<{ source: Source; onClose: () => void }> = ({ source
 /* ══════════════════════════════════════════
    مكوّن البطاقة
 ══════════════════════════════════════════ */
-const SourceCard: React.FC<{ source: Source; index: number }> = ({ source, index }) => {
+const SourceCard: React.FC<{ source: Source; index: number; isEn: boolean }> = ({ source, index, isEn }) => {
   const [open, setOpen] = useState(false);
   const color = TYPE_COLORS[source.type];
+  const TYPE_LABELS = isEn ? TYPE_LABELS_EN : TYPE_LABELS_AR;
 
   return (
     <>
@@ -364,24 +390,24 @@ const SourceCard: React.FC<{ source: Source; index: number }> = ({ source, index
               style={{ background: 'rgba(201,168,76,0.1)', color: '#C9A84C', border: '1px solid rgba(201,168,76,0.22)' }}
             >
               <Star size={10} />
-              {source.badge}
+              {isEn && source.badgeEn ? source.badgeEn : source.badge}
             </span>
           )}
         </div>
 
         {/* الوصف */}
         <p className="font-noto text-white leading-relaxed" style={{ fontSize: '0.85rem', opacity: 0.82 }}>
-          {source.description}
+          {isEn && source.descriptionEn ? source.descriptionEn : source.description}
         </p>
 
         {/* تلميح الضغط */}
         <p className="font-kufi text-xs mt-auto" style={{ color: `${color}` }}>
-          اضغط لعرض التفاصيل ›
+          {isEn ? 'Tap for details ›' : 'اضغط لعرض التفاصيل ›'}
         </p>
       </motion.div>
 
       <AnimatePresence>
-        {open && <SourceModal source={source} onClose={() => setOpen(false)} />}
+        {open && <SourceModal source={source} onClose={() => setOpen(false)} isEn={isEn} />}
       </AnimatePresence>
     </>
   );
@@ -391,17 +417,20 @@ const SourceCard: React.FC<{ source: Source; index: number }> = ({ source, index
    الصفحة الرئيسية
 ══════════════════════════════════════════ */
 const SourcesPage: React.FC = () => {
+  const { isEn } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<string>('all');
+
+  const CATEGORIES = isEn ? CATEGORIES_EN : CATEGORIES_AR;
 
   const filtered = activeCategory === 'all'
     ? SOURCES
     : SOURCES.filter(s => s.type === activeCategory);
 
   return (
-    <div className="min-h-screen relative" dir="rtl" style={{ background: '#030813' }}>
+    <div className="min-h-screen relative" dir={isEn ? 'ltr' : 'rtl'} style={{ background: '#030813' }}>
       {/* زر المشاركة */}
       <div className="fixed top-[5.5rem] left-4 z-[60]">
-        <ShareButton title="المصادر والمراجع" accentColor="#C9A84C" />
+        <ShareButton title={isEn ? 'Sources & References' : 'المصادر والمراجع'} accentColor="#C9A84C" />
       </div>
       <IslamicParticles />
 
@@ -451,22 +480,31 @@ const SourcesPage: React.FC = () => {
               textShadow: '0 0 40px rgba(201,168,76,0.3)',
             }}
           >
-            المصادر والمراجع
+            {isEn ? 'Sources & References' : 'المصادر والمراجع'}
           </h1>
 
           <p className="font-noto text-white max-w-xl mx-auto leading-relaxed" style={{ fontSize: '1rem', opacity: 0.82 }}>
-            المصادر العلمية المعتمدة في بناء محتوى موقع نور النبوة، من كتب السيرة والحديث والتفسير،
-            إضافةً إلى المصادر المرئية المتخصّصة.
+            {isEn
+              ? 'The scholarly references used to build the content of Noor Al-Nubuwwah, from Seerah, Hadith, and Tafsir books, in addition to specialised video sources.'
+              : 'المصادر العلمية المعتمدة في بناء محتوى موقع نور النبوة، من كتب السيرة والحديث والتفسير، إضافةً إلى المصادر المرئية المتخصّصة.'}
           </p>
 
           {/* إحصاء */}
           <div className="flex items-center justify-center gap-6 mt-8">
-            {[
-              { label: 'كتاب سيرة', count: SOURCES.filter(s => s.type === 'book').length,   color: '#C9A84C' },
-              { label: 'كتاب حديث', count: SOURCES.filter(s => s.type === 'hadith').length, color: '#60A5FA' },
-              { label: 'تفسير',     count: SOURCES.filter(s => s.type === 'tafsir').length, color: '#A78BFA' },
-              { label: 'مرئي',      count: SOURCES.filter(s => s.type === 'video').length,  color: '#F87171' },
-            ].map(stat => (
+            {(isEn
+              ? [
+                  { label: 'Seerah Books', count: SOURCES.filter(s => s.type === 'book').length,   color: '#C9A84C' },
+                  { label: 'Hadith Books', count: SOURCES.filter(s => s.type === 'hadith').length, color: '#60A5FA' },
+                  { label: 'Tafsir',       count: SOURCES.filter(s => s.type === 'tafsir').length, color: '#A78BFA' },
+                  { label: 'Video',        count: SOURCES.filter(s => s.type === 'video').length,  color: '#F87171' },
+                ]
+              : [
+                  { label: 'كتاب سيرة', count: SOURCES.filter(s => s.type === 'book').length,   color: '#C9A84C' },
+                  { label: 'كتاب حديث', count: SOURCES.filter(s => s.type === 'hadith').length, color: '#60A5FA' },
+                  { label: 'تفسير',     count: SOURCES.filter(s => s.type === 'tafsir').length, color: '#A78BFA' },
+                  { label: 'مرئي',      count: SOURCES.filter(s => s.type === 'video').length,  color: '#F87171' },
+                ]
+            ).map(stat => (
               <div key={stat.label} className="text-center">
                 <div className="font-noto font-bold text-2xl" style={{ color: stat.color }}>
                   {stat.count}
@@ -490,7 +528,7 @@ const SourcesPage: React.FC = () => {
         <p className="font-noto text-white text-sm leading-loose" style={{ opacity: 0.95 }}>
           ﴿ لَقَدْ كَانَ لَكُمْ فِي رَسُولِ اللَّهِ أُسْوَةٌ حَسَنَةٌ ﴾
         </p>
-        <p className="font-kufi text-white text-xs mt-1" style={{ opacity: 0.85 }}>سورة الأحزاب — الآية 21</p>
+        <p className="font-kufi text-white text-xs mt-1" style={{ opacity: 0.85 }}>{isEn ? 'Surah Al-Ahzab — Verse 21' : 'سورة الأحزاب — الآية 21'}</p>
       </motion.div>
 
       {/* ── فلاتر الفئات ── */}
@@ -535,7 +573,7 @@ const SourcesPage: React.FC = () => {
                 <Youtube size={16} />
               </div>
               <h2 className="font-noto font-bold text-white" style={{ fontSize: '1.1rem' }}>
-                قائمة تشغيل الشيخ أحمد السيد
+                {isEn ? 'Sheikh Ahmad Al-Sayed Playlist' : 'قائمة تشغيل الشيخ أحمد السيد'}
               </h2>
               <div className="flex-1 h-px bg-white opacity-10" />
             </div>
@@ -568,22 +606,23 @@ const SourcesPage: React.FC = () => {
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1 flex-wrap">
                     <h3 className="font-noto font-bold text-white text-lg">
-                      سلسلة السيرة النبوية الكاملة
+                      {isEn ? 'Complete Seerah Series' : 'سلسلة السيرة النبوية الكاملة'}
                     </h3>
                     <span
                       className="font-kufi text-xs px-2.5 py-0.5 rounded-full flex items-center gap-1"
                       style={{ background: 'rgba(248,113,113,0.12)', color: '#F87171', border: '1px solid rgba(248,113,113,0.22)' }}
                     >
                       <Star size={10} />
-                      قائمة التشغيل
+                      {isEn ? 'Full Playlist' : 'قائمة التشغيل'}
                     </span>
                   </div>
                   <p className="font-kufi text-sm font-medium" style={{ color: '#F87171' }}>
-                    الشيخ أحمد السيد — قائمة يوتيوب
+                    {isEn ? 'Sheikh Ahmad Al-Sayed — YouTube Playlist' : 'الشيخ أحمد السيد — قائمة يوتيوب'}
                   </p>
                   <p className="font-noto text-white text-sm mt-2 leading-relaxed" style={{ opacity: 0.82 }}>
-                    سلسلة علمية متكاملة تتناول السيرة النبوية الشريفة بعمق ومنهجية، تغطّي حياة النبي ﷺ
-                    من المولد الشريف حتى الوفاة مع دروس الاستنباط والتحليل.
+                    {isEn
+                      ? 'A comprehensive scholarly series covering the Noble Prophetic Seerah in depth and with methodology, covering the life of the Prophet ﷺ from birth to passing with derivation and analysis lessons.'
+                      : 'سلسلة علمية متكاملة تتناول السيرة النبوية الشريفة بعمق ومنهجية، تغطّي حياة النبي ﷺ من المولد الشريف حتى الوفاة مع دروس الاستنباط والتحليل.'}
                   </p>
                 </div>
 
@@ -599,7 +638,7 @@ const SourcesPage: React.FC = () => {
                   }}
                 >
                   <Youtube size={15} />
-                  فتح قائمة التشغيل
+                  {isEn ? 'Open Playlist' : 'فتح قائمة التشغيل'}
                 </a>
               </div>
             </motion.div>
@@ -611,9 +650,9 @@ const SourcesPage: React.FC = () => {
           const items = filtered.filter(s => s.type === type);
           if (!items.length) return null;
           const color = TYPE_COLORS[type];
-          const label = type === 'book' ? 'كتب السيرة النبوية'
-            : type === 'hadith' ? 'كتب الحديث النبوي الشريف'
-            : 'كتب التفسير';
+          const label = isEn
+            ? (type === 'book' ? 'Prophetic Seerah Books' : type === 'hadith' ? 'Noble Hadith Books' : 'Tafsir Books')
+            : (type === 'book' ? 'كتب السيرة النبوية' : type === 'hadith' ? 'كتب الحديث النبوي الشريف' : 'كتب التفسير');
           const Icon = type === 'book' ? BookOpen : type === 'hadith' ? Scroll : BookMarked;
 
           return (
@@ -629,12 +668,12 @@ const SourcesPage: React.FC = () => {
                   {label}
                 </h2>
                 <div className="flex-1 h-px bg-white opacity-10" />
-                <span className="font-kufi text-xs text-white opacity-50">{items.length} مصدر</span>
+                <span className="font-kufi text-xs text-white opacity-50">{items.length} {isEn ? 'source' : 'مصدر'}</span>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {items.map((source, i) => (
-                  <SourceCard key={source.id} source={source} index={i} />
+                  <SourceCard key={source.id} source={source} index={i} isEn={isEn} />
                 ))}
               </div>
             </div>
@@ -648,9 +687,11 @@ const SourcesPage: React.FC = () => {
         style={{ borderTop: '1px solid rgba(201,168,76,0.08)' }}
       >
         <p className="font-noto text-white text-xs leading-loose" style={{ opacity: 0.88 }}>
-          جميع المصادر من تراث العلماء الأجلاء — رحمهم الله وجزاهم خير الجزاء
+          {isEn
+            ? 'All sources from the heritage of distinguished scholars — may Allah have mercy on them and reward them greatly'
+            : 'جميع المصادر من تراث العلماء الأجلاء — رحمهم الله وجزاهم خير الجزاء'}
         </p>
-        <p className="font-kufi text-white text-xs mt-1" style={{ opacity: 0.75 }}>نور النبوة — ﷺ</p>
+        <p className="font-kufi text-white text-xs mt-1" style={{ opacity: 0.75 }}>Noor Al-Nubuwwah — ﷺ</p>
       </div>
     </div>
   );

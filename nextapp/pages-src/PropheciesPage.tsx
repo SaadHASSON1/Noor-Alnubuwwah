@@ -4,155 +4,207 @@ import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { Home, ChevronLeft, Search as SearchIcon, CheckCircle, ArrowLeft } from 'lucide-react';
 import ShareButton from '@/components/ShareButton';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface Prophecy {
   title: string;
+  titleEn: string;
   prophesied: string;
   fulfilled: string;
+  fulfilledEn: string;
   hadith: string;
   source: string;
   detail: string;
+  detailEn: string;
 }
 
 const PROPHECIES: Prophecy[] = [
   {
     title: 'فتح القسطنطينية',
+    titleEn: 'Conquest of Constantinople',
     prophesied: '~628م',
     fulfilled: '1453م',
+    fulfilledEn: '1453 CE',
     hadith: '«لَتُفْتَحَنَّ الْقُسْطَنْطِينِيَّةُ، فَلَنِعْمَ الْأَمِيرُ أَمِيرُهَا، وَلَنِعْمَ الْجَيْشُ ذَلِكَ الْجَيْشُ»',
     source: 'مسند أحمد — صحّحه الألباني',
     detail: 'فتحها السلطان محمد الفاتح عام 1453م بعد أكثر من ثمانمائة سنة من النبوة.',
+    detailEn: 'Sultan Muhammad Al-Fatih conquered it in 1453 CE, more than eight hundred years after the prophecy.',
   },
   {
     title: 'فتح فارس والروم',
+    titleEn: 'Conquest of Persia and Rome',
     prophesied: '~627م',
     fulfilled: '637–641م',
+    fulfilledEn: '637–641 CE',
     hadith: '«إِذَا هَلَكَ كِسْرَى فَلَا كِسْرَى بَعْدَهُ، وَإِذَا هَلَكَ قَيْصَرُ فَلَا قَيْصَرَ بَعْدَهُ»',
     source: 'صحيح البخاري — كتاب الجزية',
     detail: 'فُتحت فارس في زمن عمر، وانهارت الإمبراطورية الرومانية الشرقية في الشام ومصر.',
+    detailEn: 'Persia was conquered during the caliphate of Umar, and the Byzantine Empire collapsed in the Levant and Egypt.',
   },
   {
     title: 'الفتنة بين المسلمين ومقتل عثمان',
+    titleEn: 'Civil Strife Among Muslims and the Killing of Uthman',
     prophesied: '~645م',
     fulfilled: '656م',
+    fulfilledEn: '656 CE',
     hadith: '«إِنَّهُ سَتَكُونُ فِتْنَةٌ، الْقَاعِدُ فِيهَا خَيْرٌ مِنَ الْقَائِمِ، وَالْقَائِمُ خَيْرٌ مِنَ الْمَاشِي»',
     source: 'صحيح البخاري — كتاب الفتن',
     detail: 'تحقق بمقتل عثمان بن عفان رضي الله عنه وما تبعه من الفتن الكبرى.',
+    detailEn: 'Fulfilled by the assassination of Uthman ibn Affan (may Allah be pleased with him) and the great civil strife that followed.',
   },
   {
     title: 'كثرة المال حتى لا يقبله أحد',
+    titleEn: 'Abundance of Wealth Until No One Accepts Zakat',
     prophesied: '~630م',
     fulfilled: 'عهد عمر بن عبد العزيز',
+    fulfilledEn: 'Era of Umar ibn Abd al-Aziz',
     hadith: '«لَا تَقُومُ السَّاعَةُ حَتَّى يَكْثُرَ الْمَالُ وَيَفِيضَ، حَتَّى يَخْرُجَ الرَّجُلُ بِزَكَاةِ مَالِهِ فَلَا يَجِدُ أَحَدًا يَقْبَلُهَا»',
     source: 'صحيح البخاري — كتاب الزكاة',
     detail: 'وقع هذا بالفعل في خلافة عمر بن عبد العزيز حين بحث عماله عمن يقبل الزكاة فلم يجدوا.',
+    detailEn: 'This actually occurred during the caliphate of Umar ibn Abd al-Aziz when his administrators searched for someone to accept zakat but found no one.',
   },
   {
     title: 'ظهور الفحش وانتشاره',
+    titleEn: 'Spread of Immorality',
     prophesied: '~632م',
     fulfilled: 'العصر الحديث',
+    fulfilledEn: 'Modern Era',
     hadith: '«لَمْ تَظْهَرِ الْفَاحِشَةُ فِي قَوْمٍ قَطُّ حَتَّى يُعْلِنُوا بِهَا إِلَّا فَشَا فِيهِمُ الطَّاعُونُ وَالْأَوْجَاعُ»',
     source: 'سنن ابن ماجه — صحّحه الألباني',
     detail: 'تحقق بانتشار الفاحشة علنًا في وسائل الإعلام والفضاء الإلكتروني وما تبعه من أوبئة.',
+    detailEn: 'Fulfilled through the open spread of immorality in media and the internet, accompanied by epidemics and plagues.',
   },
   {
     title: 'انتشار الربا',
+    titleEn: 'Prevalence of Usury (Riba)',
     prophesied: '~632م',
     fulfilled: 'العصر الحديث',
+    fulfilledEn: 'Modern Era',
     hadith: '«لَيَأْتِيَنَّ عَلَى النَّاسِ زَمَانٌ لَا يَبْقَى أَحَدٌ إِلَّا أَكَلَ الرِّبَا، فَإِنْ لَمْ يَأْكُلْهُ أَصَابَهُ مِنْ غُبَارِهِ»',
     source: 'سنن أبي داود والنسائي — صحّحه الألباني',
     detail: 'انتشر الربا في البنوك والمعاملات العالمية حتى بات يكاد لا يخلو منه اقتصاد.',
+    detailEn: 'Usury has spread through banks and global transactions until scarcely any economy is free from it.',
   },
   {
     title: 'التطاول في بناء المساجد',
+    titleEn: 'Competing in Mosque Ornamentation',
     prophesied: '~620م',
     fulfilled: 'العصر الحديث',
+    fulfilledEn: 'Modern Era',
     hadith: '«مِنْ أَشْرَاطِ السَّاعَةِ أَنْ يَتَبَاهَى النَّاسُ فِي الْمَسَاجِدِ»',
     source: 'سنن أبي داود والنسائي وابن ماجه — صحيح',
     detail: 'نرى اليوم مسابقة المدن والدول في بناء أفخم المساجد وأكثرها زخرفةً.',
+    detailEn: 'Today we see cities and nations competing to build the most lavishly decorated mosques.',
   },
   {
     title: 'قتال الترك',
+    titleEn: 'Fighting the Turks',
     prophesied: '~630م',
     fulfilled: '~1218–1258م',
+    fulfilledEn: '~1218–1258 CE',
     hadith: '«لَا تَقُومُ السَّاعَةُ حَتَّى تُقَاتِلُوا التُّرْكَ، صِغَارَ الْأَعْيُنِ، حُمْرَ الْوُجُوهِ، ذُلْفَ الْأُنُوفِ»',
     source: 'صحيح البخاري ومسلم — كتاب الفتن',
     detail: 'قاتل المسلمون المغول الترك وتحقق وصف النبي ﷺ الدقيق لصفاتهم.',
+    detailEn: 'Muslims fought the Mongol Turks and the Prophet\'s ﷺ precise description of their features was fulfilled.',
   },
   {
     title: 'نار الحجاز تُضيء أعناق الإبل ببُصرى',
+    titleEn: 'Fire of Hijaz Illuminates Camel Necks in Busra',
     prophesied: '~630م',
     fulfilled: '654هـ / 1256م',
+    fulfilledEn: '654 AH / 1256 CE',
     hadith: '«لَا تَقُومُ السَّاعَةُ حَتَّى تَخْرُجَ نَارٌ مِنْ أَرْضِ الْحِجَازِ تُضِيءُ أَعْنَاقَ الْإِبِلِ بِبُصْرَى»',
     source: 'صحيح البخاري ومسلم',
     detail: 'ثار بركان المدينة عام 654هـ وامتدت حممه أميالاً وظلت مضيئةً كما وصف ﷺ.',
+    detailEn: 'The Medina volcano erupted in 654 AH, its lava extending for miles, illuminating just as the Prophet ﷺ described.',
   },
   {
     title: 'اتخاذ القبور مساجد',
+    titleEn: 'Taking Graves as Places of Worship',
     prophesied: '~632م',
     fulfilled: 'القرن الأول الهجري فما بعده',
+    fulfilledEn: '1st century AH onwards',
     hadith: '«لَعَنَ اللَّهُ الْيَهُودَ وَالنَّصَارَى اتَّخَذُوا قُبُورَ أَنْبِيَائِهِمْ مَسَاجِدَ»، قَالَتْ عَائِشَةُ: يُحَذِّرُ مَا صَنَعُوا',
     source: 'صحيح البخاري ومسلم',
     detail: 'تحقق هذا في أقوام كثيرة بنوا الأضرحة والمشاهد على القبور.',
+    detailEn: 'Fulfilled among many peoples who built shrines and mausoleums over graves.',
   },
   {
     title: 'وفاة النبي ﷺ بمرض لا بقتل',
+    titleEn: 'Death of the Prophet ﷺ by Illness, Not by the Sword',
     prophesied: 'في مرضه',
     fulfilled: '12 ربيع الأول 11هـ',
+    fulfilledEn: '12 Rabi al-Awwal, 11 AH',
     hadith: '«مَا مِنْ نَبِيٍّ إِلَّا وَقَدْ أُعْطِيَ الِاخْتِيَارَ بَيْنَ الدُّنْيَا وَالْآخِرَةِ، وَإِنِّي أَخْتَرْتُ الْآخِرَةَ»',
     source: 'صحيح البخاري — كتاب المغازي',
     detail: 'أخبر ﷺ قبل وفاته أنه سيتوفى بمرض لا بسيف وتحقق ذلك تمامًا.',
+    detailEn: 'The Prophet ﷺ informed before his death that he would die of illness not the sword, and this was fulfilled completely.',
   },
   {
     title: 'حفاة عراة يتطاولون في البنيان',
+    titleEn: 'Barefoot Shepherds Competing in Tall Buildings',
     prophesied: '~620م (حديث جبريل)',
     fulfilled: 'العصر الحديث',
+    fulfilledEn: 'Modern Era',
     hadith: '«أَنْ تَرَى الْحُفَاةَ الْعُرَاةَ الْعَالَةَ رِعَاءَ الشَّاءِ يَتَطَاوَلُونَ فِي الْبُنْيَانِ»',
     source: 'صحيح مسلم — حديث جبريل الشهير',
     detail: 'تحقق بدول الخليج التي كانت صحراء فأصبحت تمتلك أعلى الأبراج في العالم.',
+    detailEn: 'Fulfilled by Gulf states that were once desert and now possess the world\'s tallest skyscrapers.',
   },
   {
     title: 'كثرة القتل حتى لا يعرف القاتل فيم قتل',
+    titleEn: 'Widespread Killing Until the Killer Knows Not Why He Kills',
     prophesied: '~632م',
     fulfilled: 'العصور المتأخرة',
+    fulfilledEn: 'Later Eras',
     hadith: '«لَا تَقُومُ السَّاعَةُ حَتَّى يَكْثُرَ الْهَرْجُ». قَالُوا: وَمَا الْهَرْجُ؟ قَالَ: «الْقَتْلُ، الْقَتْلُ»',
     source: 'صحيح البخاري ومسلم — كتاب الفتن',
     detail: 'نُفِّذ هذا في القرن العشرين بالحروب العالمية والأهلية التي قتلت الملايين.',
+    detailEn: 'Fulfilled in the twentieth century through world wars and civil wars that killed millions.',
   },
   {
     title: 'ظهور الكذابين المدّعين للنبوة',
+    titleEn: 'Appearance of False Prophets',
     prophesied: '~632م',
     fulfilled: 'منذ عهد أبي بكر فإلى اليوم',
+    fulfilledEn: 'From the era of Abu Bakr to this day',
     hadith: '«لَا تَقُومُ السَّاعَةُ حَتَّى يُبْعَثَ دَجَّالُونَ كَذَّابُونَ، قَرِيبٌ مِنْ ثَلَاثِينَ»',
     source: 'صحيح البخاري ومسلم — كتاب الفتن',
     detail: 'ظهر مسيلمة الكذاب وطليحة والعجلي والأسود العنسي وغيرهم فور وفاة النبي ﷺ.',
+    detailEn: 'Musaylama the Liar, Tulayha, Al-Aswad al-Ansi, and others appeared immediately after the Prophet\'s ﷺ passing.',
   },
   {
     title: 'انتشار الجهل ورفع العلم',
+    titleEn: 'Spread of Ignorance and Lifting of Knowledge',
     prophesied: '~632م',
     fulfilled: 'مستمر',
+    fulfilledEn: 'Ongoing',
     hadith: '«إِنَّ مِنْ أَشْرَاطِ السَّاعَةِ أَنْ يُرْفَعَ الْعِلْمُ وَيَثْبُتَ الْجَهْلُ، وَيُشْرَبَ الْخَمْرُ، وَيَظْهَرَ الزِّنَا»',
     source: 'صحيح البخاري — كتاب العلم',
     detail: 'يتحقق بموت العلماء الربانيين وشيوع الجهل الديني مع كثرة المعلومات الدنيوية.',
+    detailEn: 'Fulfilled through the passing of true scholars and the spread of religious ignorance despite an abundance of worldly information.',
   },
 ];
 
 const PropheciesPage: React.FC = () => {
   const router = useRouter();
+  const { isEn } = useLanguage();
   const [search, setSearch] = useState('');
 
   const filtered = PROPHECIES.filter(p =>
     !search.trim() ||
     p.title.includes(search) ||
+    p.titleEn.toLowerCase().includes(search.toLowerCase()) ||
     p.detail.includes(search) ||
+    p.detailEn.toLowerCase().includes(search.toLowerCase()) ||
     p.source.includes(search)
   );
 
   return (
-    <div dir="rtl" className="min-h-screen" style={{ background: '#030813' }}>
+    <div dir={isEn ? 'ltr' : 'rtl'} className="min-h-screen" style={{ background: '#030813' }}>
       {/* زر المشاركة */}
       <div className="fixed top-[5.5rem] left-4 z-[60]">
-        <ShareButton title="نبوءات تحققت" accentColor="#C9A84C" />
+        <ShareButton title={isEn ? 'Fulfilled Prophecies' : 'نبوءات تحققت'} accentColor="#C9A84C" />
       </div>
       {/* Stars */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
@@ -172,7 +224,7 @@ const PropheciesPage: React.FC = () => {
       </div>
 
       {/* Breadcrumb */}
-      <div className="relative z-10 px-6 pt-20 pb-4" style={{ paddingRight: '5rem' }}>
+      <div className="relative z-10 px-6 pt-20 pb-4" style={isEn ? { paddingLeft: '5rem' } : { paddingRight: '5rem' }}>
         <motion.nav
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -183,10 +235,10 @@ const PropheciesPage: React.FC = () => {
             className="flex items-center gap-1 hover:text-islamic-gold transition-colors"
           >
             <Home size={12} />
-            <span>الرئيسية</span>
+            <span>{isEn ? 'Home' : 'الرئيسية'}</span>
           </button>
-          <ChevronLeft size={10} className="rotate-180" />
-          <span className="text-islamic-gold/80">دلائل النبوة</span>
+          <ChevronLeft size={10} className={isEn ? '' : 'rotate-180'} />
+          <span className="text-islamic-gold/80">{isEn ? 'Fulfilled Prophecies' : 'دلائل النبوة'}</span>
         </motion.nav>
       </div>
 
@@ -204,7 +256,7 @@ const PropheciesPage: React.FC = () => {
           }}
         >
           <CheckCircle size={12} />
-          {PROPHECIES.length} نبوءة تحققت
+          {PROPHECIES.length} {isEn ? 'fulfilled prophecies' : 'نبوءة تحققت'}
         </motion.div>
 
         <motion.h1
@@ -218,7 +270,7 @@ const PropheciesPage: React.FC = () => {
             textShadow: '0 0 40px rgba(201,168,76,0.35)',
           }}
         >
-          دلائل النبوة
+          {isEn ? 'Signs of Prophethood' : 'دلائل النبوة'}
         </motion.h1>
 
         <motion.p
@@ -228,7 +280,7 @@ const PropheciesPage: React.FC = () => {
           className="font-noto text-white/40 text-sm mb-2"
           style={{ fontStyle: 'italic' }}
         >
-          النبوءات التي تحققت
+          {isEn ? 'Prophecies that came true' : 'النبوءات التي تحققت'}
         </motion.p>
 
         <motion.p
@@ -248,13 +300,13 @@ const PropheciesPage: React.FC = () => {
           transition={{ delay: 0.5 }}
           className="relative max-w-xs mx-auto mt-4"
         >
-          <SearchIcon size={13} className="absolute right-3 top-1/2 -translate-y-1/2 text-islamic-gold/40" />
+          <SearchIcon size={13} className={`absolute ${isEn ? 'left-3' : 'right-3'} top-1/2 -translate-y-1/2 text-islamic-gold/40`} />
           <input
             type="text"
-            placeholder="ابحث عن نبوءة..."
+            placeholder={isEn ? 'Search prophecies…' : 'ابحث عن نبوءة...'}
             value={search}
             onChange={e => setSearch(e.target.value)}
-            className="w-full font-kufi text-sm text-white/75 pr-8 pl-3 py-2 rounded-full outline-none"
+            className={`w-full font-kufi text-sm text-white/75 ${isEn ? 'pl-8 pr-3' : 'pr-8 pl-3'} py-2 rounded-full outline-none`}
             style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(201,168,76,0.2)' }}
           />
         </motion.div>
@@ -303,7 +355,7 @@ const PropheciesPage: React.FC = () => {
                     className="font-noto font-bold"
                     style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.35rem)', color: '#C9A84C' }}
                   >
-                    {prophecy.title}
+                    {isEn ? prophecy.titleEn : prophecy.title}
                   </h3>
 
                   {/* Badge */}
@@ -312,7 +364,7 @@ const PropheciesPage: React.FC = () => {
                     style={{ background: 'rgba(34,197,94,0.12)', border: '1px solid rgba(34,197,94,0.3)', color: '#4ade80' }}
                   >
                     <CheckCircle size={11} />
-                    تحقق
+                    {isEn ? 'Fulfilled' : 'تحقق'}
                   </span>
                 </div>
 
@@ -322,14 +374,14 @@ const PropheciesPage: React.FC = () => {
                     className="font-kufi text-xs px-3 py-1 rounded-lg"
                     style={{ background: 'rgba(201,168,76,0.08)', border: '1px solid rgba(201,168,76,0.18)', color: '#C9A84C' }}
                   >
-                    قيلت: {prophecy.prophesied}
+                    {isEn ? 'Prophesied:' : 'قيلت:'} {prophecy.prophesied}
                   </span>
-                  <ArrowLeft size={14} className="text-islamic-gold/40 rotate-180" />
+                  <ArrowLeft size={14} className={`text-islamic-gold/40 ${isEn ? 'rotate-180' : ''}`} />
                   <span
                     className="font-kufi text-xs px-3 py-1 rounded-lg"
                     style={{ background: 'rgba(74,222,128,0.06)', border: '1px solid rgba(74,222,128,0.2)', color: '#4ade80' }}
                   >
-                    تحققت: {prophecy.fulfilled}
+                    {isEn ? 'Fulfilled:' : 'تحققت:'} {isEn ? prophecy.fulfilledEn : prophecy.fulfilled}
                   </span>
                 </div>
 
@@ -340,6 +392,7 @@ const PropheciesPage: React.FC = () => {
                 >
                   <p
                     className="font-noto text-white/80"
+                    dir="rtl"
                     style={{ fontSize: 'clamp(0.85rem, 1.8vw, 0.95rem)', lineHeight: 2.1, fontStyle: 'italic' }}
                   >
                     {prophecy.hadith}
@@ -351,7 +404,7 @@ const PropheciesPage: React.FC = () => {
                   className="font-noto text-white/55 mb-3"
                   style={{ fontSize: 'clamp(0.78rem, 1.5vw, 0.88rem)', lineHeight: 1.9 }}
                 >
-                  {prophecy.detail}
+                  {isEn ? prophecy.detailEn : prophecy.detail}
                 </p>
 
                 {/* Source */}
@@ -372,7 +425,7 @@ const PropheciesPage: React.FC = () => {
             animate={{ opacity: 1 }}
             className="text-center py-20 font-kufi text-white/30 text-sm"
           >
-            لا توجد نتائج للبحث
+            {isEn ? 'No results found' : 'لا توجد نتائج للبحث'}
           </motion.div>
         )}
       </div>

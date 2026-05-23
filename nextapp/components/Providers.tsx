@@ -97,7 +97,7 @@ function GlobalNav({ onSearchOpen }: { onSearchOpen: () => void }) {
           letterSpacing: '0.05em',
         }}
       >
-        <span>{isEn ? 'AR' : 'EN'}</span>
+        <span>{isEn ? 'EN' : 'AR'}</span>
       </motion.button>
 
       <motion.button

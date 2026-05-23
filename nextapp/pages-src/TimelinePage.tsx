@@ -5,16 +5,19 @@ import { useRouter } from 'next/navigation';
 import { Home, ChevronRight } from 'lucide-react';
 import IslamicParticles from '@/components/IslamicParticles';
 import { SEERAH_EVENTS, CHAPTER_META, CHAPTERS } from '@/data/seerah';
+import { SEERAH_EN } from '@/data/seerah-en';
 import ShareButton from '@/components/ShareButton';
+import { useLanguage } from '@/context/LanguageContext';
 
 const TimelinePage: React.FC = () => {
   const router = useRouter();
+  const { isEn } = useLanguage();
 
   return (
-    <div className="min-h-screen relative" dir="rtl" style={{ background: '#030813' }}>
+    <div className="min-h-screen relative" dir={isEn ? 'ltr' : 'rtl'} style={{ background: '#030813' }}>
       {/* زر المشاركة */}
       <div className="fixed top-[5.5rem] left-4 z-[60]">
-        <ShareButton title="التسلسل الزمني للسيرة" accentColor="#C9A84C" />
+        <ShareButton title={isEn ? 'Seerah Timeline' : 'التسلسل الزمني للسيرة'} accentColor="#C9A84C" />
       </div>
       <IslamicParticles />
 
@@ -30,10 +33,10 @@ const TimelinePage: React.FC = () => {
           className="flex items-center gap-1.5 opacity-60 hover:opacity-100 transition-opacity"
         >
           <Home size={14} />
-          الرئيسية
+          {isEn ? 'Home' : 'الرئيسية'}
         </button>
         <ChevronRight size={14} className="opacity-40" />
-        <span className="opacity-90">التسلسل الزمني</span>
+        <span className="opacity-90">{isEn ? 'Timeline' : 'التسلسل الزمني'}</span>
       </motion.nav>
 
       {/* Hero */}
@@ -55,7 +58,7 @@ const TimelinePage: React.FC = () => {
           transition={{ delay: 0.1 }}
           className="font-kufi text-islamic-gold/50 text-xs tracking-widest mb-3"
         >
-          سيرة خير البشر
+          {isEn ? 'Life of the Best of Humanity' : 'سيرة خير البشر'}
         </motion.p>
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
@@ -64,7 +67,7 @@ const TimelinePage: React.FC = () => {
           className="font-noto font-bold text-islamic-gold"
           style={{ fontSize: 'clamp(2.5rem, 8vw, 5.5rem)' }}
         >
-          التسلسل الزمني
+          {isEn ? 'Timeline' : 'التسلسل الزمني'}
         </motion.h1>
         <motion.p
           initial={{ opacity: 0 }}
@@ -72,7 +75,7 @@ const TimelinePage: React.FC = () => {
           transition={{ delay: 0.35 }}
           className="text-white/35 font-kufi text-sm mt-3"
         >
-          من الميلاد المبارك حتى الرحيل إلى الرفيق الأعلى
+          {isEn ? 'From the blessed birth to the journey to the Highest Companion' : 'من الميلاد المبارك حتى الرحيل إلى الرفيق الأعلى'}
         </motion.p>
       </div>
 
@@ -171,7 +174,7 @@ const TimelinePage: React.FC = () => {
                       {/* Card */}
                       <motion.button
                         onClick={() => router.push(`/event/${ev.id}`)}
-                        className="w-full text-right rounded-xl overflow-hidden group"
+                        className={`w-full ${isEn ? 'text-left' : 'text-right'} rounded-xl overflow-hidden group`}
                         style={{
                           background: `linear-gradient(135deg, ${meta.gradientFrom} 0%, ${meta.gradientTo} 100%)`,
                           border: `1px solid ${meta.accentColor}28`,
@@ -211,13 +214,13 @@ const TimelinePage: React.FC = () => {
                               color: isLight ? '#2d1e08' : 'white',
                             }}
                           >
-                            {ev.title}
+                            {isEn && SEERAH_EN[ev.id] ? SEERAH_EN[ev.id].title : ev.title}
                           </h3>
                           <p
                             className="text-sm leading-relaxed"
                             style={{ color: isLight ? '#6b4c1e' : '#b3b5b8' }}
                           >
-                            {ev.subtitle}
+                            {isEn && SEERAH_EN[ev.id] ? SEERAH_EN[ev.id].subtitle : ev.subtitle}
                           </p>
                         </div>
 
@@ -255,7 +258,7 @@ const TimelinePage: React.FC = () => {
           >
             ﴿إِنَّكَ مَيِّتٌ وَإِنَّهُم مَّيِّتُونَ﴾
           </p>
-          <p className="font-kufi text-islamic-gold/25 text-xs tracking-widest">— سورة الزمر: 30</p>
+          <p className="font-kufi text-islamic-gold/25 text-xs tracking-widest">— {isEn ? 'Surah Az-Zumar: 30' : 'سورة الزمر: 30'}</p>
         </motion.div>
       </div>
     </div>

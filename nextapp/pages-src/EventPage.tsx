@@ -366,6 +366,14 @@ const EventPage: React.FC = () => {
               >
                 ﴿{event.verse}﴾
               </p>
+              {isEn && enData?.verse_en && (
+                <p
+                  className="font-sans italic mt-3 opacity-85"
+                  style={{ fontSize: 'clamp(0.9rem, 1.8vw, 1.1rem)', color: accentColor, lineHeight: 1.8 }}
+                >
+                  {enData.verse_en}
+                </p>
+              )}
               <p className="font-kufi mt-3 opacity-80 text-sm tracking-wider" style={{ color: accentColor }}>
                 — {event.verse_ref}
               </p>
@@ -470,7 +478,7 @@ const EventPage: React.FC = () => {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: i * 0.08 }}
-                    className="rounded-xl p-5 text-center"
+                    className="rounded-xl p-5 text-center min-w-0"
                     style={{
                       background: `${accentColor}0d`,
                       border: `1px solid ${accentColor}20`,
@@ -479,9 +487,9 @@ const EventPage: React.FC = () => {
                     {/* Label above — bigger and prominent */}
                     <p
                       className="font-kufi tracking-wider mb-2"
-                      style={{ fontSize: '0.82rem', color: `${accentColor}`, letterSpacing: '0.05em' }}
+                      style={{ fontSize: '0.82rem', color: `${accentColor}`, letterSpacing: '0.05em', wordBreak: 'break-word', textWrap: 'wrap' }}
                     >
-                      {stat.label}
+                      {isEn && enData?.statsLabels ? enData.statsLabels[i] : stat.label}
                     </p>
                     {/* Value below — slightly smaller */}
                     <p
@@ -530,13 +538,13 @@ const EventPage: React.FC = () => {
                         className="font-kufi text-base mb-2 font-bold"
                         style={{ color: accentColor }}
                       >
-                        {phase.phase}
+                        {isEn && enData?.battleTimelineEn ? enData.battleTimelineEn[i].phase : phase.phase}
                       </h4>
                       <p
                         className={`text-base leading-loose ${textMuted}`}
                         style={{ lineHeight: 2.1 }}
                       >
-                        {phase.detail}
+                        {isEn && enData?.battleTimelineEn ? enData.battleTimelineEn[i].detail : phase.detail}
                       </p>
                     </motion.div>
                   ))}
@@ -575,7 +583,7 @@ const EventPage: React.FC = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.45, delay: i * 0.06 }}
-                      className="flex items-center gap-4 p-4 rounded-xl"
+                      className="flex items-center gap-4 p-4 rounded-xl min-w-0"
                       style={{
                         background: `${accentColor}09`,
                         border: `1px solid ${accentColor}18`,
@@ -592,9 +600,11 @@ const EventPage: React.FC = () => {
                       >
                         {fig.name[0]}
                       </div>
-                      <div>
+                      <div className="min-w-0">
                         <p className={`font-noto font-bold text-base ${textBase}`}>{fig.name}</p>
-                        <p className={`font-kufi text-sm opacity-80 ${textMuted}`}>{fig.role}</p>
+                        <p className={`font-kufi text-sm opacity-80 line-clamp-2 ${textMuted}`}>
+                          {isEn && enData?.keyFiguresEn ? enData.keyFiguresEn[i].role : fig.role}
+                        </p>
                       </div>
                     </motion.div>
                   ))}
@@ -640,7 +650,7 @@ const EventPage: React.FC = () => {
                         className={`font-noto leading-loose ${textBase}`}
                         style={{ fontSize: 'clamp(1rem, 2vw, 1.2rem)', lineHeight: 2.2 }}
                       >
-                        {hadith.text}
+                        {isEn && enData?.hadithsEn ? enData.hadithsEn[i].text : hadith.text}
                       </p>
                       <footer className="mt-4 flex items-center gap-2">
                         <div className="h-px flex-1 opacity-30" style={{ background: accentColor }} />
@@ -648,7 +658,7 @@ const EventPage: React.FC = () => {
                           className="font-kufi text-sm not-italic opacity-80"
                           style={{ color: accentColor }}
                         >
-                          {hadith.source}
+                          {isEn && enData?.hadithsEn ? enData.hadithsEn[i].source : hadith.source}
                         </cite>
                       </footer>
                     </motion.blockquote>
@@ -686,12 +696,20 @@ const EventPage: React.FC = () => {
                       >
                         ﴿{v.verse}﴾
                       </p>
+                      {isEn && enData?.relatedVersesEn && enData.relatedVersesEn[i]?.verse_translation && (
+                        <p
+                          className="font-sans italic mt-2 opacity-85"
+                          style={{ fontSize: 'clamp(0.85rem, 1.6vw, 1.05rem)', color: accentColor, lineHeight: 1.8 }}
+                        >
+                          {enData.relatedVersesEn[i].verse_translation}
+                        </p>
+                      )}
                       <p className="font-kufi text-sm opacity-80 mt-2" style={{ color: accentColor }}>
                         — {v.ref}
                       </p>
                       {v.context && (
                         <p className={`text-sm mt-3 leading-loose opacity-90 ${textMuted}`}>
-                          {v.context}
+                          {isEn && enData?.relatedVersesEn ? enData.relatedVersesEn[i]?.context : v.context}
                         </p>
                       )}
                     </motion.div>

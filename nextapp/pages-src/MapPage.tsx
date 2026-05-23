@@ -12,6 +12,7 @@ import {
   type MapLocation,
 } from '@/data/mapData';
 import ShareButton from '@/components/ShareButton';
+import { useLanguage } from '@/context/LanguageContext';
 
 /* ── Pulsing location marker ── */
 const LocationMarker: React.FC<{
@@ -100,6 +101,7 @@ const AnimatedRoute: React.FC<{
 
 const MapPage: React.FC = () => {
   const router = useRouter();
+  const { isEn } = useLanguage();
   const [selected, setSelected] = useState<MapLocation | null>(null);
   const [playing, setPlaying] = useState(false);
   const [played, setPlayed] = useState(false);
@@ -122,11 +124,9 @@ const MapPage: React.FC = () => {
     setSelected(prev => prev?.id === loc.id ? null : loc);
   };
 
-  const typeLabel: Record<string, string> = {
-    holy:   'مدينة مقدسة',
-    battle: 'موقع معركة',
-    city:   'مدينة تاريخية',
-  };
+  const typeLabel: Record<string, string> = isEn
+    ? { holy: 'Holy City', battle: 'Battle Site', city: 'Historic City' }
+    : { holy: 'مدينة مقدسة', battle: 'موقع معركة', city: 'مدينة تاريخية' };
 
   const typeColor: Record<string, string> = {
     holy:   '#C9A84C',
@@ -135,10 +135,10 @@ const MapPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col" dir="rtl" style={{ background: '#030813' }}>
+    <div className="min-h-screen flex flex-col" dir={isEn ? 'ltr' : 'rtl'} style={{ background: '#030813' }}>
       {/* زر المشاركة */}
       <div className="fixed top-[5.5rem] left-4 z-[60]">
-        <ShareButton title="خريطة الأحداث" accentColor="#C9A84C" />
+        <ShareButton title={isEn ? 'Events Map' : 'خريطة الأحداث'} accentColor="#C9A84C" />
       </div>
 
       {/* ── Top bar ── */}
@@ -153,15 +153,15 @@ const MapPage: React.FC = () => {
             className="flex items-center gap-1.5 opacity-60 hover:opacity-100 transition-opacity"
           >
             <Home size={14} />
-            الرئيسية
+            {isEn ? 'Home' : 'الرئيسية'}
           </button>
           <ChevronRight size={14} className="opacity-40" />
-          <span className="opacity-90">الخريطة التفاعلية</span>
+          <span className="opacity-90">{isEn ? 'Interactive Map' : 'الخريطة التفاعلية'}</span>
         </nav>
 
         {/* Title */}
         <h1 className="font-noto font-bold text-islamic-gold hidden md:block" style={{ fontSize: '1.3rem' }}>
-          خريطة السيرة النبوية
+          {isEn ? 'Seerah Map' : 'خريطة السيرة النبوية'}
         </h1>
 
         {/* Controls */}
@@ -175,7 +175,7 @@ const MapPage: React.FC = () => {
               style={{ background: 'rgba(201,168,76,0.15)', border: '1px solid rgba(201,168,76,0.4)', color: '#C9A84C' }}
             >
               <Play size={14} fill="#C9A84C" strokeWidth={0} />
-              تشغيل المسارات
+              {isEn ? 'Play Routes' : 'تشغيل المسارات'}
             </motion.button>
           ) : (
             <motion.button
@@ -186,7 +186,7 @@ const MapPage: React.FC = () => {
               style={{ background: 'rgba(201,168,76,0.08)', border: '1px solid rgba(201,168,76,0.25)', color: '#C9A84C' }}
             >
               <RotateCcw size={13} strokeWidth={2} />
-              إعادة
+              {isEn ? 'Reset' : 'إعادة'}
             </motion.button>
           )}
         </div>
@@ -335,12 +335,20 @@ const MapPage: React.FC = () => {
             className="absolute bottom-4 left-4 rounded-xl px-4 py-3 text-xs font-kufi space-y-1.5 z-20"
             style={{ background: 'rgba(3,8,19,0.82)', border: '1px solid rgba(201,168,76,0.18)', backdropFilter: 'blur(6px)' }}
           >
-            {[
-              { color: '#C9A84C', label: 'مدينة مقدسة' },
-              { color: '#E05C4B', label: 'موقع معركة' },
-              { color: '#7EC8A4', label: 'مدينة تاريخية' },
-              { color: '#C9A84C', label: 'مسار الهجرة', dashed: true },
-            ].map(item => (
+            {(isEn
+              ? [
+                  { color: '#C9A84C', label: 'Holy City' },
+                  { color: '#E05C4B', label: 'Battle Site' },
+                  { color: '#7EC8A4', label: 'Historic City' },
+                  { color: '#C9A84C', label: 'Hijra Route', dashed: true },
+                ]
+              : [
+                  { color: '#C9A84C', label: 'مدينة مقدسة' },
+                  { color: '#E05C4B', label: 'موقع معركة' },
+                  { color: '#7EC8A4', label: 'مدينة تاريخية' },
+                  { color: '#C9A84C', label: 'مسار الهجرة', dashed: true },
+                ]
+            ).map(item => (
               <div key={item.label} className="flex items-center gap-2">
                 {item.dashed ? (
                   <svg width="20" height="6">
@@ -363,7 +371,7 @@ const MapPage: React.FC = () => {
               className="absolute top-4 left-1/2 -translate-x-1/2 font-kufi text-xs px-3 py-1.5 rounded-full z-20"
               style={{ background: 'rgba(3,8,19,0.75)', color: '#C9A84C', border: '1px solid rgba(201,168,76,0.2)' }}
             >
-              اضغط على أي موقع لمعرفة تفاصيله
+              {isEn ? 'Tap any location for details' : 'اضغط على أي موقع لمعرفة تفاصيله'}
             </motion.div>
           )}
         </div>
@@ -437,7 +445,7 @@ const MapPage: React.FC = () => {
                     <span className="font-noto font-bold text-sm" style={{ color: typeColor[selected.type] }}>
                       {selected.year}
                     </span>
-                    <span className="text-white/30 text-xs font-kufi">هجرية</span>
+                    <span className="text-white/30 text-xs font-kufi">{isEn ? 'AH' : 'هجرية'}</span>
                   </div>
                 )}
 
@@ -462,7 +470,7 @@ const MapPage: React.FC = () => {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    عرض أحداث الفصل
+                    {isEn ? 'View Chapter Events' : 'عرض أحداث الفصل'}
                   </motion.button>
                 )}
               </motion.div>
@@ -477,15 +485,17 @@ const MapPage: React.FC = () => {
               >
                 {/* Header */}
                 <div>
-                  <p className="font-kufi text-islamic-gold/40 text-xs tracking-widest mb-2">الخريطة التفاعلية</p>
+                  <p className="font-kufi text-islamic-gold/40 text-xs tracking-widest mb-2">{isEn ? 'Interactive Map' : 'الخريطة التفاعلية'}</p>
                   <h2
                     className="font-noto font-bold text-islamic-gold mb-4"
                     style={{ fontSize: 'clamp(1.4rem, 3vw, 1.8rem)' }}
                   >
-                    جغرافيا السيرة النبوية
+                    {isEn ? 'Seerah Geography' : 'جغرافيا السيرة النبوية'}
                   </h2>
                   <p className="text-sm leading-loose text-white/35">
-                    استكشف مواقع الأحداث التاريخية التي شكّلت مسيرة الدعوة الإسلامية في شبه الجزيرة العربية.
+                    {isEn
+                      ? 'Explore the locations of historical events that shaped the Islamic mission across the Arabian Peninsula.'
+                      : 'استكشف مواقع الأحداث التاريخية التي شكّلت مسيرة الدعوة الإسلامية في شبه الجزيرة العربية.'}
                   </p>
 
                   <div className="mt-6 space-y-2">
@@ -517,7 +527,9 @@ const MapPage: React.FC = () => {
                     style={{ background: 'rgba(201,168,76,0.07)', border: '1px solid rgba(201,168,76,0.18)' }}
                   >
                     <p className="font-kufi text-islamic-gold/50 text-xs leading-loose">
-                      اضغط "تشغيل المسارات" لمشاهدة طريق الهجرة النبوية متحركاً
+                      {isEn
+                        ? 'Press "Play Routes" to watch the Prophetic Hijra route animated'
+                        : 'اضغط "تشغيل المسارات" لمشاهدة طريق الهجرة النبوية متحركاً'}
                     </p>
                   </div>
                 )}
